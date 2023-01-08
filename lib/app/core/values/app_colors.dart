@@ -9,6 +9,7 @@ class AppColors {
   static const Color Subtle_2 = Color(0xFF8C8C8C);
   static const Color Background = Color(0xFFEFEFF0);
   static const Color Surface = Color(0xFFFAFAFA);
+  static const Color shadow = Colors.black26;
 
   static const Color Primary1 = Color(0xFF694829);
   static const Color PrimarySubtle1 = Color(0xFF99BF6F);
