@@ -52,7 +52,7 @@ class CustomTextStyle extends TextStyle {
 
   static TextStyle b1(Color color) {
     return GoogleFonts.workSans(
-      fontSize: 16,
+      fontSize: 15,
       fontWeight: FontWeight.w500,
       color: color,
     );
@@ -66,7 +66,7 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
-  static TextStyle t3(Color color) {
+  static TextStyle b3(Color color) {
     return GoogleFonts.workSans(
       fontSize: 14,
       fontWeight: FontWeight.w600,
@@ -74,7 +74,7 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
-  static TextStyle t4(Color color) {
+  static TextStyle b4(Color color) {
     return GoogleFonts.workSans(
       fontSize: 14,
       fontWeight: FontWeight.w400,
@@ -82,7 +82,7 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
-  static TextStyle t5(Color color) {
+  static TextStyle b5(Color color) {
     return GoogleFonts.workSans(
       fontSize: 12,
       fontWeight: FontWeight.w600,
@@ -91,10 +91,10 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
-  static TextStyle t6(Color color) {
+  static TextStyle b6(Color color) {
     return GoogleFonts.workSans(
-      fontSize: 12,
-      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
       color: color,
     );
   }

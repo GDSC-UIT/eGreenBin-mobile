@@ -36,8 +36,9 @@ class _CardDSLopState extends State<CardDSLop> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.65,
+            width: double.infinity,
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: AppColors.Surface,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -54,11 +55,20 @@ class _CardDSLopState extends State<CardDSLop> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // danh sach lop
+// danh sach lop
+                const SizedBox(height: 38),
+                Text(
+                  "DANH SÁCH LỚP",
+                  style: CustomTextStyle.h2(AppColors.Primary1),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  "${numberOfStudent} học sinh",
+                  style: CustomTextStyle.b1(AppColors.Subtle_1),
+                ),
+// loc theo
 
-                // bo loc
-
-                // list hoc sinh
+// list student
               ],
             ),
           ),
