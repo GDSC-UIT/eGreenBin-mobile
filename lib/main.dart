@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '/app/core/values/app_strings.dart';
 import '/app/data/services/localization_service.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       theme: ThemeData(
         primarySwatch: Colors.green,
+        textTheme: TextTheme(
+          bodyText2: GoogleFonts.workSans(),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.home,
