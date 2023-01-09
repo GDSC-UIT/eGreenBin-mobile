@@ -54,7 +54,7 @@ class CardDSLop extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.65,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.Surface,
+              color: AppColors.PrimarySubtle2,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -98,7 +98,7 @@ class CardDSLop extends StatelessWidget {
                           width: 200,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: AppColors.Surface,
+                            color: AppColors.PrimarySubtle2,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                             border: Border.all(
@@ -113,7 +113,7 @@ class CardDSLop extends StatelessWidget {
                               Obx(
                                 () => DropdownButton<String>(
                                   style: CustomTextStyle.b3(AppColors.Normal),
-                                  dropdownColor: AppColors.Surface,
+                                  dropdownColor: AppColors.PrimarySubtle2,
                                   value: _controller.selectedSort.value,
                                   onChanged: (String? newValue) {
                                     _controller.changeSortItem(newValue!);

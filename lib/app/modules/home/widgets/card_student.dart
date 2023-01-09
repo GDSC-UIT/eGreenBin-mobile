@@ -27,7 +27,7 @@ class StudentCard extends StatelessWidget {
       },
       child: Container(
         child: Card(
-          color: AppColors.Surface,
+          color: AppColors.PrimarySubtle2,
           elevation: 0,
           child: Container(
             child: Row(

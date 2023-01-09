@@ -1,5 +1,6 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/appbar_student.dart';
+import 'package:egreenbin/app/global_widgets/card_evaluate.dart';
 import 'package:egreenbin/app/modules/student_info/student_info_controller.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_statistical.dart';
@@ -34,13 +35,13 @@ class StudentInfoScreen extends StatelessWidget {
                   // appbar height
                   const SizedBox(height: 215),
                   // card thong ke
-                  CardStatistical(),
+                  CardStatistical(_controller),
                   // card so lan dung sai
                   const SizedBox(height: 30),
                   CardRatio(_controller, showCommentForm),
                   // card danh gia
                   const SizedBox(height: 30),
-                  CardStatistical(),
+                  CardEvaluate(_controller.listComments, 350),
                   const SizedBox(height: 30),
                 ],
               ),

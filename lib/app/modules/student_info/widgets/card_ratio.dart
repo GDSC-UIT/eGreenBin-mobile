@@ -56,7 +56,7 @@ class CardRatio extends StatelessWidget {
             height: 320,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.Surface,
+              color: AppColors.PrimarySubtle2,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -95,7 +95,7 @@ class CardRatio extends StatelessWidget {
                           width: 200,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: AppColors.Surface,
+                            color: AppColors.PrimarySubtle2,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                             border: Border.all(
@@ -116,8 +116,8 @@ class CardRatio extends StatelessWidget {
                                     _controller.changeSortItem(newValue!);
                                   },
                                   items: _sortMenuItems,
-                                  underline:
-                                      Container(color: AppColors.Surface),
+                                  underline: Container(
+                                      color: AppColors.PrimarySubtle2),
                                   icon: const Icon(
                                     Icons.expand_more,
                                     size: 18,

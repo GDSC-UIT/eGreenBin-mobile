@@ -1,6 +1,8 @@
+import 'package:egreenbin/app/data/models/comments.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/models/students.dart';
 import 'package:get/get.dart';
+import '../../data/models/comment.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
@@ -16,6 +18,7 @@ class StudentInfoController extends GetxController {
   @override
   void onInit() {
     student.value = listStudent.findStudent(id);
+    listComments = allcomments.listCommentsFindById(id);
     super.onInit();
   }
 
@@ -55,4 +58,8 @@ class StudentInfoController extends GetxController {
   void changeMonthItem(String newValue) {
     selectedMonth.value = newValue;
   }
+
+  // comment
+  Comments allcomments = Comments();
+  List<Comment> listComments = [];
 }
