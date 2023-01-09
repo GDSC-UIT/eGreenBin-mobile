@@ -9,13 +9,13 @@ class StudentInfoController extends GetxController {
   }
   // data student
   Students listStudent = Students();
-  Student student = Student(name: "default");
+  Rx<Student> student = Student(name: "default").obs;
 
   dynamic id = Get.arguments;
 
   @override
   void onInit() {
-    student = listStudent.findStudent(id);
+    student.value = listStudent.findStudent(id);
     super.onInit();
   }
 

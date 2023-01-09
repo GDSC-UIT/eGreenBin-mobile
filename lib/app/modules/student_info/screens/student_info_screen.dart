@@ -13,6 +13,10 @@ class StudentInfoScreen extends StatelessWidget {
     Get.back();
   }
 
+  void showCommentForm() {
+    print("commet aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +37,7 @@ class StudentInfoScreen extends StatelessWidget {
                   CardStatistical(),
                   // card so lan dung sai
                   const SizedBox(height: 30),
-                  CardRatio(),
+                  CardRatio(_controller, showCommentForm),
                   // card danh gia
                   const SizedBox(height: 30),
                   CardStatistical(),
@@ -43,7 +47,7 @@ class StudentInfoScreen extends StatelessWidget {
             ),
           ),
           // appbar
-          StudentAppBar(_controller.student, backToPrevScreen),
+          StudentAppBar(_controller.student.value, backToPrevScreen),
         ],
       ),
     );
