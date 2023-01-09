@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   HomeController() {
     selectedClass = classItems[0].obs;
     selectedSort = sortItems[0].obs;
+    numberOfStudent = listStudent.value.listStudents.length.obs;
   }
   // data
   Rx<Students> listStudent = Students().obs;
@@ -16,7 +17,7 @@ class HomeController extends GetxController {
   ).obs;
 
   // class value
-  final RxInt numberOfStudent = 32.obs;
+  RxInt numberOfStudent = 32.obs;
   // dropdown class
   List<String> classItems = <String>['Mầm C1', 'Mầm C2', 'Mầm C3'];
   RxString selectedClass = ''.obs;

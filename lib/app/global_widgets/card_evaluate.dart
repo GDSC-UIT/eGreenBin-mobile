@@ -48,8 +48,8 @@ class _CardEvaluateState extends State<CardEvaluate> {
             decoration: const BoxDecoration(
               color: AppColors.PrimarySubtle2,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
+                topRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
               ),
               boxShadow: [
                 BoxShadow(
@@ -122,11 +122,18 @@ class _CardEvaluateState extends State<CardEvaluate> {
                 const SizedBox(height: 5),
                 Expanded(
                   child: Container(
-                    child: ListView.builder(
-                      itemCount: widget.comments.length,
-                      itemBuilder: (context, index) =>
-                          CardComment(widget.comments[index]),
-                    ),
+                    child: widget.comments.length == 0
+                        ? Center(
+                            child: Text(
+                              "CHƯA CÓ ĐÁNH GIÁ NÀO",
+                              style: CustomTextStyle.h2(AppColors.Normal),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: widget.comments.length,
+                            itemBuilder: (context, index) =>
+                                CardComment(widget.comments[index]),
+                          ),
                   ),
                 ),
                 const SizedBox(height: 15),

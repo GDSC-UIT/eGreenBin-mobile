@@ -2,6 +2,9 @@ import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/comment.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../core/values/app_values.dart';
 
 class CardComment extends StatelessWidget {
   Comment comment;
@@ -61,7 +64,7 @@ class CardComment extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "Tháng 11/2022",
+                '${DateFormat(FormatValue.numbericDateFormat).format(comment.date!)}',
                 style: CustomTextStyle.b8(AppColors.Surface),
               ),
             ),
