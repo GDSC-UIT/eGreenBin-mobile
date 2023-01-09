@@ -9,46 +9,59 @@ class Students {
       numOfWrong: 1,
     ),
     Student(
-      id: "21522345",
+      id: "21522321",
       name: "Lê Xuân Quỳnh",
       numOfCorrect: 90,
       numOfWrong: 1,
     ),
     Student(
-      id: "21522345",
+      id: "21522343",
       name: "Nguyễn Công Tấn Phát",
       numOfCorrect: 2,
       numOfWrong: 99,
     ),
     Student(
-      id: "21522345",
+      id: "21522000",
       name: "Nguyễn Hữu Hiệu",
       numOfCorrect: 50,
       numOfWrong: 2,
     ),
     Student(
-      id: "21522345",
+      id: "21525455",
       name: "Ngô Thu Hà",
       numOfCorrect: 5,
       numOfWrong: 1,
     ),
     Student(
-      id: "21522345",
+      id: "21522455",
       name: "Cao Minh Quân",
       numOfCorrect: 5,
       numOfWrong: 1,
     ),
     Student(
-      id: "21522345",
+      id: "21520345",
       name: "Phan Văn Minh",
       numOfCorrect: 100,
       numOfWrong: 0,
     ),
     Student(
-      id: "21522345",
+      id: "21521345",
       name: "Tiến deptraicaotohocgioi",
       numOfCorrect: 0,
       numOfWrong: 100,
     ),
   ];
+
+  Student findStudent(String id) {
+    Student stu = Student(
+      id: "null",
+      name: "Default",
+      numOfCorrect: 0,
+      numOfWrong: 0,
+    );
+    listStudents.forEach((student) {
+      if (student.id == id) stu = student;
+    });
+    return stu;
+  }
 }

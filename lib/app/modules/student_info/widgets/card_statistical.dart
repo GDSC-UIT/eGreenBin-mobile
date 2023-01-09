@@ -1,12 +1,8 @@
-import 'package:egreenbin/app/core/values/app_values.dart';
-import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample1.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import '../../../core/values/app_colors.dart';
 import '../student_info_controller.dart';
 
@@ -49,7 +45,7 @@ class CardStatistical extends StatelessWidget {
             ),
             child: Column(
               children: [
-// danh sach lop
+// Thong ke
                 const SizedBox(height: 38),
                 Text(
                   "THỐNG KÊ",

@@ -98,15 +98,15 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
-  static TextStyle t7(Color color) {
+  static TextStyle b7(Color color) {
     return GoogleFonts.workSans(
-      fontSize: 12,
-      fontWeight: FontWeight.w600,
+      fontSize: 13,
+      fontWeight: FontWeight.w400,
       color: color,
     );
   }
 
-  static TextStyle t8(Color color) {
+  static TextStyle b8(Color color) {
     return GoogleFonts.workSans(
       fontSize: 12,
       fontWeight: FontWeight.w400,

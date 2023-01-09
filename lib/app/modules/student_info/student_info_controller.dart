@@ -1,17 +1,38 @@
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/data/models/students.dart';
 import 'package:get/get.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     selectedMonth = monthItems[0].obs;
+    selectedSort = sortItems[0].obs;
+  }
+  // data student
+  Students listStudent = Students();
+  Student student = Student(name: "default");
+
+  dynamic id = Get.arguments;
+
+  @override
+  void onInit() {
+    student = listStudent.findStudent(id);
+    super.onInit();
   }
 
-  Student student = Student(
-    id: "21522345",
-    name: "Nguyễn Thành Trung",
-    numOfCorrect: 92,
-    numOfWrong: 1,
-  );
+  // dropdown sort
+  List<String> sortItems = <String>['Ngày', 'Tháng', 'Năm'];
+  RxString selectedSort = ''.obs;
+
+  void changeSortItem(String newValue) {
+    selectedSort.value = newValue;
+  }
+
+  // datepicker
+  Rx<DateTime?> selectDate = DateTime.now().obs;
+
+  void changeDate(DateTime newDate) {
+    selectDate.value = newDate;
+  }
 
   // dropdown month
   List<String> monthItems = <String>[

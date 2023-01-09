@@ -11,6 +11,7 @@ class Assets {
   static const String tickSquare = 'assets/icons/Tick Square.png';
   static const String wrongSqure = 'assets/icons/Close Square.png';
   static const String back = 'assets/icons/Stroke 3.png';
+  static const String chat = 'assets/icons/Chat.png';
   // image
   static const String backround = 'assets/images/bg.png';
 }

@@ -23,7 +23,7 @@ class StudentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.studentInfo);
+        Get.toNamed(AppRoutes.studentInfo, arguments: student.id);
       },
       child: Container(
         child: Card(
