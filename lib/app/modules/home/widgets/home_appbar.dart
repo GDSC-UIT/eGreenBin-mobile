@@ -1,12 +1,13 @@
 import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeAppbar extends StatelessWidget {
+  HomeController _controller = Get.find<HomeController>();
   String screenName = "TRANG CHỦ";
-  String teacherName = "Hoàng Thì Linh";
-  String teacherId = "20521000";
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +109,12 @@ class HomeAppbar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            teacherName,
+                            _controller.teacher.value.name,
                             style: CustomTextStyle.h2(AppColors.Normal),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "MGV: $teacherId",
+                            "MGV: ${_controller.teacher.value.mgv}",
                             style: CustomTextStyle.b1(AppColors.Subtle_1),
                           ),
                         ],
