@@ -12,7 +12,7 @@ class CustomTextStyle extends TextStyle {
 
   static TextStyle h2(Color color) {
     return GoogleFonts.workSans(
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: FontWeight.w700,
       color: color,
     );

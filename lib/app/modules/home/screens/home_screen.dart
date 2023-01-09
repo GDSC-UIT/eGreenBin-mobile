@@ -1,6 +1,6 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/modules/home/widgets/home_appbar.dart';
-import 'package:egreenbin/app/modules/home/widgets/card_danh_sach_lop.dart';
+import 'package:egreenbin/app/modules/home/widgets/appbar_home.dart';
+import 'package:egreenbin/app/modules/home/widgets/card_students_list.dart';
 import 'package:flutter/material.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/text_styles.dart';
