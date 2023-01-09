@@ -9,8 +9,8 @@ class StudentAppBar extends StatelessWidget {
   String screenName = "THÔNG TIN CHI TIẾT";
 
   Student student;
-
-  StudentAppBar(this.student);
+  Function? backToPrevSreen;
+  StudentAppBar(this.student, this.backToPrevSreen);
 
   @override
   Widget build(BuildContext context) {
@@ -50,22 +50,28 @@ class StudentAppBar extends StatelessWidget {
         Positioned(
           top: 31,
           left: 31,
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: const [
-                BoxShadow(
-                  color: AppColors.shadow,
-                  spreadRadius: 5,
-                  blurRadius: 4,
-                  offset: Offset(0, 5), // changes position of shadow
-                ),
-              ],
+          child: InkWell(
+            onTap: () {
+              backToPrevSreen!();
+            },
+            child: Container(
+              height: 40,
+              width: 40,
+              padding: const EdgeInsets.only(right: 3),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: const [
+                  BoxShadow(
+                    color: AppColors.shadow,
+                    spreadRadius: 5,
+                    blurRadius: 4,
+                    offset: Offset(0, 5), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Image.asset(Assets.back),
             ),
-            child: Image.asset(Assets.notification),
           ),
         ),
         SizedBox(

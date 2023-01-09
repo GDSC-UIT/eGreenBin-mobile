@@ -10,6 +10,7 @@ class Assets {
   static const String calendar = 'assets/icons/Calendar.png';
   static const String tickSquare = 'assets/icons/Tick Square.png';
   static const String wrongSqure = 'assets/icons/Close Square.png';
+  static const String back = 'assets/icons/Stroke 3.png';
   // image
   static const String backround = 'assets/images/bg.png';
 }

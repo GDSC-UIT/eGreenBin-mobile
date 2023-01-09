@@ -85,9 +85,8 @@ class CustomTextStyle extends TextStyle {
   static TextStyle b5(Color color) {
     return GoogleFonts.workSans(
       fontSize: 12,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       color: color,
-      height: 1.8,
     );
   }
 

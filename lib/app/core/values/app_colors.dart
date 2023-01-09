@@ -16,6 +16,6 @@ class AppColors {
   static const Color PrimarySubtle2 = Color(0xFFFFFFFF);
 
   static const Color shadow = Colors.black26;
-  static const Color wrong = Color(0xFFEB5757);
+  static const Color wrong = Color(0xFFEC7676);
 }
 //https://stackoverflow.com/questions/57878112/a-class-method-named-function-in-dart
