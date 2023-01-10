@@ -242,7 +242,7 @@ class CardRatio extends StatelessWidget {
             left: 0,
             child: GestureDetector(
               onTap: () {
-                showCommentForm();
+                showCommentForm(context);
               },
               child: Container(
                 height: 35,

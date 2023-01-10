@@ -6,18 +6,26 @@ import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_statistical.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../../global_widgets/dialog_comment.dart';
 import '../../../routes/app_routes.dart';
 
 class StudentInfoScreen extends StatelessWidget {
   StudentInfoController _controller = Get.find<StudentInfoController>();
-
+  TextEditingController _textCotroller = TextEditingController();
   void backToPrevScreen() {
     Get.back();
   }
 
-  void showCommentForm() {
-    print("commet aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  void showCommentForm(BuildContext context) {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (ctx) => DiaLogComment(
+        controler: _textCotroller,
+        onSave: () {},
+        title: "Add a new task",
+      ),
+    );
   }
 
   void pushToAllCommentScreen() {
