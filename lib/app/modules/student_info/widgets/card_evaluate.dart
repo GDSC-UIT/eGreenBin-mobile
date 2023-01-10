@@ -1,49 +1,32 @@
-import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/data/models/comment.dart';
 import 'package:egreenbin/app/global_widgets/card_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import '../../../core/values/app_colors.dart';
+import '../student_info_controller.dart';
 
-import '../core/values/app_colors.dart';
-
-class CardEvaluate extends StatefulWidget {
-  List<Comment> comments;
-  double heightOfBox;
-  CardEvaluate(this.comments, this.heightOfBox);
-
-  // dropButton sort value
-  static List<String> sortItems = [
-    "Mới nhất",
-    "Cũ nhất",
-  ];
-
-  @override
-  State<CardEvaluate> createState() => _CardEvaluateState();
-}
-
-class _CardEvaluateState extends State<CardEvaluate> {
-  String sortSelected = CardEvaluate.sortItems[0];
-
-  final List<DropdownMenuItem<String>> _sortMenuItems = CardEvaluate.sortItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
+class CardEvaluate extends StatelessWidget {
+  StudentInfoController _controller;
+  Function pushToAllScreen;
+  CardEvaluate(this._controller, this.pushToAllScreen);
 
   @override
   Widget build(BuildContext context) {
+    final List<DropdownMenuItem<String>> _sortMenuItems =
+        _controller.sortCommentItems
+            .map(
+              (value) => DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              ),
+            )
+            .toList();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
         children: [
           Container(
-            height: widget.heightOfBox,
+            height: 320,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: AppColors.PrimarySubtle2,
@@ -94,22 +77,22 @@ class _CardEvaluateState extends State<CardEvaluate> {
                             ),
                           ),
                           child: Center(
-                            child: DropdownButton<String>(
-                              style: CustomTextStyle.b3(AppColors.Normal),
-                              dropdownColor: AppColors.PrimarySubtle2,
-                              value: sortSelected,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  sortSelected = newValue!;
-                                });
-                              },
-                              items: _sortMenuItems,
-                              underline:
-                                  Container(color: AppColors.PrimarySubtle2),
-                              icon: const Icon(
-                                Icons.expand_more,
-                                size: 18,
-                                color: AppColors.Normal,
+                            child: Obx(
+                              () => DropdownButton<String>(
+                                style: CustomTextStyle.b3(AppColors.Normal),
+                                dropdownColor: AppColors.PrimarySubtle2,
+                                value: _controller.SelectedSortComment.value,
+                                onChanged: (String? newValue) {
+                                  _controller.changeSortCommentItem(newValue!);
+                                },
+                                items: _sortMenuItems,
+                                underline:
+                                    Container(color: AppColors.PrimarySubtle2),
+                                icon: const Icon(
+                                  Icons.expand_more,
+                                  size: 18,
+                                  color: AppColors.Normal,
+                                ),
                               ),
                             ),
                           ),
@@ -122,7 +105,7 @@ class _CardEvaluateState extends State<CardEvaluate> {
                 const SizedBox(height: 5),
                 Expanded(
                   child: Container(
-                    child: widget.comments.length == 0
+                    child: _controller.listComments.length == 0
                         ? Center(
                             child: Text(
                               "CHƯA CÓ ĐÁNH GIÁ NÀO",
@@ -130,9 +113,9 @@ class _CardEvaluateState extends State<CardEvaluate> {
                             ),
                           )
                         : ListView.builder(
-                            itemCount: widget.comments.length,
+                            itemCount: _controller.listComments.length,
                             itemBuilder: (context, index) =>
-                                CardComment(widget.comments[index]),
+                                CardComment(_controller.listComments[index]),
                           ),
                   ),
                 ),
@@ -145,23 +128,26 @@ class _CardEvaluateState extends State<CardEvaluate> {
             top: 0,
             left: 0,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                pushToAllScreen();
+              },
               child: Container(
-                  height: 35,
-                  width: 100,
-                  padding: const EdgeInsets.only(left: 10, right: 5),
-                  decoration: const BoxDecoration(
-                    color: AppColors.Normal,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(10),
-                    ),
+                height: 35,
+                width: 100,
+                padding: const EdgeInsets.only(left: 10, right: 5),
+                decoration: const BoxDecoration(
+                  color: AppColors.Normal,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(10),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Xem tất cả",
-                      style: CustomTextStyle.b7(AppColors.Surface),
-                    ),
-                  )),
+                ),
+                child: Center(
+                  child: Text(
+                    "Xem tất cả",
+                    style: CustomTextStyle.b7(AppColors.Surface),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

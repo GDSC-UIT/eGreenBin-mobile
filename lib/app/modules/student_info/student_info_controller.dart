@@ -8,6 +8,7 @@ class StudentInfoController extends GetxController {
   StudentInfoController() {
     selectedMonth = monthItems[0].obs;
     selectedSort = sortItems[0].obs;
+    SelectedSortComment = sortCommentItems[0].obs;
   }
   // data student
   Students listStudent = Students();
@@ -28,6 +29,13 @@ class StudentInfoController extends GetxController {
 
   void changeSortItem(String newValue) {
     selectedSort.value = newValue;
+  }
+
+  // dropButton sort value
+  List<String> sortCommentItems = <String>["Mới nhất", "Cũ nhất"];
+  RxString SelectedSortComment = ''.obs;
+  void changeSortCommentItem(String newValue) {
+    SelectedSortComment.value = newValue;
   }
 
   // datepicker

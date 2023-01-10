@@ -1,11 +1,13 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/appbar_student.dart';
-import 'package:egreenbin/app/global_widgets/card_evaluate.dart';
+import 'package:egreenbin/app/modules/student_info/widgets/card_evaluate.dart';
 import 'package:egreenbin/app/modules/student_info/student_info_controller.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_statistical.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../routes/app_routes.dart';
 
 class StudentInfoScreen extends StatelessWidget {
   StudentInfoController _controller = Get.find<StudentInfoController>();
@@ -16,6 +18,11 @@ class StudentInfoScreen extends StatelessWidget {
 
   void showCommentForm() {
     print("commet aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  }
+
+  void pushToAllCommentScreen() {
+    if (_controller.listComments.length == 0) return;
+    Get.toNamed(AppRoutes.rating, arguments: _controller.student.value.id);
   }
 
   @override
@@ -41,7 +48,7 @@ class StudentInfoScreen extends StatelessWidget {
                   CardRatio(_controller, showCommentForm),
                   // card danh gia
                   const SizedBox(height: 30),
-                  CardEvaluate(_controller.listComments, 350),
+                  CardEvaluate(_controller, pushToAllCommentScreen),
                   const SizedBox(height: 30),
                 ],
               ),
