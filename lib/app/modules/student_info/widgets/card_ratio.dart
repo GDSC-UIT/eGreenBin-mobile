@@ -1,34 +1,19 @@
-import 'package:egreenbin/app/core/values/app_values.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/modules/home/home_controller.dart';
-import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../core/values/app_values.dart';
+import '../student_info_controller.dart';
 
-class CardDSLop extends StatelessWidget {
-  static HomeController _controller = Get.find<HomeController>();
+class CardRatio extends StatelessWidget {
+  StudentInfoController _controller;
+  Function showCommentForm;
 
-  // dropButton class value
-  final List<DropdownMenuItem<String>> _classMenuItems = _controller.classItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-  // sort value
-  final List<DropdownMenuItem<String>> _sortMenuItems = _controller.sortItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
+  CardRatio(this._controller, this.showCommentForm);
+
   // date picker
   void _presentDatePicker(BuildContext context) {
     showDatePicker(
@@ -44,20 +29,37 @@ class CardDSLop extends StatelessWidget {
     );
   }
 
+  double get Ratio {
+    if (_controller.student.value.numOfWrong == 0) return 1;
+    return _controller.student.value.numOfCorrect! /
+        (_controller.student.value.numOfWrong! +
+            _controller.student.value.numOfCorrect!);
+  }
+
   @override
   Widget build(BuildContext context) {
+    // sort value
+    final List<DropdownMenuItem<String>> _sortMenuItems = _controller.sortItems
+        .map(
+          (value) => DropdownMenuItem(
+            value: value,
+            child: Text(value),
+          ),
+        )
+        .toList();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.65,
+            height: 320,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: AppColors.PrimarySubtle2,
               borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
+                topLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
               ),
               boxShadow: [
                 BoxShadow(
@@ -70,16 +72,11 @@ class CardDSLop extends StatelessWidget {
             ),
             child: Column(
               children: [
-// danh sach lop
-                const SizedBox(height: 38),
+// text: So lan dung sai
+                const SizedBox(height: 12),
                 Text(
-                  "DANH SÁCH LỚP",
+                  "SỐ LẦN ĐÚNG/SAI",
                   style: CustomTextStyle.h2(AppColors.Primary1),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  "${_controller.numberOfStudent.value} học sinh",
-                  style: CustomTextStyle.b1(AppColors.Subtle_1),
                 ),
                 const SizedBox(height: 5),
 // loc theo
@@ -113,14 +110,14 @@ class CardDSLop extends StatelessWidget {
                               Obx(
                                 () => DropdownButton<String>(
                                   style: CustomTextStyle.b3(AppColors.Normal),
-                                  dropdownColor: AppColors.PrimarySubtle2,
+                                  dropdownColor: AppColors.Surface,
                                   value: _controller.selectedSort.value,
                                   onChanged: (String? newValue) {
                                     _controller.changeSortItem(newValue!);
                                   },
                                   items: _sortMenuItems,
-                                  underline:
-                                      Container(color: AppColors.Surface),
+                                  underline: Container(
+                                      color: AppColors.PrimarySubtle2),
                                   icon: const Icon(
                                     Icons.expand_more,
                                     size: 18,
@@ -153,7 +150,7 @@ class CardDSLop extends StatelessWidget {
                                   GestureDetector(
                                     onTap: () => _presentDatePicker(context),
                                     child: Container(
-                                      height: 18,
+                                      height: 20,
                                       width: 20,
                                       child: Image.asset(Assets.calendar),
                                     ),
@@ -167,49 +164,108 @@ class CardDSLop extends StatelessWidget {
                     ),
                   ],
                 ),
-// list student
-                Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                      itemCount:
-                          _controller.listStudent.value.listStudents.length,
-                      itemBuilder: (context, i) => StudentCard(
-                          i + 1, _controller.listStudent.value.listStudents[i]),
+// two face
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //face happy
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 80,
+                          child: Image.asset(Assets.faceHappy),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          "Đúng: ${_controller.student.value.numOfCorrect}",
+                          style: CustomTextStyle.h2(
+                            AppColors.Normal,
+                          ),
+                        )
+                      ],
                     ),
+                    const SizedBox(width: 12),
+                    // face sad
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 80,
+                          child: Image.asset(Assets.faceSad),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          "Sai: ${_controller.student.value.numOfWrong}",
+                          style: CustomTextStyle.h2(
+                            AppColors.wrong,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+// process bar
+                Container(
+                  height: 20,
+                  padding: const EdgeInsets.symmetric(horizontal: 55),
+                  child: LinearPercentIndicator(
+                    animation: true,
+                    animationDuration: 1000,
+                    lineHeight: 40,
+                    percent: Ratio,
+                    barRadius: const Radius.circular(50),
+                    progressColor: AppColors.Normal,
+                    backgroundColor: AppColors.wrong,
                   ),
                 ),
-                SizedBox(height: 10),
+// text: ti le bo dung
+                const SizedBox(height: 15),
+                RichText(
+                  text: TextSpan(
+                    text: 'Tỉ lệ bỏ đúng: ',
+                    style: CustomTextStyle.b2(AppColors.Subtle_1),
+                    children: [
+                      TextSpan(
+                        text: "${(Ratio * 100).toStringAsFixed(0)}%",
+                        style: CustomTextStyle.b2(AppColors.Normal),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
 // dropbutton
           Positioned(
-            top: 0,
+            bottom: 0,
             left: 0,
-            child: Container(
-              height: 30,
-              padding: const EdgeInsets.only(left: 10, right: 5),
-              decoration: const BoxDecoration(
-                color: AppColors.Normal,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(10),
-                ),
-              ),
-              child: Obx(
-                () => DropdownButton<String>(
-                  style: CustomTextStyle.b2(AppColors.Surface),
-                  dropdownColor: AppColors.Normal,
-                  value: _controller.selectedClass.value,
-                  onChanged: (String? newValue) {
-                    _controller.changeClassItem(newValue!);
-                  },
-                  items: _classMenuItems,
-                  underline: Container(color: AppColors.Normal),
-                  icon: const Icon(
-                    Icons.expand_more,
-                    size: 25,
-                    color: AppColors.Surface,
+            child: GestureDetector(
+              onTap: () {
+                showCommentForm();
+              },
+              child: Container(
+                height: 35,
+                width: 100,
+                padding: const EdgeInsets.only(left: 10, right: 5),
+                decoration: const BoxDecoration(
+                  color: AppColors.Normal,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(10),
                   ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: 15,
+                      child: Image.asset(Assets.chat),
+                    ),
+                    Text(
+                      "Đánh giá",
+                      style: CustomTextStyle.b7(AppColors.Surface),
+                    )
+                  ],
                 ),
               ),
             ),

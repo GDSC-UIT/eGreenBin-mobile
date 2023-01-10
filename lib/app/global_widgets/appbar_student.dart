@@ -123,7 +123,7 @@ class StudentAppBar extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "MGV: ${student.id}",
+                            "MHS: ${student.id}",
                             style: CustomTextStyle.b1(AppColors.Subtle_1),
                           ),
                         ],

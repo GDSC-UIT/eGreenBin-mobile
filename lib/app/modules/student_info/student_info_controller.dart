@@ -1,17 +1,49 @@
+import 'package:egreenbin/app/data/models/comments.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/data/models/students.dart';
 import 'package:get/get.dart';
+import '../../data/models/comment.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     selectedMonth = monthItems[0].obs;
+    selectedSort = sortItems[0].obs;
+    SelectedSortComment = sortCommentItems[0].obs;
+  }
+  // data student
+  Students listStudent = Students();
+  Rx<Student> student = Student(name: "default").obs;
+
+  dynamic id = Get.arguments;
+
+  @override
+  void onInit() {
+    student.value = listStudent.findStudent(id);
+    listComments = allcomments.listCommentsFindById(id);
+    super.onInit();
   }
 
-  Student student = Student(
-    id: "21522345",
-    name: "Nguyễn Thành Trung",
-    numOfCorrect: 92,
-    numOfWrong: 1,
-  );
+  // dropdown sort
+  List<String> sortItems = <String>['Ngày', 'Tháng', 'Năm'];
+  RxString selectedSort = ''.obs;
+
+  void changeSortItem(String newValue) {
+    selectedSort.value = newValue;
+  }
+
+  // dropButton sort value
+  List<String> sortCommentItems = <String>["Mới nhất", "Cũ nhất"];
+  RxString SelectedSortComment = ''.obs;
+  void changeSortCommentItem(String newValue) {
+    SelectedSortComment.value = newValue;
+  }
+
+  // datepicker
+  Rx<DateTime?> selectDate = DateTime.now().obs;
+
+  void changeDate(DateTime newDate) {
+    selectDate.value = newDate;
+  }
 
   // dropdown month
   List<String> monthItems = <String>[
@@ -34,4 +66,8 @@ class StudentInfoController extends GetxController {
   void changeMonthItem(String newValue) {
     selectedMonth.value = newValue;
   }
+
+  // comment
+  Comments allcomments = Comments();
+  List<Comment> listComments = [];
 }

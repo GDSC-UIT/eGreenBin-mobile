@@ -1,30 +1,29 @@
-import 'package:egreenbin/app/core/values/app_values.dart';
-import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample1.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import '../../../core/values/app_colors.dart';
 import '../student_info_controller.dart';
 
 class CardStatistical extends StatelessWidget {
-  static StudentInfoController _controller = Get.find<StudentInfoController>();
+  StudentInfoController _controller;
 
-  // dropButton class value
-  final List<DropdownMenuItem<String>> _classMenuItems = _controller.monthItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
+  CardStatistical(this._controller);
 
   @override
   Widget build(BuildContext context) {
+    // dropButton month value
+    final List<DropdownMenuItem<String>> _monthMenuItems =
+        _controller.monthItems
+            .map(
+              (value) => DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              ),
+            )
+            .toList();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -33,7 +32,7 @@ class CardStatistical extends StatelessWidget {
             //height: 270,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.Surface,
+              color: AppColors.PrimarySubtle2,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -49,7 +48,7 @@ class CardStatistical extends StatelessWidget {
             ),
             child: Column(
               children: [
-// danh sach lop
+// Thong ke
                 const SizedBox(height: 38),
                 Text(
                   "THỐNG KÊ",
@@ -126,11 +125,12 @@ class CardStatistical extends StatelessWidget {
                 () => DropdownButton<String>(
                   style: CustomTextStyle.b2(AppColors.Surface),
                   dropdownColor: AppColors.Normal,
+                  menuMaxHeight: 200,
                   value: _controller.selectedMonth.value,
                   onChanged: (String? newValue) {
                     _controller.changeMonthItem(newValue!);
                   },
-                  items: _classMenuItems,
+                  items: _monthMenuItems,
                   underline: Container(color: AppColors.Normal),
                   icon: const Icon(
                     Icons.expand_more,

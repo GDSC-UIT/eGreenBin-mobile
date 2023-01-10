@@ -23,11 +23,11 @@ class StudentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.studentInfo);
+        Get.toNamed(AppRoutes.studentInfo, arguments: student.id);
       },
       child: Container(
         child: Card(
-          color: AppColors.Surface,
+          color: AppColors.PrimarySubtle2,
           elevation: 0,
           child: Container(
             child: Row(
