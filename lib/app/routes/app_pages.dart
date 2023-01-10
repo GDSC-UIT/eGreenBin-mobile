@@ -1,3 +1,5 @@
+import 'package:egreenbin/app/modules/chat/chat_binding.dart';
+import 'package:egreenbin/app/modules/chat/screens/chat_screen.dart';
 import 'package:egreenbin/app/modules/login/login_binding.dart';
 import 'package:egreenbin/app/modules/login/screens/login_screen.dart';
 import 'package:egreenbin/app/modules/rating/rating_binding.dart';
@@ -30,6 +32,11 @@ abstract class AppPages {
       name: AppRoutes.login,
       page: () => LoginScreen(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.chat,
+      page: () => ChatScreen(),
+      binding: ChatBinding(),
     ),
   ];
 }
