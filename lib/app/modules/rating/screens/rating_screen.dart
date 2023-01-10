@@ -1,5 +1,6 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/appbar_student.dart';
+import 'package:egreenbin/app/modules/rating/widgets/card_all_comments.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_evaluate.dart';
 import 'package:egreenbin/app/modules/rating/rating_controller.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
@@ -31,8 +32,8 @@ class RatingScreen extends StatelessWidget {
               // appbar
               StudentAppBar(_controller.student.value, backToPrevScreen),
               // card danh gia
-              const SizedBox(height: 30),
-              //CardEvaluate(_controller.listComments, 350),
+              const SizedBox(height: 20),
+              CardAllComments(_controller),
             ],
           ),
         ),
