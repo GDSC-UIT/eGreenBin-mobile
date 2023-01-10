@@ -26,4 +26,6 @@
         - app_routes.dart: chứa tên các route
 - main.dart
 
+## Resources
+Design Figma: https://www.figma.com/file/RkQeskWhdVR0k9WSatQ9PY/eGreenBin-App?node-id=0%3A1&t=7N586K5yNSBOIYit-1
 Reference: https://github.com/kauemurakami/getx_pattern
