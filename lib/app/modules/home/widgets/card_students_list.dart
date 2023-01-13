@@ -1,6 +1,7 @@
 import 'package:egreenbin/app/core/values/app_values.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
 import 'package:flutter/material.dart';
@@ -83,89 +84,14 @@ class CardDSLop extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
 // loc theo
-                Row(
-                  children: [
-                    const SizedBox(width: 21),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Lọc theo",
-                          style: CustomTextStyle.b2(AppColors.Subtle_1),
-                        ),
-                        const SizedBox(height: 5),
-                        Container(
-                          width: 200,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: AppColors.PrimarySubtle2,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(
-                              color: AppColors.Primary1,
-                              width: 1,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              // lua chon ngay, thang, nam
-                              Obx(
-                                () => DropdownButton<String>(
-                                  style: CustomTextStyle.b3(AppColors.Normal),
-                                  dropdownColor: AppColors.PrimarySubtle2,
-                                  value: _controller.selectedSort.value,
-                                  onChanged: (String? newValue) {
-                                    _controller.changeSortItem(newValue!);
-                                  },
-                                  items: _sortMenuItems,
-                                  underline:
-                                      Container(color: AppColors.Surface),
-                                  icon: const Icon(
-                                    Icons.expand_more,
-                                    size: 18,
-                                    color: AppColors.Normal,
-                                  ),
-                                ),
-                              ),
-                              // divider
-                              const VerticalDivider(
-                                color: AppColors.Primary1,
-                                thickness: 1,
-                              ),
-                              // calendar
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(
-                                    () => Container(
-                                      width: 80,
-                                      child: Text(
-                                        _controller.selectDate.value == null
-                                            ? '01/01/2023'
-                                            : '${DateFormat(FormatValue.numbericDateFormat).format(_controller.selectDate.value! as DateTime)}',
-                                        style: CustomTextStyle.b3(
-                                            AppColors.Normal),
-                                      ),
-                                    ),
-                                  ),
-                                  //const SizedBox(width: 5),
-                                  GestureDetector(
-                                    onTap: () => _presentDatePicker(context),
-                                    child: Container(
-                                      height: 18,
-                                      width: 20,
-                                      child: Image.asset(Assets.calendar),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
+                Obx(
+                  () => SortBox(
+                    sortItems: _controller.sortItems,
+                    selectedSort: _controller.selectedSort.value,
+                    changeSortItem: _controller.changeSortItem,
+                    selectDate: _controller.selectDate.value,
+                    changeDate: _controller.changeDate,
+                  ),
                 ),
 // list student
                 Expanded(
