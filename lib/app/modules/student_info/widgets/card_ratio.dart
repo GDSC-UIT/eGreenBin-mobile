@@ -88,6 +88,13 @@ class CardRatio extends StatelessWidget {
                     changeSortItem: _controller.changeSortItem,
                     selectDate: _controller.selectDate.value,
                     changeDate: _controller.changeDate,
+                    sortWeekItems: _controller.sortWeekItems,
+                    selectedWeekSort: _controller.selectedWeekSort.value,
+                    changeSortWeekItem: _controller.changeSortWeekItem,
+                    sortMonthItems: _controller.sortMonthItems,
+                    selectedMonthSort:
+                        _controller.selectedMonthSortCardRatio.value,
+                    changeSortMonthItem: _controller.changeMonthItemCardRatio,
                   ),
                 ),
 // two face

@@ -22,6 +22,7 @@ class CardDSLop extends StatelessWidget {
       )
       .toList();
   // sort value
+  // sort ngay, tuan, thang
   final List<DropdownMenuItem<String>> _sortMenuItems = _controller.sortItems
       .map(
         (value) => DropdownMenuItem(
@@ -30,6 +31,26 @@ class CardDSLop extends StatelessWidget {
         ),
       )
       .toList();
+  // sort theo tuan
+  final List<DropdownMenuItem<String>> _sortMenuWeekItems =
+      _controller.sortWeekItems
+          .map(
+            (value) => DropdownMenuItem(
+              value: value,
+              child: Text(value),
+            ),
+          )
+          .toList();
+  // sort theo thang
+  final List<DropdownMenuItem<String>> _sortMenuMonthItems =
+      _controller.sortMonthItems
+          .map(
+            (value) => DropdownMenuItem(
+              value: value,
+              child: Text(value),
+            ),
+          )
+          .toList();
   // date picker
   void _presentDatePicker(BuildContext context) {
     showDatePicker(
@@ -91,6 +112,12 @@ class CardDSLop extends StatelessWidget {
                     changeSortItem: _controller.changeSortItem,
                     selectDate: _controller.selectDate.value,
                     changeDate: _controller.changeDate,
+                    sortWeekItems: _controller.sortWeekItems,
+                    selectedWeekSort: _controller.selectedWeekSort.value,
+                    changeSortWeekItem: _controller.changeSortWeekItem,
+                    sortMonthItems: _controller.sortMonthItems,
+                    selectedMonthSort: _controller.selectedMonthSort.value,
+                    changeSortMonthItem: _controller.changeSortMonthItem,
                   ),
                 ),
 // list student

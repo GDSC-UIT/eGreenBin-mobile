@@ -6,9 +6,11 @@ import '../../data/models/comment.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
-    selectedMonth = monthItems[0].obs;
+    selectedMonthSortCardStatistical = sortMonthItems[0].obs;
     selectedSort = sortItems[0].obs;
     SelectedSortComment = sortCommentItems[0].obs;
+    selectedMonthSortCardRatio = sortMonthItems[0].obs;
+    selectedWeekSort = sortWeekItems[0].obs;
   }
   // data student
   Students listStudent = Students();
@@ -46,7 +48,7 @@ class StudentInfoController extends GetxController {
   }
 
   // dropdown month
-  List<String> monthItems = <String>[
+  List<String> sortMonthItems = <String>[
     'Tháng 1',
     'Tháng 2',
     'Tháng 3',
@@ -61,10 +63,33 @@ class StudentInfoController extends GetxController {
     'Tháng 12',
   ];
 
-  RxString selectedMonth = ''.obs;
+  RxString selectedMonthSortCardStatistical = ''.obs;
 
-  void changeMonthItem(String newValue) {
-    selectedMonth.value = newValue;
+  void changeMonthItemCardStatistical(String newValue) {
+    selectedMonthSortCardStatistical.value = newValue;
+  }
+
+  // sort theo tuan
+  List<String> sortWeekItems = <String>[
+    'Tuần 1',
+    'Tuần 2',
+    'Tuần 3',
+    'Tuần 4',
+    'Tuần 5',
+    'Tuần 6',
+    'Tuần 7',
+  ];
+  RxString selectedWeekSort = ''.obs;
+
+  void changeSortWeekItem(String newValue) {
+    selectedWeekSort.value = newValue;
+  }
+
+  // sort theo thang
+  RxString selectedMonthSortCardRatio = ''.obs;
+
+  void changeMonthItemCardRatio(String newValue) {
+    selectedMonthSortCardRatio.value = newValue;
   }
 
   // comment

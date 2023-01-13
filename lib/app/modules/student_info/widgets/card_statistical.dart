@@ -15,7 +15,7 @@ class CardStatistical extends StatelessWidget {
   Widget build(BuildContext context) {
     // dropButton month value
     final List<DropdownMenuItem<String>> _monthMenuItems =
-        _controller.monthItems
+        _controller.sortMonthItems
             .map(
               (value) => DropdownMenuItem(
                 value: value,
@@ -126,9 +126,9 @@ class CardStatistical extends StatelessWidget {
                   style: CustomTextStyle.b2(AppColors.Surface),
                   dropdownColor: AppColors.Normal,
                   menuMaxHeight: 200,
-                  value: _controller.selectedMonth.value,
+                  value: _controller.selectedMonthSortCardStatistical.value,
                   onChanged: (String? newValue) {
-                    _controller.changeMonthItem(newValue!);
+                    _controller.changeMonthItemCardStatistical(newValue!);
                   },
                   items: _monthMenuItems,
                   underline: Container(color: AppColors.Normal),

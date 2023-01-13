@@ -14,6 +14,14 @@ class SortBox extends StatelessWidget {
   // datepicker
   DateTime? selectDate;
   Function changeDate;
+  // dropdown sort week
+  List<String> sortWeekItems;
+  String selectedWeekSort;
+  Function changeSortWeekItem;
+  // dropdown sort month
+  List<String> sortMonthItems;
+  String selectedMonthSort;
+  Function changeSortMonthItem;
 
   SortBox({
     required this.sortItems,
@@ -21,6 +29,12 @@ class SortBox extends StatelessWidget {
     required this.changeSortItem,
     required this.selectDate,
     required this.changeDate,
+    required this.sortWeekItems,
+    required this.selectedWeekSort,
+    required this.changeSortWeekItem,
+    required this.sortMonthItems,
+    required this.selectedMonthSort,
+    required this.changeSortMonthItem,
   });
   // show date picker
   void _presentDatePicker(BuildContext context) {
@@ -39,7 +53,7 @@ class SortBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-// sort value
+// sort ngay, thang, tuan
     final List<DropdownMenuItem<String>> _sortMenuItems = sortItems
         .map(
           (value) => DropdownMenuItem(
@@ -48,6 +62,86 @@ class SortBox extends StatelessWidget {
           ),
         )
         .toList();
+// sort theo week
+    final List<DropdownMenuItem<String>> _sortWeekItems = sortWeekItems
+        .map(
+          (value) => DropdownMenuItem(
+            value: value,
+            child: Text(value),
+          ),
+        )
+        .toList();
+// sort theo thang
+    final List<DropdownMenuItem<String>> _sortMonthItems = sortMonthItems
+        .map(
+          (value) => DropdownMenuItem(
+            value: value,
+            child: Text(value),
+          ),
+        )
+        .toList();
+// calenda
+    Widget showCalendar = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 80,
+          child: Text(
+            selectDate == null
+                ? '01/01/2023'
+                : '${DateFormat(FormatValue.numbericDateFormat).format(selectDate! as DateTime)}',
+            style: CustomTextStyle.b3(AppColors.Normal),
+          ),
+        ),
+        //const SizedBox(width: 5),
+        GestureDetector(
+          onTap: () => _presentDatePicker(context),
+          child: Container(
+            height: 18,
+            width: 20,
+            child: Image.asset(Assets.calendar),
+          ),
+        )
+      ],
+    );
+// sort Week
+    Widget showListWeek = DropdownButton<String>(
+      menuMaxHeight: 200,
+      style: CustomTextStyle.b3(AppColors.Normal),
+      dropdownColor: AppColors.PrimarySubtle2,
+      value: selectedWeekSort,
+      // thay doi item
+      onChanged: (String? newValue) {
+        changeSortWeekItem(newValue!);
+      },
+      items: _sortWeekItems,
+      underline: Container(color: AppColors.Surface),
+      icon: const Icon(
+        Icons.expand_more,
+        size: 18,
+        color: AppColors.Normal,
+      ),
+    );
+// sort Month
+    Widget showListMonth = DropdownButton<String>(
+      menuMaxHeight: 200,
+      style: CustomTextStyle.b3(AppColors.Normal),
+      dropdownColor: AppColors.PrimarySubtle2,
+      value: selectedMonthSort,
+      // thay doi item
+      onChanged: (String? newValue) {
+        changeSortMonthItem(newValue!);
+      },
+      items: _sortMonthItems,
+      underline: Container(color: AppColors.Surface),
+      icon: const Icon(
+        Icons.expand_more,
+        size: 18,
+        color: AppColors.Normal,
+      ),
+    );
+
+// built UI
     return Row(
       children: [
         const SizedBox(width: 21),
@@ -95,30 +189,14 @@ class SortBox extends StatelessWidget {
                     color: AppColors.Primary1,
                     thickness: 1,
                   ),
-                  // calendar
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 80,
-                        child: Text(
-                          selectDate == null
-                              ? '01/01/2023'
-                              : '${DateFormat(FormatValue.numbericDateFormat).format(selectDate! as DateTime)}',
-                          style: CustomTextStyle.b3(AppColors.Normal),
-                        ),
-                      ),
-                      //const SizedBox(width: 5),
-                      GestureDetector(
-                        onTap: () => _presentDatePicker(context),
-                        child: Container(
-                          height: 18,
-                          width: 20,
-                          child: Image.asset(Assets.calendar),
-                        ),
-                      )
-                    ],
-                  ),
+// if sort by day => calendar
+// if sort by week => listWeekDrop
+// if sort by month => listMonthDrop
+                  (selectedSort == "Ngày")
+                      ? showCalendar
+                      : (selectedSort == "Tuần")
+                          ? showListWeek
+                          : showListMonth,
                 ],
               ),
             )
