@@ -24,7 +24,7 @@ class StudentInfoController extends GetxController {
   }
 
   // dropdown sort
-  List<String> sortItems = <String>['Ngày', 'Tháng', 'Năm'];
+  List<String> sortItems = <String>['Ngày', 'Tuần', 'Tháng'];
   RxString selectedSort = ''.obs;
 
   void changeSortItem(String newValue) {
