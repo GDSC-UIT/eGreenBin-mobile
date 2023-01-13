@@ -105,20 +105,26 @@ class CardDSLop extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
 // loc theo
-                Obx(
-                  () => SortBox(
-                    sortItems: _controller.sortItems,
-                    selectedSort: _controller.selectedSort.value,
-                    changeSortItem: _controller.changeSortItem,
-                    selectDate: _controller.selectDate.value,
-                    changeDate: _controller.changeDate,
-                    sortWeekItems: _controller.sortWeekItems,
-                    selectedWeekSort: _controller.selectedWeekSort.value,
-                    changeSortWeekItem: _controller.changeSortWeekItem,
-                    sortMonthItems: _controller.sortMonthItems,
-                    selectedMonthSort: _controller.selectedMonthSort.value,
-                    changeSortMonthItem: _controller.changeSortMonthItem,
-                  ),
+                Row(
+                  children: [
+                    const SizedBox(width: 21),
+                    Obx(
+                      () => SortBox(
+                        textTitle: "Lọc theo",
+                        sortItems: _controller.sortItems,
+                        selectedSort: _controller.selectedSort.value,
+                        changeSortItem: _controller.changeSortItem,
+                        selectDate: _controller.selectDate.value,
+                        changeDate: _controller.changeDate,
+                        sortWeekItems: _controller.sortWeekItems,
+                        selectedWeekSort: _controller.selectedWeekSort.value,
+                        changeSortWeekItem: _controller.changeSortWeekItem,
+                        sortMonthItems: _controller.sortMonthItems,
+                        selectedMonthSort: _controller.selectedMonthSort.value,
+                        changeSortMonthItem: _controller.changeSortMonthItem,
+                      ),
+                    ),
+                  ],
                 ),
 // list student
                 Expanded(

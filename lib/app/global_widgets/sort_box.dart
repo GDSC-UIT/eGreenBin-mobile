@@ -7,6 +7,8 @@ import '../core/values/assets_image.dart';
 import '../core/values/text_styles.dart';
 
 class SortBox extends StatelessWidget {
+  // text title
+  String textTitle;
   // dropdown sort
   List<String> sortItems;
   String selectedSort;
@@ -24,6 +26,7 @@ class SortBox extends StatelessWidget {
   Function changeSortMonthItem;
 
   SortBox({
+    required this.textTitle,
     required this.sortItems,
     required this.selectedSort,
     required this.changeSortItem,
@@ -142,66 +145,61 @@ class SortBox extends StatelessWidget {
     );
 
 // built UI
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(width: 21),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Lọc theo",
-              style: CustomTextStyle.b2(AppColors.Subtle_1),
+        Text(
+          textTitle,
+          style: CustomTextStyle.b2(AppColors.Subtle_1),
+        ),
+        const SizedBox(height: 7),
+        Container(
+          width: 200,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.PrimarySubtle2,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+              color: AppColors.Primary1,
+              width: 1,
             ),
-            const SizedBox(height: 5),
-            Container(
-              width: 200,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.PrimarySubtle2,
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                border: Border.all(
-                  color: AppColors.Primary1,
-                  width: 1,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // lua chon ngay, thang, nam
+              DropdownButton<String>(
+                style: CustomTextStyle.b3(AppColors.Normal),
+                dropdownColor: AppColors.PrimarySubtle2,
+                value: selectedSort,
+                // thay doi item
+                onChanged: (String? newValue) {
+                  changeSortItem(newValue!);
+                },
+                items: _sortMenuItems,
+                underline: Container(color: AppColors.Surface),
+                icon: const Icon(
+                  Icons.expand_more,
+                  size: 18,
+                  color: AppColors.Normal,
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // lua chon ngay, thang, nam
-                  DropdownButton<String>(
-                    style: CustomTextStyle.b3(AppColors.Normal),
-                    dropdownColor: AppColors.PrimarySubtle2,
-                    value: selectedSort,
-                    // thay doi item
-                    onChanged: (String? newValue) {
-                      changeSortItem(newValue!);
-                    },
-                    items: _sortMenuItems,
-                    underline: Container(color: AppColors.Surface),
-                    icon: const Icon(
-                      Icons.expand_more,
-                      size: 18,
-                      color: AppColors.Normal,
-                    ),
-                  ),
-                  // divider
-                  const VerticalDivider(
-                    color: AppColors.Primary1,
-                    thickness: 1,
-                  ),
+              // divider
+              const VerticalDivider(
+                color: AppColors.Primary1,
+                thickness: 1,
+              ),
 // if sort by day => calendar
 // if sort by week => listWeekDrop
 // if sort by month => listMonthDrop
-                  (selectedSort == "Ngày")
-                      ? showCalendar
-                      : (selectedSort == "Tuần")
-                          ? showListWeek
-                          : showListMonth,
-                ],
-              ),
-            )
-          ],
-        ),
+              (selectedSort == "Ngày")
+                  ? showCalendar
+                  : (selectedSort == "Tuần")
+                      ? showListWeek
+                      : showListMonth,
+            ],
+          ),
+        )
       ],
     );
   }

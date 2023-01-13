@@ -20,10 +20,11 @@ class StudentInfoScreen extends StatelessWidget {
     showDialog(
       context: context,
       useRootNavigator: false,
+      barrierDismissible: false,
       builder: (ctx) => DiaLogComment(
-        controler: _textCotroller,
+        studentController: _controller,
+        textControler: _textCotroller,
         onSave: () {},
-        title: "Add a new task",
       ),
     );
   }

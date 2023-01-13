@@ -15,6 +15,7 @@ class Assets {
   static const String faceHappy = 'assets/icons/face_happy.png';
   static const String faceSad = 'assets/icons/face_sad.png';
   static const String btnFace = 'assets/icons/btn.png';
+  static const String exit = 'assets/icons/Close Square green.png';
   // image
   static const String backround = 'assets/images/bg.png';
 }
