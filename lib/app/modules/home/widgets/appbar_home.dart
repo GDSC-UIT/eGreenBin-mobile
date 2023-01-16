@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeAppbar extends StatelessWidget {
-  HomeController _controller = Get.find<HomeController>();
+  HomeController _controller;
   String screenName = "TRANG CHỦ";
+
+  HomeAppbar(this._controller);
 
   @override
   Widget build(BuildContext context) {

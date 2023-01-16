@@ -1,5 +1,6 @@
 import 'package:egreenbin/app/data/models/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -10,7 +11,12 @@ class HomeController extends GetxController {
     selectedMonthSort = sortMonthItems[0].obs;
     numberOfStudent = listStudent.value.listStudents.length.obs;
   }
-  // data
+
+  // function
+  void pushToMailScreen() {}
+  void refresh() {}
+
+  // data models
   Rx<Students> listStudent = Students().obs;
 
   Rx<Teacher> teacher = Teacher(
@@ -21,13 +27,21 @@ class HomeController extends GetxController {
   // class value
   RxInt numberOfStudent = 32.obs;
   // dropdown class
-  List<String> classItems = <String>['Mầm C1', 'Mầm C2', 'Mầm C3'];
+  static List<String> classItems = <String>['Mầm C1', 'Mầm C2', 'Mầm C3'];
   RxString selectedClass = ''.obs;
 
   void changeClassItem(String newValue) {
     selectedClass.value = newValue;
   }
 
+  final List<DropdownMenuItem<String>> classMenuItems = classItems
+      .map(
+        (value) => DropdownMenuItem(
+          value: value,
+          child: Text(value),
+        ),
+      )
+      .toList();
   // dropdown sort
   // dort ngay, tuan, thang
   List<String> sortItems = <String>['Ngày', 'Tuần', 'Tháng'];
@@ -48,7 +62,6 @@ class HomeController extends GetxController {
     'Tuần 7',
   ];
   RxString selectedWeekSort = ''.obs;
-
   void changeSortWeekItem(String newValue) {
     selectedWeekSort.value = newValue;
   }

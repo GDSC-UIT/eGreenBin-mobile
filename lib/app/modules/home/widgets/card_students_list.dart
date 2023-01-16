@@ -10,47 +10,10 @@ import 'package:intl/intl.dart';
 import '../../../core/values/app_colors.dart';
 
 class CardDSLop extends StatelessWidget {
-  static HomeController _controller = Get.find<HomeController>();
+  HomeController _controller;
 
-  // dropButton class value
-  final List<DropdownMenuItem<String>> _classMenuItems = _controller.classItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-  // sort value
-  // sort ngay, tuan, thang
-  final List<DropdownMenuItem<String>> _sortMenuItems = _controller.sortItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-  // sort theo tuan
-  final List<DropdownMenuItem<String>> _sortMenuWeekItems =
-      _controller.sortWeekItems
-          .map(
-            (value) => DropdownMenuItem(
-              value: value,
-              child: Text(value),
-            ),
-          )
-          .toList();
-  // sort theo thang
-  final List<DropdownMenuItem<String>> _sortMenuMonthItems =
-      _controller.sortMonthItems
-          .map(
-            (value) => DropdownMenuItem(
-              value: value,
-              child: Text(value),
-            ),
-          )
-          .toList();
+  CardDSLop(this._controller);
+
   // date picker
   void _presentDatePicker(BuildContext context) {
     showDatePicker(
@@ -68,6 +31,7 @@ class CardDSLop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // build UI
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -162,7 +126,7 @@ class CardDSLop extends StatelessWidget {
                   onChanged: (String? newValue) {
                     _controller.changeClassItem(newValue!);
                   },
-                  items: _classMenuItems,
+                  items: _controller.classMenuItems,
                   underline: Container(color: AppColors.Normal),
                   icon: const Icon(
                     Icons.expand_more,
