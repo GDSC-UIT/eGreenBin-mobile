@@ -41,6 +41,7 @@ dependencies:
   http: ^0.13.5
   fl_chart: ^0.55.2
   percent_indicator: ^4.2.2
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_test:
