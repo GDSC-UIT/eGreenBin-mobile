@@ -24,7 +24,10 @@ class StudentInfoScreen extends StatelessWidget {
       builder: (ctx) => DiaLogComment(
         studentController: _controller,
         textControler: _textCotroller,
-        onSave: () {},
+        onSave: () {
+          // luu danh gia
+          _textCotroller.clear();
+        },
       ),
     );
   }

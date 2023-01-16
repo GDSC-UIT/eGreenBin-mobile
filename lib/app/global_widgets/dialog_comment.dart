@@ -72,7 +72,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
             ),
           ),
           Container(
-            height: 270,
+            height: 250,
             child: Column(
               children: [
 // text Danh gia
@@ -123,6 +123,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                     TextField(
                       controller: widget.textControler,
                       style: CustomTextStyle.b7(AppColors.Subtle_1),
+                      maxLines: 4,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide:
@@ -142,31 +143,34 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 15),
-                SizedBox(
-                  width: 110,
-                  child: ElevatedButton(
-                    onPressed: isNull
-                        ? null
-                        : () {
-                            widget.onSave();
-                            Navigator.of(context).pop();
-                          },
-                    child: Text(
-                      "Đăng",
-                      style: CustomTextStyle.b6(AppColors.PrimarySubtle2),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: AppColors.Normal, // mau button
-                      onPrimary: AppColors.PrimarySubtle2, // mau chu
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
         ],
       ),
+// button dang
+      actions: [
+        Center(
+          child: SizedBox(
+            width: 110,
+            child: ElevatedButton(
+              onPressed: () {
+                if (isNull) return;
+                widget.onSave();
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "Đăng",
+                style: CustomTextStyle.b6(AppColors.PrimarySubtle2),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.Normal, // mau button
+                onPrimary: AppColors.PrimarySubtle2, // mau chu
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

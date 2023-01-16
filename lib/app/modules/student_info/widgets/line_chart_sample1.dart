@@ -309,7 +309,7 @@ class LineChartSample1State extends State<LineChartSample1> {
     return AspectRatio(
       aspectRatio: 1.6,
       child: DecoratedBox(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           //border: Border.all(width: 1, color: AppColors.Primary1),
           borderRadius: BorderRadius.all(Radius.circular(18)),
           /* gradient: LinearGradient(
