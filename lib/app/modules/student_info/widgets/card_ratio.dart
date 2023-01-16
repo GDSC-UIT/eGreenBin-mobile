@@ -77,15 +77,17 @@ class CardRatio extends StatelessWidget {
                     Obx(
                       () => SortBox(
                         textTitle: "Lọc theo",
-                        sortItems: _controller.sortItems,
-                        selectedSort: _controller.selectedSort.value,
-                        changeSortItem: _controller.changeSortItem,
-                        selectDate: _controller.selectDate.value,
-                        changeDate: _controller.changeDate,
-                        sortWeekItems: _controller.sortWeekItems,
-                        selectedWeekSort: _controller.selectedWeekSort.value,
-                        changeSortWeekItem: _controller.changeSortWeekItem,
-                        sortMonthItems: _controller.sortMonthItems,
+                        sortItems: StudentInfoController.sortItems,
+                        selectedSort: _controller.selectedSortCardRatio.value,
+                        changeSortItem: _controller.changeSortItemCardRatio,
+                        selectDate: _controller.selectDateCardRatio.value,
+                        changeDate: _controller.changeDateCardRatio,
+                        sortWeekItems: StudentInfoController.sortWeekItems,
+                        selectedWeekSort:
+                            _controller.selectedWeekSortCardRatio.value,
+                        changeSortWeekItem:
+                            _controller.changeSortWeekItemCardRatio,
+                        sortMonthItems: StudentInfoController.sortMonthItems,
                         selectedMonthSort:
                             _controller.selectedMonthSortCardRatio.value,
                         changeSortMonthItem:

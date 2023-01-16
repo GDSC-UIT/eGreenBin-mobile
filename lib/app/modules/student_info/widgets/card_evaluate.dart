@@ -3,6 +3,7 @@ import 'package:egreenbin/app/global_widgets/card_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../global_widgets/sort_box.dart';
 import '../student_info_controller.dart';
 
 class CardEvaluate extends StatelessWidget {
@@ -11,15 +12,6 @@ class CardEvaluate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuItem<String>> sortMenuItems =
-        _controller.sortCommentItems
-            .map(
-              (value) => DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              ),
-            )
-            .toList();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -55,48 +47,26 @@ class CardEvaluate extends StatelessWidget {
                 Row(
                   children: [
                     const SizedBox(width: 21),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Lọc theo",
-                          style: CustomTextStyle.b2(AppColors.subtle_1),
-                        ),
-                        const SizedBox(height: 5),
-                        Container(
-                          width: 100,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: AppColors.primarySubtle2,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(
-                              color: AppColors.primary1,
-                              width: 1,
-                            ),
-                          ),
-                          child: Center(
-                            child: Obx(
-                              () => DropdownButton<String>(
-                                style: CustomTextStyle.b3(AppColors.normal),
-                                dropdownColor: AppColors.primarySubtle2,
-                                value: _controller.selectedSortComment.value,
-                                onChanged: (String? newValue) {
-                                  _controller.changeSortCommentItem(newValue!);
-                                },
-                                items: sortMenuItems,
-                                underline:
-                                    Container(color: AppColors.primarySubtle2),
-                                icon: const Icon(
-                                  Icons.expand_more,
-                                  size: 18,
-                                  color: AppColors.normal,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    Obx(
+                      () => SortBox(
+                        textTitle: "Lọc theo",
+                        sortItems: StudentInfoController.sortItems,
+                        selectedSort:
+                            _controller.selectedSortCardEvaluate.value,
+                        changeSortItem: _controller.changeSortItemCardEvaluate,
+                        selectDate: _controller.selectDateCardEvaluate.value,
+                        changeDate: _controller.changeDateCardEvaluate,
+                        sortWeekItems: StudentInfoController.sortWeekItems,
+                        selectedWeekSort:
+                            _controller.selectedWeekSortCardEvaluate.value,
+                        changeSortWeekItem:
+                            _controller.changeSortWeekItemCardEvaluate,
+                        sortMonthItems: StudentInfoController.sortMonthItems,
+                        selectedMonthSort:
+                            _controller.selectedMonthSortCardRatio.value,
+                        changeSortMonthItem:
+                            _controller.changeMonthItemCardRatio,
+                      ),
                     ),
                   ],
                 ),

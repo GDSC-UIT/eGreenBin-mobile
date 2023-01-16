@@ -12,17 +12,6 @@ class CardStatistical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // dropButton month value
-    final List<DropdownMenuItem<String>> monthMenuItems =
-        _controller.sortMonthItems
-            .map(
-              (value) => DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              ),
-            )
-            .toList();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -129,7 +118,7 @@ class CardStatistical extends StatelessWidget {
                   onChanged: (String? newValue) {
                     _controller.changeMonthItemCardStatistical(newValue!);
                   },
-                  items: monthMenuItems,
+                  items: _controller.monthMenuItems,
                   underline: Container(color: AppColors.normal),
                   icon: const Icon(
                     Icons.expand_more,

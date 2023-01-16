@@ -9,11 +9,37 @@ import '../../routes/app_routes.dart';
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     selectedMonthSortCardStatistical = sortMonthItems[0].obs;
-    selectedSort = sortItems[0].obs;
-    selectedSortComment = sortCommentItems[0].obs;
+
+    selectedSortCardRatio = sortItems[0].obs;
+    selectedWeekSortCardRatio = sortWeekItems[0].obs;
     selectedMonthSortCardRatio = sortMonthItems[0].obs;
-    selectedWeekSort = sortWeekItems[0].obs;
+
+    selectedSortCardEvaluate = sortItems[0].obs;
+    selectedWeekSortCardEvaluate = sortWeekItems[0].obs;
+    selectedMonthSortCardEvaluate = sortMonthItems[0].obs;
   }
+
+  // data models
+  Students listStudent = Students();
+  Rx<Student> student = Student(name: "default").obs;
+  // comment
+  Comments allcomments = Comments();
+  List<Comment> listComments = [];
+
+  // textController comment
+  final TextEditingController textCotroller = TextEditingController();
+
+  // get id from prev screen
+  dynamic id = Get.arguments;
+
+  @override
+  void onInit() {
+    // get student and comments from id
+    student.value = listStudent.findStudent(id);
+    listComments = allcomments.listCommentsFindById(id);
+    super.onInit();
+  }
+
   // function
   void backToPrevScreen() {
     Get.back();
@@ -30,45 +56,14 @@ class StudentInfoController extends GetxController {
     textCotroller.clear();
   }
 
-  // textController comment
-  final TextEditingController textCotroller = TextEditingController();
-  // data student
-  Students listStudent = Students();
-  Rx<Student> student = Student(name: "default").obs;
-
-  dynamic id = Get.arguments;
-
-  @override
-  void onInit() {
-    student.value = listStudent.findStudent(id);
-    listComments = allcomments.listCommentsFindById(id);
-    super.onInit();
-  }
-
-  // dropdown sort
-  List<String> sortItems = <String>['Ngày', 'Tuần', 'Tháng'];
-  RxString selectedSort = ''.obs;
-
-  void changeSortItem(String newValue) {
-    selectedSort.value = newValue;
-  }
-
-  // dropButton sort value
-  List<String> sortCommentItems = <String>["Mới nhất", "Cũ nhất"];
-  RxString selectedSortComment = ''.obs;
-  void changeSortCommentItem(String newValue) {
-    selectedSortComment.value = newValue;
-  }
-
-  // datepicker
-  Rx<DateTime?> selectDate = DateTime.now().obs;
-
-  void changeDate(DateTime newDate) {
-    selectDate.value = newDate;
-  }
-
-  // dropdown month
-  List<String> sortMonthItems = <String>[
+// data sort
+//========================================================================
+  static List<String> sortItems = <String>[
+    'Ngày',
+    'Tuần',
+    'Tháng',
+  ];
+  static List<String> sortMonthItems = <String>[
     'Tháng 1',
     'Tháng 2',
     'Tháng 3',
@@ -82,15 +77,7 @@ class StudentInfoController extends GetxController {
     'Tháng 11',
     'Tháng 12',
   ];
-
-  RxString selectedMonthSortCardStatistical = ''.obs;
-
-  void changeMonthItemCardStatistical(String newValue) {
-    selectedMonthSortCardStatistical.value = newValue;
-  }
-
-  // sort theo tuan
-  List<String> sortWeekItems = <String>[
+  static List<String> sortWeekItems = <String>[
     'Tuần 1',
     'Tuần 2',
     'Tuần 3',
@@ -99,10 +86,45 @@ class StudentInfoController extends GetxController {
     'Tuần 6',
     'Tuần 7',
   ];
-  RxString selectedWeekSort = ''.obs;
+// card statical
+//========================================================================
+  // dropdown month
+  RxString selectedMonthSortCardStatistical = ''.obs;
 
-  void changeSortWeekItem(String newValue) {
-    selectedWeekSort.value = newValue;
+  final List<DropdownMenuItem<String>> monthMenuItems = sortMonthItems
+      .map(
+        (value) => DropdownMenuItem(
+          value: value,
+          child: Text(value),
+        ),
+      )
+      .toList();
+  // function
+  void changeMonthItemCardStatistical(String newValue) {
+    selectedMonthSortCardStatistical.value = newValue;
+  }
+
+// card ratio
+//========================================================================
+  // dropdown sort
+  RxString selectedSortCardRatio = ''.obs;
+
+  void changeSortItemCardRatio(String newValue) {
+    selectedSortCardRatio.value = newValue;
+  }
+
+  // datepicker
+  Rx<DateTime?> selectDateCardRatio = DateTime.now().obs;
+
+  void changeDateCardRatio(DateTime newDate) {
+    selectDateCardRatio.value = newDate;
+  }
+
+  // sort theo tuan
+  RxString selectedWeekSortCardRatio = ''.obs;
+
+  void changeSortWeekItemCardRatio(String newValue) {
+    selectedWeekSortCardRatio.value = newValue;
   }
 
   // sort theo thang
@@ -112,7 +134,33 @@ class StudentInfoController extends GetxController {
     selectedMonthSortCardRatio.value = newValue;
   }
 
-  // comment
-  Comments allcomments = Comments();
-  List<Comment> listComments = [];
+// card evaluate
+//========================================================================
+  // dropdown sort
+  RxString selectedSortCardEvaluate = ''.obs;
+
+  void changeSortItemCardEvaluate(String newValue) {
+    selectedSortCardEvaluate.value = newValue;
+  }
+
+  // datepicker
+  Rx<DateTime?> selectDateCardEvaluate = DateTime.now().obs;
+
+  void changeDateCardEvaluate(DateTime newDate) {
+    selectDateCardEvaluate.value = newDate;
+  }
+
+  // sort theo tuan
+  RxString selectedWeekSortCardEvaluate = ''.obs;
+
+  void changeSortWeekItemCardEvaluate(String newValue) {
+    selectedWeekSortCardEvaluate.value = newValue;
+  }
+
+  // sort theo thang
+  RxString selectedMonthSortCardEvaluate = ''.obs;
+
+  void changeMonthItemCardEvaluate(String newValue) {
+    selectedMonthSortCardEvaluate.value = newValue;
+  }
 }

@@ -2,8 +2,6 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../core/values/app_colors.dart';
 import '../core/values/text_styles.dart';
 import '../modules/student_info/student_info_controller.dart';
@@ -12,6 +10,7 @@ class DiaLogComment extends StatefulWidget {
   StudentInfoController studentController;
   TextEditingController textControler;
   final Function onSave;
+
   DiaLogComment({
     required this.studentController,
     required this.textControler,
@@ -90,18 +89,21 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                     Obx(
                       () => SortBox(
                         textTitle: "Thời gian",
-                        sortItems: widget.studentController.sortItems,
-                        selectedSort:
-                            widget.studentController.selectedSort.value,
-                        changeSortItem: widget.studentController.changeSortItem,
-                        selectDate: widget.studentController.selectDate.value,
-                        changeDate: widget.studentController.changeDate,
-                        sortWeekItems: widget.studentController.sortWeekItems,
-                        selectedWeekSort:
-                            widget.studentController.selectedWeekSort.value,
-                        changeSortWeekItem:
-                            widget.studentController.changeSortWeekItem,
-                        sortMonthItems: widget.studentController.sortMonthItems,
+                        sortItems: StudentInfoController.sortItems,
+                        selectedSort: widget
+                            .studentController.selectedSortCardRatio.value,
+                        changeSortItem:
+                            widget.studentController.changeSortItemCardRatio,
+                        selectDate:
+                            widget.studentController.selectDateCardRatio.value,
+                        changeDate:
+                            widget.studentController.changeDateCardRatio,
+                        sortWeekItems: StudentInfoController.sortWeekItems,
+                        selectedWeekSort: widget
+                            .studentController.selectedWeekSortCardRatio.value,
+                        changeSortWeekItem: widget
+                            .studentController.changeSortWeekItemCardRatio,
+                        sortMonthItems: StudentInfoController.sortMonthItems,
                         selectedMonthSort: widget
                             .studentController.selectedMonthSortCardRatio.value,
                         changeSortMonthItem:
