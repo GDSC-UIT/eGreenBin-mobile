@@ -32,6 +32,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      contentPadding:
+          const EdgeInsets.only(top: 15, left: 22, right: 22, bottom: 0),
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -57,7 +59,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                       color: AppColors.shadow,
                       spreadRadius: 0,
                       blurRadius: 4,
-                      offset: Offset(0, 6), // changes position of shadow
+                      offset: Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
@@ -70,7 +72,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 250,
             child: Column(
               children: [
@@ -136,10 +138,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                       ),
                       onChanged: (value) {
                         setState(() {
-                          if (value.trim() == "")
-                            isNull = true;
-                          else
-                            isNull = false;
+                          isNull = (value.trim() == "");
                         });
                       },
                     ),
@@ -161,13 +160,13 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 widget.onSave();
                 Navigator.of(context).pop();
               },
-              child: Text(
-                "Đăng",
-                style: CustomTextStyle.b6(AppColors.primarySubtle2),
-              ),
               style: ElevatedButton.styleFrom(
                 primary: AppColors.normal, // mau button
                 onPrimary: AppColors.primarySubtle2, // mau chu
+              ),
+              child: Text(
+                "Đăng",
+                style: CustomTextStyle.b6(AppColors.primarySubtle2),
               ),
             ),
           ),
