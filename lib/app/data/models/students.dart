@@ -53,15 +53,15 @@ class Students {
   ];
 
   Student findStudent(String id) {
-    Student stu = Student(
+    Student studentFind = Student(
       id: "null",
       name: "Default",
       numOfCorrect: 0,
       numOfWrong: 0,
     );
     listStudents.forEach((student) {
-      if (student.id == id) stu = student;
+      if (student.id == id) studentFind = student;
     });
-    return stu;
+    return studentFind;
   }
 }

@@ -1,3 +1,5 @@
+import 'package:egreenbin/app/core/values/app_values.dart';
+
 class Student {
   // them thong tin email phu huynh
   String? id;
@@ -18,6 +20,6 @@ class Student {
     id ??= DateTime.now.toString();
     numOfCorrect ??= 0;
     numOfWrong ??= 0;
-    parentEmail ??= "phanvanminh1234567890@gmail.com";
+    parentEmail ??= EmailValue.emailDefault;
   }
 }

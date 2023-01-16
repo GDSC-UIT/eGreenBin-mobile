@@ -20,11 +20,12 @@ class FormatValue {
 }
 
 class EmailValue {
+  static const emailDefault = 'phanvanminh1234567890@gmail.com';
   static const url = "https://api.emailjs.com/api/v1.0/email/send";
   static const serviceId = 'service_q39m2z8';
   static const templateId = 'template_0xq4dbm';
   static const userId = 'tAaD5e22_Mz7ZuPSK';
-  static const emailFrom = 'phanvanminh1234567890@gmail.com';
+  static const emailFrom = emailDefault;
   static const authorName = AppStrings.appName;
   static const subject =
       '[${AppStrings.appName}] - YOUR CHILD\'S TRAINING RESULTS';

@@ -1,4 +1,5 @@
 import 'package:egreenbin/app/core/values/app_values.dart';
+import 'package:egreenbin/app/data/models/student.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -6,13 +7,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 class EmailService {
   // ham gui email
-  // childsName: ten hoc sinh
-  // toEmail: email gui den
+  // student: student dang co
   // message: noi dung thong bao
   // context: context cua thang chua email (dung de show snackbar)
   Future sendEmail({
-    required String childsName,
-    required String toEmail,
+    required Student student,
     required String message,
     required BuildContext context,
   }) async {
@@ -30,9 +29,9 @@ class EmailService {
         'template_params': {
           'user_subject': EmailValue.subject,
           'user_author': EmailValue.authorName,
-          'user_child_name': childsName,
+          'user_child_name': student.name,
           'user_message': message,
-          'to_email': toEmail,
+          'to_email': student.parentEmail,
           'user_email': EmailValue.emailFrom,
         }
       }),
@@ -48,6 +47,7 @@ class EmailService {
     );
   }
 
+  // ham send email bang launch url
   Future launchEmail({
     required String toEmail,
     required String subject,
