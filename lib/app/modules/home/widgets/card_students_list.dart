@@ -40,7 +40,7 @@ class CardDSLop extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.65,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.PrimarySubtle2,
+              color: AppColors.primarySubtle2,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -60,12 +60,12 @@ class CardDSLop extends StatelessWidget {
                 const SizedBox(height: 38),
                 Text(
                   "DANH SÁCH LỚP",
-                  style: CustomTextStyle.h2(AppColors.Primary1),
+                  style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   "${_controller.numberOfStudent.value} học sinh",
-                  style: CustomTextStyle.b1(AppColors.Subtle_1),
+                  style: CustomTextStyle.b1(AppColors.subtle_1),
                 ),
                 const SizedBox(height: 5),
 // loc theo
@@ -113,25 +113,25 @@ class CardDSLop extends StatelessWidget {
               height: 30,
               padding: const EdgeInsets.only(left: 10, right: 5),
               decoration: const BoxDecoration(
-                color: AppColors.Normal,
+                color: AppColors.normal,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(10),
                 ),
               ),
               child: Obx(
                 () => DropdownButton<String>(
-                  style: CustomTextStyle.b2(AppColors.Surface),
-                  dropdownColor: AppColors.Normal,
+                  style: CustomTextStyle.b2(AppColors.surface),
+                  dropdownColor: AppColors.normal,
                   value: _controller.selectedClass.value,
                   onChanged: (String? newValue) {
                     _controller.changeClassItem(newValue!);
                   },
                   items: _controller.classMenuItems,
-                  underline: Container(color: AppColors.Normal),
+                  underline: Container(color: AppColors.normal),
                   icon: const Icon(
                     Icons.expand_more,
                     size: 25,
-                    color: AppColors.Surface,
+                    color: AppColors.surface,
                   ),
                 ),
               ),

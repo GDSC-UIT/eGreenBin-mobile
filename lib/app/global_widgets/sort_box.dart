@@ -93,7 +93,7 @@ class SortBox extends StatelessWidget {
             selectDate == null
                 ? '01/01/2023'
                 : '${DateFormat(FormatValue.numbericDateFormat).format(selectDate! as DateTime)}',
-            style: CustomTextStyle.b3(AppColors.Normal),
+            style: CustomTextStyle.b3(AppColors.normal),
           ),
         ),
         //const SizedBox(width: 5),
@@ -110,37 +110,37 @@ class SortBox extends StatelessWidget {
 // sort Week
     Widget showListWeek = DropdownButton<String>(
       menuMaxHeight: 200,
-      style: CustomTextStyle.b3(AppColors.Normal),
-      dropdownColor: AppColors.PrimarySubtle2,
+      style: CustomTextStyle.b3(AppColors.normal),
+      dropdownColor: AppColors.primarySubtle2,
       value: selectedWeekSort,
       // thay doi item
       onChanged: (String? newValue) {
         changeSortWeekItem(newValue!);
       },
       items: _sortWeekItems,
-      underline: Container(color: AppColors.Surface),
+      underline: Container(color: AppColors.surface),
       icon: const Icon(
         Icons.expand_more,
         size: 18,
-        color: AppColors.Normal,
+        color: AppColors.normal,
       ),
     );
 // sort Month
     Widget showListMonth = DropdownButton<String>(
       menuMaxHeight: 200,
-      style: CustomTextStyle.b3(AppColors.Normal),
-      dropdownColor: AppColors.PrimarySubtle2,
+      style: CustomTextStyle.b3(AppColors.normal),
+      dropdownColor: AppColors.primarySubtle2,
       value: selectedMonthSort,
       // thay doi item
       onChanged: (String? newValue) {
         changeSortMonthItem(newValue!);
       },
       items: _sortMonthItems,
-      underline: Container(color: AppColors.Surface),
+      underline: Container(color: AppColors.surface),
       icon: const Icon(
         Icons.expand_more,
         size: 18,
-        color: AppColors.Normal,
+        color: AppColors.normal,
       ),
     );
 
@@ -150,17 +150,17 @@ class SortBox extends StatelessWidget {
       children: [
         Text(
           textTitle,
-          style: CustomTextStyle.b2(AppColors.Subtle_1),
+          style: CustomTextStyle.b2(AppColors.subtle_1),
         ),
         const SizedBox(height: 7),
         Container(
           width: 200,
           height: 40,
           decoration: BoxDecoration(
-            color: AppColors.PrimarySubtle2,
+            color: AppColors.primarySubtle2,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(
-              color: AppColors.Primary1,
+              color: AppColors.primary1,
               width: 1,
             ),
           ),
@@ -169,24 +169,24 @@ class SortBox extends StatelessWidget {
             children: [
               // lua chon ngay, thang, nam
               DropdownButton<String>(
-                style: CustomTextStyle.b3(AppColors.Normal),
-                dropdownColor: AppColors.PrimarySubtle2,
+                style: CustomTextStyle.b3(AppColors.normal),
+                dropdownColor: AppColors.primarySubtle2,
                 value: selectedSort,
                 // thay doi item
                 onChanged: (String? newValue) {
                   changeSortItem(newValue!);
                 },
                 items: _sortMenuItems,
-                underline: Container(color: AppColors.Surface),
+                underline: Container(color: AppColors.surface),
                 icon: const Icon(
                   Icons.expand_more,
                   size: 18,
-                  color: AppColors.Normal,
+                  color: AppColors.normal,
                 ),
               ),
               // divider
               const VerticalDivider(
-                color: AppColors.Primary1,
+                color: AppColors.primary1,
                 thickness: 1,
               ),
 // if sort by day => calendar

@@ -20,7 +20,7 @@ class HomeAppbar extends StatelessWidget {
             Container(
               height: 154,
               decoration: const BoxDecoration(
-                color: AppColors.Normal,
+                color: AppColors.normal,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(32),
                   bottomLeft: Radius.circular(32),
@@ -85,7 +85,7 @@ class HomeAppbar extends StatelessWidget {
                 Container(
                   height: 75,
                   decoration: BoxDecoration(
-                    color: AppColors.Surface,
+                    color: AppColors.surface,
                     borderRadius: BorderRadius.circular(40),
                     boxShadow: const [
                       BoxShadow(
@@ -102,7 +102,7 @@ class HomeAppbar extends StatelessWidget {
                       const SizedBox(width: 30),
                       const CircleAvatar(
                         radius: 27,
-                        backgroundColor: AppColors.Background,
+                        backgroundColor: AppColors.background,
                         child: Icon(Icons.person),
                       ),
                       const SizedBox(width: 20),
@@ -112,12 +112,12 @@ class HomeAppbar extends StatelessWidget {
                         children: [
                           Text(
                             _controller.teacher.value.name,
-                            style: CustomTextStyle.h2(AppColors.Normal),
+                            style: CustomTextStyle.h2(AppColors.normal),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             "MGV: ${_controller.teacher.value.mgv}",
-                            style: CustomTextStyle.b1(AppColors.Subtle_1),
+                            style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],
                       ),

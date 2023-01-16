@@ -49,7 +49,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 width: 35,
                 height: 35,
                 decoration: const BoxDecoration(
-                  color: AppColors.PrimarySubtle2,
+                  color: AppColors.primarySubtle2,
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -80,7 +80,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                   padding: const EdgeInsets.all(10),
                   child: Text(
                     "ĐÁNH GIÁ",
-                    style: CustomTextStyle.h2(AppColors.Primary1),
+                    style: CustomTextStyle.h2(AppColors.primary1),
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -117,17 +117,17 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                   children: [
                     Text(
                       "Nội dung",
-                      style: CustomTextStyle.b2(AppColors.Subtle_1),
+                      style: CustomTextStyle.b2(AppColors.subtle_1),
                     ),
                     const SizedBox(height: 7),
                     TextField(
                       controller: widget.textControler,
-                      style: CustomTextStyle.b7(AppColors.Subtle_1),
+                      style: CustomTextStyle.b7(AppColors.subtle_1),
                       maxLines: 4,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: AppColors.Primary1, width: 1),
+                              BorderSide(color: AppColors.primary1, width: 1),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         hintText: "Thêm đánh giá",
@@ -161,11 +161,11 @@ class _DiaLogCommentState extends State<DiaLogComment> {
               },
               child: Text(
                 "Đăng",
-                style: CustomTextStyle.b6(AppColors.PrimarySubtle2),
+                style: CustomTextStyle.b6(AppColors.primarySubtle2),
               ),
               style: ElevatedButton.styleFrom(
-                primary: AppColors.Normal, // mau button
-                onPrimary: AppColors.PrimarySubtle2, // mau chu
+                primary: AppColors.normal, // mau button
+                onPrimary: AppColors.primarySubtle2, // mau chu
               ),
             ),
           ),

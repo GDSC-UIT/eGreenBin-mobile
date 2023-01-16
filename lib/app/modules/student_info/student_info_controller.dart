@@ -1,17 +1,37 @@
 import 'package:egreenbin/app/data/models/comments.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/models/students.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
+import '../../routes/app_routes.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     selectedMonthSortCardStatistical = sortMonthItems[0].obs;
     selectedSort = sortItems[0].obs;
-    SelectedSortComment = sortCommentItems[0].obs;
+    selectedSortComment = sortCommentItems[0].obs;
     selectedMonthSortCardRatio = sortMonthItems[0].obs;
     selectedWeekSort = sortWeekItems[0].obs;
   }
+  // function
+  void backToPrevScreen() {
+    Get.back();
+  }
+
+  void pushToAllCommentScreen() {
+    if (listComments.isEmpty) return;
+    Get.toNamed(AppRoutes.rating, arguments: student.value.id);
+  }
+
+  void saveComment() {
+    // luu comment
+    //String comment = textCotroller.text;
+    textCotroller.clear();
+  }
+
+  // textController comment
+  final TextEditingController textCotroller = TextEditingController();
   // data student
   Students listStudent = Students();
   Rx<Student> student = Student(name: "default").obs;
@@ -35,9 +55,9 @@ class StudentInfoController extends GetxController {
 
   // dropButton sort value
   List<String> sortCommentItems = <String>["Mới nhất", "Cũ nhất"];
-  RxString SelectedSortComment = ''.obs;
+  RxString selectedSortComment = ''.obs;
   void changeSortCommentItem(String newValue) {
-    SelectedSortComment.value = newValue;
+    selectedSortComment.value = newValue;
   }
 
   // datepicker

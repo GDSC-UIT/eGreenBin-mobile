@@ -6,36 +6,11 @@ import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_statistical.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../global_widgets/dialog_comment.dart';
-import '../../../routes/app_routes.dart';
 
 class StudentInfoScreen extends StatelessWidget {
-  StudentInfoController _controller = Get.find<StudentInfoController>();
-  TextEditingController _textCotroller = TextEditingController();
-  void backToPrevScreen() {
-    Get.back();
-  }
+  final StudentInfoController _controller = Get.find<StudentInfoController>();
 
-  void showCommentForm(BuildContext context) {
-    showDialog(
-      context: context,
-      useRootNavigator: false,
-      barrierDismissible: false,
-      builder: (ctx) => DiaLogComment(
-        studentController: _controller,
-        textControler: _textCotroller,
-        onSave: () {
-          // luu danh gia
-          _textCotroller.clear();
-        },
-      ),
-    );
-  }
-
-  void pushToAllCommentScreen() {
-    if (_controller.listComments.length == 0) return;
-    Get.toNamed(AppRoutes.rating, arguments: _controller.student.value.id);
-  }
+  StudentInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,17 +32,18 @@ class StudentInfoScreen extends StatelessWidget {
                   CardStatistical(_controller),
                   // card so lan dung sai
                   const SizedBox(height: 30),
-                  CardRatio(_controller, showCommentForm),
+                  CardRatio(_controller),
                   // card danh gia
                   const SizedBox(height: 30),
-                  CardEvaluate(_controller, pushToAllCommentScreen),
+                  CardEvaluate(_controller),
                   const SizedBox(height: 30),
                 ],
               ),
             ),
           ),
           // appbar
-          StudentAppBar(_controller.student.value, backToPrevScreen),
+          StudentAppBar(
+              _controller.student.value, _controller.backToPrevScreen),
         ],
       ),
     );

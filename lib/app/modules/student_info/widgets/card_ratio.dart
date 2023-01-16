@@ -2,35 +2,35 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../core/values/app_colors.dart';
-import '../../../core/values/app_values.dart';
+import '../../../global_widgets/dialog_comment.dart';
 import '../../../global_widgets/sort_box.dart';
 import '../student_info_controller.dart';
 
 class CardRatio extends StatelessWidget {
-  StudentInfoController _controller;
-  Function showCommentForm;
+  final StudentInfoController _controller;
 
-  CardRatio(this._controller, this.showCommentForm);
+  const CardRatio(this._controller, {super.key});
 
-  // date picker
-  void _presentDatePicker(BuildContext context) {
-    showDatePicker(
+  // show comment
+  void showCommentForm(BuildContext context) {
+    showDialog(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
-      lastDate: DateTime.now(),
-    ).then(
-      (pickedDate) {
-        if (pickedDate == null) return;
-        _controller.changeDate(pickedDate);
-      },
+      useRootNavigator: false,
+      barrierDismissible: false,
+      builder: (ctx) => DiaLogComment(
+        studentController: _controller,
+        textControler: _controller.textCotroller,
+        onSave: () {
+          // luu danh gia
+          _controller.saveComment();
+        },
+      ),
     );
   }
 
-  double get Ratio {
+  double get ratio {
     if (_controller.student.value.numOfWrong == 0) return 1;
     return _controller.student.value.numOfCorrect! /
         (_controller.student.value.numOfWrong! +
@@ -39,16 +39,6 @@ class CardRatio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // sort value
-    final List<DropdownMenuItem<String>> _sortMenuItems = _controller.sortItems
-        .map(
-          (value) => DropdownMenuItem(
-            value: value,
-            child: Text(value),
-          ),
-        )
-        .toList();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -57,7 +47,7 @@ class CardRatio extends StatelessWidget {
             height: 320,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.PrimarySubtle2,
+              color: AppColors.primarySubtle2,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -77,7 +67,7 @@ class CardRatio extends StatelessWidget {
                 const SizedBox(height: 12),
                 Text(
                   "SỐ LẦN ĐÚNG/SAI",
-                  style: CustomTextStyle.h2(AppColors.Primary1),
+                  style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 5),
 // loc theo
@@ -120,7 +110,7 @@ class CardRatio extends StatelessWidget {
                         Text(
                           "Đúng: ${_controller.student.value.numOfCorrect}",
                           style: CustomTextStyle.h2(
-                            AppColors.Normal,
+                            AppColors.normal,
                           ),
                         )
                       ],
@@ -153,9 +143,9 @@ class CardRatio extends StatelessWidget {
                     animation: true,
                     animationDuration: 1000,
                     lineHeight: 40,
-                    percent: Ratio,
+                    percent: ratio,
                     barRadius: const Radius.circular(50),
-                    progressColor: AppColors.Normal,
+                    progressColor: AppColors.normal,
                     backgroundColor: AppColors.wrong,
                   ),
                 ),
@@ -164,11 +154,11 @@ class CardRatio extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     text: 'Tỉ lệ bỏ đúng: ',
-                    style: CustomTextStyle.b2(AppColors.Subtle_1),
+                    style: CustomTextStyle.b2(AppColors.subtle_1),
                     children: [
                       TextSpan(
-                        text: "${(Ratio * 100).toStringAsFixed(0)}%",
-                        style: CustomTextStyle.b2(AppColors.Normal),
+                        text: "${(ratio * 100).toStringAsFixed(0)}%",
+                        style: CustomTextStyle.b2(AppColors.normal),
                       ),
                     ],
                   ),
@@ -189,7 +179,7 @@ class CardRatio extends StatelessWidget {
                 width: 100,
                 padding: const EdgeInsets.only(left: 10, right: 5),
                 decoration: const BoxDecoration(
-                  color: AppColors.Normal,
+                  color: AppColors.normal,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                   ),
@@ -203,7 +193,7 @@ class CardRatio extends StatelessWidget {
                     ),
                     Text(
                       "Đánh giá",
-                      style: CustomTextStyle.b7(AppColors.Surface),
+                      style: CustomTextStyle.b7(AppColors.surface),
                     )
                   ],
                 ),

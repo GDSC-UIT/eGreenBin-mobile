@@ -38,11 +38,12 @@ class EmailService {
     );
 
     // show snackbar
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: response.body == "OK" ? Colors.green : Colors.red,
         content: Text(response.body),
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

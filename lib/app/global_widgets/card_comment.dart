@@ -25,7 +25,7 @@ class CardComment extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     top: 12, left: 10, right: 10, bottom: 10),
                 decoration: const BoxDecoration(
-                  color: AppColors.Surface,
+                  color: AppColors.surface,
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   boxShadow: [
                     BoxShadow(
@@ -38,7 +38,7 @@ class CardComment extends StatelessWidget {
                 ),
                 child: Text(
                   comment.content,
-                  style: CustomTextStyle.b3(AppColors.Subtle_1),
+                  style: CustomTextStyle.b3(AppColors.subtle_1),
                 ),
               ),
               Padding(
@@ -46,7 +46,7 @@ class CardComment extends StatelessWidget {
                     top: 8, left: 10, right: 10, bottom: 10),
                 child: Text(
                   "1 ngày trước",
-                  style: CustomTextStyle.b8(AppColors.Subtle_2),
+                  style: CustomTextStyle.b8(AppColors.subtle_2),
                 ),
               ),
             ],
@@ -59,13 +59,13 @@ class CardComment extends StatelessWidget {
             width: 80,
             height: 20,
             decoration: const BoxDecoration(
-              color: AppColors.Normal,
+              color: AppColors.normal,
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
             child: Center(
               child: Text(
                 '${DateFormat(FormatValue.numbericDateFormat).format(comment.date!)}',
-                style: CustomTextStyle.b8(AppColors.Surface),
+                style: CustomTextStyle.b8(AppColors.surface),
               ),
             ),
           ),

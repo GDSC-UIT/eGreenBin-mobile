@@ -27,7 +27,7 @@ class StudentCard extends StatelessWidget {
       },
       child: Container(
         child: Card(
-          color: AppColors.PrimarySubtle2,
+          color: AppColors.primarySubtle2,
           elevation: 0,
           child: Container(
             child: Row(
@@ -39,17 +39,17 @@ class StudentCard extends StatelessWidget {
                     width: 30,
                     child: Text(
                       indexFormat,
-                      style: CustomTextStyle.b4(AppColors.Normal),
+                      style: CustomTextStyle.b4(AppColors.normal),
                     ),
                   ),
                 ),
                 //avatar
                 const CircleAvatar(
                   radius: 25,
-                  backgroundColor: AppColors.Background,
+                  backgroundColor: AppColors.background,
                   child: Icon(
                     Icons.person,
-                    color: AppColors.Subtle_2,
+                    color: AppColors.subtle_2,
                   ),
                 ),
                 // column
@@ -59,7 +59,7 @@ class StudentCard extends StatelessWidget {
                   children: [
                     Text(
                       student.name,
-                      style: CustomTextStyle.b1(AppColors.Primary1),
+                      style: CustomTextStyle.b1(AppColors.primary1),
                     ),
                     const SizedBox(height: 5),
                     Row(
@@ -75,7 +75,7 @@ class StudentCard extends StatelessWidget {
                               const SizedBox(width: 7),
                               Text(
                                 student.numOfCorrect.toString(),
-                                style: CustomTextStyle.b1(AppColors.Normal),
+                                style: CustomTextStyle.b1(AppColors.normal),
                               ),
                             ],
                           ),
