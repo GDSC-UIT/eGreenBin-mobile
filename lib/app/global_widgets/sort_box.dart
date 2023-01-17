@@ -1,4 +1,6 @@
+import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../core/values/app_colors.dart';
@@ -9,35 +11,12 @@ import '../core/values/text_styles.dart';
 class SortBox extends StatelessWidget {
   // text title
   String textTitle;
-  // dropdown sort
-  List<String> sortItems;
-  String selectedSort;
-  Function changeSortItem;
-  // datepicker
-  DateTime? selectDate;
-  Function changeDate;
-  // dropdown sort week
-  List<String> sortWeekItems;
-  String selectedWeekSort;
-  Function changeSortWeekItem;
-  // dropdown sort month
-  List<String> sortMonthItems;
-  String selectedMonthSort;
-  Function changeSortMonthItem;
+  // sort service
+  SortService sortService;
 
   SortBox({
     required this.textTitle,
-    required this.sortItems,
-    required this.selectedSort,
-    required this.changeSortItem,
-    required this.selectDate,
-    required this.changeDate,
-    required this.sortWeekItems,
-    required this.selectedWeekSort,
-    required this.changeSortWeekItem,
-    required this.sortMonthItems,
-    required this.selectedMonthSort,
-    required this.changeSortMonthItem,
+    required this.sortService,
   });
   // show date picker
   void _presentDatePicker(BuildContext context) {
@@ -49,57 +28,29 @@ class SortBox extends StatelessWidget {
     ).then(
       (pickedDate) {
         if (pickedDate == null) return;
-        changeDate(pickedDate);
+        sortService.changeDate(pickedDate);
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-// sort ngay, thang, tuan
-    final List<DropdownMenuItem<String>> _sortMenuItems = sortItems
-        .map(
-          (value) => DropdownMenuItem(
-            value: value,
-            child: Text(value),
-          ),
-        )
-        .toList();
-// sort theo week
-    final List<DropdownMenuItem<String>> _sortWeekItems = sortWeekItems
-        .map(
-          (value) => DropdownMenuItem(
-            value: value,
-            child: Text(value),
-          ),
-        )
-        .toList();
-// sort theo thang
-    final List<DropdownMenuItem<String>> _sortMonthItems = sortMonthItems
-        .map(
-          (value) => DropdownMenuItem(
-            value: value,
-            child: Text(value),
-          ),
-        )
-        .toList();
 // calenda
     Widget showCalendar = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
+        SizedBox(
           width: 80,
-          child: Text(
-            selectDate == null
-                ? '01/01/2023'
-                : '${DateFormat(FormatValue.numbericDateFormat).format(selectDate! as DateTime)}',
-            style: CustomTextStyle.b3(AppColors.normal),
-          ),
+          child: Obx(() => Text(
+                sortService.selectDate.value == null
+                    ? '01/01/2023'
+                    : '${DateFormat(FormatValue.numbericDateFormat).format(sortService.selectDate.value as DateTime)}',
+                style: CustomTextStyle.b3(AppColors.normal),
+              )),
         ),
-        //const SizedBox(width: 5),
         GestureDetector(
           onTap: () => _presentDatePicker(context),
-          child: Container(
+          child: SizedBox(
             height: 18,
             width: 20,
             child: Image.asset(Assets.calendar),
@@ -108,39 +59,43 @@ class SortBox extends StatelessWidget {
       ],
     );
 // sort Week
-    Widget showListWeek = DropdownButton<String>(
-      menuMaxHeight: 200,
-      style: CustomTextStyle.b3(AppColors.normal),
-      dropdownColor: AppColors.primarySubtle2,
-      value: selectedWeekSort,
-      // thay doi item
-      onChanged: (String? newValue) {
-        changeSortWeekItem(newValue!);
-      },
-      items: _sortWeekItems,
-      underline: Container(color: AppColors.surface),
-      icon: const Icon(
-        Icons.expand_more,
-        size: 18,
-        color: AppColors.normal,
+    Widget showListWeek = Obx(
+      () => DropdownButton<String>(
+        menuMaxHeight: 200,
+        style: CustomTextStyle.b3(AppColors.normal),
+        dropdownColor: AppColors.primarySubtle2,
+        value: sortService.selectedWeekSort.value,
+        // thay doi item
+        onChanged: (String? newValue) {
+          sortService.changeSortWeekItem(newValue!);
+        },
+        items: sortService.dropdownSortWeekItems,
+        underline: Container(color: AppColors.surface),
+        icon: const Icon(
+          Icons.expand_more,
+          size: 18,
+          color: AppColors.normal,
+        ),
       ),
     );
 // sort Month
-    Widget showListMonth = DropdownButton<String>(
-      menuMaxHeight: 200,
-      style: CustomTextStyle.b3(AppColors.normal),
-      dropdownColor: AppColors.primarySubtle2,
-      value: selectedMonthSort,
-      // thay doi item
-      onChanged: (String? newValue) {
-        changeSortMonthItem(newValue!);
-      },
-      items: _sortMonthItems,
-      underline: Container(color: AppColors.surface),
-      icon: const Icon(
-        Icons.expand_more,
-        size: 18,
-        color: AppColors.normal,
+    Widget showListMonth = Obx(
+      () => DropdownButton<String>(
+        menuMaxHeight: 200,
+        style: CustomTextStyle.b3(AppColors.normal),
+        dropdownColor: AppColors.primarySubtle2,
+        value: sortService.selectedMonthSort.value,
+        // thay doi item
+        onChanged: (String? newValue) {
+          sortService.changeSortMonthItem(newValue!);
+        },
+        items: sortService.dropdownSortMonthItems,
+        underline: Container(color: AppColors.surface),
+        icon: const Icon(
+          Icons.expand_more,
+          size: 18,
+          color: AppColors.normal,
+        ),
       ),
     );
 
@@ -168,20 +123,22 @@ class SortBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               // lua chon ngay, thang, nam
-              DropdownButton<String>(
-                style: CustomTextStyle.b3(AppColors.normal),
-                dropdownColor: AppColors.primarySubtle2,
-                value: selectedSort,
-                // thay doi item
-                onChanged: (String? newValue) {
-                  changeSortItem(newValue!);
-                },
-                items: _sortMenuItems,
-                underline: Container(color: AppColors.surface),
-                icon: const Icon(
-                  Icons.expand_more,
-                  size: 18,
-                  color: AppColors.normal,
+              Obx(
+                () => DropdownButton<String>(
+                  style: CustomTextStyle.b3(AppColors.normal),
+                  dropdownColor: AppColors.primarySubtle2,
+                  value: sortService.selectedSortBy.value,
+                  // thay doi item
+                  onChanged: (String? newValue) {
+                    sortService.changeSortByItem(newValue!);
+                  },
+                  items: sortService.dropdownSortByItems,
+                  underline: Container(color: AppColors.surface),
+                  icon: const Icon(
+                    Icons.expand_more,
+                    size: 18,
+                    color: AppColors.normal,
+                  ),
                 ),
               ),
               // divider
@@ -192,11 +149,13 @@ class SortBox extends StatelessWidget {
 // if sort by day => calendar
 // if sort by week => listWeekDrop
 // if sort by month => listMonthDrop
-              (selectedSort == "Ngày")
-                  ? showCalendar
-                  : (selectedSort == "Tuần")
-                      ? showListWeek
-                      : showListMonth,
+              Obx(
+                () => (sortService.selectedSortBy.value == "Ngày")
+                    ? showCalendar
+                    : (sortService.selectedSortBy.value == "Tuần")
+                        ? showListWeek
+                        : showListMonth,
+              ),
             ],
           ),
         )

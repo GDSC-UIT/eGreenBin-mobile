@@ -91,25 +91,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                     Obx(
                       () => SortBox(
                         textTitle: "Thời gian",
-                        sortItems: StudentInfoController.sortItems,
-                        selectedSort: widget
-                            .studentController.selectedSortCardRatio.value,
-                        changeSortItem:
-                            widget.studentController.changeSortItemCardRatio,
-                        selectDate:
-                            widget.studentController.selectDateCardRatio.value,
-                        changeDate:
-                            widget.studentController.changeDateCardRatio,
-                        sortWeekItems: StudentInfoController.sortWeekItems,
-                        selectedWeekSort: widget
-                            .studentController.selectedWeekSortCardRatio.value,
-                        changeSortWeekItem: widget
-                            .studentController.changeSortWeekItemCardRatio,
-                        sortMonthItems: StudentInfoController.sortMonthItems,
-                        selectedMonthSort: widget
-                            .studentController.selectedMonthSortCardRatio.value,
-                        changeSortMonthItem:
-                            widget.studentController.changeMonthItemCardRatio,
+                        sortService:
+                            widget.studentController.sortCardRatio!.value,
                       ),
                     ),
                   ],

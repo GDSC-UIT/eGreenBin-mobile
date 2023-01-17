@@ -114,11 +114,14 @@ class CardStatistical extends StatelessWidget {
                   style: CustomTextStyle.b2(AppColors.surface),
                   dropdownColor: AppColors.normal,
                   menuMaxHeight: 200,
-                  value: _controller.selectedMonthSortCardStatistical.value,
+                  value: _controller
+                      .sortCardStatical!.value.selectedMonthSort.value,
                   onChanged: (String? newValue) {
-                    _controller.changeMonthItemCardStatistical(newValue!);
+                    _controller.sortCardStatical!.value
+                        .changeSortMonthItem(newValue!);
                   },
-                  items: _controller.monthMenuItems,
+                  items: _controller
+                      .sortCardStatical!.value.dropdownSortMonthItems,
                   underline: Container(color: AppColors.normal),
                   icon: const Icon(
                     Icons.expand_more,

@@ -50,22 +50,7 @@ class CardEvaluate extends StatelessWidget {
                     Obx(
                       () => SortBox(
                         textTitle: "Lọc theo",
-                        sortItems: StudentInfoController.sortItems,
-                        selectedSort:
-                            _controller.selectedSortCardEvaluate.value,
-                        changeSortItem: _controller.changeSortItemCardEvaluate,
-                        selectDate: _controller.selectDateCardEvaluate.value,
-                        changeDate: _controller.changeDateCardEvaluate,
-                        sortWeekItems: StudentInfoController.sortWeekItems,
-                        selectedWeekSort:
-                            _controller.selectedWeekSortCardEvaluate.value,
-                        changeSortWeekItem:
-                            _controller.changeSortWeekItemCardEvaluate,
-                        sortMonthItems: StudentInfoController.sortMonthItems,
-                        selectedMonthSort:
-                            _controller.selectedMonthSortCardRatio.value,
-                        changeSortMonthItem:
-                            _controller.changeMonthItemCardRatio,
+                        sortService: _controller.sortCardEvaluate!.value,
                       ),
                     ),
                   ],
