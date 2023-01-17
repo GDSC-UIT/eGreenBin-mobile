@@ -3,10 +3,11 @@ import '../../data/models/comment.dart';
 import '../../data/models/comments.dart';
 import '../../data/models/student.dart';
 import '../../data/models/students.dart';
+import '../../data/services/sort_service.dart';
 
 class RatingController extends GetxController {
   RatingController() {
-    SelectedSortComment = sortCommentItems[0].obs;
+    sortService = SortService().obs;
   }
 
   // data student
@@ -26,10 +27,5 @@ class RatingController extends GetxController {
   Comments allcomments = Comments();
   List<Comment> listComments = [];
   // dropButton sort value
-  List<String> sortCommentItems = <String>["Mới nhất", "Cũ nhất"];
-  RxString SelectedSortComment = ''.obs;
-
-  void changeSortCommentItem(String newValue) {
-    SelectedSortComment.value = newValue;
-  }
+  Rx<SortService>? sortService;
 }

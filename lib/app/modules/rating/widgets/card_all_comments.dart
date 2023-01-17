@@ -4,22 +4,14 @@ import 'package:egreenbin/app/modules/rating/rating_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../global_widgets/sort_box.dart';
 
 class CardAllComments extends StatelessWidget {
-  RatingController _controller;
+  final RatingController _controller;
   CardAllComments(this._controller);
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuItem<String>> _sortMenuItems =
-        _controller.sortCommentItems
-            .map(
-              (value) => DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              ),
-            )
-            .toList();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Container(
@@ -53,48 +45,11 @@ class CardAllComments extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(width: 21),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Lọc theo",
-                      style: CustomTextStyle.b2(AppColors.subtle_1),
-                    ),
-                    const SizedBox(height: 5),
-                    Container(
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.primarySubtle2,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(
-                          color: AppColors.primary1,
-                          width: 1,
-                        ),
-                      ),
-                      child: Center(
-                        child: Obx(
-                          () => DropdownButton<String>(
-                            style: CustomTextStyle.b3(AppColors.normal),
-                            dropdownColor: AppColors.primarySubtle2,
-                            value: _controller.SelectedSortComment.value,
-                            onChanged: (String? newValue) {
-                              _controller.changeSortCommentItem(newValue!);
-                            },
-                            items: _sortMenuItems,
-                            underline:
-                                Container(color: AppColors.primarySubtle2),
-                            icon: const Icon(
-                              Icons.expand_more,
-                              size: 18,
-                              color: AppColors.normal,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                Obx(
+                  () => SortBox(
+                    textTitle: "Lọc theo",
+                    sortService: _controller.sortService!.value,
+                  ),
                 ),
               ],
             ),
