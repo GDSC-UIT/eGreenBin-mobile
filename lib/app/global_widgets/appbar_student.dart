@@ -2,7 +2,6 @@ import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../data/models/student.dart';
 
 class StudentAppBar extends StatelessWidget {
@@ -10,7 +9,7 @@ class StudentAppBar extends StatelessWidget {
 
   Student student;
   Function? backToPrevSreen;
-  StudentAppBar(this.student, this.backToPrevSreen);
+  StudentAppBar(this.student, this.backToPrevSreen, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class StudentAppBar extends StatelessWidget {
             Container(
               height: 154,
               decoration: const BoxDecoration(
-                color: AppColors.Normal,
+                color: AppColors.normal,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(32),
                   bottomLeft: Radius.circular(32),
@@ -92,7 +91,7 @@ class StudentAppBar extends StatelessWidget {
                 Container(
                   height: 75,
                   decoration: BoxDecoration(
-                    color: AppColors.Surface,
+                    color: AppColors.surface,
                     borderRadius: BorderRadius.circular(40),
                     boxShadow: const [
                       BoxShadow(
@@ -109,7 +108,7 @@ class StudentAppBar extends StatelessWidget {
                       const SizedBox(width: 30),
                       const CircleAvatar(
                         radius: 27,
-                        backgroundColor: AppColors.Background,
+                        backgroundColor: AppColors.background,
                         child: Icon(Icons.person),
                       ),
                       const SizedBox(width: 20),
@@ -119,12 +118,12 @@ class StudentAppBar extends StatelessWidget {
                         children: [
                           Text(
                             student.name,
-                            style: CustomTextStyle.h2(AppColors.Normal),
+                            style: CustomTextStyle.h2(AppColors.normal),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             "MHS: ${student.id}",
-                            style: CustomTextStyle.b1(AppColors.Subtle_1),
+                            style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],
                       ),

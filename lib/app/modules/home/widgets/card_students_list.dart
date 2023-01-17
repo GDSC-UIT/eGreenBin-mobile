@@ -1,73 +1,19 @@
-import 'package:egreenbin/app/core/values/app_values.dart';
-import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import '../../../core/values/app_colors.dart';
 
 class CardDSLop extends StatelessWidget {
-  static HomeController _controller = Get.find<HomeController>();
+  final HomeController _controller;
 
-  // dropButton class value
-  final List<DropdownMenuItem<String>> _classMenuItems = _controller.classItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-  // sort value
-  // sort ngay, tuan, thang
-  final List<DropdownMenuItem<String>> _sortMenuItems = _controller.sortItems
-      .map(
-        (value) => DropdownMenuItem(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
-  // sort theo tuan
-  final List<DropdownMenuItem<String>> _sortMenuWeekItems =
-      _controller.sortWeekItems
-          .map(
-            (value) => DropdownMenuItem(
-              value: value,
-              child: Text(value),
-            ),
-          )
-          .toList();
-  // sort theo thang
-  final List<DropdownMenuItem<String>> _sortMenuMonthItems =
-      _controller.sortMonthItems
-          .map(
-            (value) => DropdownMenuItem(
-              value: value,
-              child: Text(value),
-            ),
-          )
-          .toList();
-  // date picker
-  void _presentDatePicker(BuildContext context) {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
-      lastDate: DateTime.now(),
-    ).then(
-      (pickedDate) {
-        if (pickedDate == null) return;
-        _controller.changeDate(pickedDate);
-      },
-    );
-  }
+  CardDSLop(this._controller);
 
   @override
   Widget build(BuildContext context) {
+    // build UI
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -76,7 +22,7 @@ class CardDSLop extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.65,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.PrimarySubtle2,
+              color: AppColors.primarySubtle2,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -96,12 +42,12 @@ class CardDSLop extends StatelessWidget {
                 const SizedBox(height: 38),
                 Text(
                   "DANH SÁCH LỚP",
-                  style: CustomTextStyle.h2(AppColors.Primary1),
+                  style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   "${_controller.numberOfStudent.value} học sinh",
-                  style: CustomTextStyle.b1(AppColors.Subtle_1),
+                  style: CustomTextStyle.b1(AppColors.subtle_1),
                 ),
                 const SizedBox(height: 5),
 // loc theo
@@ -111,33 +57,21 @@ class CardDSLop extends StatelessWidget {
                     Obx(
                       () => SortBox(
                         textTitle: "Lọc theo",
-                        sortItems: _controller.sortItems,
-                        selectedSort: _controller.selectedSort.value,
-                        changeSortItem: _controller.changeSortItem,
-                        selectDate: _controller.selectDate.value,
-                        changeDate: _controller.changeDate,
-                        sortWeekItems: _controller.sortWeekItems,
-                        selectedWeekSort: _controller.selectedWeekSort.value,
-                        changeSortWeekItem: _controller.changeSortWeekItem,
-                        sortMonthItems: _controller.sortMonthItems,
-                        selectedMonthSort: _controller.selectedMonthSort.value,
-                        changeSortMonthItem: _controller.changeSortMonthItem,
+                        sortService: _controller.sortService!.value,
                       ),
                     ),
                   ],
                 ),
 // list student
                 Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                      itemCount:
-                          _controller.listStudent.value.listStudents.length,
-                      itemBuilder: (context, i) => StudentCard(
-                          i + 1, _controller.listStudent.value.listStudents[i]),
-                    ),
+                  child: ListView.builder(
+                    itemCount:
+                        _controller.listStudent.value.listStudents.length,
+                    itemBuilder: (context, i) => StudentCard(
+                        i + 1, _controller.listStudent.value.listStudents[i]),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
               ],
             ),
           ),
@@ -149,25 +83,25 @@ class CardDSLop extends StatelessWidget {
               height: 30,
               padding: const EdgeInsets.only(left: 10, right: 5),
               decoration: const BoxDecoration(
-                color: AppColors.Normal,
+                color: AppColors.normal,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(10),
                 ),
               ),
               child: Obx(
                 () => DropdownButton<String>(
-                  style: CustomTextStyle.b2(AppColors.Surface),
-                  dropdownColor: AppColors.Normal,
-                  value: _controller.selectedClass.value,
+                  style: CustomTextStyle.b2(AppColors.surface),
+                  dropdownColor: AppColors.normal,
+                  value: _controller.sortService!.value.selectedClass.value,
                   onChanged: (String? newValue) {
-                    _controller.changeClassItem(newValue!);
+                    _controller.sortService!.value.changeClassItem(newValue!);
                   },
-                  items: _classMenuItems,
-                  underline: Container(color: AppColors.Normal),
+                  items: _controller.sortService!.value.dropdownClassItems,
+                  underline: Container(color: AppColors.normal),
                   icon: const Icon(
                     Icons.expand_more,
                     size: 25,
-                    color: AppColors.Surface,
+                    color: AppColors.surface,
                   ),
                 ),
               ),

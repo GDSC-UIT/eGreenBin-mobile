@@ -1,29 +1,17 @@
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample1.dart';
-import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
 import '../student_info_controller.dart';
 
 class CardStatistical extends StatelessWidget {
-  StudentInfoController _controller;
+  final StudentInfoController _controller;
 
-  CardStatistical(this._controller);
+  const CardStatistical(this._controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    // dropButton month value
-    final List<DropdownMenuItem<String>> _monthMenuItems =
-        _controller.sortMonthItems
-            .map(
-              (value) => DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              ),
-            )
-            .toList();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -32,7 +20,7 @@ class CardStatistical extends StatelessWidget {
             //height: 270,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.PrimarySubtle2,
+              color: AppColors.primarySubtle2,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -52,7 +40,7 @@ class CardStatistical extends StatelessWidget {
                 const SizedBox(height: 38),
                 Text(
                   "THỐNG KÊ",
-                  style: CustomTextStyle.h2(AppColors.Primary1),
+                  style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 5),
 // box dung sai
@@ -64,13 +52,13 @@ class CardStatistical extends StatelessWidget {
                         Container(
                           height: 15,
                           width: 31,
-                          color: AppColors.Normal,
+                          color: AppColors.normal,
                         ),
                         const SizedBox(width: 5),
                         Text(
                           "Đúng",
                           style: CustomTextStyle.b5(
-                            AppColors.Primary2,
+                            AppColors.primary2,
                           ),
                         )
                       ],
@@ -87,7 +75,7 @@ class CardStatistical extends StatelessWidget {
                         Text(
                           "Sai",
                           style: CustomTextStyle.b5(
-                            AppColors.Primary2,
+                            AppColors.primary2,
                           ),
                         )
                       ],
@@ -100,7 +88,7 @@ class CardStatistical extends StatelessWidget {
                   //height: 300,
                   width: double.infinity,
                   margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Center(
+                  child: const Center(
                     child: LineChartSample1(),
                   ),
                 ),
@@ -116,26 +104,29 @@ class CardStatistical extends StatelessWidget {
               height: 30,
               padding: const EdgeInsets.only(left: 10, right: 5),
               decoration: const BoxDecoration(
-                color: AppColors.Normal,
+                color: AppColors.normal,
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(10),
                 ),
               ),
               child: Obx(
                 () => DropdownButton<String>(
-                  style: CustomTextStyle.b2(AppColors.Surface),
-                  dropdownColor: AppColors.Normal,
+                  style: CustomTextStyle.b2(AppColors.surface),
+                  dropdownColor: AppColors.normal,
                   menuMaxHeight: 200,
-                  value: _controller.selectedMonthSortCardStatistical.value,
+                  value: _controller
+                      .sortCardStatical!.value.selectedMonthSort.value,
                   onChanged: (String? newValue) {
-                    _controller.changeMonthItemCardStatistical(newValue!);
+                    _controller.sortCardStatical!.value
+                        .changeSortMonthItem(newValue!);
                   },
-                  items: _monthMenuItems,
-                  underline: Container(color: AppColors.Normal),
+                  items: _controller
+                      .sortCardStatical!.value.dropdownSortMonthItems,
+                  underline: Container(color: AppColors.normal),
                   icon: const Icon(
                     Icons.expand_more,
                     size: 25,
-                    color: AppColors.Surface,
+                    color: AppColors.surface,
                   ),
                 ),
               ),

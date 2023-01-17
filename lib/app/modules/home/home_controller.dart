@@ -1,16 +1,20 @@
 import 'package:egreenbin/app/data/models/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../data/services/sort_service.dart';
 
 class HomeController extends GetxController {
   HomeController() {
-    selectedClass = classItems[0].obs;
-    selectedSort = sortItems[0].obs;
-    selectedWeekSort = sortWeekItems[0].obs;
-    selectedMonthSort = sortMonthItems[0].obs;
+    sortService = SortService().obs;
     numberOfStudent = listStudent.value.listStudents.length.obs;
   }
-  // data
+
+  // function
+  void pushToMailScreen() {}
+  void refresh() {}
+
+  // data models
   Rx<Students> listStudent = Students().obs;
 
   Rx<Teacher> teacher = Teacher(
@@ -20,64 +24,6 @@ class HomeController extends GetxController {
 
   // class value
   RxInt numberOfStudent = 32.obs;
-  // dropdown class
-  List<String> classItems = <String>['Mầm C1', 'Mầm C2', 'Mầm C3'];
-  RxString selectedClass = ''.obs;
-
-  void changeClassItem(String newValue) {
-    selectedClass.value = newValue;
-  }
-
-  // dropdown sort
-  // dort ngay, tuan, thang
-  List<String> sortItems = <String>['Ngày', 'Tuần', 'Tháng'];
-  RxString selectedSort = ''.obs;
-
-  void changeSortItem(String newValue) {
-    selectedSort.value = newValue;
-  }
-
-  // sort theo tuan
-  List<String> sortWeekItems = <String>[
-    'Tuần 1',
-    'Tuần 2',
-    'Tuần 3',
-    'Tuần 4',
-    'Tuần 5',
-    'Tuần 6',
-    'Tuần 7',
-  ];
-  RxString selectedWeekSort = ''.obs;
-
-  void changeSortWeekItem(String newValue) {
-    selectedWeekSort.value = newValue;
-  }
-
-  // sort theo thang
-  List<String> sortMonthItems = <String>[
-    'Tháng 1',
-    'Tháng 2',
-    'Tháng 3',
-    'Tháng 4',
-    'Tháng 5',
-    'Tháng 6',
-    'Tháng 7',
-    'Tháng 8',
-    'Tháng 9',
-    'Tháng 10',
-    'Tháng 11',
-    'Tháng 12',
-  ];
-  RxString selectedMonthSort = ''.obs;
-
-  void changeSortMonthItem(String newValue) {
-    selectedMonthSort.value = newValue;
-  }
-
-  // datepicker
-  Rx<DateTime?> selectDate = DateTime.now().obs;
-
-  void changeDate(DateTime newDate) {
-    selectDate.value = newDate;
-  }
+  // sort box
+  Rx<SortService>? sortService;
 }

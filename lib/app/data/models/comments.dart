@@ -3,9 +3,9 @@ import 'comment.dart';
 class Comments {
   List<Comment> listCommentsFindById(String id) {
     List<Comment> list = [];
-    listAllCommets.forEach((com) {
+    for (var com in listAllCommets) {
       if (com.idStudent == id) list.add(com);
-    });
+    }
     return list;
   }
 

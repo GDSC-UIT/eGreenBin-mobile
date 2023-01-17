@@ -59,9 +59,9 @@ class Students {
       numOfCorrect: 0,
       numOfWrong: 0,
     );
-    listStudents.forEach((student) {
+    for (var student in listStudents) {
       if (student.id == id) studentFind = student;
-    });
+    }
     return studentFind;
   }
 }

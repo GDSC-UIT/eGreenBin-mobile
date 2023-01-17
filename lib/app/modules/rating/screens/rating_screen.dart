@@ -1,10 +1,7 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/appbar_student.dart';
 import 'package:egreenbin/app/modules/rating/widgets/card_all_comments.dart';
-import 'package:egreenbin/app/modules/student_info/widgets/card_evaluate.dart';
 import 'package:egreenbin/app/modules/rating/rating_controller.dart';
-import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
-import 'package:egreenbin/app/modules/student_info/widgets/card_statistical.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

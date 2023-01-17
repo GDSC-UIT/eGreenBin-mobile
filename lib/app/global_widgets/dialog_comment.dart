@@ -2,8 +2,6 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../core/values/app_colors.dart';
 import '../core/values/text_styles.dart';
 import '../modules/student_info/student_info_controller.dart';
@@ -12,6 +10,7 @@ class DiaLogComment extends StatefulWidget {
   StudentInfoController studentController;
   TextEditingController textControler;
   final Function onSave;
+
   DiaLogComment({
     required this.studentController,
     required this.textControler,
@@ -33,6 +32,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      contentPadding:
+          const EdgeInsets.only(top: 15, left: 22, right: 22, bottom: 0),
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -49,7 +50,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 width: 35,
                 height: 35,
                 decoration: const BoxDecoration(
-                  color: AppColors.PrimarySubtle2,
+                  color: AppColors.primarySubtle2,
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -58,7 +59,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                       color: AppColors.shadow,
                       spreadRadius: 0,
                       blurRadius: 4,
-                      offset: Offset(0, 6), // changes position of shadow
+                      offset: Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
@@ -71,7 +72,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 250,
             child: Column(
               children: [
@@ -80,7 +81,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                   padding: const EdgeInsets.all(10),
                   child: Text(
                     "ĐÁNH GIÁ",
-                    style: CustomTextStyle.h2(AppColors.Primary1),
+                    style: CustomTextStyle.h2(AppColors.primary1),
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -90,22 +91,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                     Obx(
                       () => SortBox(
                         textTitle: "Thời gian",
-                        sortItems: widget.studentController.sortItems,
-                        selectedSort:
-                            widget.studentController.selectedSort.value,
-                        changeSortItem: widget.studentController.changeSortItem,
-                        selectDate: widget.studentController.selectDate.value,
-                        changeDate: widget.studentController.changeDate,
-                        sortWeekItems: widget.studentController.sortWeekItems,
-                        selectedWeekSort:
-                            widget.studentController.selectedWeekSort.value,
-                        changeSortWeekItem:
-                            widget.studentController.changeSortWeekItem,
-                        sortMonthItems: widget.studentController.sortMonthItems,
-                        selectedMonthSort: widget
-                            .studentController.selectedMonthSortCardRatio.value,
-                        changeSortMonthItem:
-                            widget.studentController.changeMonthItemCardRatio,
+                        sortService:
+                            widget.studentController.sortCardRatio!.value,
                       ),
                     ),
                   ],
@@ -117,27 +104,24 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                   children: [
                     Text(
                       "Nội dung",
-                      style: CustomTextStyle.b2(AppColors.Subtle_1),
+                      style: CustomTextStyle.b2(AppColors.subtle_1),
                     ),
                     const SizedBox(height: 7),
                     TextField(
                       controller: widget.textControler,
-                      style: CustomTextStyle.b7(AppColors.Subtle_1),
+                      style: CustomTextStyle.b7(AppColors.subtle_1),
                       maxLines: 4,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: AppColors.Primary1, width: 1),
+                              BorderSide(color: AppColors.primary1, width: 1),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         hintText: "Thêm đánh giá",
                       ),
                       onChanged: (value) {
                         setState(() {
-                          if (value.trim() == "")
-                            isNull = true;
-                          else
-                            isNull = false;
+                          isNull = (value.trim() == "");
                         });
                       },
                     ),
@@ -159,13 +143,13 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 widget.onSave();
                 Navigator.of(context).pop();
               },
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.normal, // mau button
+                onPrimary: AppColors.primarySubtle2, // mau chu
+              ),
               child: Text(
                 "Đăng",
-                style: CustomTextStyle.b6(AppColors.PrimarySubtle2),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: AppColors.Normal, // mau button
-                onPrimary: AppColors.PrimarySubtle2, // mau chu
+                style: CustomTextStyle.b6(AppColors.primarySubtle2),
               ),
             ),
           ),

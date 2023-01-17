@@ -3,24 +3,15 @@ import 'package:egreenbin/app/global_widgets/card_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../global_widgets/sort_box.dart';
 import '../student_info_controller.dart';
 
 class CardEvaluate extends StatelessWidget {
-  StudentInfoController _controller;
-  Function pushToAllScreen;
-  CardEvaluate(this._controller, this.pushToAllScreen);
+  final StudentInfoController _controller;
+  const CardEvaluate(this._controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuItem<String>> _sortMenuItems =
-        _controller.sortCommentItems
-            .map(
-              (value) => DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              ),
-            )
-            .toList();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Stack(
@@ -29,7 +20,7 @@ class CardEvaluate extends StatelessWidget {
             height: 320,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: AppColors.PrimarySubtle2,
+              color: AppColors.primarySubtle2,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -49,55 +40,18 @@ class CardEvaluate extends StatelessWidget {
                 const SizedBox(height: 38),
                 Text(
                   "ĐÁNH GIÁ",
-                  style: CustomTextStyle.h2(AppColors.Primary1),
+                  style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 5),
 // loc theo
                 Row(
                   children: [
                     const SizedBox(width: 21),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Lọc theo",
-                          style: CustomTextStyle.b2(AppColors.Subtle_1),
-                        ),
-                        const SizedBox(height: 5),
-                        Container(
-                          width: 100,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: AppColors.PrimarySubtle2,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(
-                              color: AppColors.Primary1,
-                              width: 1,
-                            ),
-                          ),
-                          child: Center(
-                            child: Obx(
-                              () => DropdownButton<String>(
-                                style: CustomTextStyle.b3(AppColors.Normal),
-                                dropdownColor: AppColors.PrimarySubtle2,
-                                value: _controller.SelectedSortComment.value,
-                                onChanged: (String? newValue) {
-                                  _controller.changeSortCommentItem(newValue!);
-                                },
-                                items: _sortMenuItems,
-                                underline:
-                                    Container(color: AppColors.PrimarySubtle2),
-                                icon: const Icon(
-                                  Icons.expand_more,
-                                  size: 18,
-                                  color: AppColors.Normal,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    Obx(
+                      () => SortBox(
+                        textTitle: "Lọc theo",
+                        sortService: _controller.sortCardEvaluate!.value,
+                      ),
                     ),
                   ],
                 ),
@@ -105,11 +59,11 @@ class CardEvaluate extends StatelessWidget {
                 const SizedBox(height: 5),
                 Expanded(
                   child: Container(
-                    child: _controller.listComments.length == 0
+                    child: _controller.listComments.isEmpty
                         ? Center(
                             child: Text(
                               "CHƯA CÓ ĐÁNH GIÁ NÀO",
-                              style: CustomTextStyle.h2(AppColors.Normal),
+                              style: CustomTextStyle.h2(AppColors.normal),
                             ),
                           )
                         : ListView.builder(
@@ -129,14 +83,14 @@ class CardEvaluate extends StatelessWidget {
             left: 0,
             child: GestureDetector(
               onTap: () {
-                pushToAllScreen();
+                _controller.pushToAllCommentScreen();
               },
               child: Container(
                 height: 35,
                 width: 100,
                 padding: const EdgeInsets.only(left: 10, right: 5),
                 decoration: const BoxDecoration(
-                  color: AppColors.Normal,
+                  color: AppColors.normal,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                   ),
@@ -144,7 +98,7 @@ class CardEvaluate extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "Xem tất cả",
-                    style: CustomTextStyle.b7(AppColors.Surface),
+                    style: CustomTextStyle.b7(AppColors.surface),
                   ),
                 ),
               ),

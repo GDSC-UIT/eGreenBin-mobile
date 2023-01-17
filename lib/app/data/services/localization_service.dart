@@ -25,8 +25,8 @@ class LocalizationService extends Translations {
     'vi': 'Tiếng Việt',
   });
 
-  static void changeLocale(String _languageCode) {
-    final locale = _getLocaleFromLanguage(languageCode: _languageCode);
+  static void changeLocale(String languageCode) {
+    final locale = _getLocaleFromLanguage(languageCode: languageCode);
     Get.updateLocale(locale);
   }
 
@@ -44,6 +44,7 @@ class LocalizationService extends Translations {
     return Get.locale!;
   }
 
+  // ignore: body_might_complete_normally_nullable
   Future<String?> getLanguague() async {
     // var storage = AppSettingStorage();
     // String value = await storage.readAppConfig();
