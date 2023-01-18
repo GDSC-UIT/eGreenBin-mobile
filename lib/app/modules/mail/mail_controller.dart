@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/data/models/mail.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class MailController extends GetxController {
   MailController() {
     sortService = SortService().obs;
     numberOfStudent = listStudent.value.listStudents.length.obs;
+    testMail = Mail(student: listStudent.value.listStudents[0], content: "");
   }
 
   // function
@@ -16,13 +18,15 @@ class MailController extends GetxController {
     Get.back();
   }
 
-  void sendMailToAll() {
+  Future sendMailToAll() async {
     // send email to all parents
+    await testMail!.sendEmail();
   }
 
   void saveNote(Student student) {
     student.isNote = true;
     String note = textCotroller.text;
+    testMail = Mail(student: student, content: note);
     textCotroller.clear();
   }
 
@@ -30,6 +34,8 @@ class MailController extends GetxController {
     student.isNote = false;
   }
 
+  // mail
+  Mail? testMail;
   // sort box
   Rx<SortService>? sortService;
   // data models

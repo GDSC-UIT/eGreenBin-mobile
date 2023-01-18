@@ -7,8 +7,28 @@ import '../../../core/values/assets_image.dart';
 import '../../../core/values/text_styles.dart';
 import '../../../global_widgets/appbar_teacher.dart';
 
-class MailScreen extends StatelessWidget {
+class MailScreen extends StatefulWidget {
+  @override
+  State<MailScreen> createState() => _MailScreenState();
+}
+
+class _MailScreenState extends State<MailScreen> {
   final MailController _controller = Get.find<MailController>();
+
+  // loading when send all
+  bool isLoading = false;
+  void sendEmail() {
+    setState(() {
+      isLoading = true;
+    });
+    _controller.sendMailToAll().then(
+      (_) {
+        setState(() {
+          isLoading = false;
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +62,7 @@ class MailScreen extends StatelessWidget {
                 bottom: 0,
                 right: 0,
                 child: GestureDetector(
-                  onTap: () => _controller.sendMailToAll(),
+                  onTap: () => sendEmail(),
                   child: Container(
                     height: 44,
                     width: 123,
@@ -53,19 +73,29 @@ class MailScreen extends StatelessWidget {
                         topLeft: Radius.circular(20),
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                          child: Image.asset(Assets.mail),
-                        ),
-                        Text(
-                          "Gửi tất cả",
-                          style: CustomTextStyle.b7(AppColors.surface),
-                        )
-                      ],
-                    ),
+                    child: isLoading
+                        ? const Center(
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: AppColors.surface,
+                              ),
+                            ),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                child: Image.asset(Assets.mail),
+                              ),
+                              Text(
+                                "Gửi tất cả",
+                                style: CustomTextStyle.b7(AppColors.surface),
+                              )
+                            ],
+                          ),
                   ),
                 ),
               ),

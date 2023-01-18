@@ -6,7 +6,6 @@ import 'package:egreenbin/app/modules/mail/widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
-import '../../../global_widgets/dialog_comment.dart';
 
 class CardStudentMailList extends StatelessWidget {
   final MailController _controller;

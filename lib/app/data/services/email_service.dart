@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/app_values.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ class EmailService {
   // ham gui email
   // student: student dang co
   // message: noi dung thong bao
+
   static Future sendEmail({
     required Student student,
     required String message,
@@ -24,7 +26,7 @@ class EmailService {
       body: json.encode({
         'service_id': EmailValue.serviceId,
         'template_id': EmailValue.templateId,
-        'user_id': EmailValue.templateId,
+        'user_id': EmailValue.userId,
         'template_params': {
           'user_subject': EmailValue.subject,
           'user_author': EmailValue.authorName,
@@ -35,13 +37,13 @@ class EmailService {
         }
       }),
     );
-
     // show snackbar
     Get.snackbar(
       'Thông báo',
       response.body,
       duration: const Duration(seconds: 2),
-      backgroundColor: response.body == "OK" ? Colors.green : Colors.red,
+      backgroundColor:
+          response.body == "OK" ? AppColors.primarySubtle1 : Colors.red,
     );
   }
 

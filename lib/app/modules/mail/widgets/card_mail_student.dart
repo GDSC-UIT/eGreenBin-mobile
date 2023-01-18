@@ -66,7 +66,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
                 style: CustomTextStyle.b1(AppColors.primary1),
               ),
               const SizedBox(height: 5),
-              Container(
+              SizedBox(
                 width: 200,
                 child: AutoSizeText(
                   widget.student.parentEmail!,
