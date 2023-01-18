@@ -32,12 +32,8 @@ class StudentAppBar extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Image.asset(Assets.leaf3),
-                      ),
-                      Container(
-                        child: Image.asset(Assets.leaf4),
-                      ),
+                      Image.asset(Assets.leaf3),
+                      Image.asset(Assets.leaf4),
                     ],
                   ),
                 ],

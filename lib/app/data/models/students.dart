@@ -13,6 +13,7 @@ class Students {
       name: "Lê Xuân Quỳnh",
       numOfCorrect: 90,
       numOfWrong: 30,
+      parentEmail: "test@gmail.com",
     ),
     Student(
       id: "21522343",

@@ -1,8 +1,8 @@
 import 'package:egreenbin/app/data/models/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/services/sort_service.dart';
+import '../../routes/app_routes.dart';
 
 class HomeController extends GetxController {
   HomeController() {
@@ -11,15 +11,22 @@ class HomeController extends GetxController {
   }
 
   // function
-  void pushToMailScreen() {}
-  void refresh() {}
+  void pushToMailScreen() {
+    Get.toNamed(AppRoutes.mail, arguments: teacher.value);
+  }
+
+  void pushToStudentInfoScreen(String id) {
+    Get.toNamed(AppRoutes.studentInfo, arguments: id);
+  }
+
+  void refreshStudents() {}
 
   // data models
   Rx<Students> listStudent = Students().obs;
 
   Rx<Teacher> teacher = Teacher(
+    id: '20521000',
     name: "Hoàng Thì Linh",
-    mgv: '20521000',
   ).obs;
 
   // class value

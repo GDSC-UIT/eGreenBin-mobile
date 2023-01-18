@@ -1,15 +1,16 @@
 import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/modules/home/home_controller.dart';
+import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class HomeAppbar extends StatelessWidget {
-  HomeController _controller;
+class AppbarTeacher extends StatelessWidget {
+  Teacher teacher;
+  Function function;
   String screenName = "TRANG CHỦ";
+  Image icon;
 
-  HomeAppbar(this._controller);
+  AppbarTeacher(this.screenName, this.teacher, this.function, this.icon);
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,7 @@ class HomeAppbar extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Image.asset(Assets.leaf3),
-                      ),
+                      Image.asset(Assets.leaf3),
                       /* Container(
                         child: Image.asset(Assets.leaf4),
                       ), */
@@ -49,22 +48,27 @@ class HomeAppbar extends StatelessWidget {
         Positioned(
           top: 31,
           left: 31,
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: const [
-                BoxShadow(
-                  color: AppColors.shadow,
-                  spreadRadius: 5,
-                  blurRadius: 4,
-                  offset: Offset(0, 5), // changes position of shadow
-                ),
-              ],
+          child: GestureDetector(
+            onTap: () {
+              function();
+            },
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: const [
+                  BoxShadow(
+                    color: AppColors.shadow,
+                    spreadRadius: 5,
+                    blurRadius: 4,
+                    offset: Offset(0, 5), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: icon,
             ),
-            child: Image.asset(Assets.notification),
           ),
         ),
         SizedBox(
@@ -111,12 +115,12 @@ class HomeAppbar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            _controller.teacher.value.name,
+                            teacher.name,
                             style: CustomTextStyle.h2(AppColors.normal),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "MGV: ${_controller.teacher.value.mgv}",
+                            "MGV: ${teacher.id}",
                             style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],
@@ -133,7 +137,7 @@ class HomeAppbar extends StatelessWidget {
         Positioned(
           bottom: 0,
           right: 0,
-          child: Container(
+          child: SizedBox(
             height: 180,
             child: Image.asset(Assets.bin),
           ),
