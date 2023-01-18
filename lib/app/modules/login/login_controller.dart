@@ -1,5 +1,36 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../routes/app_routes.dart';
 
 class LoginController extends GetxController {
-  //
+  // text controllers
+  final idController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void onClose() {
+    idController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
+
+  void pushToHomeScreen() {
+    Get.toNamed(AppRoutes.home);
+  }
+
+  Future signIn(BuildContext context) async {
+    // loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(child: CircularProgressIndicator());
+      },
+    );
+    await Future.delayed(
+      const Duration(seconds: 2),
+      () {},
+    );
+    Navigator.of(context).pop();
+    pushToHomeScreen();
+  }
 }

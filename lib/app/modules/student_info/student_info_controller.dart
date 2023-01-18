@@ -35,6 +35,12 @@ class StudentInfoController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onClose() {
+    textCotroller.dispose();
+    super.onClose();
+  }
+
   // function
   void backToPrevScreen() {
     Get.back();
