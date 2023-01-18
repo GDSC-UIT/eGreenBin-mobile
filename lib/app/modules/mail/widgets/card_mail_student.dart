@@ -4,6 +4,7 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class CardMailStudent extends StatefulWidget {
   int index = 0;
@@ -81,7 +82,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
             ],
           ),
 // star
-          InkWell(
+          ZoomTapAnimation(
             onTap: () {
               if (!widget.student.isNote!) {
                 widget.showDialog(context, widget.student);

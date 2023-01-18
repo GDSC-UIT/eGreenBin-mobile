@@ -52,11 +52,14 @@ class SortBox extends StatelessWidget {
         GestureDetector(
           onTap: () => _presentDatePicker(context),
           child: SizedBox(
-            height: 18,
+            height: 20,
             width: 20,
-            child: Image.asset(Assets.calendar),
+            child: Image.asset(
+              Assets.calendar,
+              fit: BoxFit.fitHeight,
+            ),
           ),
-        )
+        ),
       ],
     );
 // sort Week
