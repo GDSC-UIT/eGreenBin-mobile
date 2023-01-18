@@ -1,5 +1,7 @@
+import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/app_values.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -9,11 +11,10 @@ class EmailService {
   // ham gui email
   // student: student dang co
   // message: noi dung thong bao
-  // context: context cua thang chua email (dung de show snackbar)
-  Future sendEmail({
+
+  static Future sendEmail({
     required Student student,
     required String message,
-    required BuildContext context,
   }) async {
     final url = Uri.parse(EmailValue.url);
     final response = await http.post(
@@ -25,7 +26,7 @@ class EmailService {
       body: json.encode({
         'service_id': EmailValue.serviceId,
         'template_id': EmailValue.templateId,
-        'user_id': EmailValue.templateId,
+        'user_id': EmailValue.userId,
         'template_params': {
           'user_subject': EmailValue.subject,
           'user_author': EmailValue.authorName,
@@ -36,20 +37,18 @@ class EmailService {
         }
       }),
     );
-
     // show snackbar
-    // ignore: use_build_context_synchronously
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: response.body == "OK" ? Colors.green : Colors.red,
-        content: Text(response.body),
-        duration: const Duration(seconds: 2),
-      ),
+    Get.snackbar(
+      'Thông báo',
+      response.body,
+      duration: const Duration(seconds: 2),
+      backgroundColor:
+          response.body == "OK" ? AppColors.primarySubtle1 : Colors.red,
     );
   }
 
   // ham send email bang launch url
-  Future launchEmail({
+  static Future launchEmail({
     required String toEmail,
     required String subject,
     required String message,

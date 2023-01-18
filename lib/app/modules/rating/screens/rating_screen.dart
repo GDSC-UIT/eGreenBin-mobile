@@ -8,12 +8,6 @@ import 'package:get/get.dart';
 class RatingScreen extends StatelessWidget {
   final RatingController _controller = Get.find<RatingController>();
 
-  void backToPrevScreen() {
-    Get.back();
-  }
-
-  void showCommentForm() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +21,8 @@ class RatingScreen extends StatelessWidget {
           child: Column(
             children: [
               // appbar
-              StudentAppBar(_controller.student.value, backToPrevScreen),
+              StudentAppBar(
+                  _controller.student.value, _controller.backToPrevScreen),
               // card danh gia
               const SizedBox(height: 20),
               CardAllComments(_controller),

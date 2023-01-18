@@ -8,6 +8,7 @@ class Student {
   int? numOfWrong;
   String? imageAvartaUrl;
   String? parentEmail;
+  bool? isNote;
 
   Student({
     this.id,
@@ -16,10 +17,12 @@ class Student {
     this.numOfWrong,
     this.imageAvartaUrl,
     this.parentEmail,
+    this.isNote,
   }) {
     id ??= DateTime.now.toString();
     numOfCorrect ??= 0;
     numOfWrong ??= 0;
     parentEmail ??= EmailValue.emailDefault;
+    isNote ??= false;
   }
 }

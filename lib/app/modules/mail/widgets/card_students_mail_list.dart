@@ -1,15 +1,30 @@
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/global_widgets/sort_box.dart';
-import 'package:egreenbin/app/modules/home/home_controller.dart';
-import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
+import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/modules/mail/mail_controller.dart';
+import 'package:egreenbin/app/modules/mail/widgets/card_mail_student.dart';
+import 'package:egreenbin/app/modules/mail/widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
 
-class CardStudentList extends StatelessWidget {
-  final HomeController _controller;
+class CardStudentMailList extends StatelessWidget {
+  final MailController _controller;
 
-  CardStudentList(this._controller);
+  CardStudentMailList(this._controller);
+
+  // show comment
+  void showCommentForm(BuildContext context, Student student) {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      barrierDismissible: false,
+      builder: (ctx) => DiaLogMail(
+        mailController: _controller,
+        textController: _controller.textCotroller,
+        onSave: () => _controller.saveNote(student),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,27 +65,18 @@ class CardStudentList extends StatelessWidget {
                   style: CustomTextStyle.b1(AppColors.subtle_1),
                 ),
                 const SizedBox(height: 5),
-// loc theo
-                Row(
-                  children: [
-                    const SizedBox(width: 21),
-                    Obx(
-                      () => SortBox(
-                        textTitle: "Lọc theo",
-                        sortService: _controller.sortService!.value,
-                      ),
-                    ),
-                  ],
-                ),
 // list student
                 Expanded(
                   child: ListView.builder(
                     itemCount:
                         _controller.listStudent.value.listStudents.length,
-                    itemBuilder: (context, i) => StudentCard(
-                      i + 1,
-                      _controller.listStudent.value.listStudents[i],
-                      _controller.pushToStudentInfoScreen,
+                    itemBuilder: (context, i) => Obx(
+                      () => CardMailStudent(
+                        i + 1,
+                        _controller.listStudent.value.listStudents[i],
+                        showCommentForm,
+                        _controller.deleteNote,
+                      ),
                     ),
                   ),
                 ),

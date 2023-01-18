@@ -13,6 +13,7 @@ class Students {
       name: "Lê Xuân Quỳnh",
       numOfCorrect: 90,
       numOfWrong: 30,
+      parentEmail: "test@gmail.com",
     ),
     Student(
       id: "21522343",
@@ -46,7 +47,7 @@ class Students {
     ),
     Student(
       id: "21521345",
-      name: "Tiến deptraicaotohocgioi",
+      name: "Tiến deptraicaotohocgioi asdasdasdasd",
       numOfCorrect: 0,
       numOfWrong: 100,
     ),

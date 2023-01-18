@@ -47,7 +47,16 @@ class StudentInfoController extends GetxController {
 
   void saveComment() {
     // luu comment
-    //String comment = textCotroller.text;
+    String content = textCotroller.text;
+    Comment newComment = Comment(
+      idStudent: student.value.id!,
+      content: content,
+      date: DateTime.now(),
+    );
+
+    allcomments.addComment(newComment);
+    listComments = allcomments.listCommentsFindById(id);
+    update();
     textCotroller.clear();
   }
 

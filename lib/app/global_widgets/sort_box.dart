@@ -44,18 +44,22 @@ class SortBox extends StatelessWidget {
           child: Obx(() => Text(
                 sortService.selectDate.value == null
                     ? '01/01/2023'
-                    : '${DateFormat(FormatValue.numbericDateFormat).format(sortService.selectDate.value as DateTime)}',
+                    : DateFormat(FormatValue.numbericDateFormat)
+                        .format(sortService.selectDate.value as DateTime),
                 style: CustomTextStyle.b3(AppColors.normal),
               )),
         ),
         GestureDetector(
           onTap: () => _presentDatePicker(context),
           child: SizedBox(
-            height: 18,
+            height: 20,
             width: 20,
-            child: Image.asset(Assets.calendar),
+            child: Image.asset(
+              Assets.calendar,
+              fit: BoxFit.fitHeight,
+            ),
           ),
-        )
+        ),
       ],
     );
 // sort Week

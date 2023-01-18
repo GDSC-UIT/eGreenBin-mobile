@@ -18,6 +18,8 @@ class Assets {
   static const String exit = 'assets/icons/Close Square green.png';
   static const String refresh = 'assets/icons/Download.png';
   static const String mail = 'assets/icons/Message.png';
+  static const String yellowStar = 'assets/icons/YellowStar.png';
+  static const String greyStar = 'assets/icons/GreyStar.png';
   // image
   static const String backround = 'assets/images/bg.png';
 }

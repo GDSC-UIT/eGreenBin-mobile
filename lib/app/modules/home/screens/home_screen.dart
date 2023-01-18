@@ -1,14 +1,13 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
-import 'package:egreenbin/app/modules/home/widgets/appbar_home.dart';
+import 'package:egreenbin/app/global_widgets/appbar_teacher.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_students_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
-import '../../../core/values/text_styles.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeController _controller = Get.find<HomeController>();
+  final HomeController _controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +25,15 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // appbar
-                  HomeAppbar(_controller),
+                  AppbarTeacher(
+                    "TRANG CHỦ",
+                    _controller.teacher.value,
+                    () {},
+                    Image.asset(Assets.notification),
+                  ),
                   const SizedBox(height: 15),
                   // card has list student
-                  CardDSLop(_controller),
+                  CardStudentList(_controller),
                 ],
               ),
 // button right bottom
@@ -52,7 +56,7 @@ class HomeScreen extends StatelessWidget {
 // refresh button
                       InkWell(
                         onTap: () {
-                          _controller.refresh();
+                          _controller.refreshStudents();
                         },
                         child: SizedBox(
                           height: 30,

@@ -64,7 +64,8 @@ class CardComment extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                '${DateFormat(FormatValue.numbericDateFormat).format(comment.date!)}',
+                DateFormat(FormatValue.numbericDateFormat)
+                    .format(comment.date!),
                 style: CustomTextStyle.b8(AppColors.surface),
               ),
             ),

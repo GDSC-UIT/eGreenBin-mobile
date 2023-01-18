@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  auto_size_text:
+    dependency: "direct main"
+    description:
+      name: auto_size_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -504,6 +511,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  zoom_tap_animation:
+    dependency: "direct main"
+    description:
+      name: zoom_tap_animation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
 sdks:
   dart: ">=2.18.6 <3.0.0"
   flutter: ">=3.0.0"

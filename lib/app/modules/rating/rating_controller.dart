@@ -28,4 +28,9 @@ class RatingController extends GetxController {
   List<Comment> listComments = [];
   // dropButton sort value
   Rx<SortService>? sortService;
+
+  // fuction
+  void backToPrevScreen() {
+    Get.back();
+  }
 }
