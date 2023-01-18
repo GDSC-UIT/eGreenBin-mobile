@@ -9,6 +9,10 @@ class Comments {
     return list;
   }
 
+  void addComment(Comment comment) {
+    listAllCommets.add(comment);
+  }
+
   List<Comment> listAllCommets = [
     Comment(
       idStudent: "21522345",
