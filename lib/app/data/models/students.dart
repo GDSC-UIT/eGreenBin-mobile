@@ -47,7 +47,7 @@ class Students {
     ),
     Student(
       id: "21521345",
-      name: "Tiến deptraicaotohocgioi asdasdasdasd",
+      name: "Tiến deptraicaotohocgioi",
       numOfCorrect: 0,
       numOfWrong: 100,
     ),

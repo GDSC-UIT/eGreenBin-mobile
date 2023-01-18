@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
+
 import 'comment.dart';
 
-class Comments {
+class Comments extends GetxController {
   List<Comment> listCommentsFindById(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
@@ -11,6 +13,7 @@ class Comments {
 
   void addComment(Comment comment) {
     listAllCommets.add(comment);
+    update();
   }
 
   List<Comment> listAllCommets = [

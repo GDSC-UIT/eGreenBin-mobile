@@ -23,6 +23,12 @@ class RatingController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onReady() {
+    listComments = allcomments.listCommentsFindById(id);
+    super.onReady();
+  }
+
   // comment
   Comments allcomments = Comments();
   List<Comment> listComments = [];

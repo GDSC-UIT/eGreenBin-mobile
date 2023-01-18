@@ -64,15 +64,17 @@ class CardStudentList extends StatelessWidget {
                 ),
 // list student
                 Expanded(
-                  child: ListView.builder(
-                    itemCount:
-                        _controller.listStudent.value.listStudents.length,
-                    itemBuilder: (context, i) => StudentCard(
-                      i + 1,
-                      _controller.listStudent.value.listStudents[i],
-                      _controller.pushToStudentInfoScreen,
-                    ),
-                  ),
+                  child: _controller.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                          itemCount:
+                              _controller.listStudent.value.listStudents.length,
+                          itemBuilder: (context, i) => StudentCard(
+                            i + 1,
+                            _controller.listStudent.value.listStudents[i],
+                            _controller.pushToStudentInfoScreen,
+                          ),
+                        ),
                 ),
                 const SizedBox(height: 10),
               ],

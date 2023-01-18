@@ -19,7 +19,14 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoutes.studentInfo, arguments: id);
   }
 
-  void refreshStudents() {}
+  bool isLoading = false;
+  Future refreshStudents() async {
+    isLoading = true;
+    listStudent = Students().obs;
+    await Future.delayed(const Duration(seconds: 1), () {
+      isLoading = false;
+    });
+  }
 
   // data models
   Rx<Students> listStudent = Students().obs;
