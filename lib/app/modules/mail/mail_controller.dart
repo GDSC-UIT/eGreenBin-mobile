@@ -1,3 +1,5 @@
+import 'package:egreenbin/app/data/models/student.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/students.dart';
 import '../../data/models/teacher.dart';
@@ -17,6 +19,17 @@ class MailController extends GetxController {
   void sendMailToAll() {
     // send email to all parents
   }
+
+  void saveNote(Student student) {
+    student.isNote = true;
+    String note = textCotroller.text;
+    textCotroller.clear();
+  }
+
+  void deleteNote(Student student) {
+    student.isNote = false;
+  }
+
   // sort box
   Rx<SortService>? sortService;
   // data models
@@ -29,4 +42,6 @@ class MailController extends GetxController {
 
   // class value
   RxInt numberOfStudent = 32.obs;
+  // textController comment
+  final TextEditingController textCotroller = TextEditingController();
 }

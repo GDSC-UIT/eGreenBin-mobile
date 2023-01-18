@@ -5,16 +5,26 @@ import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
 
-class CardMailStudent extends StatelessWidget {
+class CardMailStudent extends StatefulWidget {
   int index = 0;
   Student student;
   Function showDialog;
+  Function deleteContent;
+  CardMailStudent(
+    this.index,
+    this.student,
+    this.showDialog,
+    this.deleteContent,
+  );
 
-  CardMailStudent(this.index, this.student, this.showDialog);
+  @override
+  State<CardMailStudent> createState() => _CardMailStudentState();
+}
 
+class _CardMailStudentState extends State<CardMailStudent> {
   String get indexFormat {
-    if (index < 10) return '0$index';
-    return '$index';
+    if (widget.index < 10) return '0${widget.index}';
+    return '${widget.index}';
   }
 
   @override
@@ -39,12 +49,12 @@ class CardMailStudent extends StatelessWidget {
           CircleAvatar(
             radius: 25,
             backgroundColor: AppColors.background,
-            child: student.imageAvartaUrl == null
+            child: widget.student.imageAvartaUrl == null
                 ? const Icon(
                     Icons.person,
                     color: AppColors.subtle_2,
                   )
-                : Image.network(student.imageAvartaUrl!),
+                : Image.network(widget.student.imageAvartaUrl!),
           ),
 // column
           const SizedBox(width: 10),
@@ -52,14 +62,14 @@ class CardMailStudent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                student.name,
+                widget.student.name,
                 style: CustomTextStyle.b1(AppColors.primary1),
               ),
               const SizedBox(height: 5),
               Container(
                 width: 200,
                 child: AutoSizeText(
-                  student.parentEmail!,
+                  widget.student.parentEmail!,
                   style: CustomTextStyle.b1(AppColors.subtle_2),
                   maxLines: 1,
                   minFontSize: 5,
@@ -68,9 +78,22 @@ class CardMailStudent extends StatelessWidget {
             ],
           ),
 // star
-          Container(
-            height: 30,
-            child: Image.asset(Assets.greyStar),
+          InkWell(
+            onTap: () {
+              if (!widget.student.isNote!) {
+                widget.showDialog(context, widget.student);
+              } else {
+                setState(() {
+                  widget.deleteContent(widget.student);
+                });
+              }
+            },
+            child: SizedBox(
+              height: 30,
+              child: Image.asset(
+                widget.student.isNote! ? Assets.yellowStar : Assets.greyStar,
+              ),
+            ),
           )
         ],
       ),

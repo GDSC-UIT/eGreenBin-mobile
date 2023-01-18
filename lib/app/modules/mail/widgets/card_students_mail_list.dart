@@ -1,16 +1,31 @@
 import 'package:egreenbin/app/core/values/text_styles.dart';
-import 'package:egreenbin/app/global_widgets/sort_box.dart';
-import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
+import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_mail_student.dart';
+import 'package:egreenbin/app/modules/mail/widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../global_widgets/dialog_comment.dart';
 
 class CardStudentMailList extends StatelessWidget {
   final MailController _controller;
 
   CardStudentMailList(this._controller);
+
+  // show comment
+  void showCommentForm(BuildContext context, Student student) {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      barrierDismissible: false,
+      builder: (ctx) => DiaLogMail(
+        mailController: _controller,
+        textController: _controller.textCotroller,
+        onSave: () => _controller.saveNote(student),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +71,13 @@ class CardStudentMailList extends StatelessWidget {
                   child: ListView.builder(
                     itemCount:
                         _controller.listStudent.value.listStudents.length,
-                    itemBuilder: (context, i) => CardMailStudent(
-                      i + 1,
-                      _controller.listStudent.value.listStudents[i],
-                      () {},
+                    itemBuilder: (context, i) => Obx(
+                      () => CardMailStudent(
+                        i + 1,
+                        _controller.listStudent.value.listStudents[i],
+                        showCommentForm,
+                        _controller.deleteNote,
+                      ),
                     ),
                   ),
                 ),

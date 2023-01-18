@@ -10,7 +10,7 @@ class EmailService {
   // ham gui email
   // student: student dang co
   // message: noi dung thong bao
-  Future sendEmail({
+  static Future sendEmail({
     required Student student,
     required String message,
   }) async {
@@ -46,7 +46,7 @@ class EmailService {
   }
 
   // ham send email bang launch url
-  Future launchEmail({
+  static Future launchEmail({
     required String toEmail,
     required String subject,
     required String message,
