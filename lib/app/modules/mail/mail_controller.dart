@@ -34,6 +34,13 @@ class MailController extends GetxController {
     student.isNote = false;
   }
 
+  @override
+  void onInit() {
+    // argument
+    teacher.value = Get.arguments;
+    super.onInit();
+  }
+
   // mail
   Mail? testMail;
   // sort box
@@ -45,7 +52,6 @@ class MailController extends GetxController {
     id: '20521000',
     name: "Hoàng Thì Linh",
   ).obs;
-
   // class value
   RxInt numberOfStudent = 32.obs;
   // textController comment

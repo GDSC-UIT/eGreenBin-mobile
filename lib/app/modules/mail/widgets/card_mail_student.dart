@@ -61,9 +61,12 @@ class _CardMailStudentState extends State<CardMailStudent> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                widget.student.name,
-                style: CustomTextStyle.b1(AppColors.primary1),
+              SizedBox(
+                width: 200,
+                child: Text(
+                  widget.student.name,
+                  style: CustomTextStyle.b1(AppColors.primary1),
+                ),
               ),
               const SizedBox(height: 5),
               SizedBox(

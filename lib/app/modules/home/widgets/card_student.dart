@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/text_styles.dart';
@@ -54,9 +55,12 @@ class StudentCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  student.name,
-                  style: CustomTextStyle.b1(AppColors.primary1),
+                SizedBox(
+                  width: 230,
+                  child: Text(
+                    student.name,
+                    style: CustomTextStyle.b1(AppColors.primary1),
+                  ),
                 ),
                 const SizedBox(height: 5),
                 Row(

@@ -112,9 +112,12 @@ class StudentAppBar extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            student.name,
-                            style: CustomTextStyle.h2(AppColors.normal),
+                          SizedBox(
+                            width: 230,
+                            child: Text(
+                              student.name,
+                              style: CustomTextStyle.h2(AppColors.normal),
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(

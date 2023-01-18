@@ -114,9 +114,12 @@ class AppbarTeacher extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            teacher.name,
-                            style: CustomTextStyle.h2(AppColors.normal),
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              teacher.name,
+                              style: CustomTextStyle.h2(AppColors.normal),
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(
