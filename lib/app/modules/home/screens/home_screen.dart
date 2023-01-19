@@ -6,8 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final HomeController _controller = Get.find<HomeController>();
+
+  Future loadStudents() async {
+    setState(() {});
+    await _controller.refreshStudents();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +67,7 @@ class HomeScreen extends StatelessWidget {
 // refresh button
                       InkWell(
                         onTap: () {
-                          _controller.refreshStudents();
+                          loadStudents();
                         },
                         child: SizedBox(
                           height: 30,

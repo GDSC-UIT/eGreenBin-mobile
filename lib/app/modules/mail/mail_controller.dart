@@ -9,8 +9,8 @@ import '../../data/services/sort_service.dart';
 class MailController extends GetxController {
   MailController() {
     sortService = SortService().obs;
-    numberOfStudent = listStudent.value.listStudents.length.obs;
-    testMail = Mail(student: listStudent.value.listStudents[0], content: "");
+    numberOfStudent = Students.listStudents.length.obs;
+    testMail = Mail(student: Students.listStudents[0], content: "");
   }
 
   // function
@@ -32,6 +32,7 @@ class MailController extends GetxController {
 
   void deleteNote(Student student) {
     student.isNote = false;
+    testMail = Mail(student: Students.listStudents[0], content: "");
   }
 
   @override
@@ -46,7 +47,6 @@ class MailController extends GetxController {
   // sort box
   Rx<SortService>? sortService;
   // data models
-  Rx<Students> listStudent = Students().obs;
 
   Rx<Teacher> teacher = Teacher(
     id: '20521000',

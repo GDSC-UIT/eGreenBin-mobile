@@ -7,7 +7,7 @@ import '../../routes/app_routes.dart';
 class HomeController extends GetxController {
   HomeController() {
     sortService = SortService().obs;
-    numberOfStudent = listStudent.value.listStudents.length.obs;
+    numberOfStudent = Students.listStudents.length.obs;
   }
 
   // function
@@ -19,11 +19,15 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoutes.studentInfo, arguments: id);
   }
 
-  void refreshStudents() {}
+  bool isLoading = false;
+  Future refreshStudents() async {
+    isLoading = true;
+    await Future.delayed(const Duration(seconds: 1), () {
+      isLoading = false;
+    });
+  }
 
   // data models
-  Rx<Students> listStudent = Students().obs;
-
   Rx<Teacher> teacher = Teacher(
     id: '20521000',
     name: "Hoàng Thì Linh",

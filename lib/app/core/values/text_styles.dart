@@ -2,6 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextStyle extends TextStyle {
+  static TextStyle logo(Color color) {
+    return GoogleFonts.workSans(
+      fontSize: 35,
+      fontWeight: FontWeight.w700,
+      color: color,
+    );
+  }
+
   static TextStyle h1(Color color) {
     return GoogleFonts.workSans(
       fontSize: 25,
@@ -114,10 +122,10 @@ class CustomTextStyle extends TextStyle {
     );
   }
 
-  static TextStyle t9(Color color) {
+  static TextStyle b9(Color color) {
     return GoogleFonts.workSans(
-      fontSize: 10,
-      fontWeight: FontWeight.w600,
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
       color: color,
     );
   }

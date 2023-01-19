@@ -1,7 +1,7 @@
 import 'comment.dart';
 
 class Comments {
-  List<Comment> listCommentsFindById(String id) {
+  static List<Comment> listCommentsFindById(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
       if (com.idStudent == id) list.add(com);
@@ -9,11 +9,11 @@ class Comments {
     return list;
   }
 
-  void addComment(Comment comment) {
+  static void addComment(Comment comment) {
     listAllCommets.add(comment);
   }
 
-  List<Comment> listAllCommets = [
+  static List<Comment> listAllCommets = [
     Comment(
       idStudent: "21522345",
       content:

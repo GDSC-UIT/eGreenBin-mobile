@@ -11,20 +11,24 @@ class RatingController extends GetxController {
   }
 
   // data student
-  Students listStudent = Students();
   Rx<Student> student = Student(name: "default").obs;
 
   dynamic id = Get.arguments;
 
   @override
   void onInit() {
-    student.value = listStudent.findStudent(id);
-    listComments = allcomments.listCommentsFindById(id);
+    student.value = Students.findStudent(id);
+    listComments = Comments.listCommentsFindById(id);
     super.onInit();
   }
 
+  @override
+  void onReady() {
+    listComments = Comments.listCommentsFindById(id);
+    super.onReady();
+  }
+
   // comment
-  Comments allcomments = Comments();
   List<Comment> listComments = [];
   // dropButton sort value
   Rx<SortService>? sortService;

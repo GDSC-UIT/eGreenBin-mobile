@@ -6,6 +6,7 @@ import 'package:egreenbin/app/modules/mail/widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
+import '../../../data/models/students.dart';
 
 class CardStudentMailList extends StatelessWidget {
   final MailController _controller;
@@ -68,15 +69,12 @@ class CardStudentMailList extends StatelessWidget {
 // list student
                 Expanded(
                   child: ListView.builder(
-                    itemCount:
-                        _controller.listStudent.value.listStudents.length,
-                    itemBuilder: (context, i) => Obx(
-                      () => CardMailStudent(
-                        i + 1,
-                        _controller.listStudent.value.listStudents[i],
-                        showCommentForm,
-                        _controller.deleteNote,
-                      ),
+                    itemCount: Students.listStudents.length,
+                    itemBuilder: (context, i) => CardMailStudent(
+                      i + 1,
+                      Students.listStudents[i],
+                      showCommentForm,
+                      _controller.deleteNote,
                     ),
                   ),
                 ),

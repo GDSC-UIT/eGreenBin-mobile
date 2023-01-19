@@ -22,4 +22,5 @@ class Assets {
   static const String greyStar = 'assets/icons/GreyStar.png';
   // image
   static const String backround = 'assets/images/bg.png';
+  static const String logo = 'assets/images/logo.png';
 }

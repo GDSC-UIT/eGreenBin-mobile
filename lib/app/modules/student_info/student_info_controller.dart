@@ -15,10 +15,8 @@ class StudentInfoController extends GetxController {
   }
 
   // data models
-  Students listStudent = Students();
   Rx<Student> student = Student(name: "default").obs;
   // comment
-  Comments allcomments = Comments();
   List<Comment> listComments = [];
 
   // textController comment
@@ -30,9 +28,15 @@ class StudentInfoController extends GetxController {
   @override
   void onInit() {
     // get student and comments from id
-    student.value = listStudent.findStudent(id);
-    listComments = allcomments.listCommentsFindById(id);
+    student.value = Students.findStudent(id);
+    listComments = Comments.listCommentsFindById(id);
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    textCotroller.dispose();
+    super.onClose();
   }
 
   // function
@@ -54,8 +58,8 @@ class StudentInfoController extends GetxController {
       date: DateTime.now(),
     );
 
-    allcomments.addComment(newComment);
-    listComments = allcomments.listCommentsFindById(id);
+    Comments.addComment(newComment);
+    listComments = Comments.listCommentsFindById(id);
     update();
     textCotroller.clear();
   }
