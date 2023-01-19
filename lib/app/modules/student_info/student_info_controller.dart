@@ -15,7 +15,6 @@ class StudentInfoController extends GetxController {
   }
 
   // data models
-  Students listStudent = Students();
   Rx<Student> student = Student(name: "default").obs;
   // comment
   List<Comment> listComments = [];
@@ -29,7 +28,7 @@ class StudentInfoController extends GetxController {
   @override
   void onInit() {
     // get student and comments from id
-    student.value = listStudent.findStudent(id);
+    student.value = Students.findStudent(id);
     listComments = Comments.listCommentsFindById(id);
     super.onInit();
   }

@@ -1,7 +1,7 @@
 import 'package:egreenbin/app/data/models/student.dart';
 
 class Students {
-  List<Student> listStudents = [
+  static List<Student> listStudents = [
     Student(
       id: "21522345",
       name: "Nguyễn Thành Trung",
@@ -53,7 +53,7 @@ class Students {
     ),
   ];
 
-  Student findStudent(String id) {
+  static Student findStudent(String id) {
     Student studentFind = Student(
       id: "null",
       name: "Default",

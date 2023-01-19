@@ -11,14 +11,13 @@ class RatingController extends GetxController {
   }
 
   // data student
-  Students listStudent = Students();
   Rx<Student> student = Student(name: "default").obs;
 
   dynamic id = Get.arguments;
 
   @override
   void onInit() {
-    student.value = listStudent.findStudent(id);
+    student.value = Students.findStudent(id);
     listComments = Comments.listCommentsFindById(id);
     super.onInit();
   }

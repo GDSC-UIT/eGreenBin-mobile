@@ -1,4 +1,5 @@
 import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/data/models/students.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
@@ -67,11 +68,10 @@ class CardStudentList extends StatelessWidget {
                   child: _controller.isLoading
                       ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
-                          itemCount:
-                              _controller.listStudent.value.listStudents.length,
+                          itemCount: Students.listStudents.length,
                           itemBuilder: (context, i) => StudentCard(
                             i + 1,
-                            _controller.listStudent.value.listStudents[i],
+                            Students.listStudents[i],
                             _controller.pushToStudentInfoScreen,
                           ),
                         ),
