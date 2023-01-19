@@ -1,9 +1,7 @@
-import 'package:get/get.dart';
-
 import 'comment.dart';
 
-class Comments extends GetxController {
-  List<Comment> listCommentsFindById(String id) {
+class Comments {
+  static List<Comment> listCommentsFindById(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
       if (com.idStudent == id) list.add(com);
@@ -11,12 +9,11 @@ class Comments extends GetxController {
     return list;
   }
 
-  void addComment(Comment comment) {
+  static void addComment(Comment comment) {
     listAllCommets.add(comment);
-    update();
   }
 
-  List<Comment> listAllCommets = [
+  static List<Comment> listAllCommets = [
     Comment(
       idStudent: "21522345",
       content:

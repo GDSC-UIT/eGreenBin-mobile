@@ -19,18 +19,17 @@ class RatingController extends GetxController {
   @override
   void onInit() {
     student.value = listStudent.findStudent(id);
-    listComments = allcomments.listCommentsFindById(id);
+    listComments = Comments.listCommentsFindById(id);
     super.onInit();
   }
 
   @override
   void onReady() {
-    listComments = allcomments.listCommentsFindById(id);
+    listComments = Comments.listCommentsFindById(id);
     super.onReady();
   }
 
   // comment
-  Comments allcomments = Comments();
   List<Comment> listComments = [];
   // dropButton sort value
   Rx<SortService>? sortService;
