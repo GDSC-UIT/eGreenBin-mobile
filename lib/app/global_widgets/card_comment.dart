@@ -3,7 +3,6 @@ import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../core/values/app_values.dart';
 
 class CardComment extends StatelessWidget {
@@ -11,10 +10,18 @@ class CardComment extends StatelessWidget {
 
   CardComment(this.comment);
 
+  // get num of date between dateFrom to DateTo
+  int daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    return (to.difference(from).inHours / 24).round();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+// card comment
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Column(
@@ -41,17 +48,19 @@ class CardComment extends StatelessWidget {
                   style: CustomTextStyle.b3(AppColors.subtle_1),
                 ),
               ),
+// date create
               Padding(
                 padding: const EdgeInsets.only(
                     top: 8, left: 10, right: 10, bottom: 10),
                 child: Text(
-                  "1 ngày trước",
+                  "${daysBetween(comment.dateCreate!, DateTime.now())} ngày trước",
                   style: CustomTextStyle.b8(AppColors.subtle_2),
                 ),
               ),
             ],
           ),
         ),
+// card date
         Positioned(
           top: 0,
           left: 22,
@@ -64,8 +73,7 @@ class CardComment extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                DateFormat(FormatValue.numbericDateFormat)
-                    .format(comment.date!),
+                comment.dateSort!.toString(),
                 style: CustomTextStyle.b8(AppColors.surface),
               ),
             ),

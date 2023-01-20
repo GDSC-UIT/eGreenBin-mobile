@@ -132,10 +132,11 @@ class SortBox extends StatelessWidget {
                   style: CustomTextStyle.b3(AppColors.normal),
                   dropdownColor: AppColors.primarySubtle2,
                   value: sortService.selectedSortBy.value,
-                  // thay doi item
+// thay doi item
                   onChanged: (String? newValue) {
                     sortService.changeSortByItem(newValue!);
                   },
+
                   items: sortService.dropdownSortByItems,
                   underline: Container(color: AppColors.surface),
                   icon: const Icon(

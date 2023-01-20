@@ -1,4 +1,5 @@
 import 'package:egreenbin/app/data/models/comments.dart';
+import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/models/students.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
@@ -52,12 +53,24 @@ class StudentInfoController extends GetxController {
   void saveComment() {
     // luu comment
     String content = textCotroller.text;
+    // luu sort date
+    DateSort? sortTemp;
+    if (sortCardRatio!.value.selectedSortBy.value == "Ngày") {
+      sortTemp = DateSort.fromDate(date: sortCardRatio!.value.selectDate.value);
+    } else if (sortCardRatio!.value.selectedSortBy.value == "Tuần") {
+      sortTemp =
+          DateSort.fromWeek(week: sortCardRatio!.value.selectedWeekSort.value);
+    } else {
+      sortTemp = DateSort.fromMonth(
+          month: sortCardRatio!.value.selectedMonthSort.value);
+    }
+    // create comment
     Comment newComment = Comment(
       idStudent: student.value.id!,
       content: content,
-      date: DateTime.now(),
+      dateCreate: DateTime.now(),
+      dateSort: sortTemp,
     );
-
     Comments.addComment(newComment);
     listComments = Comments.listCommentsFindById(id);
     update();
