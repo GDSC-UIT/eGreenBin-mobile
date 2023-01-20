@@ -17,6 +17,11 @@ class CardComment extends StatelessWidget {
     return (to.difference(from).inHours / 24).round();
   }
 
+  String get dayBeforeString {
+    if (daysBetween(comment.dateCreate!, DateTime.now()) == 0) return "Hôm nay";
+    return "${daysBetween(comment.dateCreate!, DateTime.now())} ngày trước";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -53,7 +58,7 @@ class CardComment extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     top: 8, left: 10, right: 10, bottom: 10),
                 child: Text(
-                  "${daysBetween(comment.dateCreate!, DateTime.now())} ngày trước",
+                  dayBeforeString,
                   style: CustomTextStyle.b8(AppColors.subtle_2),
                 ),
               ),

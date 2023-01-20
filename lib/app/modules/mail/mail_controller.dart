@@ -24,15 +24,13 @@ class MailController extends GetxController {
   }
 
   void saveNote(Student student) {
-    student.isNote = true;
     String note = textCotroller.text;
+    if (note == "") {
+      student.isNote = false;
+    } else {
+      student.isNote = true;
+    }
     testMail = Mail(student: student, content: note);
-    textCotroller.clear();
-  }
-
-  void deleteNote(Student student) {
-    student.isNote = false;
-    testMail = Mail(student: Students.listStudents[0], content: "");
   }
 
   @override

@@ -4,8 +4,8 @@ import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/values/app_colors.dart';
-import '../../../core/values/text_styles.dart';
+import '../core/values/app_colors.dart';
+import '../core/values/text_styles.dart';
 
 class DiaLogMail extends StatefulWidget {
   MailController mailController;
@@ -23,8 +23,6 @@ class DiaLogMail extends StatefulWidget {
 }
 
 class _DiaLogMailState extends State<DiaLogMail> {
-  bool isNull = true;
-
   void onCancel() {
     Navigator.of(context).pop();
     widget.textController.clear();
@@ -74,7 +72,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
             ),
           ),
           SizedBox(
-            height: 250,
+            height: MediaQuery.of(context).size.height * 0.32,
             child: Column(
               children: [
 // text noi dung thu
@@ -119,11 +117,6 @@ class _DiaLogMailState extends State<DiaLogMail> {
                         ),
                         hintText: "Thêm ghi chú",
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          isNull = (value.trim() == "");
-                        });
-                      },
                     ),
                   ],
                 ),
@@ -136,7 +129,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
       actions: [
         Center(
           child: SizedBox(
-            width: 110,
+            width: 120,
             child: ElevatedButton(
               onPressed: () {
                 if (isNull) return;

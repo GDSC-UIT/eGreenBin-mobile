@@ -73,7 +73,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
             ),
           ),
           SizedBox(
-            height: 250,
+            height: MediaQuery.of(context).size.height * 0.32,
             child: Column(
               children: [
 // text Danh gia

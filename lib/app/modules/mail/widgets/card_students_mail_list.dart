@@ -2,7 +2,7 @@ import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_mail_student.dart';
-import 'package:egreenbin/app/modules/mail/widgets/dialog_mail.dart';
+import 'package:egreenbin/app/global_widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
@@ -74,7 +74,6 @@ class CardStudentMailList extends StatelessWidget {
                       i + 1,
                       Students.listStudents[i],
                       showCommentForm,
-                      _controller.deleteNote,
                     ),
                   ),
                 ),

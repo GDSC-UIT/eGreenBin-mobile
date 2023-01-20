@@ -10,12 +10,10 @@ class CardMailStudent extends StatefulWidget {
   int index = 0;
   Student student;
   Function showDialog;
-  Function deleteContent;
   CardMailStudent(
     this.index,
     this.student,
     this.showDialog,
-    this.deleteContent,
   );
 
   @override
@@ -84,13 +82,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
 // star
           ZoomTapAnimation(
             onTap: () {
-              if (!widget.student.isNote!) {
-                widget.showDialog(context, widget.student);
-              } else {
-                setState(() {
-                  widget.deleteContent(widget.student);
-                });
-              }
+              widget.showDialog(context, widget.student);
             },
             child: SizedBox(
               height: 30,
