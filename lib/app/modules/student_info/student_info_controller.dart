@@ -11,16 +11,16 @@ import '../../routes/app_routes.dart';
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     sortCardStatical = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterWeek: filterByWeek,
-      filterMonth: filterByMonth,
+      filterAll: fnull,
+      filterDate: fnull,
+      filterWeek: fnull,
+      filterMonth: fnull,
     ).obs;
     sortCardRatio = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterWeek: filterByWeek,
-      filterMonth: filterByMonth,
+      filterAll: fnull,
+      filterDate: fnull,
+      filterWeek: fnull,
+      filterMonth: fnull,
     ).obs;
     sortCardEvaluate = SortService(
       filterAll: filterByAll,
@@ -29,17 +29,18 @@ class StudentInfoController extends GetxController {
       filterMonth: filterByMonth,
     ).obs;
     sortDialog = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterWeek: filterByWeek,
-      filterMonth: filterByMonth,
+      filterAll: fnull,
+      filterDate: fnull,
+      filterWeek: fnull,
+      filterMonth: fnull,
     ).obs;
   }
 
+  Function fnull = () {};
   // data models
   Rx<Student> student = Student(name: "default").obs;
   // comment
-  List<Comment> listComments = [];
+  RxList<Comment> listComments = <Comment>[].obs;
 
   // textController comment
   final TextEditingController textCotroller = TextEditingController();
@@ -51,7 +52,7 @@ class StudentInfoController extends GetxController {
   void onInit() {
     // get student and comments from id
     student.value = Students.findStudent(id);
-    listComments = Comments.listCommentsFindById(id);
+    listComments.value = Comments.listCommentsFindById(id);
     super.onInit();
   }
 
@@ -71,26 +72,41 @@ class StudentInfoController extends GetxController {
     Get.toNamed(AppRoutes.rating, arguments: student.value.id);
   }
 
-  void filterByAll() {}
-  void filterByDate() {}
-  void filterByWeek() {}
-  void filterByMonth() {}
+  void filterByAll() {
+    // update list comment by date
+    listComments.value = Comments.listCommentsFindById(id);
+  }
+
+  void filterByDate() {
+    // update list comment by date
+    listComments.value = Comments.listCommentsSortByDate(id);
+  }
+
+  void filterByWeek() {
+    // update list comment by week
+    listComments.value = Comments.listCommentsSortByWeek(id);
+  }
+
+  void filterByMonth() {
+    // update list comment by month
+    listComments.value = Comments.listCommentsSortByMonth(id);
+  }
 
   void saveComment() {
     // luu comment
     String content = textCotroller.text;
     // luu sort date
     DateSort? sortTemp;
-    if (sortCardRatio!.value.selectedSortBy.value ==
+    if (sortDialog!.value.selectedSortByWithoutAll.value ==
         SortService.sortByItems[1]) {
-      sortTemp = DateSort.fromDate(date: sortCardRatio!.value.selectDate.value);
-    } else if (sortCardRatio!.value.selectedSortBy.value ==
+      sortTemp = DateSort.fromDate(date: sortDialog!.value.selectDate.value);
+    } else if (sortDialog!.value.selectedSortByWithoutAll.value ==
         SortService.sortByItems[2]) {
       sortTemp =
-          DateSort.fromWeek(week: sortCardRatio!.value.selectedWeekSort.value);
+          DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
     } else {
-      sortTemp = DateSort.fromMonth(
-          month: sortCardRatio!.value.selectedMonthSort.value);
+      sortTemp =
+          DateSort.fromMonth(month: sortDialog!.value.selectedMonthSort.value);
     }
     // create comment
     Comment newComment = Comment(
@@ -100,8 +116,7 @@ class StudentInfoController extends GetxController {
       dateSort: sortTemp,
     );
     Comments.addComment(newComment);
-    listComments = Comments.listCommentsFindById(id);
-    update();
+    listComments.value = Comments.listCommentsFindById(id);
     textCotroller.clear();
   }
 

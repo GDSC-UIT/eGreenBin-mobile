@@ -14,6 +14,7 @@ class SortService extends GetxController {
   }) {
     selectedClass.value = sortClassItems[0];
     selectedSortBy.value = sortByItems[0];
+    selectedSortByWithoutAll.value = sortByItems[1];
     selectedWeekSort.value = sortWeekItems[0];
     selectedMonthSort.value = sortMonthItems[0];
     dropdownSortByItemsWithoutAll = [...dropdownSortByItems];
@@ -95,6 +96,13 @@ class SortService extends GetxController {
         ),
       )
       .toList();
+  // dropdown sortBy without all
+  RxString selectedSortByWithoutAll = ''.obs;
+
+  void changeSortByItemWithoutAll(String newValue) {
+    selectedSortByWithoutAll.value = newValue;
+  }
+
   List<DropdownMenuItem<String>> dropdownSortByItemsWithoutAll = [];
   // datepicker
   Rx<DateTime?> selectDate = DateTime.now().obs;

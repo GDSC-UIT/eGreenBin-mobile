@@ -9,16 +9,17 @@ import '../../data/services/sort_service.dart';
 class MailController extends GetxController {
   MailController() {
     sortService = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterWeek: filterByWeek,
-      filterMonth: filterByMonth,
+      filterAll: fnull,
+      filterDate: fnull,
+      filterWeek: fnull,
+      filterMonth: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
     testMail = Mail(student: Students.listStudents[0], content: "");
   }
 
   // function
+  Function fnull = () {};
   void popToPrevScreen() {
     Get.back();
   }

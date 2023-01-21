@@ -57,22 +57,22 @@ class CardEvaluate extends StatelessWidget {
                 ),
 // list comment
                 const SizedBox(height: 5),
-                Expanded(
-                  child: Container(
-                    child: _controller.listComments.isEmpty
-                        ? Center(
-                            child: Text(
-                              "CHƯA CÓ ĐÁNH GIÁ NÀO",
-                              style: CustomTextStyle.h2(AppColors.normal),
-                            ),
-                          )
-                        : ListView.builder(
-                            itemCount: _controller.listComments.length,
-                            itemBuilder: (context, index) =>
-                                CardComment(_controller.listComments[index]),
-                          ),
-                  ),
-                ),
+                Obx(() => Expanded(
+                      child: Container(
+                        child: _controller.listComments.isEmpty
+                            ? Center(
+                                child: Text(
+                                  "CHƯA CÓ ĐÁNH GIÁ NÀO",
+                                  style: CustomTextStyle.h2(AppColors.normal),
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: _controller.listComments.length,
+                                itemBuilder: (context, index) => CardComment(
+                                    _controller.listComments[index]),
+                              ),
+                      ),
+                    )),
                 const SizedBox(height: 15),
               ],
             ),

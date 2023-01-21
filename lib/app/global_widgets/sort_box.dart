@@ -15,15 +15,12 @@ class SortBox extends StatelessWidget {
   SortService sortService;
   // is this sortbox in dialog
   bool isInDialog = false;
+
   SortBox({
     required this.textTitle,
     required this.sortService,
     this.isInDialog = false,
-  }) {
-    if (isInDialog == true) {
-      sortService.selectedSortBy.value = SortService.sortByItems[1];
-    }
-  }
+  });
 
   // show date picker
   void _presentDatePicker(BuildContext context) {
@@ -140,10 +137,16 @@ class SortBox extends StatelessWidget {
                 () => DropdownButton<String>(
                   style: CustomTextStyle.b3(AppColors.normal),
                   dropdownColor: AppColors.primarySubtle2,
-                  value: sortService.selectedSortBy.value,
+                  value: isInDialog
+                      ? sortService.selectedSortByWithoutAll.value
+                      : sortService.selectedSortBy.value,
 // thay doi item
                   onChanged: (String? newValue) {
-                    sortService.changeSortByItem(newValue!);
+                    if (isInDialog) {
+                      sortService.changeSortByItemWithoutAll(newValue!);
+                    } else {
+                      sortService.changeSortByItem(newValue!);
+                    }
                   },
 
                   items: isInDialog
@@ -158,25 +161,40 @@ class SortBox extends StatelessWidget {
                 ),
               ),
               // divider
-              const VerticalDivider(
-                color: AppColors.primary1,
-                thickness: 1,
+              Obx(
+                () => (sortService.selectedSortBy.value !=
+                            SortService.sortByItems[0] ||
+                        isInDialog)
+                    ? const VerticalDivider(
+                        color: AppColors.primary1,
+                        thickness: 1,
+                      )
+                    : const SizedBox(width: 0),
               ),
 // if sort by day => calendar
 // if sort by week => listWeekDrop
 // if sort by month => listMonthDrop
-              Obx(
-                () => (sortService.selectedSortBy.value ==
-                        SortService.sortByItems[1])
-                    ? showCalendar
-                    : (sortService.selectedSortBy.value ==
-                            SortService.sortByItems[2])
-                        ? showListWeek
-                        : (sortService.selectedSortBy.value ==
-                                SortService.sortByItems[3])
-                            ? showListMonth
-                            : showAll,
-              ),
+// none => show all
+              isInDialog
+                  ? Obx(() => (sortService.selectedSortByWithoutAll.value ==
+                          SortService.sortByItems[1])
+                      ? showCalendar
+                      : (sortService.selectedSortByWithoutAll.value ==
+                              SortService.sortByItems[2])
+                          ? showListWeek
+                          : showListMonth)
+                  : Obx(
+                      () => (sortService.selectedSortBy.value ==
+                              SortService.sortByItems[1])
+                          ? showCalendar
+                          : (sortService.selectedSortBy.value ==
+                                  SortService.sortByItems[2])
+                              ? showListWeek
+                              : (sortService.selectedSortBy.value ==
+                                      SortService.sortByItems[3])
+                                  ? showListMonth
+                                  : showAll,
+                    ),
             ],
           ),
         )

@@ -25,7 +25,6 @@ class DiaLogMail extends StatefulWidget {
 class _DiaLogMailState extends State<DiaLogMail> {
   void onCancel() {
     Navigator.of(context).pop();
-    widget.textController.clear();
   }
 
   @override

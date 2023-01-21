@@ -7,15 +7,16 @@ import '../../routes/app_routes.dart';
 class HomeController extends GetxController {
   HomeController() {
     sortService = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterWeek: filterByWeek,
-      filterMonth: filterByMonth,
+      filterAll: fnull,
+      filterDate: fnull,
+      filterWeek: fnull,
+      filterMonth: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
   }
 
   // function
+  Function fnull = () {};
   void pushToMailScreen() {
     Get.toNamed(AppRoutes.mail, arguments: teacher.value);
   }
