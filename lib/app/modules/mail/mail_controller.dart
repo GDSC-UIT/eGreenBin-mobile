@@ -8,7 +8,12 @@ import '../../data/services/sort_service.dart';
 
 class MailController extends GetxController {
   MailController() {
-    sortService = SortService().obs;
+    sortService = SortService(
+      filterAll: filterByAll,
+      filterDate: filterByDate,
+      filterWeek: filterByWeek,
+      filterMonth: filterByMonth,
+    ).obs;
     numberOfStudent = Students.listStudents.length.obs;
     testMail = Mail(student: Students.listStudents[0], content: "");
   }
@@ -32,6 +37,11 @@ class MailController extends GetxController {
     }
     testMail = Mail(student: student, content: note);
   }
+
+  void filterByAll() {}
+  void filterByDate() {}
+  void filterByWeek() {}
+  void filterByMonth() {}
 
   @override
   void onInit() {

@@ -13,11 +13,18 @@ class SortBox extends StatelessWidget {
   String textTitle;
   // sort service
   SortService sortService;
-
+  // is this sortbox in dialog
+  bool isInDialog = false;
   SortBox({
     required this.textTitle,
     required this.sortService,
-  });
+    this.isInDialog = false,
+  }) {
+    if (isInDialog == true) {
+      sortService.selectedSortBy.value = SortService.sortByItems[1];
+    }
+  }
+
   // show date picker
   void _presentDatePicker(BuildContext context) {
     showDatePicker(
@@ -35,6 +42,8 @@ class SortBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+// sort all
+    Widget showAll = Container(width: 80);
 // calenda
     Widget showCalendar = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +146,9 @@ class SortBox extends StatelessWidget {
                     sortService.changeSortByItem(newValue!);
                   },
 
-                  items: sortService.dropdownSortByItems,
+                  items: isInDialog
+                      ? sortService.dropdownSortByItemsWithoutAll
+                      : sortService.dropdownSortByItems,
                   underline: Container(color: AppColors.surface),
                   icon: const Icon(
                     Icons.expand_more,
@@ -155,11 +166,16 @@ class SortBox extends StatelessWidget {
 // if sort by week => listWeekDrop
 // if sort by month => listMonthDrop
               Obx(
-                () => (sortService.selectedSortBy.value == "Ngày")
+                () => (sortService.selectedSortBy.value ==
+                        SortService.sortByItems[1])
                     ? showCalendar
-                    : (sortService.selectedSortBy.value == "Tuần")
+                    : (sortService.selectedSortBy.value ==
+                            SortService.sortByItems[2])
                         ? showListWeek
-                        : showListMonth,
+                        : (sortService.selectedSortBy.value ==
+                                SortService.sortByItems[3])
+                            ? showListMonth
+                            : showAll,
               ),
             ],
           ),

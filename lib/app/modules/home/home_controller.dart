@@ -6,7 +6,12 @@ import '../../routes/app_routes.dart';
 
 class HomeController extends GetxController {
   HomeController() {
-    sortService = SortService().obs;
+    sortService = SortService(
+      filterAll: filterByAll,
+      filterDate: filterByDate,
+      filterWeek: filterByWeek,
+      filterMonth: filterByMonth,
+    ).obs;
     numberOfStudent = Students.listStudents.length.obs;
   }
 
@@ -26,6 +31,11 @@ class HomeController extends GetxController {
       isLoading = false;
     });
   }
+
+  void filterByAll() {}
+  void filterByDate() {}
+  void filterByWeek() {}
+  void filterByMonth() {}
 
   // data models
   Rx<Teacher> teacher = Teacher(

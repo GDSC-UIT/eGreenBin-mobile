@@ -91,6 +91,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
                       () => SortBox(
                         textTitle: "Kết quả",
                         sortService: widget.mailController.sortService!.value,
+                        isInDialog: true,
                       ),
                     ),
                   ],

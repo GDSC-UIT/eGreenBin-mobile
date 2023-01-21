@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SortService extends GetxController {
-  SortService() {
+  Function filterDate;
+  Function filterWeek;
+  Function filterMonth;
+  Function filterAll;
+  SortService({
+    required this.filterAll,
+    required this.filterDate,
+    required this.filterWeek,
+    required this.filterMonth,
+  }) {
     selectedClass.value = sortClassItems[0];
     selectedSortBy.value = sortByItems[0];
     selectedWeekSort.value = sortWeekItems[0];
     selectedMonthSort.value = sortMonthItems[0];
+    dropdownSortByItemsWithoutAll = [...dropdownSortByItems];
+    dropdownSortByItemsWithoutAll.removeAt(0);
   }
 
   // data sort
@@ -17,6 +28,7 @@ class SortService extends GetxController {
     'Mầm C3',
   ];
   static List<String> sortByItems = <String>[
+    'Tất cả',
     'Ngày',
     'Tuần',
     'Tháng',
@@ -64,6 +76,15 @@ class SortService extends GetxController {
 
   void changeSortByItem(String newValue) {
     selectedSortBy.value = newValue;
+    if (selectedSortBy.value == sortByItems[0]) {
+      filterAll();
+    } else if (selectedSortBy.value == sortByItems[1]) {
+      filterDate();
+    } else if (selectedSortBy.value == sortByItems[2]) {
+      filterWeek();
+    } else {
+      filterMonth();
+    }
   }
 
   final List<DropdownMenuItem<String>> dropdownSortByItems = sortByItems
@@ -74,6 +95,7 @@ class SortService extends GetxController {
         ),
       )
       .toList();
+  List<DropdownMenuItem<String>> dropdownSortByItemsWithoutAll = [];
   // datepicker
   Rx<DateTime?> selectDate = DateTime.now().obs;
 

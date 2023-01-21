@@ -10,9 +10,30 @@ import '../../routes/app_routes.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
-    sortCardStatical = SortService().obs;
-    sortCardRatio = SortService().obs;
-    sortCardEvaluate = SortService().obs;
+    sortCardStatical = SortService(
+      filterAll: filterByAll,
+      filterDate: filterByDate,
+      filterWeek: filterByWeek,
+      filterMonth: filterByMonth,
+    ).obs;
+    sortCardRatio = SortService(
+      filterAll: filterByAll,
+      filterDate: filterByDate,
+      filterWeek: filterByWeek,
+      filterMonth: filterByMonth,
+    ).obs;
+    sortCardEvaluate = SortService(
+      filterAll: filterByAll,
+      filterDate: filterByDate,
+      filterWeek: filterByWeek,
+      filterMonth: filterByMonth,
+    ).obs;
+    sortDialog = SortService(
+      filterAll: filterByAll,
+      filterDate: filterByDate,
+      filterWeek: filterByWeek,
+      filterMonth: filterByMonth,
+    ).obs;
   }
 
   // data models
@@ -50,14 +71,21 @@ class StudentInfoController extends GetxController {
     Get.toNamed(AppRoutes.rating, arguments: student.value.id);
   }
 
+  void filterByAll() {}
+  void filterByDate() {}
+  void filterByWeek() {}
+  void filterByMonth() {}
+
   void saveComment() {
     // luu comment
     String content = textCotroller.text;
     // luu sort date
     DateSort? sortTemp;
-    if (sortCardRatio!.value.selectedSortBy.value == "Ngày") {
+    if (sortCardRatio!.value.selectedSortBy.value ==
+        SortService.sortByItems[1]) {
       sortTemp = DateSort.fromDate(date: sortCardRatio!.value.selectDate.value);
-    } else if (sortCardRatio!.value.selectedSortBy.value == "Tuần") {
+    } else if (sortCardRatio!.value.selectedSortBy.value ==
+        SortService.sortByItems[2]) {
       sortTemp =
           DateSort.fromWeek(week: sortCardRatio!.value.selectedWeekSort.value);
     } else {
@@ -80,11 +108,13 @@ class StudentInfoController extends GetxController {
 // card statical
 //========================================================================
   Rx<SortService>? sortCardStatical;
-
 // card ratio
 //========================================================================
   Rx<SortService>? sortCardRatio;
 // card evaluate
 //========================================================================
   Rx<SortService>? sortCardEvaluate;
+// dialog
+//========================================================================
+  Rx<SortService>? sortDialog;
 }

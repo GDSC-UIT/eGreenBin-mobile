@@ -91,8 +91,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                     Obx(
                       () => SortBox(
                         textTitle: "Thời gian",
-                        sortService:
-                            widget.studentController.sortCardRatio!.value,
+                        sortService: widget.studentController.sortDialog!.value,
+                        isInDialog: true,
                       ),
                     ),
                   ],
