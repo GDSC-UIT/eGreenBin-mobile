@@ -7,9 +7,11 @@ import '/app/core/values/app_strings.dart';
 import '/app/data/services/localization_service.dart';
 import '/app/routes/app_pages.dart';
 import '/app/routes/app_routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   initializeDateFormatting();
 
   runApp(const MyApp());
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.login,
+      initialRoute: AppRoutes.upload,
       locale: LocalizationService.locale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),

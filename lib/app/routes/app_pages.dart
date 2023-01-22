@@ -5,6 +5,8 @@ import 'package:egreenbin/app/modules/rating/rating_binding.dart';
 import 'package:egreenbin/app/modules/rating/screens/rating_screen.dart';
 import 'package:egreenbin/app/modules/student_info/screens/student_info_screen.dart';
 import 'package:egreenbin/app/modules/student_info/student_info_binding.dart';
+import 'package:egreenbin/app/modules/upload/screens/upload_screen.dart';
+import 'package:egreenbin/app/modules/upload/upload_binding.dart';
 import 'package:get/get.dart';
 import '../modules/mail/mail_binding.dart';
 import '/app/modules/home/home_binding.dart';
@@ -37,6 +39,11 @@ abstract class AppPages {
       name: AppRoutes.mail,
       page: () => MailScreen(),
       binding: MailBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.upload,
+      page: () => UploadScreen(),
+      binding: UploadBinding(),
     ),
   ];
 }
