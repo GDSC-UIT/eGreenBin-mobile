@@ -132,6 +132,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
             width: 120,
             child: ElevatedButton(
               onPressed: () {
+                // ignore: deprecated_member_use
                 if (isNull) return;
                 widget.onSave();
                 Navigator.of(context).pop();

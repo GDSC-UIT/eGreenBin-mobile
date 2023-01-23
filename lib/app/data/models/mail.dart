@@ -1,7 +1,5 @@
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/services/email_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Mail {
   // student: student dang co

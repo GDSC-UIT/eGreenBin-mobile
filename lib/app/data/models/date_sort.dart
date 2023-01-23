@@ -14,18 +14,18 @@ class DateSort {
   String? _month;
 
   DateSort.fromDate({required date}) {
-    this._date = date;
+    _date = date;
     _week = null;
     _month = null;
   }
 
   DateSort.fromWeek({required week}) {
-    this._week = week;
+    _week = week;
     _date = null;
     _month = null;
   }
   DateSort.fromMonth({required month}) {
-    this._month = month;
+    _month = month;
     _date = null;
     _week = null;
   }

@@ -13,8 +13,9 @@ class Comments {
   static List<Comment> listCommentsSortByDate(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
-      if (com.idStudent == id && com.dateSort!.type == SortType.Date)
+      if (com.idStudent == id && com.dateSort!.type == SortType.Date) {
         list.add(com);
+      }
     }
     return list;
   }
@@ -22,8 +23,9 @@ class Comments {
   static List<Comment> listCommentsSortByWeek(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
-      if (com.idStudent == id && com.dateSort!.type == SortType.Week)
+      if (com.idStudent == id && com.dateSort!.type == SortType.Week) {
         list.add(com);
+      }
     }
     return list;
   }
@@ -31,8 +33,9 @@ class Comments {
   static List<Comment> listCommentsSortByMonth(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
-      if (com.idStudent == id && com.dateSort!.type == SortType.Month)
+      if (com.idStudent == id && com.dateSort!.type == SortType.Month) {
         list.add(com);
+      }
     }
     return list;
   }
