@@ -2,9 +2,12 @@ import 'dart:io';
 import 'package:egreenbin/app/data/services/firebase_service.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import '../../../data/services/file_service.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
+import '../../../data/services/local_service.dart';
 
 class UploadScreen extends StatefulWidget {
   const UploadScreen({super.key});
@@ -18,7 +21,7 @@ class _UploadScreenState extends State<UploadScreen> {
   UploadTask? uploadTask;
 
   Future selectFile() async {
-    pickerFile = await FileService.selectFile();
+    pickerFile = await LocalService.selectFile();
     setState(() {});
   }
 
@@ -26,6 +29,22 @@ class _UploadScreenState extends State<UploadScreen> {
     uploadTask = await FireBaseService.uploadFile(pickerFile);
     setState(() {});
   }
+
+  Future saveImage(Uint8List bytes) async {
+    // doi cho phep luu
+    await [Permission.storage].request();
+    // luu
+    final time = DateTime.now()
+        .toIso8601String()
+        .replaceAll('.', '-')
+        .replaceAll(':', '-');
+    final name = 'screenshot_$time';
+    final result = await ImageGallerySaver.saveImage(bytes, name: name);
+    return result['filePath'];
+  }
+
+  // screen shot
+  final screenshotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,37 +78,49 @@ class _UploadScreenState extends State<UploadScreen> {
             }
           },
         );
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (pickerFile != null)
-              Expanded(
-                child: Container(
-                  color: Colors.blue[100],
-                  child: Center(
-                    child: Image.file(
-                      File(pickerFile!.path!),
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+    return Screenshot(
+      controller: screenshotController,
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (pickerFile != null)
+                Expanded(
+                  child: Container(
+                    color: Colors.blue[100],
+                    child: Center(
+                      child: Image.file(
+                        File(pickerFile!.path!),
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: selectFile,
+                child: const Text("Select File"),
               ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: selectFile,
-              child: const Text("Select File"),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: uploadFile,
-              child: const Text("Upload"),
-            ),
-            const SizedBox(height: 10),
-            buildProgress(),
-          ],
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: uploadFile,
+                child: const Text("Upload"),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () async {
+                  final image = await screenshotController.capture();
+                  if (image == null) return;
+                  await saveImage(image);
+                },
+                child: const Text("Screen shot"),
+              ),
+              const SizedBox(height: 10),
+              buildProgress(),
+            ],
+          ),
         ),
       ),
     );

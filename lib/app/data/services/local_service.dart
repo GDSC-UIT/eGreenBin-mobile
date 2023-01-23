@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 
-class FileService {
+class LocalService {
   // get file image from local
   //Image.file(File(pickerFile!.path!))
   static Future selectFile() async {
@@ -8,4 +8,6 @@ class FileService {
     if (result == null) return null;
     return result.files.first;
   }
+
+  // screenShot
 }
