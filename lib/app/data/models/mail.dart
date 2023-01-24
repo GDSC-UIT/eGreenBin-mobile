@@ -7,18 +7,21 @@ class Mail {
   String? id;
   Student student;
   String content;
+  String? imageUrl;
 
   Mail({
     this.id,
     required this.student,
     required this.content,
+    this.imageUrl,
   }) {
     id ??= DateTime.now().toString();
+    imageUrl ??=
+        "https://i.pinimg.com/564x/1d/29/ba/1d29ba4fd39075469c13feae243c906f.jpg";
   }
 
   Future sendEmail() async {
-    String message =
-        "https://i.pinimg.com/564x/1d/29/ba/1d29ba4fd39075469c13feae243c906f.jpg";
+    String message = imageUrl!;
     if (student.isNote!) message += "\n$content";
 
     await EmailService.sendEmail(
@@ -27,9 +30,12 @@ class Mail {
     );
   }
 
+  void setImageUrl(String url) {
+    this.imageUrl = url;
+  }
+
   void printEmail() {
-    String message =
-        "https://i.pinimg.com/564x/1d/29/ba/1d29ba4fd39075469c13feae243c906f.jpg";
+    String message = imageUrl!;
     if (student.isNote!) message += "\n$content";
     print(message);
   }

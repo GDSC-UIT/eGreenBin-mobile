@@ -2,6 +2,7 @@ import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_students_mail_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/assets_image.dart';
 import '../../../core/values/text_styles.dart';
@@ -30,6 +31,10 @@ class _MailScreenState extends State<MailScreen> {
     );
   }
 
+  Future<void> captureScreen() async {
+    _controller.image = await _controller.screenshotController.capture();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +59,10 @@ class _MailScreenState extends State<MailScreen> {
                   ),
                   const SizedBox(height: 15),
 // card has list student
-                  CardStudentMailList(_controller),
+                  Screenshot(
+                    controller: _controller.screenshotController,
+                    child: CardStudentMailList(_controller),
+                  ),
                 ],
               ),
 // button right bottom
@@ -62,7 +70,10 @@ class _MailScreenState extends State<MailScreen> {
                 bottom: 0,
                 right: 0,
                 child: GestureDetector(
-                  onTap: () => sendEmail(),
+                  onTap: () async {
+                    await captureScreen();
+                    sendEmail();
+                  },
                   child: Container(
                     height: 44,
                     width: 123,
