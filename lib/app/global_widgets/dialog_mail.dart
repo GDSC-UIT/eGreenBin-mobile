@@ -138,8 +138,8 @@ class _DiaLogMailState extends State<DiaLogMail> {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                primary: AppColors.normal, // mau button
-                onPrimary: AppColors.primarySubtle2, // mau chu
+                foregroundColor: AppColors.primarySubtle2,
+                backgroundColor: AppColors.normal, // mau chu
               ),
               child: Text(
                 "Cập nhập",

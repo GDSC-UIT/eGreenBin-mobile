@@ -14,7 +14,7 @@ class FireBaseService {
     final ref = FirebaseStorage.instance.ref().child(path);
     UploadTask? uploadTask = ref.putFile(file);
 
-    TaskSnapshot taskSnapshot = await uploadTask;
+    //TaskSnapshot taskSnapshot = await uploadTask;
 
     return await uploadTask;
   }

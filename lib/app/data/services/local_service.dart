@@ -12,8 +12,6 @@ class LocalService {
     return result.files.first;
   }
 
-  // screenShot
-
   // save image to local
   // input: an image
   static Future saveImage(Uint8List bytes) async {

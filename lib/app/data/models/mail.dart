@@ -31,7 +31,7 @@ class Mail {
   }
 
   void setImageUrl(String url) {
-    this.imageUrl = url;
+    imageUrl = url;
   }
 
   void printEmail() {

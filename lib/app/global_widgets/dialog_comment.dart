@@ -144,8 +144,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                primary: AppColors.normal, // mau button
-                onPrimary: AppColors.primarySubtle2, // mau chu
+                foregroundColor: AppColors.primarySubtle2,
+                backgroundColor: AppColors.normal, // mau chu
               ),
               child: Text(
                 "Đăng",

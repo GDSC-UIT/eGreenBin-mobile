@@ -1,5 +1,5 @@
+// ignore_for_file: constant_identifier_names
 import 'package:intl/intl.dart';
-
 import '../../core/values/app_values.dart';
 
 enum SortType {

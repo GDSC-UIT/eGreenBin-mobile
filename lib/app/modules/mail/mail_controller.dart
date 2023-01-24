@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:egreenbin/app/data/models/mail.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +7,6 @@ import 'package:screenshot/screenshot.dart';
 import '../../data/models/students.dart';
 import '../../data/models/teacher.dart';
 import '../../data/services/firebase_service.dart';
-import '../../data/services/local_service.dart';
 import '../../data/services/sort_service.dart';
 
 class MailController extends GetxController {
