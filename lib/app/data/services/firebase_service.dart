@@ -32,6 +32,5 @@ class FireBaseService {
     TaskSnapshot taskSnapshot = await uploadTask;
 
     return await taskSnapshot.ref.getDownloadURL();
-    //return taskSnapshot;
   }
 }
