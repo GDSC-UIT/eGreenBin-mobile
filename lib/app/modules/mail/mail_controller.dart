@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:egreenbin/app/data/models/mail.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../data/models/students.dart';
 import '../../data/models/teacher.dart';
+import '../../data/services/firebase_service.dart';
 import '../../data/services/local_service.dart';
 import '../../data/services/sort_service.dart';
 
@@ -28,10 +32,13 @@ class MailController extends GetxController {
   }
 
   Future sendMailToAll() async {
-    // chup man hinh va luu lai
-    if (image != null) await LocalService.saveImage(image!);
-    // luu man hinh len firebase
-    // lay link roi bo vao mail
+    if (image != null) {
+      // chup man hinh va luu lai
+      //await LocalService.saveImage(image!);
+      // luu man hinh len firebase
+      //String urlImage = await FireBaseService.uploadImage(image);
+      // lay link roi bo vao mail
+    }
     // send email to all parents
     //await testMail!.sendEmail();
   }
@@ -44,9 +51,6 @@ class MailController extends GetxController {
     } else {
       student.isNote = true;
     }
-    // chup man hinh va luu lai
-    if (image != null) await LocalService.saveImage(image!);
-    // luu man hinh len firebase
     // lay link roi bo vao mail
     testMail = Mail(student: student, content: note);
   }

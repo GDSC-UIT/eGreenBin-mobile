@@ -23,7 +23,7 @@ class _UploadScreenState extends State<UploadScreen> {
   }
 
   Future uploadFile() async {
-    uploadTask = await FireBaseService.uploadFile(pickerFile);
+    uploadTask = await FireBaseService.uploadFilePicker(pickerFile);
     setState(() {});
   }
 
