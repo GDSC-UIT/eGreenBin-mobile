@@ -4,6 +4,7 @@ import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:flutter/material.dart';
 import '../data/models/student.dart';
 
+// ignore: must_be_immutable
 class StudentAppBar extends StatelessWidget {
   String screenName = "THÔNG TIN CHI TIẾT";
 

@@ -5,12 +5,13 @@ import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+// ignore: must_be_immutable
 class StudentCard extends StatelessWidget {
   int index = 0;
   Student student;
   Function pushToStudentInfo;
 
-  StudentCard(this.index, this.student, this.pushToStudentInfo);
+  StudentCard(this.index, this.student, this.pushToStudentInfo, {super.key});
 
   String get indexFormat {
     if (index < 10) return '0$index';

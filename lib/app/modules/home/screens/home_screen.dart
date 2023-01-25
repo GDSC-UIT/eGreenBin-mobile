@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }

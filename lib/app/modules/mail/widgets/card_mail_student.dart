@@ -6,15 +6,12 @@ import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+// ignore: must_be_immutable
 class CardMailStudent extends StatefulWidget {
   int index = 0;
   Student student;
   Function showDialog;
-  CardMailStudent(
-    this.index,
-    this.student,
-    this.showDialog,
-  );
+  CardMailStudent(this.index, this.student, this.showDialog, {super.key});
 
   @override
   State<CardMailStudent> createState() => _CardMailStudentState();

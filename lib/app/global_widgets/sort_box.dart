@@ -8,6 +8,7 @@ import '../core/values/app_values.dart';
 import '../core/values/assets_image.dart';
 import '../core/values/text_styles.dart';
 
+// ignore: must_be_immutable
 class SortBox extends StatelessWidget {
   // text title
   String textTitle;
@@ -17,6 +18,7 @@ class SortBox extends StatelessWidget {
   bool isInDialog = false;
 
   SortBox({
+    super.key,
     required this.textTitle,
     required this.sortService,
     this.isInDialog = false,

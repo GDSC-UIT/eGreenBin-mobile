@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 class RatingScreen extends StatelessWidget {
   final RatingController _controller = Get.find<RatingController>();
 
+  RatingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

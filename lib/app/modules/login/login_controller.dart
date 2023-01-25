@@ -23,13 +23,14 @@ class LoginController extends GetxController {
     showDialog(
       context: context,
       builder: (context) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
     await Future.delayed(
       const Duration(seconds: 2),
       () {},
     );
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
     pushToHomeScreen();
   }

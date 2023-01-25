@@ -4,13 +4,15 @@ import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppbarTeacher extends StatelessWidget {
   Teacher teacher;
   Function function;
   String screenName = "TRANG CHỦ";
   Image icon;
 
-  AppbarTeacher(this.screenName, this.teacher, this.function, this.icon);
+  AppbarTeacher(this.screenName, this.teacher, this.function, this.icon,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {

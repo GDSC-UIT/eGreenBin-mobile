@@ -3,10 +3,11 @@ import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/comment.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CardComment extends StatelessWidget {
   Comment comment;
 
-  CardComment(this.comment);
+  CardComment(this.comment, {super.key});
 
   // get num of date between dateFrom to DateTo
   int daysBetween(DateTime from, DateTime to) {

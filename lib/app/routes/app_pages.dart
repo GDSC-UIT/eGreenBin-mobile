@@ -17,7 +17,7 @@ abstract class AppPages {
   static final List<GetPage> pages = [
     GetPage(
       name: AppRoutes.home,
-      page: () => HomeScreen(),
+      page: () => const HomeScreen(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -32,17 +32,17 @@ abstract class AppPages {
     ),
     GetPage(
       name: AppRoutes.login,
-      page: () => LoginScreen(),
+      page: () => const LoginScreen(),
       binding: LoginBinding(),
     ),
     GetPage(
       name: AppRoutes.mail,
-      page: () => MailScreen(),
+      page: () => const MailScreen(),
       binding: MailBinding(),
     ),
     GetPage(
       name: AppRoutes.upload,
-      page: () => UploadScreen(),
+      page: () => const UploadScreen(),
       binding: UploadBinding(),
     ),
   ];

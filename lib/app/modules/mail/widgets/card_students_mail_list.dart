@@ -11,7 +11,7 @@ import '../../../data/models/students.dart';
 class CardStudentMailList extends StatelessWidget {
   final MailController _controller;
 
-  CardStudentMailList(this._controller);
+  const CardStudentMailList(this._controller, {super.key});
 
   // show comment
   void showCommentForm(BuildContext context, Student student) {

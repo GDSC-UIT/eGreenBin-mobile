@@ -8,7 +8,7 @@ import '../../../global_widgets/sort_box.dart';
 
 class CardAllComments extends StatelessWidget {
   final RatingController _controller;
-  CardAllComments(this._controller);
+  const CardAllComments(this._controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

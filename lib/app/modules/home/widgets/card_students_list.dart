@@ -11,7 +11,7 @@ import '../../../core/values/app_colors.dart';
 class CardStudentList extends StatelessWidget {
   final HomeController _controller;
 
-  CardStudentList(this._controller);
+  const CardStudentList(this._controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

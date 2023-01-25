@@ -9,6 +9,8 @@ import '../../../core/values/text_styles.dart';
 import '../../../global_widgets/appbar_teacher.dart';
 
 class MailScreen extends StatefulWidget {
+  const MailScreen({super.key});
+
   @override
   State<MailScreen> createState() => _MailScreenState();
 }

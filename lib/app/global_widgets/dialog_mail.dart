@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 import '../core/values/app_colors.dart';
 import '../core/values/text_styles.dart';
 
+// ignore: must_be_immutable
 class DiaLogMail extends StatefulWidget {
   MailController mailController;
   TextEditingController textController;
   final Function onSave;
 
   DiaLogMail({
+    super.key,
     required this.mailController,
     required this.textController,
     required this.onSave,

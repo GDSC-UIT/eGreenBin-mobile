@@ -6,12 +6,14 @@ import '../core/values/app_colors.dart';
 import '../core/values/text_styles.dart';
 import '../modules/student_info/student_info_controller.dart';
 
+// ignore: must_be_immutable
 class DiaLogComment extends StatefulWidget {
   StudentInfoController studentController;
   TextEditingController textControler;
   final Function onSave;
 
   DiaLogComment({
+    super.key,
     required this.studentController,
     required this.textControler,
     required this.onSave,
