@@ -68,7 +68,6 @@ class StudentInfoController extends GetxController {
   }
 
   void pushToAllCommentScreen() {
-    if (listComments.isEmpty) return;
     Get.toNamed(AppRoutes.rating, arguments: student.value.id);
   }
 
