@@ -56,6 +56,9 @@ class SortService extends GetxController {
     'Tuần 5',
     'Tuần 6',
     'Tuần 7',
+    'Tuần 8',
+    'Tuần 9',
+    'Tuần 10',
   ];
   // dropdown class
   RxString selectedClass = ''.obs;

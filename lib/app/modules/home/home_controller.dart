@@ -28,7 +28,7 @@ class HomeController extends GetxController {
   bool isLoading = false;
   Future refreshStudents() async {
     isLoading = true;
-    await Future.delayed(const Duration(seconds: 1), () {
+    await Future.delayed(const Duration(seconds: 2), () {
       isLoading = false;
     });
   }

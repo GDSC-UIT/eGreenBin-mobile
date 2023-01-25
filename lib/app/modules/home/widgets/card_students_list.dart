@@ -1,5 +1,6 @@
 import 'package:egreenbin/app/core/values/text_styles.dart';
 import 'package:egreenbin/app/data/models/students.dart';
+import 'package:egreenbin/app/global_widgets/shimmer_list.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
@@ -66,7 +67,7 @@ class CardStudentList extends StatelessWidget {
 // list student
                 Expanded(
                   child: _controller.isLoading
-                      ? const Center(child: CircularProgressIndicator())
+                      ? const ShimmerList()
                       : ListView.builder(
                           itemCount: Students.listStudents.length,
                           itemBuilder: (context, i) => StudentCard(

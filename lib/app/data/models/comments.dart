@@ -56,24 +56,28 @@ class Comments {
       content:
           "Bé Trung vẫn còn nhầm lẫn khá nhiều giữa 2 loại rác nhưng nhìn chung đã có tiến bộ hơn.",
       dateCreate: DateTime(2022, 11, 12),
+      dateSort: DateSort.fromMonth(month: "Tháng 3"),
     ),
     Comment(
       idStudent: "21522345",
       content:
           "Bé Trung đã dần hình thành được thói quen phân loại rác. Đáng được tuyên dương và nhận phiếu bé ngoan!",
       dateCreate: DateTime(2022, 11, 12),
+      dateSort: DateSort.fromMonth(month: "Tháng 5"),
     ),
     Comment(
       idStudent: "21522345",
       content:
           "Bé Trung vẫn còn nhầm lẫn khá nhiều giữa 2 loại rác nhưng nhìn chung đã có tiến bộ hơn.",
       dateCreate: DateTime(2022, 11, 12),
+      dateSort: DateSort.fromWeek(week: "Tuần 3"),
     ),
     Comment(
       idStudent: "21522345",
       content:
           "Bé Trung vẫn còn nhầm lẫn khá nhiều giữa 2 loại rác nhưng nhìn chung đã có tiến bộ hơn.",
       dateCreate: DateTime(2022, 11, 12),
+      dateSort: DateSort.fromWeek(week: "Tuần 6"),
     ),
     Comment(
       idStudent: "21522345",
@@ -86,6 +90,7 @@ class Comments {
       content:
           "Bé Quynh đã dần hình thành được thói quen phân loại rác. Đáng được tuyên dương và nhận phiếu bé ngoan!",
       dateCreate: DateTime(2022, 11, 12),
+      dateSort: DateSort.fromMonth(month: "Tháng 1"),
     ),
     Comment(
       idStudent: "21522321",
