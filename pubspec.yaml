@@ -55,6 +55,8 @@ dependencies:
   permission_handler: ^10.2.0
   path_provider: ^2.0.11
   shimmer: ^2.0.0
+  flutter_slidable: ^2.0.0
+  badges: ^3.0.2
 
 flutter_icons:
   android: "launcher_icon"

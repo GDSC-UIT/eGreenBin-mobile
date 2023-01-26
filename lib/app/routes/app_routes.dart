@@ -11,4 +11,6 @@ abstract class AppRoutes {
   static const mail = '/mail';
   // upload
   static const upload = '/upload';
+  // notification
+  static const notification = '/notification';
 }

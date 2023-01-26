@@ -1,5 +1,7 @@
 import 'package:egreenbin/app/core/values/app_colors.dart';
 import 'package:egreenbin/app/core/values/app_values.dart';
+import 'package:egreenbin/app/data/models/notifications.dart';
+import 'package:egreenbin/app/data/models/notification.dart' as noti;
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -45,6 +47,11 @@ class EmailService {
       backgroundColor:
           response.body == "OK" ? AppColors.primarySubtle1 : Colors.red,
     );
+    // add notification
+    Notifications.addNotification(noti.Notification(
+      title: "Email service",
+      subtile: response.body,
+    ));
   }
 
   // ham send email bang launch url

@@ -16,13 +16,21 @@ class HomeController extends GetxController {
   }
 
   // function
-  Function fnull = () {};
+  Function fnull = () {
+    // this is fake function
+    // this fuction will do nothing
+  };
+
   void pushToMailScreen() {
     Get.toNamed(AppRoutes.mail, arguments: teacher.value);
   }
 
   void pushToStudentInfoScreen(String id) {
     Get.toNamed(AppRoutes.studentInfo, arguments: id);
+  }
+
+  void pushToNotificationScreen() {
+    Get.toNamed(AppRoutes.notification, arguments: teacher.value);
   }
 
   bool isLoading = false;
