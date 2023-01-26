@@ -1,12 +1,12 @@
-import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_mail_student.dart';
 import 'package:egreenbin/app/global_widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/app_colors.dart';
-import '../../../data/models/students.dart';
+import '../../../core/values/theme/app_colors.dart';
+import '../../../data/providers/students.dart';
 
 class CardStudentMailList extends StatelessWidget {
   final MailController _controller;

@@ -1,6 +1,6 @@
-import 'package:egreenbin/app/core/values/app_colors.dart';
+import 'package:egreenbin/app/core/values/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/app_values.dart';
-import 'package:egreenbin/app/data/models/notifications.dart';
+import 'package:egreenbin/app/data/providers/notifications.dart';
 import 'package:egreenbin/app/data/models/notification.dart' as noti;
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:get/get.dart';

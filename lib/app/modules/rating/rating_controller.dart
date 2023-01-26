@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
-import '../../data/models/comments.dart';
+import '../../data/providers/comments.dart';
 import '../../data/models/student.dart';
-import '../../data/models/students.dart';
+import '../../data/providers/students.dart';
 import '../../data/services/sort_service.dart';
 
 class RatingController extends GetxController {

@@ -1,5 +1,5 @@
 import 'package:egreenbin/app/data/models/date_sort.dart';
-import 'comment.dart';
+import '../models/comment.dart';
 
 class Comments {
   static List<Comment> listCommentsFindById(String id) {

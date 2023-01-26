@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../core/values/app_colors.dart';
+import '../core/values/theme/app_colors.dart';
 import '../core/values/app_values.dart';
 import '../core/values/assets_image.dart';
-import '../core/values/text_styles.dart';
+import '../core/values/theme/text_styles.dart';
 
 // ignore: must_be_immutable
 class SortBox extends StatelessWidget {

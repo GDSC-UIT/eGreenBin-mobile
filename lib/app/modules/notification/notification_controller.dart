@@ -1,5 +1,5 @@
 import 'package:egreenbin/app/data/models/notification.dart';
-import 'package:egreenbin/app/data/models/notifications.dart';
+import 'package:egreenbin/app/data/providers/notifications.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher.dart';
 

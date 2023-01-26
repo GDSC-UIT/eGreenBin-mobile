@@ -1,4 +1,4 @@
-import 'package:egreenbin/app/data/models/students.dart';
+import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:get/get.dart';
 import '../../data/services/sort_service.dart';
