@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:egreenbin/app/core/values/app_colors.dart';
+import 'package:egreenbin/app/core/values/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';

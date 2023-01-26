@@ -1,8 +1,8 @@
-import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/global_widgets/card_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/app_colors.dart';
+import '../../../core/values/theme/app_colors.dart';
 import '../../../global_widgets/sort_box.dart';
 import '../student_info_controller.dart';
 

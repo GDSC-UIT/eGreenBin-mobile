@@ -1,8 +1,8 @@
-import 'package:egreenbin/app/core/values/text_styles.dart';
+import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/line_chart_sample1.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/app_colors.dart';
+import '../../../core/values/theme/app_colors.dart';
 import '../student_info_controller.dart';
 
 class CardStatistical extends StatelessWidget {

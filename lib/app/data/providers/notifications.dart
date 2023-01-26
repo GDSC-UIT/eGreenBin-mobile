@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'notification.dart';
+import '../models/notification.dart';
 
 class Notifications extends GetxController {
   static void deleteNotification(Notification noti) {

@@ -3,9 +3,9 @@ import 'package:egreenbin/app/modules/mail/widgets/card_students_mail_list.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
-import '../../../core/values/app_colors.dart';
+import '../../../core/values/theme/app_colors.dart';
 import '../../../core/values/assets_image.dart';
-import '../../../core/values/text_styles.dart';
+import '../../../core/values/theme/text_styles.dart';
 import '../../../global_widgets/appbar_teacher.dart';
 
 class MailScreen extends StatefulWidget {

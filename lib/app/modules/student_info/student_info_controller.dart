@@ -1,7 +1,7 @@
-import 'package:egreenbin/app/data/models/comments.dart';
+import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/data/models/students.dart';
+import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

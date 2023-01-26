@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
-import '../../data/models/students.dart';
+import '../../data/providers/students.dart';
 import '../../data/models/teacher.dart';
 import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';

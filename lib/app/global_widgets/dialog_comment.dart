@@ -2,8 +2,8 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../core/values/app_colors.dart';
-import '../core/values/text_styles.dart';
+import '../core/values/theme/app_colors.dart';
+import '../core/values/theme/text_styles.dart';
 import '../modules/student_info/student_info_controller.dart';
 
 // ignore: must_be_immutable

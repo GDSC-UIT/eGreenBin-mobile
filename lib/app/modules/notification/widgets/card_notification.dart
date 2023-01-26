@@ -1,9 +1,9 @@
 import 'package:egreenbin/app/data/models/notification.dart' as noti;
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../../../core/values/app_colors.dart';
-import '../../../core/values/text_styles.dart';
-import '../../../data/models/notifications.dart';
+import '../../../core/values/theme/app_colors.dart';
+import '../../../core/values/theme/text_styles.dart';
+import '../../../data/providers/notifications.dart';
 
 // ignore: must_be_immutable
 class CardNotification extends StatelessWidget {
