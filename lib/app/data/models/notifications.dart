@@ -10,6 +10,10 @@ class Notifications extends GetxController {
     listNotifications.add(noti);
   }
 
+  static void deleteAllNotification() {
+    listNotifications.clear();
+  }
+
   static RxList<Notification> listNotifications = [
     Notification(
       title: "Email",

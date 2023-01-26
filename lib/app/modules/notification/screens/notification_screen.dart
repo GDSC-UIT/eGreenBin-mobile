@@ -12,7 +12,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NotificationController _controller =
+    final NotificationController controller =
         Get.find<NotificationController>();
 
     return Scaffold(
@@ -31,12 +31,12 @@ class NotificationScreen extends StatelessWidget {
 // appbar
                   AppbarTeacher(
                     "THÔNG BÁO",
-                    _controller.teacher.value,
-                    _controller.popToPrevScreen,
+                    controller.teacher.value,
+                    controller.popToPrevScreen,
                     Image.asset(Assets.back),
                   ),
                   const SizedBox(height: 15),
-                  CardNotificationList(_controller),
+                  CardNotificationList(controller),
                 ],
               ),
 // button right bottom
@@ -46,7 +46,7 @@ class NotificationScreen extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     // xoa tat ca
-                    _controller.deleteAllNotification();
+                    controller.deleteAllNotification();
                   },
                   child: Container(
                     height: 44,

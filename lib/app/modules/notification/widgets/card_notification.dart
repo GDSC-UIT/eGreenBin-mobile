@@ -1,14 +1,13 @@
-import 'package:egreenbin/app/data/models/notification.dart' as Noti;
+import 'package:egreenbin/app/data/models/notification.dart' as noti;
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 import '../../../core/values/app_colors.dart';
 import '../../../core/values/text_styles.dart';
 import '../../../data/models/notifications.dart';
 
 // ignore: must_be_immutable
 class CardNotification extends StatelessWidget {
-  Noti.Notification notification;
+  noti.Notification notification;
 
   CardNotification(this.notification, {super.key});
 
@@ -20,8 +19,9 @@ class CardNotification extends StatelessWidget {
   }
 
   String get dayBeforeString {
-    if (daysBetween(notification.dateCreate!, DateTime.now()) == 0)
+    if (daysBetween(notification.dateCreate!, DateTime.now()) == 0) {
       return "Hôm nay";
+    }
     return "${daysBetween(notification.dateCreate!, DateTime.now())} ngày trước";
   }
 
@@ -29,7 +29,7 @@ class CardNotification extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       endActionPane: ActionPane(
-        motion: ScrollMotion(),
+        motion: const ScrollMotion(),
         children: [
           SlidableAction(
             onPressed: (context) {

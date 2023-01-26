@@ -9,7 +9,7 @@ class AppbarTeacher extends StatelessWidget {
   Teacher teacher;
   Function function;
   String screenName = "TRANG CHỦ";
-  Image icon;
+  Widget icon;
 
   AppbarTeacher(this.screenName, this.teacher, this.function, this.icon,
       {super.key});
@@ -69,7 +69,7 @@ class AppbarTeacher extends StatelessWidget {
                   ),
                 ],
               ),
-              child: icon,
+              child: Center(child: icon),
             ),
           ),
         ),

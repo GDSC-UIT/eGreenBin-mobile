@@ -2,6 +2,7 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/global_widgets/appbar_teacher.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_students_list.dart';
+import 'package:egreenbin/app/modules/home/widgets/icon_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/app_colors.dart';
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     "TRANG CHỦ",
                     _controller.teacher.value,
                     _controller.pushToNotificationScreen,
-                    Image.asset(Assets.notification),
+                    const IconNotification(),
                   ),
                   const SizedBox(height: 15),
                   // card has list student
