@@ -1,4 +1,3 @@
-import 'package:egreenbin/app/data/models/notification.dart';
 import 'package:egreenbin/app/data/providers/notifications.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher.dart';
@@ -11,9 +10,7 @@ class NotificationController extends GetxController {
 
   void deleteAllNotification() {
     // delete all noti in list notification
-    //print("delete all");
-    //Notifications.deleteAllNotification();
-    Notifications.addNotification(Notification(title: "", subtile: ""));
+    Notifications.deleteAllNotification();
   }
 
   @override
