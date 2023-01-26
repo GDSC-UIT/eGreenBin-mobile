@@ -54,11 +54,18 @@ class CardNotificationList extends StatelessWidget {
 // list notification
                 Obx(
                   () => Expanded(
-                    child: ListView.builder(
-                      itemCount: Notifications.listNotifications.length,
-                      itemBuilder: (context, i) =>
-                          CardNotification(Notifications.listNotifications[i]),
-                    ),
+                    child: Notifications.listNotifications.isEmpty
+                        ? Center(
+                            child: Text(
+                              "CHƯA CÓ THÔNG BÁO NÀO",
+                              style: CustomTextStyle.h2(AppColors.normal),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: Notifications.listNotifications.length,
+                            itemBuilder: (context, i) => CardNotification(
+                                Notifications.listNotifications[i]),
+                          ),
                   ),
                 ),
                 const SizedBox(height: 10),
