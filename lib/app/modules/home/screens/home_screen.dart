@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   AppbarTeacher(
                     "TRANG CHỦ",
                     _controller.teacher.value,
-                    () {},
+                    _controller.pushToNotificationScreen,
                     Image.asset(Assets.notification),
                   ),
                   const SizedBox(height: 15),

@@ -23,6 +23,7 @@ class MailController extends GetxController {
 
   // function
   Function fnull = () {};
+
   void popToPrevScreen() {
     Get.back();
   }
