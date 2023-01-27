@@ -71,6 +71,11 @@ class StudentInfoController extends GetxController {
     Get.toNamed(AppRoutes.rating, arguments: student.value.id);
   }
 
+  void deleteComment(Comment comment) {
+    Comments.deleteComment(comment);
+    listComments.remove(comment);
+  }
+
   void filterByAll() {
     // update list comment by date
     listComments.value = Comments.listCommentsFindById(id);

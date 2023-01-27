@@ -1,13 +1,15 @@
 import 'package:egreenbin/app/core/values/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/comment.dart';
+import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 // ignore: must_be_immutable
 class CardComment extends StatelessWidget {
   Comment comment;
-
-  CardComment(this.comment, {super.key});
+  Function deleteComment;
+  CardComment(this.comment, this.deleteComment, {super.key});
 
   // get num of date between dateFrom to DateTo
   int daysBetween(DateTime from, DateTime to) {
@@ -32,24 +34,40 @@ class CardComment extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 13),
-              Container(
-                padding: const EdgeInsets.only(
-                    top: 12, left: 10, right: 10, bottom: 10),
-                decoration: const BoxDecoration(
-                  color: AppColors.surface,
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.shadow,
-                      spreadRadius: 0,
-                      blurRadius: 4,
-                      offset: Offset(0, 4), // changes position of shadow
+// content
+              Slidable(
+                endActionPane: ActionPane(
+                  motion: const ScrollMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (context) {
+                        // delete comment
+                        deleteComment();
+                      },
+                      icon: Icons.delete,
+                      backgroundColor: AppColors.wrong,
                     ),
                   ],
                 ),
-                child: Text(
-                  comment.content,
-                  style: CustomTextStyle.b3(AppColors.subtle_1),
+                child: Container(
+                  padding: const EdgeInsets.only(
+                      top: 12, left: 10, right: 10, bottom: 10),
+                  decoration: const BoxDecoration(
+                    color: AppColors.surface,
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.shadow,
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: Offset(0, 4), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    comment.content,
+                    style: CustomTextStyle.b3(AppColors.subtle_1),
+                  ),
                 ),
               ),
 // date create

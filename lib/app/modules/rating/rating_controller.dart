@@ -27,6 +27,12 @@ class RatingController extends GetxController {
     super.onInit();
   }
 
+  // delete a comment
+  void deleteComment(Comment comment) {
+    Comments.deleteComment(comment);
+    listComments.remove(comment);
+  }
+
   // comment
   RxList<Comment> listComments = <Comment>[].obs;
   // dropButton sort value

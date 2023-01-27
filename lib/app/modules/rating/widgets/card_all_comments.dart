@@ -65,8 +65,11 @@ class CardAllComments extends StatelessWidget {
                         )
                       : ListView.builder(
                           itemCount: _controller.listComments.length,
-                          itemBuilder: (context, index) =>
-                              CardComment(_controller.listComments[index]),
+                          itemBuilder: (context, index) => CardComment(
+                            _controller.listComments[index],
+                            () => _controller
+                                .deleteComment(_controller.listComments[index]),
+                          ),
                         ),
                 )),
             const SizedBox(height: 15),

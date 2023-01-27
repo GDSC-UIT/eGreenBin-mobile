@@ -44,6 +44,10 @@ class Comments {
     listAllCommets.add(comment);
   }
 
+  static void deleteComment(Comment comment) {
+    listAllCommets.remove(comment);
+  }
+
   static List<Comment> listAllCommets = [
     Comment(
       idStudent: "21522345",
