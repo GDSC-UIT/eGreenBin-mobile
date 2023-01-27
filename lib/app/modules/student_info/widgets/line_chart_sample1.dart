@@ -92,6 +92,7 @@ class _LineChart extends StatelessWidget {
         lineChartBarData2_3,
       ];
 
+// Cột bên trái ( cột dọc ): chứa data
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Color(0xff75729e),
@@ -129,22 +130,27 @@ class _LineChart extends StatelessWidget {
         reservedSize: 40,
       );
 
+// data duong o duoi (loc theo thang)
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Color(0xff72719b),
       fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 13,
     );
     Widget text;
+    // duong duoi trai tu 0 -> 13 (chia ra)
     switch (value.toInt()) {
-      case 2:
-        text = const Text('SEPT', style: style);
+      case 1:
+        text = const Text('Tuần 1', style: style);
         break;
-      case 7:
-        text = const Text('OCT', style: style);
+      case 5:
+        text = const Text('Tuần 2', style: style);
         break;
-      case 12:
-        text = const Text('DEC', style: style);
+      case 9:
+        text = const Text('Tuần 3', style: style);
+        break;
+      case 13:
+        text = const Text('Tuần 4', style: style);
         break;
       default:
         text = const Text('');
@@ -195,6 +201,8 @@ class _LineChart extends StatelessWidget {
         ],
       ); */
 
+// data cua bang 40
+  // duong mau xanh (right)
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
         isCurved: true,
         color: AppColors.normal,
@@ -205,16 +213,17 @@ class _LineChart extends StatelessWidget {
           show: false,
           color: const Color(0x00aa4cfc),
         ),
+        // x = 1 5 9 13
         spots: const [
           FlSpot(1, 1),
           FlSpot(3, 2.8),
-          FlSpot(7, 1.2),
-          FlSpot(10, 2.8),
-          FlSpot(12, 2.6),
+          FlSpot(6, 1.2),
+          FlSpot(9, 2.8),
+          FlSpot(11, 2.6),
           FlSpot(13, 3.9),
         ],
       );
-
+  // duong mau do (wrong)
   LineChartBarData get lineChartBarData1_3 => LineChartBarData(
         isCurved: true,
         color: AppColors.wrong,
@@ -222,6 +231,7 @@ class _LineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
+        // x = 1 5 9 13
         spots: const [
           FlSpot(1, 2.8),
           FlSpot(3, 1.9),
@@ -249,7 +259,8 @@ class _LineChart extends StatelessWidget {
           FlSpot(13, 1.8),
         ],
       ); */
-
+// data bang 50
+  // duong mau xanh
   LineChartBarData get lineChartBarData2_2 => LineChartBarData(
         isCurved: true,
         color: AppColors.normal,
@@ -260,6 +271,7 @@ class _LineChart extends StatelessWidget {
           show: true,
           color: const Color(0xffc7f9cc),
         ),
+        // x = 1 5 9 13
         spots: const [
           FlSpot(1, 1),
           FlSpot(3, 2.8),
@@ -269,7 +281,7 @@ class _LineChart extends StatelessWidget {
           FlSpot(13, 3.9),
         ],
       );
-
+  // duong mau do
   LineChartBarData get lineChartBarData2_3 => LineChartBarData(
         isCurved: true,
         curveSmoothness: 0,
@@ -278,6 +290,7 @@ class _LineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: FlDotData(show: true),
         belowBarData: BarAreaData(show: false),
+        // x = 1 5 9 13
         spots: const [
           FlSpot(1, 3.8),
           FlSpot(3, 1.9),
