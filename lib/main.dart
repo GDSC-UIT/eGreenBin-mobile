@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         textTheme: TextTheme(
-          bodyText2: GoogleFonts.workSans(),
+          bodyMedium: GoogleFonts.workSans(),
         ),
       ),
       debugShowCheckedModeBanner: false,

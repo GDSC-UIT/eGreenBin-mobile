@@ -34,7 +34,7 @@ class MailController extends GetxController {
       //await LocalService.saveImage(image!);
       // luu man hinh len firebase
       String urlImage = await FireBaseService.uploadImage(image);
-      print(urlImage);
+      //print(urlImage);
       // lay link roi bo vao mail
       testMail!.setImageUrl(urlImage);
     }

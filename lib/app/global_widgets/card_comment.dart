@@ -1,7 +1,6 @@
 import 'package:egreenbin/app/core/values/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/comment.dart';
-import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
