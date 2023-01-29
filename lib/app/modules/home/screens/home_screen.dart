@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/global_widgets/appbar_teacher.dart';
@@ -38,9 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // appbar
+// appbar
                   AppbarTeacher(
-                    "TRANG CHỦ",
+                    AppStrings.homeTitle,
                     _controller.teacher.value,
                     _controller.pushToNotificationScreen,
                     const IconNotification(),

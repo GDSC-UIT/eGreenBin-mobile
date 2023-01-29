@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/core/values/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/theme/text_styles.dart';
@@ -6,7 +7,7 @@ import '../data/models/student.dart';
 
 // ignore: must_be_immutable
 class StudentAppBar extends StatelessWidget {
-  String screenName = "THÔNG TIN CHI TIẾT";
+  String screenName = AppStrings.studentInfoTitle;
 
   Student student;
   Function? backToPrevSreen;

@@ -9,7 +9,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 class AppbarTeacher extends StatefulWidget {
   Teacher teacher;
   Function function;
-  String screenName = "TRANG CHỦ";
+  String screenName;
   Widget icon;
 
   AppbarTeacher(this.screenName, this.teacher, this.function, this.icon,

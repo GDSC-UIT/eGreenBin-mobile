@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/modules/notification/widgets/card_notification_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,7 @@ class NotificationScreen extends StatelessWidget {
                 children: [
 // appbar
                   AppbarTeacher(
-                    "THÔNG BÁO",
+                    AppStrings.notificationTitle,
                     controller.teacher.value,
                     controller.popToPrevScreen,
                     Image.asset(Assets.back),
