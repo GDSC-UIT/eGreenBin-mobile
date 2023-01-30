@@ -1,8 +1,9 @@
+import 'package:egreenbin/app/core/extensions/date_ex.dart';
 import 'package:egreenbin/app/data/models/notification.dart' as noti;
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../../../core/values/theme/app_colors.dart';
-import '../../../core/values/theme/text_styles.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/text_styles.dart';
 import '../../../data/providers/notifications.dart';
 
 // ignore: must_be_immutable
@@ -10,20 +11,6 @@ class CardNotification extends StatelessWidget {
   noti.Notification notification;
 
   CardNotification(this.notification, {super.key});
-
-  // get num of date between dateFrom to DateTo
-  int daysBetween(DateTime from, DateTime to) {
-    from = DateTime(from.year, from.month, from.day);
-    to = DateTime(to.year, to.month, to.day);
-    return (to.difference(from).inHours / 24).round();
-  }
-
-  String get dayBeforeString {
-    if (daysBetween(notification.dateCreate!, DateTime.now()) == 0) {
-      return "Hôm nay";
-    }
-    return "${daysBetween(notification.dateCreate!, DateTime.now())} ngày trước";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +50,7 @@ class CardNotification extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                dayBeforeString,
+                notification.dateCreate!.dayBeforeString,
                 style: CustomTextStyle.b8(AppColors.subtle_2),
               ),
             ],

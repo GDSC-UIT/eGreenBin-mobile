@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/theme/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/values/assets_image.dart';
-import '../../../core/values/theme/text_styles.dart';
+import '../../../core/theme/text_styles.dart';
 import '../../../data/providers/notifications.dart';
 
 class IconNotification extends StatelessWidget {

@@ -3,8 +3,8 @@ import 'package:egreenbin/app/modules/notification/notification_controller.dart'
 import 'package:egreenbin/app/modules/notification/widgets/card_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/theme/app_colors.dart';
-import '../../../core/values/theme/text_styles.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/text_styles.dart';
 
 class CardNotificationList extends StatelessWidget {
   final NotificationController controller;

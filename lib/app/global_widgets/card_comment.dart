@@ -1,5 +1,6 @@
-import 'package:egreenbin/app/core/values/theme/app_colors.dart';
-import 'package:egreenbin/app/core/values/theme/text_styles.dart';
+import 'package:egreenbin/app/core/extensions/date_ex.dart';
+import 'package:egreenbin/app/core/theme/app_colors.dart';
+import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -9,18 +10,6 @@ class CardComment extends StatelessWidget {
   Comment comment;
   Function deleteComment;
   CardComment(this.comment, this.deleteComment, {super.key});
-
-  // get num of date between dateFrom to DateTo
-  int daysBetween(DateTime from, DateTime to) {
-    from = DateTime(from.year, from.month, from.day);
-    to = DateTime(to.year, to.month, to.day);
-    return (to.difference(from).inHours / 24).round();
-  }
-
-  String get dayBeforeString {
-    if (daysBetween(comment.dateCreate!, DateTime.now()) == 0) return "Hôm nay";
-    return "${daysBetween(comment.dateCreate!, DateTime.now())} ngày trước";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +63,7 @@ class CardComment extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     top: 8, left: 10, right: 10, bottom: 10),
                 child: Text(
-                  dayBeforeString,
+                  comment.dateCreate!.dayBeforeString,
                   style: CustomTextStyle.b8(AppColors.subtle_2),
                 ),
               ),

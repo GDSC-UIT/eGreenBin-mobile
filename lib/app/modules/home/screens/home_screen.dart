@@ -6,7 +6,7 @@ import 'package:egreenbin/app/modules/home/widgets/card_students_list.dart';
 import 'package:egreenbin/app/modules/home/widgets/icon_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/theme/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

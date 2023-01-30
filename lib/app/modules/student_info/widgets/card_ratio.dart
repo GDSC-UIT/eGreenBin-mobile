@@ -1,10 +1,10 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/core/values/theme/text_styles.dart';
+import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import '../../../core/values/theme/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../global_widgets/dialog_comment.dart';
 import '../../../global_widgets/sort_box.dart';
 import '../student_info_controller.dart';

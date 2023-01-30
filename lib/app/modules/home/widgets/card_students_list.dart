@@ -1,4 +1,4 @@
-import 'package:egreenbin/app/core/values/theme/text_styles.dart';
+import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/global_widgets/shimmer_list.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
@@ -6,7 +6,7 @@ import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:egreenbin/app/modules/home/widgets/card_student.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/theme/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 
 class CardStudentList extends StatelessWidget {
   final HomeController _controller;

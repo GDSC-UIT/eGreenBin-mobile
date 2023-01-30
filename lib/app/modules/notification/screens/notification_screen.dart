@@ -2,9 +2,9 @@ import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/modules/notification/widgets/card_notification_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/values/theme/app_colors.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/values/assets_image.dart';
-import '../../../core/values/theme/text_styles.dart';
+import '../../../core/theme/text_styles.dart';
 import '../../../global_widgets/appbar_teacher.dart';
 import '../notification_controller.dart';
 
