@@ -5,6 +5,7 @@ import 'package:egreenbin/app/modules/student_info/student_info_controller.dart'
 import 'package:egreenbin/app/modules/student_info/widgets/card_ratio.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/card_statistical.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 class StudentInfoScreen extends StatelessWidget {
@@ -37,7 +38,10 @@ class StudentInfoScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   CardEvaluate(_controller),
                   const SizedBox(height: 30),
-                ],
+                ]
+                    .animate(interval: 150.ms)
+                    .scaleXY(begin: 0.5, duration: 600.ms)
+                    .fade(delay: 200.ms),
               ),
             ),
           ),

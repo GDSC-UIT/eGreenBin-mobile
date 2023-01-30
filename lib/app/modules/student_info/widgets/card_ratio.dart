@@ -1,6 +1,7 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../core/values/theme/app_colors.dart';
@@ -8,11 +9,16 @@ import '../../../global_widgets/dialog_comment.dart';
 import '../../../global_widgets/sort_box.dart';
 import '../student_info_controller.dart';
 
-class CardRatio extends StatelessWidget {
+class CardRatio extends StatefulWidget {
   final StudentInfoController _controller;
 
   const CardRatio(this._controller, {super.key});
 
+  @override
+  State<CardRatio> createState() => _CardRatioState();
+}
+
+class _CardRatioState extends State<CardRatio> {
   // show comment
   void showCommentForm(BuildContext context) {
     showDialog(
@@ -20,21 +26,21 @@ class CardRatio extends StatelessWidget {
       useRootNavigator: false,
       barrierDismissible: false,
       builder: (ctx) => DiaLogComment(
-        studentController: _controller,
-        textControler: _controller.textCotroller,
+        studentController: widget._controller,
+        textControler: widget._controller.textCotroller,
         onSave: () {
           // luu danh gia
-          _controller.saveComment();
+          widget._controller.saveComment();
         },
       ),
     );
   }
 
   double get ratio {
-    if (_controller.student.value.numOfWrong == 0) return 1;
-    return _controller.student.value.numOfCorrect! /
-        (_controller.student.value.numOfWrong! +
-            _controller.student.value.numOfCorrect!);
+    if (widget._controller.student.value.numOfWrong == 0) return 1;
+    return widget._controller.student.value.numOfCorrect! /
+        (widget._controller.student.value.numOfWrong! +
+            widget._controller.student.value.numOfCorrect!);
   }
 
   @override
@@ -77,50 +83,70 @@ class CardRatio extends StatelessWidget {
                     Obx(
                       () => SortBox(
                         textTitle: "Lọc theo",
-                        sortService: _controller.sortCardRatio!.value,
+                        sortService: widget._controller.sortCardRatio!.value,
                       ),
                     ),
                   ],
                 ),
 // two face
                 const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //face happy
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          child: Image.asset(Assets.faceHappy),
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          "Đúng: ${_controller.student.value.numOfCorrect}",
-                          style: CustomTextStyle.h2(
-                            AppColors.normal,
+                GestureDetector(
+                  onTap: () {
+                    // play animation when tap
+                    setState(() {});
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //face happy
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            child: Image.asset(Assets.faceHappy)
+                                .animate(
+                                  onPlay: (controller) =>
+                                      controller.isAnimating,
+                                )
+                                .scaleXY(end: 1.1, duration: 600.ms)
+                                .then(delay: 200.ms)
+                                .scaleXY(end: 1 / 1.1),
                           ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(width: 12),
-                    // face sad
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          child: Image.asset(Assets.faceSad),
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          "Sai: ${_controller.student.value.numOfWrong}",
-                          style: CustomTextStyle.h2(
-                            AppColors.wrong,
+                          const SizedBox(width: 12),
+                          Text(
+                            "Đúng: ${widget._controller.student.value.numOfCorrect}",
+                            style: CustomTextStyle.h2(
+                              AppColors.normal,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(width: 12),
+                      // face sad
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            child: Image.asset(Assets.faceSad)
+                                .animate(
+                                  onPlay: (controller) =>
+                                      controller.isAnimating,
+                                )
+                                .scaleXY(end: 1.1, duration: 600.ms)
+                                .then(delay: 300.ms)
+                                .scaleXY(end: 1 / 1.1),
                           ),
-                        )
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 12),
+                          Text(
+                            "Sai: ${widget._controller.student.value.numOfWrong}",
+                            style: CustomTextStyle.h2(
+                              AppColors.wrong,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
 // process bar
@@ -129,7 +155,7 @@ class CardRatio extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 55),
                   child: LinearPercentIndicator(
                     animation: true,
-                    animationDuration: 1000,
+                    animationDuration: 2500,
                     lineHeight: 40,
                     percent: ratio,
                     barRadius: const Radius.circular(50),

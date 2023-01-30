@@ -3,17 +3,23 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/values/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 // ignore: must_be_immutable
-class AppbarTeacher extends StatelessWidget {
+class AppbarTeacher extends StatefulWidget {
   Teacher teacher;
   Function function;
-  String screenName = "TRANG CHỦ";
+  String screenName;
   Widget icon;
 
   AppbarTeacher(this.screenName, this.teacher, this.function, this.icon,
       {super.key});
 
+  @override
+  State<AppbarTeacher> createState() => _AppbarTeacherState();
+}
+
+class _AppbarTeacherState extends State<AppbarTeacher> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -52,7 +58,7 @@ class AppbarTeacher extends StatelessWidget {
           left: 31,
           child: GestureDetector(
             onTap: () {
-              function();
+              widget.function();
             },
             child: Container(
               height: 40,
@@ -69,7 +75,7 @@ class AppbarTeacher extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Center(child: icon),
+              child: Center(child: widget.icon),
             ),
           ),
         ),
@@ -83,7 +89,7 @@ class AppbarTeacher extends StatelessWidget {
                 const SizedBox(height: 70),
 // text
                 Text(
-                  screenName,
+                  widget.screenName,
                   style: CustomTextStyle.h1(Colors.white),
                 ),
                 const SizedBox(height: 23),
@@ -119,13 +125,13 @@ class AppbarTeacher extends StatelessWidget {
                           SizedBox(
                             width: 200,
                             child: Text(
-                              teacher.name,
+                              widget.teacher.name,
                               style: CustomTextStyle.h2(AppColors.normal),
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "MGV: ${teacher.id}",
+                            "MGV: ${widget.teacher.id}",
                             style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],
@@ -142,9 +148,27 @@ class AppbarTeacher extends StatelessWidget {
         Positioned(
           bottom: 0,
           right: 0,
-          child: SizedBox(
-            height: 180,
-            child: Image.asset(Assets.bin),
+          child: GestureDetector(
+            onTap: () {
+              // play animation when tap
+              setState(() {});
+            },
+            // chi o trang chu moi co animate
+            child: widget.screenName == "TRANG CHỦ"
+                ? SizedBox(
+                    height: 180,
+                    child: Image.asset(Assets.bin),
+                  )
+                    .animate(onPlay: (controller) => controller.isAnimating)
+                    .shimmer(delay: 400.ms, duration: 1800.ms)
+                    .shake(hz: 3, curve: Curves.easeInOutCirc)
+                    .scaleXY(end: 1.1, duration: 600.ms)
+                    .then(delay: 600.ms)
+                    .scaleXY(end: 1 / 1.1)
+                : SizedBox(
+                    height: 180,
+                    child: Image.asset(Assets.bin),
+                  ),
           ),
         ),
       ],

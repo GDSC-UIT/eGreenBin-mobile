@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_students_mail_list.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _MailScreenState extends State<MailScreen> {
                 children: [
 // appbar
                   AppbarTeacher(
-                    "THƯ ĐIỆN TỬ",
+                    AppStrings.mailTitle,
                     _controller.teacher.value,
                     _controller.popToPrevScreen,
                     Image.asset(Assets.back),
