@@ -1,12 +1,6 @@
-// ignore_for_file: constant_identifier_names
 import 'package:intl/intl.dart';
 import '../../core/values/app_values.dart';
-
-enum SortType {
-  Date,
-  Week,
-  Month,
-}
+import '../enums/sortType.dart';
 
 class DateSort {
   DateTime? _date;

@@ -1,4 +1,5 @@
 import 'package:egreenbin/app/data/models/date_sort.dart';
+import '../enums/sortType.dart';
 import '../models/comment.dart';
 
 class Comments {
