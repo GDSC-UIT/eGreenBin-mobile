@@ -6,6 +6,7 @@ import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:egreenbin/app/global_widgets/switch_language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class AppbarTeacher extends StatefulWidget {
@@ -134,7 +135,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "MGV: ${widget.teacher.id}",
+                            "${"CodeTeacher".tr}: ${widget.teacher.id}",
                             style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],

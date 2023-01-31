@@ -14,6 +14,7 @@ const Map<String, String> viLanguagePackage = {
   // sort box
   'Filter by': 'Lọc theo',
   'Seed': 'Mầm',
+  'All': 'All',
   'Date': 'Ngày',
   'Week': 'Tuần',
   'Month': 'Tháng',

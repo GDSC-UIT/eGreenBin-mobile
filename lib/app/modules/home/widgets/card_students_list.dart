@@ -43,12 +43,12 @@ class CardStudentList extends StatelessWidget {
 // danh sach lop
                 const SizedBox(height: 38),
                 Text(
-                  "DANH SÁCH LỚP",
+                  "CLASS LIST".tr,
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  "${_controller.numberOfStudent.value} học sinh",
+                  "${_controller.numberOfStudent.value} ${"students".tr}",
                   style: CustomTextStyle.b1(AppColors.subtle_1),
                 ),
                 const SizedBox(height: 5),
@@ -58,7 +58,7 @@ class CardStudentList extends StatelessWidget {
                     const SizedBox(width: 21),
                     Obx(
                       () => SortBox(
-                        textTitle: "Lọc theo",
+                        textTitle: "Filter by".tr,
                         sortService: _controller.sortService!.value,
                       ),
                     ),

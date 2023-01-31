@@ -13,6 +13,8 @@ const Map<String, String> enLanguagePackage = {
 
   // sort box
   'Filter by': 'Filter by',
+  'Seed': 'Seed',
+  'All': 'All',
   'Date': 'Date',
   'Week': 'Week',
   'Month': 'Month',
@@ -23,7 +25,6 @@ const Map<String, String> enLanguagePackage = {
   // home screen
   'HOME': 'HOME',
   'CodeTeacher': 'Code',
-  'Seed': 'Seed',
   'CLASS LIST': 'CLASS LIST',
   'students': 'students',
 
