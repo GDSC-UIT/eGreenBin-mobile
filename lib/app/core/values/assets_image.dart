@@ -16,10 +16,10 @@ class Assets {
   static const String faceSad = 'assets/icons/face_sad.png';
   static const String btnFace = 'assets/icons/btn.png';
   static const String exit = 'assets/icons/Close Square green.png';
-  static const String refresh = 'assets/icons/Download.png';
+  static const String refresh = 'assets/icons/Repeat.png';
   static const String mail = 'assets/icons/Message.png';
-  static const String yellowStar = 'assets/icons/YellowStar.png';
-  static const String greyStar = 'assets/icons/GreyStar.png';
+  static const String yellowStar = 'assets/icons/YellowSend.png';
+  static const String greyStar = 'assets/icons/GreySend.png';
   // image
   static const String backround = 'assets/images/bg.png';
   static const String logo = 'assets/images/logo.png';
