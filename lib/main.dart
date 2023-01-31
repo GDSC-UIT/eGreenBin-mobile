@@ -32,12 +32,13 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       theme: ThemeData(
         primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: TextTheme(
           bodyMedium: GoogleFonts.workSans(),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.login,
       locale: LocalizationService.locale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),
