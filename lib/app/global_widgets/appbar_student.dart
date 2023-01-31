@@ -2,6 +2,7 @@ import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
+import 'package:egreenbin/app/global_widgets/switch_language.dart';
 import 'package:flutter/material.dart';
 import '../data/models/student.dart';
 
@@ -70,6 +71,12 @@ class StudentAppBar extends StatelessWidget {
               child: Image.asset(Assets.back),
             ),
           ),
+        ),
+// switch languge
+        const Positioned(
+          top: 35,
+          right: 25,
+          child: SwitchLanguage(),
         ),
         SizedBox(
           width: double.infinity,

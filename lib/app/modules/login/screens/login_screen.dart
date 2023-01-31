@@ -7,8 +7,6 @@ import 'package:egreenbin/app/modules/login/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/services/localization_service.dart';
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 

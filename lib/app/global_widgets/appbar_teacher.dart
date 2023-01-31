@@ -3,6 +3,7 @@ import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
+import 'package:egreenbin/app/global_widgets/switch_language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -25,6 +26,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+// thanh xanh la ben duoi
         Column(
           children: [
             Container(
@@ -145,9 +147,15 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
             ),
           ),
         ),
+// switch languge
+        const Positioned(
+          top: 35,
+          right: 25,
+          child: SwitchLanguage(),
+        ),
 // thung rac
         Positioned(
-          bottom: 0,
+          bottom: -3,
           right: 0,
           child: GestureDetector(
             onTap: () {
@@ -157,7 +165,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
             // chi o trang chu moi co animate
             child: widget.screenName == AppStrings.homeTitle
                 ? SizedBox(
-                    height: 180,
+                    height: 165,
                     child: Image.asset(Assets.bin),
                   )
                     .animate(onPlay: (controller) => controller.isAnimating)
@@ -167,7 +175,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                     .then(delay: 600.ms)
                     .scaleXY(end: 1 / 1.1)
                 : SizedBox(
-                    height: 180,
+                    height: 165,
                     child: Image.asset(Assets.bin),
                   ),
           ),

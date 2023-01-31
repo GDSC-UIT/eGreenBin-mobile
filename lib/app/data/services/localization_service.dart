@@ -6,7 +6,7 @@ import '../../core/languages/vi_VN.dart';
 
 class LocalizationService extends Translations {
   // locale sẽ được get mỗi khi mới mở app (phụ thuộc vào locale hệ thống hoặc bạn có thể cache lại locale mà người dùng đã setting và set nó ở đây)
-  static final locale = _getLocaleFromLanguage();
+  static var locale = _getLocaleFromLanguage();
 
   // fallbackLocale là locale default nếu locale được set không nằm trong những Locale support
   static const fallbackLocale = Locale('en', 'US');
@@ -31,7 +31,7 @@ class LocalizationService extends Translations {
 
   // function change language nếu bạn không muốn phụ thuộc vào ngôn ngữ hệ thống
   static void changeLocale(String languageCode) {
-    final locale = _getLocaleFromLanguage(languageCode: languageCode);
+    locale = _getLocaleFromLanguage(languageCode: languageCode);
     Get.updateLocale(locale);
   }
 
