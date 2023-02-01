@@ -36,8 +36,8 @@ class CustomTextStyle extends TextStyle {
 
   static TextStyle h4(Color color) {
     return GoogleFonts.workSans(
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
       color: color,
     );
   }

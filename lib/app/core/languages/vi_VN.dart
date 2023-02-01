@@ -71,4 +71,7 @@ const Map<String, String> viLanguagePackage = {
   'Message to student\'s parents': 'Nội dung gửi cho phụ huynh',
   'Add Mesage': 'Thêm ghi chú',
   'Save': 'Lưu',
+
+  // card send parent
+  'YOUR CHILD\'S TRAINING RESULT': 'KẾT QUẢ HỌC TẬP CỦA BÉ',
 };

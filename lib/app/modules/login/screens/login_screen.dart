@@ -181,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
                         "from GDSC UIT".tr,
-                        style: CustomTextStyle.b1(AppColors.normal),
+                        style: CustomTextStyle.b1(AppColors.primarySubtle1),
                       ),
                     ),
                   ),

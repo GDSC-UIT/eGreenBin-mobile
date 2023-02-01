@@ -1,5 +1,6 @@
 import 'package:egreenbin/app/data/models/mail.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/modules/mail/widgets/send_email/child_result_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,9 +29,16 @@ class MailController extends GetxController {
     Get.back();
   }
 
+  Future<void> captureScreen() async {
+    image = await screenshotController
+        .captureFromWidget(ChildResultCard(testMail!.student.id!));
+  }
+
   Future sendMailToAll() async {
+    // chup man hinh va luu lai
+    await captureScreen();
+
     if (image != null) {
-      // chup man hinh va luu lai
       //await LocalService.saveImage(image!);
       // luu man hinh len firebase
       String urlImage = await FireBaseService.uploadImage(image);
@@ -44,14 +52,13 @@ class MailController extends GetxController {
 
   Future saveNote(Student student) async {
     // luu content
-    String note = textCotroller.text;
-    if (note == "") {
+    if (textCotroller.text == "") {
       student.isNote = false;
     } else {
       student.isNote = true;
     }
     // lay link roi bo vao mail
-    testMail = Mail(student: student, content: note);
+    testMail = Mail(student: student, content: textCotroller.text);
   }
 
   void filterByAll() {}
@@ -71,7 +78,7 @@ class MailController extends GetxController {
   // screen shot
   final screenshotController = ScreenshotController();
   // mail
-  Mail? testMail;
+  Mail? testMail = Mail(student: Students.listStudents[0], content: "");
   // sort box
   Rx<SortService>? sortService;
   // data models

@@ -71,4 +71,7 @@ const Map<String, String> enLanguagePackage = {
   'Message to student\'s parents': 'Message to student\'s parents',
   'Add Mesage': 'Add Mesage',
   'Save': 'Save',
+
+  // card send parent
+  'YOUR CHILD\'S TRAINING RESULT': 'YOUR CHILD\'S TRAINING RESULT',
 };

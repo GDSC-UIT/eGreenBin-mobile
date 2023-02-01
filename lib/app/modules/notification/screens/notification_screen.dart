@@ -1,4 +1,3 @@
-import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/modules/notification/widgets/card_notification_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

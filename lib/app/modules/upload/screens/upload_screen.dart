@@ -1,4 +1,4 @@
-import 'package:egreenbin/app/modules/upload/widgets/child_result_card.dart';
+import 'package:egreenbin/app/modules/mail/widgets/send_email/child_result_card.dart';
 import 'package:flutter/material.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -11,10 +11,10 @@ class UploadScreen extends StatefulWidget {
 class _UploadScreenState extends State<UploadScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Center(
-          child: ChildResultCard(),
+          child: ChildResultCard("21522345"),
         ),
       ),
     );
