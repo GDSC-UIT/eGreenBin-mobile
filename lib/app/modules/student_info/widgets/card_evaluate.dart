@@ -39,7 +39,7 @@ class CardEvaluate extends StatelessWidget {
 // text: Danh gia
                 const SizedBox(height: 38),
                 Text(
-                  "ĐÁNH GIÁ",
+                  "COMMENTS".tr,
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 5),
@@ -49,7 +49,7 @@ class CardEvaluate extends StatelessWidget {
                     const SizedBox(width: 21),
                     Obx(
                       () => SortBox(
-                        textTitle: "Lọc theo",
+                        textTitle: "Filter by".tr,
                         sortService: _controller.sortCardEvaluate!.value,
                       ),
                     ),
@@ -62,7 +62,7 @@ class CardEvaluate extends StatelessWidget {
                         child: _controller.listComments.isEmpty
                             ? Center(
                                 child: Text(
-                                  "CHƯA CÓ ĐÁNH GIÁ NÀO",
+                                  "THERE ARE NO COMMENTS YET".tr,
                                   style: CustomTextStyle.h2(AppColors.normal),
                                 ),
                               )
@@ -80,7 +80,7 @@ class CardEvaluate extends StatelessWidget {
               ],
             ),
           ),
-// dropbutton
+// show more
           Positioned(
             top: 0,
             left: 0,
@@ -100,7 +100,7 @@ class CardEvaluate extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "Xem tất cả",
+                    "Show more".tr,
                     style: CustomTextStyle.b7(AppColors.surface),
                   ),
                 ),

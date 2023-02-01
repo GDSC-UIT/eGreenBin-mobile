@@ -1,18 +1,18 @@
-import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/global_widgets/switch_language.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../data/models/student.dart';
 
 // ignore: must_be_immutable
 class StudentAppBar extends StatelessWidget {
-  String screenName = AppStrings.studentInfoTitle;
-
+  String screenName;
   Student student;
   Function? backToPrevSreen;
-  StudentAppBar(this.student, this.backToPrevSreen, {super.key});
+  StudentAppBar(this.screenName, this.student, this.backToPrevSreen,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class StudentAppBar extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "MHS: ${student.id}",
+                            "${"CodeStudent".tr}: ${student.id}",
                             style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],

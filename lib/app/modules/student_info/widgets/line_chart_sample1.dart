@@ -1,6 +1,7 @@
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class _LineChart extends StatelessWidget {
   const _LineChart({required this.isShowingMainData});
@@ -141,16 +142,16 @@ class _LineChart extends StatelessWidget {
     // duong duoi trai tu 0 -> 13 (chia ra)
     switch (value.toInt()) {
       case 1:
-        text = const Text('Tuần 1', style: style);
+        text = Text('${'Week'.tr} 1', style: style);
         break;
       case 5:
-        text = const Text('Tuần 2', style: style);
+        text = Text('${'Week'.tr} 2', style: style);
         break;
       case 9:
-        text = const Text('Tuần 3', style: style);
+        text = Text('${'Week'.tr} 3', style: style);
         break;
       case 13:
-        text = const Text('Tuần 4', style: style);
+        text = Text('${'Week'.tr} 4', style: style);
         break;
       default:
         text = const Text('');

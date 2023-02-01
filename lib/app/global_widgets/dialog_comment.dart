@@ -1,20 +1,20 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
+import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/text_styles.dart';
-import '../modules/student_info/student_info_controller.dart';
 
 // ignore: must_be_immutable
 class DiaLogComment extends StatefulWidget {
-  StudentInfoController studentController;
+  SortService sortDialog;
   TextEditingController textControler;
   final Function onSave;
 
   DiaLogComment({
     super.key,
-    required this.studentController,
+    required this.sortDialog,
     required this.textControler,
     required this.onSave,
   });
@@ -82,7 +82,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    "ĐÁNH GIÁ",
+                    "COMMENT".tr,
                     style: CustomTextStyle.h2(AppColors.primary1),
                   ),
                 ),
@@ -90,12 +90,10 @@ class _DiaLogCommentState extends State<DiaLogComment> {
 // sort box: thoi gian
                 Row(
                   children: [
-                    Obx(
-                      () => SortBox(
-                        textTitle: "Thời gian",
-                        sortService: widget.studentController.sortDialog!.value,
-                        isInDialog: true,
-                      ),
+                    SortBox(
+                      textTitle: "Time".tr,
+                      sortService: widget.sortDialog,
+                      isInDialog: true,
                     ),
                   ],
                 ),
@@ -105,7 +103,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nội dung",
+                      "Content".tr,
                       style: CustomTextStyle.b2(AppColors.subtle_1),
                     ),
                     const SizedBox(height: 7),
@@ -113,13 +111,13 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                       controller: widget.textControler,
                       style: CustomTextStyle.b7(AppColors.subtle_1),
                       maxLines: 4,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(
                           borderSide:
                               BorderSide(color: AppColors.primary1, width: 1),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        hintText: "Thêm đánh giá",
+                        hintText: "Add comment".tr,
                       ),
                       onChanged: (value) {
                         setState(() {
@@ -150,7 +148,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 backgroundColor: AppColors.normal, // mau chu
               ),
               child: Text(
-                "Đăng",
+                "Post".tr,
                 style: CustomTextStyle.b6(AppColors.primarySubtle2),
               ),
             ),

@@ -24,7 +24,10 @@ class RatingScreen extends StatelessWidget {
             children: [
               // appbar
               StudentAppBar(
-                  _controller.student.value, _controller.backToPrevScreen),
+                "COMMENTS".tr,
+                _controller.student.value,
+                _controller.backToPrevScreen,
+              ),
               // card danh gia
               const SizedBox(height: 20),
               CardAllComments(_controller),

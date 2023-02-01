@@ -40,13 +40,13 @@ class CardNotificationList extends StatelessWidget {
 // danh sach thong bao
                 const SizedBox(height: 25),
                 Text(
-                  "DANH SÁCH THÔNG BÁO",
+                  "NOTIFICATION LIST".tr,
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 2),
                 Obx(
                   () => Text(
-                    "${Notifications.listNotifications.length} thông báo",
+                    "${Notifications.listNotifications.length} ${"notifications".tr}",
                     style: CustomTextStyle.b1(AppColors.subtle_1),
                   ),
                 ),
@@ -57,7 +57,7 @@ class CardNotificationList extends StatelessWidget {
                     child: Notifications.listNotifications.isEmpty
                         ? Center(
                             child: Text(
-                              "CHƯA CÓ THÔNG BÁO NÀO",
+                              "THERE ARE NO NOTIFICATION YET".tr,
                               style: CustomTextStyle.h2(AppColors.normal),
                             ),
                           )

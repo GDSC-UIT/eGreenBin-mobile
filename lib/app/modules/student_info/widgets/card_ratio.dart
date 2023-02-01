@@ -26,7 +26,7 @@ class _CardRatioState extends State<CardRatio> {
       useRootNavigator: false,
       barrierDismissible: false,
       builder: (ctx) => DiaLogComment(
-        studentController: widget._controller,
+        sortDialog: widget._controller.sortDialog!.value,
         textControler: widget._controller.textCotroller,
         onSave: () {
           // luu danh gia
@@ -72,7 +72,7 @@ class _CardRatioState extends State<CardRatio> {
 // text: So lan dung sai
                 const SizedBox(height: 12),
                 Text(
-                  "SỐ LẦN ĐÚNG/SAI",
+                  "SPECIFIC DATA".tr,
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 5),
@@ -82,7 +82,7 @@ class _CardRatioState extends State<CardRatio> {
                     const SizedBox(width: 21),
                     Obx(
                       () => SortBox(
-                        textTitle: "Lọc theo",
+                        textTitle: "Filter by".tr,
                         sortService: widget._controller.sortCardRatio!.value,
                       ),
                     ),
@@ -113,15 +113,25 @@ class _CardRatioState extends State<CardRatio> {
                                 .scaleXY(end: 1 / 1.1),
                           ),
                           const SizedBox(width: 12),
-                          Text(
-                            "Đúng: ${widget._controller.student.value.numOfCorrect}",
-                            style: CustomTextStyle.h2(
-                              AppColors.normal,
-                            ),
+                          Column(
+                            children: [
+                              Text(
+                                "${"Right".tr}:",
+                                style: CustomTextStyle.b6(
+                                  AppColors.normal,
+                                ),
+                              ),
+                              Text(
+                                "${widget._controller.student.value.numOfCorrect}",
+                                style: CustomTextStyle.h3(
+                                  AppColors.normal,
+                                ),
+                              ),
+                            ],
                           )
                         ],
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 30),
                       // face sad
                       Row(
                         children: [
@@ -137,11 +147,21 @@ class _CardRatioState extends State<CardRatio> {
                                 .scaleXY(end: 1 / 1.1),
                           ),
                           const SizedBox(width: 12),
-                          Text(
-                            "Sai: ${widget._controller.student.value.numOfWrong}",
-                            style: CustomTextStyle.h2(
-                              AppColors.wrong,
-                            ),
+                          Column(
+                            children: [
+                              Text(
+                                "${"Wrong".tr}:",
+                                style: CustomTextStyle.b6(
+                                  AppColors.wrong,
+                                ),
+                              ),
+                              Text(
+                                "${widget._controller.student.value.numOfWrong}",
+                                style: CustomTextStyle.h3(
+                                  AppColors.wrong,
+                                ),
+                              ),
+                            ],
                           )
                         ],
                       ),
@@ -167,7 +187,7 @@ class _CardRatioState extends State<CardRatio> {
                 const SizedBox(height: 15),
                 RichText(
                   text: TextSpan(
-                    text: 'Tỉ lệ bỏ đúng: ',
+                    text: 'Percentages of doing right: '.tr,
                     style: CustomTextStyle.b2(AppColors.subtle_1),
                     children: [
                       TextSpan(
@@ -183,7 +203,7 @@ class _CardRatioState extends State<CardRatio> {
 // dropbutton
           Positioned(
             bottom: 0,
-            left: 0,
+            right: 0,
             child: GestureDetector(
               onTap: () {
                 showCommentForm(context);
@@ -195,7 +215,8 @@ class _CardRatioState extends State<CardRatio> {
                 decoration: const BoxDecoration(
                   color: AppColors.normal,
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(10),
+                    topLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
                   ),
                 ),
                 child: Row(
@@ -206,7 +227,7 @@ class _CardRatioState extends State<CardRatio> {
                       child: Image.asset(Assets.chat),
                     ),
                     Text(
-                      "Đánh giá",
+                      "Comment".tr,
                       style: CustomTextStyle.b7(AppColors.surface),
                     )
                   ],

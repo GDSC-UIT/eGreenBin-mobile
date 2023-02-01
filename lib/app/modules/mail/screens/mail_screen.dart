@@ -1,4 +1,3 @@
-import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_students_mail_list.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +54,7 @@ class _MailScreenState extends State<MailScreen> {
                 children: [
 // appbar
                   AppbarTeacher(
-                    AppStrings.mailTitle,
+                    "MAILS".tr,
                     _controller.teacher.value,
                     _controller.popToPrevScreen,
                     Image.asset(Assets.back),
@@ -105,7 +104,7 @@ class _MailScreenState extends State<MailScreen> {
                                 child: Image.asset(Assets.mail),
                               ),
                               Text(
-                                "Gửi tất cả",
+                                "Send all".tr,
                                 style: CustomTextStyle.b7(AppColors.surface),
                               )
                             ],

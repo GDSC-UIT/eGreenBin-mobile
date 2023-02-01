@@ -21,6 +21,10 @@ const Map<String, String> viLanguagePackage = {
 
   // notification screen
   'NOTIFICATION': 'THÔNG BÁO',
+  'Delete all': 'Xóa tất cả',
+  'NOTIFICATION LIST': 'DANH SÁCH THÔNG BÁO',
+  'notifications': 'thông báo',
+  'THERE ARE NO NOTIFICATION YET': 'CHƯA CÓ THÔNG BÁO NÀO',
 
   // home screen
   'HOME': 'TRANG CHỦ',
@@ -29,20 +33,22 @@ const Map<String, String> viLanguagePackage = {
   'students': 'học sinh',
 
   // student info screen
-  'CodeStudent': 'Code',
+  'CodeStudent': 'MHS',
   'REPORTS': 'THÔNG TIN CHI TIẾT',
   'STATISTICS': 'THỐNG KÊ',
   'Right': 'Đúng',
   'Wrong': 'Sai',
   'SPECIFIC DATA': 'SỐ LẦN ĐÚNG/SAI',
-  'Percentages of doing right:': 'Tỉ lệ bỏ đúng:',
+  'Percentages of doing right: ': 'Tỉ lệ bỏ đúng: ',
   'Comment': 'Đánh giá',
   'Show more': 'Xem tất cả',
+  'THERE ARE NO COMMENTS YET': 'CHƯA CÓ ĐÁNH GIÁ NÀO',
 
   // comment screen
   'COMMENTS': 'ĐÁNH GIÁ',
-  'today': 'hôm nay',
-  'yesterday': 'hôm qua',
+  'ALL COMMENTS': 'TẤT CẢ ĐÁNH GIÁ',
+  'Today': 'Hôm nay',
+  'Yesterday': 'Hôm qua',
   'days ago': 'ngày trước',
   '1 month ago': '1 tháng trước',
   'months ago': 'tháng trước',

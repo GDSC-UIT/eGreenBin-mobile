@@ -39,7 +39,7 @@ class CardStatistical extends StatelessWidget {
 // Thong ke
                 const SizedBox(height: 38),
                 Text(
-                  "THỐNG KÊ",
+                  "STATISTICS".tr,
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 5),
@@ -56,7 +56,7 @@ class CardStatistical extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          "Đúng",
+                          "Right".tr,
                           style: CustomTextStyle.b5(
                             AppColors.primary2,
                           ),
@@ -73,7 +73,7 @@ class CardStatistical extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          "Sai",
+                          "Wrong".tr,
                           style: CustomTextStyle.b5(
                             AppColors.primary2,
                           ),

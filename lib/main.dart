@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import '/app/core/values/app_strings.dart';
+import 'app/core/values/app_strings.dart';
 import '/app/data/services/localization_service.dart';
 import '/app/routes/app_pages.dart';
 import '/app/routes/app_routes.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.login,
+      initialRoute: AppRoutes.upload,
       locale: LocalizationService.locale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),

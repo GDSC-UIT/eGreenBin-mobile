@@ -57,12 +57,12 @@ class CardStudentMailList extends StatelessWidget {
 // danh sach lop
                 const SizedBox(height: 38),
                 Text(
-                  "DANH SÁCH LỚP",
+                  "STUDENT LIST".tr,
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  "${_controller.numberOfStudent.value} học sinh",
+                  "${_controller.numberOfStudent.value} ${'students'.tr}",
                   style: CustomTextStyle.b1(AppColors.subtle_1),
                 ),
                 const SizedBox(height: 5),

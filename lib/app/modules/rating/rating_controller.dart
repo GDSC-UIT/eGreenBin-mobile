@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
+import '../../data/models/date_sort.dart';
 import '../../data/providers/comments.dart';
 import '../../data/models/student.dart';
 import '../../data/providers/students.dart';
@@ -12,6 +14,12 @@ class RatingController extends GetxController {
       filterDate: filterByDate,
       filterWeek: filterByWeek,
       filterMonth: filterByMonth,
+    ).obs;
+    sortDialog = SortService(
+      filterAll: fnull,
+      filterDate: fnull,
+      filterWeek: fnull,
+      filterMonth: fnull,
     ).obs;
   }
 
@@ -37,8 +45,14 @@ class RatingController extends GetxController {
   RxList<Comment> listComments = <Comment>[].obs;
   // dropButton sort value
   Rx<SortService>? sortService;
+  // dialog
+  Rx<SortService>? sortDialog;
+  // textController comment
+  final TextEditingController textCotroller = TextEditingController();
 
   // fuction
+  Function fnull = () {};
+
   void backToPrevScreen() {
     Get.back();
   }
@@ -61,5 +75,34 @@ class RatingController extends GetxController {
   void filterByMonth() {
     // update list comment by month
     listComments.value = Comments.listCommentsSortByMonth(id);
+  }
+
+  // save comment to listcomment
+  void saveComment() {
+    // luu comment
+    String content = textCotroller.text;
+    // luu sort date
+    DateSort? sortTemp;
+    if (sortDialog!.value.selectedSortByWithoutAll.value ==
+        SortService.sortByItems[1]) {
+      sortTemp = DateSort.fromDate(date: sortDialog!.value.selectDate.value);
+    } else if (sortDialog!.value.selectedSortByWithoutAll.value ==
+        SortService.sortByItems[2]) {
+      sortTemp =
+          DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
+    } else {
+      sortTemp =
+          DateSort.fromMonth(month: sortDialog!.value.selectedMonthSort.value);
+    }
+    // create comment
+    Comment newComment = Comment(
+      idStudent: student.value.id!,
+      content: content,
+      dateCreate: DateTime.now(),
+      dateSort: sortTemp,
+    );
+    Comments.addComment(newComment);
+    listComments.value = Comments.listCommentsFindById(id);
+    textCotroller.clear();
   }
 }

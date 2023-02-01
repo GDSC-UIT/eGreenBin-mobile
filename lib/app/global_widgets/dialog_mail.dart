@@ -80,7 +80,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    "NỘI DUNG THƯ",
+                    "MAIL CONTENT".tr,
                     style: CustomTextStyle.h2(AppColors.primary1),
                   ),
                 ),
@@ -90,7 +90,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
                   children: [
                     Obx(
                       () => SortBox(
-                        textTitle: "Kết quả",
+                        textTitle: "Result".tr,
                         sortService: widget.mailController.sortService!.value,
                         isInDialog: true,
                       ),
@@ -103,7 +103,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ghi chú đặc biệt",
+                      "Message to student's parents".tr,
                       style: CustomTextStyle.b2(AppColors.subtle_1),
                     ),
                     const SizedBox(height: 7),
@@ -111,13 +111,13 @@ class _DiaLogMailState extends State<DiaLogMail> {
                       controller: widget.textController,
                       style: CustomTextStyle.b7(AppColors.subtle_1),
                       maxLines: 4,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(
                           borderSide:
                               BorderSide(color: AppColors.primary1, width: 1),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        hintText: "Thêm ghi chú",
+                        hintText: "Add Mesage".tr,
                       ),
                     ),
                   ],
@@ -144,7 +144,7 @@ class _DiaLogMailState extends State<DiaLogMail> {
                 backgroundColor: AppColors.normal, // mau chu
               ),
               child: Text(
-                "Cập nhập",
+                "Save".tr,
                 style: CustomTextStyle.b6(AppColors.primarySubtle2),
               ),
             ),

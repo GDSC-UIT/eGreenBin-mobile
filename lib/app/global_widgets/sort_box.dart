@@ -51,7 +51,7 @@ class SortBox extends StatelessWidget {
           width: 80,
           child: Obx(() => Text(
                 sortService.selectDate.value == null
-                    ? '01/01/2023'
+                    ? 'All'.tr
                     : DateFormat(FormatValue.numbericDateFormat)
                         .format(sortService.selectDate.value as DateTime),
                 style: CustomTextStyle.b3(AppColors.normal),

@@ -47,7 +47,10 @@ class StudentInfoScreen extends StatelessWidget {
           ),
           // appbar
           StudentAppBar(
-              _controller.student.value, _controller.backToPrevScreen),
+            "REPORTS".tr,
+            _controller.student.value,
+            _controller.backToPrevScreen,
+          ),
         ],
       ),
     );

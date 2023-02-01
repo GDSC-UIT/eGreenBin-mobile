@@ -21,6 +21,10 @@ const Map<String, String> enLanguagePackage = {
 
   // notification screen
   'NOTIFICATION': 'THÔNG BÁO',
+  'Delete all': 'Delete all',
+  'NOTIFICATION LIST': 'NOTIFICATION LIST',
+  'notifications': 'notifications',
+  'THERE ARE NO NOTIFICATION YET': 'THERE ARE NO NOTIFICATION YET',
 
   // home screen
   'HOME': 'HOME',
@@ -35,14 +39,16 @@ const Map<String, String> enLanguagePackage = {
   'Right': 'Right',
   'Wrong': 'Wrong',
   'SPECIFIC DATA': 'SPECIFIC DATA',
-  'Percentages of doing right:': 'Percentages of doing right:',
+  'Percentages of doing right: ': 'Percentages of doing right: ',
   'Comment': 'Comment',
   'Show more': 'Show more',
+  'THERE ARE NO COMMENTS YET': 'THERE ARE NO COMMENTS YET',
 
   // comment screen
   'COMMENTS': 'COMMENTS',
-  'today': 'today',
-  'yesterday': 'yesterday',
+  'ALL COMMENTS': 'TẤT CẢ ĐÁNH GIÁ',
+  'Today': 'Today',
+  'Yesterday': 'Yesterday',
   'days ago': 'days ago',
   '1 month ago': '1 month ago',
   'months ago': 'months ago',

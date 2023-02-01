@@ -31,7 +31,7 @@ class NotificationScreen extends StatelessWidget {
                 children: [
 // appbar
                   AppbarTeacher(
-                    AppStrings.notificationTitle,
+                    "NOTIFICATION".tr,
                     controller.teacher.value,
                     controller.popToPrevScreen,
                     Image.asset(Assets.back),
@@ -68,7 +68,7 @@ class NotificationScreen extends StatelessWidget {
                             color: AppColors.surface,
                           ),
                           Text(
-                            "Xoá tất cả",
+                            "Delete all".tr,
                             style: CustomTextStyle.b3(AppColors.surface),
                           ),
                         ],
