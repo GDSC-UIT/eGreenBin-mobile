@@ -27,7 +27,7 @@ class Ratio extends StatelessWidget {
           children: [
             const SizedBox(width: 20),
             Text(
-              "II. " "SPECIFIC DATA".tr,
+              "II. ${"SPECIFIC DATA".tr}",
               style: CustomTextStyle.h2(AppColors.normal),
             ),
           ],

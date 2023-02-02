@@ -18,7 +18,7 @@ class Statistical extends StatelessWidget {
           children: [
             const SizedBox(width: 20),
             Text(
-              "I. " "STATISTICS".tr,
+              "I. ${"STATISTICS".tr}",
               style: CustomTextStyle.h2(AppColors.normal),
             ),
           ],

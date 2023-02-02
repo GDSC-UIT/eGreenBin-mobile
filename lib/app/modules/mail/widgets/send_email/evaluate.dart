@@ -18,7 +18,7 @@ class Evaluate extends StatelessWidget {
           children: [
             const SizedBox(width: 20),
             Text(
-              "III. " "COMMENTS".tr,
+              "III. ${"COMMENTS".tr}",
               style: CustomTextStyle.h2(AppColors.normal),
             ),
           ],
