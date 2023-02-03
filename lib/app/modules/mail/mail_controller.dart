@@ -8,6 +8,7 @@ import 'package:screenshot/screenshot.dart';
 import '../../data/providers/students.dart';
 import '../../data/models/teacher.dart';
 import '../../data/services/firebase_service.dart';
+import '../../data/services/local_service.dart';
 import '../../data/services/sort_service.dart';
 
 class MailController extends GetxController {
@@ -30,8 +31,7 @@ class MailController extends GetxController {
   }
 
   Future<void> captureScreen() async {
-    image = await screenshotController
-        .captureFromWidget(ChildResultCard(testMail!.student.id!));
+    image = await screenshotController.capture();
   }
 
   Future sendMailToAll() async {
@@ -39,15 +39,15 @@ class MailController extends GetxController {
     await captureScreen();
 
     if (image != null) {
-      //await LocalService.saveImage(image!);
+      await LocalService.saveImage(image!);
       // luu man hinh len firebase
       String urlImage = await FireBaseService.uploadImage(image);
-      //print(urlImage);
+      print(urlImage);
       // lay link roi bo vao mail
-      testMail!.setImageUrl(urlImage);
+      //testMail!.setImageUrl(urlImage);
     }
     // send email to all parents
-    await testMail!.sendEmail();
+    //await testMail!.sendEmail();
   }
 
   Future saveNote(Student student) async {

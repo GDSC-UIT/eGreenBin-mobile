@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/extensions/buildcontext_ex.dart';
 import 'package:egreenbin/app/modules/mail/mail_controller.dart';
 import 'package:egreenbin/app/modules/mail/widgets/card_students_mail_list.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/values/assets_image.dart';
 import '../../../core/theme/text_styles.dart';
 import '../../../global_widgets/appbar_teacher.dart';
+import '../widgets/send_email/child_result_card.dart';
 
 class MailScreen extends StatefulWidget {
   const MailScreen({super.key});
@@ -36,14 +38,26 @@ class _MailScreenState extends State<MailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(Assets.backround), fit: BoxFit.fill),
-          ),
           child: Stack(
             children: [
+              // card gui cho phu huynh
+              ChildResultCard(_controller.testMail!.student.id!,
+                  _controller.screenshotController),
+              // backround che di card dang sau
+              Container(
+                height: context.screenSize.height,
+                color: AppColors.primarySubtle2,
+              ),
+              SizedBox(
+                height: context.screenSize.height,
+                width: double.infinity,
+                child: Image.asset(
+                  Assets.backround,
+                  fit: BoxFit.cover,
+                ),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
