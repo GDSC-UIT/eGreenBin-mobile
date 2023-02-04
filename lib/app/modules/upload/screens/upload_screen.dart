@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:egreenbin/app/data/services/local_service.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -20,17 +19,43 @@ class _UploadScreenState extends State<UploadScreen> {
     setState(() {});
   }
 
-  Future uploadFile() async {
-    final path = 'file/${pickedFile!.name}';
+  // upload file to firebase
+  Future uploadFile1() async {
+    // em coi tren youtube
+    final path = 'files/${pickedFile!.name}';
     final file = File(pickedFile!.path!);
 
     final ref = FirebaseStorage.instance.ref().child(path);
-    UploadTask? uploadTask = ref.putFile(file);
 
-    TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
-    print("asdasdasdasdasd");
+    UploadTask uploadTask = ref.putFile(file);
+    // lỗi putFile ko đc
+    TaskSnapshot taskSnapshot = await uploadTask;
+    print("Da up xong");
     print(taskSnapshot.ref.getDownloadURL());
-    //return await uploadTask;
+    return taskSnapshot.ref.getDownloadURL();
+  }
+
+  Future uploadFile() async {
+    // ham nay em thu code của chat gpt
+    try {
+      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final file = File(pickedFile!.path!);
+      // Get reference to Firebase Storage
+      final Reference storageReference =
+          FirebaseStorage.instance.ref().child(fileName);
+
+      // Upload file
+      final UploadTask uploadTask = storageReference.putFile(file);
+      print("dong nay chua bi loi");
+      // Wait for upload to complete
+      final TaskSnapshot storageTaskSnapshot = await uploadTask;
+      print("dong nay bi loi");
+      // duong dan downloadUrl
+      print(storageTaskSnapshot.ref.getDownloadURL());
+    } on FirebaseException catch (e) {
+      print('Failed with error code: ${e.code}');
+      print(e.message);
+    }
   }
 
   @override
@@ -54,7 +79,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 child: Text('Selecte file'),
               ),
               ElevatedButton(
-                onPressed: uploadFile,
+                onPressed: uploadFile1,
                 child: Text('Upload file'),
               ),
             ],
