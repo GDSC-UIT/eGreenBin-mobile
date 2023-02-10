@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/extensions/buildcontext_ex.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
@@ -122,7 +123,7 @@ class StudentAppBar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            width: 230,
+                            width: context.screenSize.width * 0.5,
                             child: Text(
                               student.name,
                               style: CustomTextStyle.h2(AppColors.normal),

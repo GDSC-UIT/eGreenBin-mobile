@@ -44,10 +44,10 @@ class MailController extends GetxController {
       String urlImage = await FireBaseService.uploadImage(image);
       print(urlImage);
       // lay link roi bo vao mail
-      //testMail!.setImageUrl(urlImage);
+      testMail!.setImageUrl(urlImage);
     }
     // send email to all parents
-    //await testMail!.sendEmail();
+    await testMail!.sendEmail();
   }
 
   Future saveNote(Student student) async {

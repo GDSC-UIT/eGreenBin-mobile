@@ -150,7 +150,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
         ),
 // switch languge
         const Positioned(
-          top: 35,
+          top: 37,
           right: 25,
           child: SwitchLanguage(),
         ),
@@ -166,7 +166,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
             // chi o trang chu moi co animate
             child: widget.screenName == AppStrings.homeTitle
                 ? SizedBox(
-                    height: 165,
+                    height: 160,
                     child: Image.asset(Assets.bin),
                   )
                     .animate(onPlay: (controller) => controller.isAnimating)
@@ -176,7 +176,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                     .then(delay: 600.ms)
                     .scaleXY(end: 1 / 1.1)
                 : SizedBox(
-                    height: 165,
+                    height: 160,
                     child: Image.asset(Assets.bin),
                   ),
           ),
