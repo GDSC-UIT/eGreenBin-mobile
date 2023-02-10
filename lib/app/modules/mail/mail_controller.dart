@@ -1,6 +1,5 @@
 import 'package:egreenbin/app/data/models/mail.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/modules/mail/widgets/send_email/child_result_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

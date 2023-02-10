@@ -1,5 +1,4 @@
 import 'package:egreenbin/app/core/theme/app_colors.dart';
-import 'package:egreenbin/app/core/values/app_strings.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
@@ -164,7 +163,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
               setState(() {});
             },
             // chi o trang chu moi co animate
-            child: widget.screenName == AppStrings.homeTitle
+            child: widget.screenName == "HOME".tr
                 ? SizedBox(
                     height: 160,
                     child: Image.asset(Assets.bin),
