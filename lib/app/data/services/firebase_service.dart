@@ -19,11 +19,16 @@ class FireBaseService {
     return await uploadTask;
   }
 
-  static Future<String> uploadImage(Uint8List? image) async {
+  static Future uploadImage(Uint8List? image) async {
+    // if null => stop
+    if (image == null) {
+      print("image is null");
+      return "";
+    }
     // convert image => file
     final tempDir = await getTemporaryDirectory();
     File file = await File('${tempDir.path}/image.png').create();
-    file.writeAsBytesSync(image!);
+    file.writeAsBytesSync(image);
     // push to firebase
     final path = 'file/${file.path}';
     final ref = FirebaseStorage.instance.ref().child(path);

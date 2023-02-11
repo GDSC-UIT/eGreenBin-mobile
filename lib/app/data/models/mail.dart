@@ -34,7 +34,7 @@ class Mail {
 
   void printEmail() {
     String message = imageUrl!;
-    if (student.isNote!) message += "\n${student.note}";
+    if (student.isNote) message += "\n${student.note}";
     // ignore: avoid_print
     print(message);
   }
