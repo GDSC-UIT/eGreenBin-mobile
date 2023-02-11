@@ -14,8 +14,8 @@ class Notifications extends GetxController {
     listNotifications.clear();
   }
 
-  static RxList<Notification> listNotifications = [
-    Notification(
+  static RxList<Notification> listNotifications = <Notification>[
+    /* Notification(
       title: "Email",
       subtile: "Gửi email thành công.",
     ),
@@ -27,6 +27,6 @@ class Notifications extends GetxController {
       title: "Refresh",
       subtile:
           "Load dữ liệu thành công.asdasdgALIugdfpaieusfdaiggdfQIGASBDCIUQasbcdoiqEB",
-    ),
+    ), */
   ].obs;
 }

@@ -19,7 +19,7 @@ class MailController extends GetxController {
       filterMonth: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
-    testMail = Mail(student: Students.listStudents[0], content: "");
+    testMail = Mail(student: Students.listStudents[0]);
   }
 
   // function
@@ -50,14 +50,10 @@ class MailController extends GetxController {
   }
 
   Future saveNote(Student student) async {
-    // luu content
-    if (textCotroller.text == "") {
-      student.isNote = false;
-    } else {
-      student.isNote = true;
-    }
+    // luu content vao student
+    student.note = textCotroller.text;
     // lay link roi bo vao mail
-    testMail = Mail(student: student, content: textCotroller.text);
+    testMail = Mail(student: student);
   }
 
   void filterByAll() {}
@@ -77,7 +73,7 @@ class MailController extends GetxController {
   // screen shot
   final screenshotController = ScreenshotController();
   // mail
-  Mail? testMail = Mail(student: Students.listStudents[0], content: "");
+  Mail? testMail = Mail(student: Students.listStudents[0]);
   // sort box
   Rx<SortService>? sortService;
   // data models

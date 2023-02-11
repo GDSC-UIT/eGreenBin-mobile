@@ -85,7 +85,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
             child: SizedBox(
               height: 30,
               child: Image.asset(
-                widget.student.isNote! ? Assets.yellowStar : Assets.greyStar,
+                widget.student.isNote ? Assets.yellowStar : Assets.greyStar,
               ),
             ),
           )
