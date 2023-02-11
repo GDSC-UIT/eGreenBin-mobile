@@ -38,7 +38,8 @@ class MailController extends GetxController {
     await captureScreen();
 
     if (image != null) {
-      await LocalService.saveImage(image!);
+      // luu anh vao dien thoai
+      //await LocalService.saveImage(image!);
       // luu man hinh len firebase
       String urlImage = await FireBaseService.uploadImage(image);
       print(urlImage);
