@@ -76,11 +76,11 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               ElevatedButton(
                 onPressed: selectFile,
-                child: Text('Selecte file'),
+                child: const Text('Selecte file'),
               ),
               ElevatedButton(
                 onPressed: uploadFile1,
-                child: Text('Upload file'),
+                child: const Text('Upload file'),
               ),
             ],
           ),

@@ -13,8 +13,11 @@ class CardStudentMailList extends StatelessWidget {
 
   const CardStudentMailList(this._controller, {super.key});
 
-  // show comment
+  // show comment dialog
   void showCommentForm(BuildContext context, Student student) {
+    // set text of contrller = text note of student
+    _controller.textCotroller.text = student.note!;
+    // show dialog
     showDialog(
       context: context,
       useRootNavigator: false,

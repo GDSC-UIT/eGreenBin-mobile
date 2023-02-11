@@ -1,6 +1,5 @@
 import 'package:egreenbin/app/data/models/mail.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/modules/mail/widgets/send_email/child_result_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +19,7 @@ class MailController extends GetxController {
       filterMonth: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
-    testMail = Mail(student: Students.listStudents[0], content: "");
+    testMail = Mail(student: Students.listStudents[0]);
   }
 
   // function
@@ -44,21 +43,17 @@ class MailController extends GetxController {
       String urlImage = await FireBaseService.uploadImage(image);
       print(urlImage);
       // lay link roi bo vao mail
-      //testMail!.setImageUrl(urlImage);
+      testMail!.setImageUrl(urlImage);
     }
     // send email to all parents
-    //await testMail!.sendEmail();
+    await testMail!.sendEmail();
   }
 
   Future saveNote(Student student) async {
-    // luu content
-    if (textCotroller.text == "") {
-      student.isNote = false;
-    } else {
-      student.isNote = true;
-    }
+    // luu content vao student
+    student.note = textCotroller.text;
     // lay link roi bo vao mail
-    testMail = Mail(student: student, content: textCotroller.text);
+    testMail = Mail(student: student);
   }
 
   void filterByAll() {}
@@ -78,7 +73,7 @@ class MailController extends GetxController {
   // screen shot
   final screenshotController = ScreenshotController();
   // mail
-  Mail? testMail = Mail(student: Students.listStudents[0], content: "");
+  Mail? testMail = Mail(student: Students.listStudents[0]);
   // sort box
   Rx<SortService>? sortService;
   // data models

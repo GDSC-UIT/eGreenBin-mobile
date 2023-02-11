@@ -20,7 +20,7 @@ const Map<String, String> enLanguagePackage = {
   'Month': 'Month',
 
   // notification screen
-  'NOTIFICATION': 'THÔNG BÁO',
+  'NOTIFICATION': 'NOTIFICATION',
   'Delete all': 'Delete all',
   'NOTIFICATION LIST': 'NOTIFICATION LIST',
   'notifications': 'notifications',
@@ -46,7 +46,7 @@ const Map<String, String> enLanguagePackage = {
 
   // comment screen
   'COMMENTS': 'COMMENTS',
-  'ALL COMMENTS': 'TẤT CẢ ĐÁNH GIÁ',
+  'ALL COMMENTS': 'ALL COMMENTS',
   'Today': 'Today',
   'Yesterday': 'Yesterday',
   'days ago': 'days ago',

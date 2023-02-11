@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/extensions/buildcontext_ex.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
@@ -57,7 +58,7 @@ class StudentCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 230,
+                  width: context.screenSize.width * 0.5,
                   child: Text(
                     student.name,
                     style: CustomTextStyle.b1(AppColors.primary1),

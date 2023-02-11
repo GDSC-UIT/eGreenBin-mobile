@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:egreenbin/app/core/extensions/buildcontext_ex.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
@@ -58,7 +59,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 200,
+                width: context.screenSize.width * 0.45,
                 child: Text(
                   widget.student.name,
                   style: CustomTextStyle.b1(AppColors.primary1),
@@ -66,7 +67,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
               ),
               const SizedBox(height: 5),
               SizedBox(
-                width: 200,
+                width: context.screenSize.width * 0.45,
                 child: AutoSizeText(
                   widget.student.parentEmail!,
                   style: CustomTextStyle.b1(AppColors.subtle_2),
@@ -84,7 +85,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
             child: SizedBox(
               height: 30,
               child: Image.asset(
-                widget.student.isNote! ? Assets.yellowStar : Assets.greyStar,
+                widget.student.isNote ? Assets.yellowStar : Assets.greyStar,
               ),
             ),
           )

@@ -6,13 +6,11 @@ class Mail {
   // message: noi dung thong bao
   String? id;
   Student student;
-  String content;
   String? imageUrl;
 
   Mail({
     this.id,
     required this.student,
-    required this.content,
     this.imageUrl,
   }) {
     id ??= DateTime.now().toString();
@@ -22,7 +20,7 @@ class Mail {
 
   Future sendEmail() async {
     String message = imageUrl!;
-    if (student.isNote!) message += "\n$content";
+    if (student.isNote) message += "\n${student.note}";
 
     await EmailService.sendEmail(
       student: student,
@@ -36,7 +34,7 @@ class Mail {
 
   void printEmail() {
     String message = imageUrl!;
-    if (student.isNote!) message += "\n$content";
+    if (student.isNote) message += "\n${student.note}";
     // ignore: avoid_print
     print(message);
   }
