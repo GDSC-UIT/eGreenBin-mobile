@@ -1,14 +1,13 @@
 import 'package:egreenbin/app/core/values/app_values.dart';
 
 class Student {
-  // them thong tin email phu huynh
-  String? id;
-  String name;
-  int? numOfCorrect;
-  int? numOfWrong;
-  String? imageAvartaUrl;
-  String? parentEmail;
-  String? note;
+  String? id; // id of student
+  String name; // name of student
+  int? numOfCorrect; // number of correct
+  int? numOfWrong; // number of wrong
+  String? imageAvartaUrl; // link url of image avatar student
+  String? parentEmail; // email of parent's student
+  String? note; // note when send email to parent's student
 
   Student({
     this.id,
@@ -26,6 +25,7 @@ class Student {
     note ??= "";
   }
 
+  // check this student has note?
   bool get isNote {
     return note != "";
   }

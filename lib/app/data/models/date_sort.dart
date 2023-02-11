@@ -3,9 +3,10 @@ import '../../core/values/app_values.dart';
 import '../enums/sortType.dart';
 
 class DateSort {
-  DateTime? _date;
-  String? _week;
-  String? _month;
+  // there are three type of sort
+  DateTime? _date; // sort by date
+  String? _week; // sort by week
+  String? _month; // sort by month
 
   DateSort.fromDate({required date}) {
     _date = date;

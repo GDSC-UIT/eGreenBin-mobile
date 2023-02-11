@@ -1,11 +1,11 @@
 import 'package:egreenbin/app/data/models/date_sort.dart';
 
 class Comment {
-  String? id;
-  String idStudent;
-  String content;
-  DateSort? dateSort;
-  DateTime? dateCreate;
+  String? id; // id of comment
+  String idStudent; // id of student of comment
+  String content; // content of comment
+  DateSort? dateSort; // xem class dateSort
+  DateTime? dateCreate; // date create of comment
 
   Comment({
     this.id,
