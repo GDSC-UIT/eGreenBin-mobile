@@ -68,10 +68,11 @@ class CardStudentMailList extends StatelessWidget {
                   "${_controller.numberOfStudent.value} ${'students'.tr}",
                   style: CustomTextStyle.b1(AppColors.subtle_1),
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
 // list student
                 Expanded(
                   child: ListView.builder(
+                    padding: const EdgeInsets.all(0),
                     itemCount: Students.listStudents.length,
                     itemBuilder: (context, i) => CardMailStudent(
                       i + 1,

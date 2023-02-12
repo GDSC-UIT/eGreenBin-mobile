@@ -56,7 +56,7 @@ class CardEvaluate extends StatelessWidget {
                   ],
                 ),
 // list comment
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
                 Obx(() => Expanded(
                       child: Container(
                         child: _controller.listComments.isEmpty
@@ -67,6 +67,7 @@ class CardEvaluate extends StatelessWidget {
                                 ),
                               )
                             : ListView.builder(
+                                padding: const EdgeInsets.all(0),
                                 itemCount: _controller.listComments.length,
                                 itemBuilder: (context, index) => CardComment(
                                   _controller.listComments[index],

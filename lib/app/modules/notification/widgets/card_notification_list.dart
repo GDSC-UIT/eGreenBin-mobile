@@ -50,7 +50,7 @@ class CardNotificationList extends StatelessWidget {
                     style: CustomTextStyle.b1(AppColors.subtle_1),
                   ),
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
 // list notification
                 Obx(
                   () => Expanded(
@@ -62,6 +62,7 @@ class CardNotificationList extends StatelessWidget {
                             ),
                           )
                         : ListView.builder(
+                            padding: const EdgeInsets.all(0),
                             itemCount: Notifications.listNotifications.length,
                             itemBuilder: (context, i) => CardNotification(
                                 Notifications.listNotifications[i]),

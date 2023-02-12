@@ -29,6 +29,7 @@ class ShimmerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: const EdgeInsets.all(0),
       itemCount: numOfLoad,
       itemBuilder: (context, index) {
         return cardShimmer();
