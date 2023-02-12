@@ -8,4 +8,13 @@ class Teacher {
     required this.name,
     this.imageAvatarUrl,
   });
+
+  //fetch teacher from json
+  factory Teacher.fromJson(Map<String, dynamic> json) {
+    return Teacher(
+      id: json['id'],
+      name: json['name'],
+      imageAvatarUrl: json['imageAvatarUrl'],
+    );
+  }
 }

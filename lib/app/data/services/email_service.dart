@@ -13,7 +13,6 @@ class EmailService {
   // ham gui email
   // student: student dang co
   // message: noi dung thong bao
-
   static Future sendEmail({
     required Student student,
     required String message,
@@ -42,7 +41,7 @@ class EmailService {
     // show snackbar
     Get.snackbar(
       'Thông báo',
-      response.body,
+      response.body == "OK" ? "Send email successful" : "Can not send email",
       duration: const Duration(seconds: 2),
       backgroundColor:
           response.body == "OK" ? AppColors.primarySubtle1 : Colors.red,
@@ -50,7 +49,9 @@ class EmailService {
     // add notification
     Notifications.addNotification(noti.Notification(
       title: "Email service",
-      subtile: response.body,
+      subtile: response.body == "OK"
+          ? "Send email successful"
+          : "Can not send email",
     ));
   }
 

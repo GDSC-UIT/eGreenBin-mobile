@@ -45,12 +45,12 @@ class StudentCard extends StatelessWidget {
             CircleAvatar(
               radius: 25,
               backgroundColor: AppColors.background,
-              child: student.imageAvartaUrl == null
+              child: student.imageAvatarUrl == null
                   ? const Icon(
                       Icons.person,
                       color: AppColors.subtle_2,
                     )
-                  : Image.network(student.imageAvartaUrl!),
+                  : Image.network(student.imageAvatarUrl!),
             ),
             // column
             const SizedBox(width: 10),

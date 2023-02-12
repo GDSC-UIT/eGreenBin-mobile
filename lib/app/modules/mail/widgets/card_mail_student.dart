@@ -46,12 +46,12 @@ class _CardMailStudentState extends State<CardMailStudent> {
           CircleAvatar(
             radius: 25,
             backgroundColor: AppColors.background,
-            child: widget.student.imageAvartaUrl == null
+            child: widget.student.imageAvatarUrl == null
                 ? const Icon(
                     Icons.person,
                     color: AppColors.subtle_2,
                   )
-                : Image.network(widget.student.imageAvartaUrl!),
+                : Image.network(widget.student.imageAvatarUrl!),
           ),
 // column
           const SizedBox(width: 10),

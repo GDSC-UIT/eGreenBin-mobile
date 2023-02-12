@@ -5,7 +5,7 @@ class Student {
   String name; // name of student
   int? numOfCorrect; // number of correct
   int? numOfWrong; // number of wrong
-  String? imageAvartaUrl; // link url of image avatar student
+  String? imageAvatarUrl; // link url of image avatar student
   String? parentEmail; // email of parent's student
   String? note; // note when send email to parent's student
 
@@ -14,7 +14,7 @@ class Student {
     required this.name,
     this.numOfCorrect,
     this.numOfWrong,
-    this.imageAvartaUrl,
+    this.imageAvatarUrl,
     this.parentEmail,
     this.note,
   }) {
@@ -28,5 +28,18 @@ class Student {
   // check this student has note?
   bool get isNote {
     return note != "";
+  }
+
+  //fetch student from json
+  factory Student.fromJson(Map<String, dynamic> json) {
+    return Student(
+      id: json['id'],
+      name: json['name'],
+      parentEmail: json['parentEmail'],
+      numOfCorrect: json['numOfCorrect'],
+      numOfWrong: json['numOfWrong'],
+      imageAvatarUrl: json['imageAvartaUrl'],
+      note: json['note'],
+    );
   }
 }
