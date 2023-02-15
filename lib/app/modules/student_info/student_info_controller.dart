@@ -67,17 +67,25 @@ class StudentInfoController extends GetxController {
     Get.back();
   }
 
+  // this fuction is push to rating module
   void pushToAllCommentScreen() {
-    Get.toNamed(AppRoutes.rating, arguments: student.value.id);
+    // isPop is check is screen is pop from rating screen
+    var isPop = Get.toNamed(AppRoutes.rating, arguments: student.value.id);
+
+    // ignore: unrelated_type_equality_checks
+    if (isPop == 'success') {
+      refreshComment();
+    }
   }
 
-  void deleteComment(Comment comment) {
-    Comments.deleteComment(comment);
-    listComments.remove(comment);
+  // refresh comment
+  void refreshComment() {
+    print("pop sreenasdddddddddddddddddddddddddddddddddddd");
   }
 
+// filter comment==========================================
   void filterByAll() {
-    // update list comment by date
+    // update list comment by all
     listComments.value = Comments.listCommentsFindById(id);
   }
 
@@ -96,6 +104,7 @@ class StudentInfoController extends GetxController {
     listComments.value = Comments.listCommentsSortByMonth(id);
   }
 
+// comment ================================================================
   void saveComment() {
     // luu comment
     String content = textCotroller.text;
@@ -122,6 +131,11 @@ class StudentInfoController extends GetxController {
     Comments.addComment(newComment);
     listComments.value = Comments.listCommentsFindById(id);
     textCotroller.clear();
+  }
+
+  void deleteComment(Comment comment) {
+    Comments.deleteComment(comment);
+    listComments.remove(comment);
   }
 
 // card statical

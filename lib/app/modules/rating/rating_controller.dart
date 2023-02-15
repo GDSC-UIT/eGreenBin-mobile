@@ -35,12 +35,6 @@ class RatingController extends GetxController {
     super.onInit();
   }
 
-  // delete a comment
-  void deleteComment(Comment comment) {
-    Comments.deleteComment(comment);
-    listComments.remove(comment);
-  }
-
   // comment
   RxList<Comment> listComments = <Comment>[].obs;
   // dropButton sort value
@@ -54,9 +48,10 @@ class RatingController extends GetxController {
   Function fnull = () {};
 
   void backToPrevScreen() {
-    Get.back();
+    Get.back(result: 'success');
   }
 
+// filter comment==========================================
   void filterByAll() {
     // update list comment by date
     listComments.value = Comments.listCommentsFindById(id);
@@ -102,7 +97,15 @@ class RatingController extends GetxController {
       dateSort: sortTemp,
     );
     Comments.addComment(newComment);
+    // update listComment
     listComments.value = Comments.listCommentsFindById(id);
+    // delete textController
     textCotroller.clear();
+  }
+
+  // delete a comment
+  void deleteComment(Comment comment) {
+    Comments.deleteComment(comment);
+    listComments.remove(comment);
   }
 }
