@@ -63,6 +63,7 @@ class CardEvaluate extends StatelessWidget {
                             ? Center(
                                 child: Text(
                                   "THERE ARE NO COMMENTS YET".tr,
+                                  textAlign: TextAlign.center,
                                   style: CustomTextStyle.h2(AppColors.normal),
                                 ),
                               )

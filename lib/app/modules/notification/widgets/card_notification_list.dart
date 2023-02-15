@@ -58,6 +58,7 @@ class CardNotificationList extends StatelessWidget {
                         ? Center(
                             child: Text(
                               "THERE ARE NO NOTIFICATION YET".tr,
+                              textAlign: TextAlign.center,
                               style: CustomTextStyle.h2(AppColors.normal),
                             ),
                           )
