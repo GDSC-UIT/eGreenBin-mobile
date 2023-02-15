@@ -1,6 +1,6 @@
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/global_widgets/card_comment.dart';
-import 'package:egreenbin/app/modules/rating/rating_controller.dart';
+import 'package:egreenbin/app/modules/student_info/student_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
@@ -9,7 +9,7 @@ import '../../../global_widgets/dialog_comment.dart';
 import '../../../global_widgets/sort_box.dart';
 
 class CardAllComments extends StatelessWidget {
-  final RatingController _controller;
+  final StudentInfoController _controller;
   const CardAllComments(this._controller, {super.key});
 
 // show comment
@@ -63,7 +63,7 @@ class CardAllComments extends StatelessWidget {
                     Obx(
                       () => SortBox(
                         textTitle: "Filter by".tr,
-                        sortService: _controller.sortService!.value,
+                        sortService: _controller.sortCardEvaluate!.value,
                       ),
                     ),
                   ],

@@ -3,8 +3,6 @@ import 'package:egreenbin/app/modules/login/screens/login_screen.dart';
 import 'package:egreenbin/app/modules/mail/screens/mail_screen.dart';
 import 'package:egreenbin/app/modules/notification/notification_binding.dart';
 import 'package:egreenbin/app/modules/notification/screens/notification_screen.dart';
-import 'package:egreenbin/app/modules/rating/rating_binding.dart';
-import 'package:egreenbin/app/modules/rating/screens/rating_screen.dart';
 import 'package:egreenbin/app/modules/student_info/screens/student_info_screen.dart';
 import 'package:egreenbin/app/modules/student_info/student_info_binding.dart';
 import 'package:egreenbin/app/modules/upload/screens/upload_screen.dart';
@@ -26,11 +24,6 @@ abstract class AppPages {
       name: AppRoutes.studentInfo,
       page: () => StudentInfoScreen(),
       binding: StudentInfoBinding(),
-    ),
-    GetPage(
-      name: AppRoutes.rating,
-      page: () => RatingScreen(),
-      binding: RatingBinding(),
     ),
     GetPage(
       name: AppRoutes.login,

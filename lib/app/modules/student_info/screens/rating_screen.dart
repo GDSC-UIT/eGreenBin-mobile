@@ -1,12 +1,13 @@
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/appbar_student.dart';
-import 'package:egreenbin/app/modules/rating/widgets/card_all_comments.dart';
-import 'package:egreenbin/app/modules/rating/rating_controller.dart';
+import 'package:egreenbin/app/modules/student_info/student_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widgets/card_all_comments.dart';
+
 class RatingScreen extends StatelessWidget {
-  final RatingController _controller = Get.find<RatingController>();
+  final StudentInfoController _controller = Get.find<StudentInfoController>();
 
   RatingScreen({super.key});
 
@@ -26,7 +27,7 @@ class RatingScreen extends StatelessWidget {
               StudentAppBar(
                 "COMMENTS".tr,
                 _controller.student.value,
-                _controller.backToPrevScreen,
+                _controller.backToStudentInfo,
               ),
               // card danh gia
               const SizedBox(height: 20),

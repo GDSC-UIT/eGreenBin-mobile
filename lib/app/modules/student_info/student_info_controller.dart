@@ -3,10 +3,10 @@ import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
+import 'package:egreenbin/app/modules/student_info/screens/rating_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
-import '../../routes/app_routes.dart';
 
 class StudentInfoController extends GetxController {
   StudentInfoController() {
@@ -70,7 +70,7 @@ class StudentInfoController extends GetxController {
   // this fuction is push to rating module
   void pushToAllCommentScreen() {
     // isPop is check is screen is pop from rating screen
-    var isPop = Get.toNamed(AppRoutes.rating, arguments: student.value.id);
+    var isPop = Get.to(() => RatingScreen(), arguments: student.value.id);
 
     // ignore: unrelated_type_equality_checks
     if (isPop == 'success') {
@@ -78,9 +78,14 @@ class StudentInfoController extends GetxController {
     }
   }
 
+  // this function if pop from rating screen
+  void backToStudentInfo() {
+    Get.back(result: 'success');
+  }
+
   // refresh comment
   void refreshComment() {
-    print("pop sreenasdddddddddddddddddddddddddddddddddddd");
+    print("pop sreen yearrrrrrrrrrrrrrrrrrrrrrr");
   }
 
 // filter comment==========================================
@@ -128,11 +133,15 @@ class StudentInfoController extends GetxController {
       dateCreate: DateTime.now(),
       dateSort: sortTemp,
     );
+    // add this comment to list comment
     Comments.addComment(newComment);
+    // bug
     listComments.value = Comments.listCommentsFindById(id);
+    // clear textcontroller
     textCotroller.clear();
   }
 
+  // delete a comment
   void deleteComment(Comment comment) {
     Comments.deleteComment(comment);
     listComments.remove(comment);
