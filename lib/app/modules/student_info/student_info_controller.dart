@@ -109,23 +109,29 @@ class StudentInfoController extends GetxController {
     listComments.value = Comments.listCommentsSortByMonth(id);
   }
 
+  // update list comment when change comment
+  void updateCurrentListComment() {
+    if (sortCardEvaluate!.value.selectedSortBy.value ==
+        SortService.sortByItems[0]) {
+      filterByAll();
+    } else if (sortCardEvaluate!.value.selectedSortBy.value ==
+        SortService.sortByItems[1]) {
+      filterByDate();
+    } else if (sortCardEvaluate!.value.selectedSortBy.value ==
+        SortService.sortByItems[2]) {
+      filterByWeek();
+    } else {
+      filterByMonth();
+    }
+  }
+
 // comment ================================================================
   void saveComment() {
     // luu comment
     String content = textCotroller.text;
     // luu sort date
     DateSort? sortTemp;
-    if (sortDialog!.value.selectedSortByWithoutAll.value ==
-        SortService.sortByItems[1]) {
-      sortTemp = DateSort.fromDate(date: sortDialog!.value.selectDate.value);
-    } else if (sortDialog!.value.selectedSortByWithoutAll.value ==
-        SortService.sortByItems[2]) {
-      sortTemp =
-          DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
-    } else {
-      sortTemp =
-          DateSort.fromMonth(month: sortDialog!.value.selectedMonthSort.value);
-    }
+    sortTemp = getDateSortFromDialog();
     // create comment
     Comment newComment = Comment(
       idStudent: student.value.id!,
@@ -136,7 +142,7 @@ class StudentInfoController extends GetxController {
     // add this comment to list comment
     Comments.addComment(newComment);
     // bug
-    listComments.value = Comments.listCommentsFindById(id);
+    updateCurrentListComment();
     // clear textcontroller
     textCotroller.clear();
   }
@@ -145,6 +151,20 @@ class StudentInfoController extends GetxController {
   void deleteComment(Comment comment) {
     Comments.deleteComment(comment);
     listComments.remove(comment);
+  }
+
+  //get type of sort when add comment from dialog
+  DateSort getDateSortFromDialog() {
+    if (sortDialog!.value.selectedSortByWithoutAll.value ==
+        SortService.sortByItems[1]) {
+      return DateSort.fromDate(date: sortDialog!.value.selectDate.value);
+    } else if (sortDialog!.value.selectedSortByWithoutAll.value ==
+        SortService.sortByItems[2]) {
+      return DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
+    } else {
+      return DateSort.fromMonth(
+          month: sortDialog!.value.selectedMonthSort.value);
+    }
   }
 
 // card statical
