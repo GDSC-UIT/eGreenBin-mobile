@@ -76,12 +76,20 @@ class SortBox extends StatelessWidget {
         menuMaxHeight: 200,
         style: CustomTextStyle.b3(AppColors.normal),
         dropdownColor: AppColors.primarySubtle2,
-        value: sortService.selectedWeekSort.value,
+        value: isInDialog
+            ? sortService.selectedWeekSortWithoutAll.value
+            : sortService.selectedWeekSort.value,
         // thay doi item
         onChanged: (String? newValue) {
-          sortService.changeSortWeekItem(newValue!);
+          if (isInDialog) {
+            sortService.changeSortWeekItemWithoutAll(newValue!);
+          } else {
+            sortService.changeSortWeekItem(newValue!);
+          }
         },
-        items: sortService.dropdownSortWeekItems,
+        items: isInDialog
+            ? sortService.dropdownSortWeekItemsWithoutAll
+            : sortService.dropdownSortWeekItems,
         underline: Container(color: AppColors.surface),
         icon: const Icon(
           Icons.expand_more,
@@ -96,12 +104,20 @@ class SortBox extends StatelessWidget {
         menuMaxHeight: 200,
         style: CustomTextStyle.b3(AppColors.normal),
         dropdownColor: AppColors.primarySubtle2,
-        value: sortService.selectedMonthSort.value,
+        value: isInDialog
+            ? sortService.selectedMonthSortWithoutAll.value
+            : sortService.selectedMonthSort.value,
         // thay doi item
         onChanged: (String? newValue) {
-          sortService.changeSortMonthItem(newValue!);
+          if (isInDialog) {
+            sortService.changeSortMonthItemWithoutAll(newValue!);
+          } else {
+            sortService.changeSortMonthItem(newValue!);
+          }
         },
-        items: sortService.dropdownSortMonthItems,
+        items: isInDialog
+            ? sortService.dropdownSortMonthItemsWithoutAll
+            : sortService.dropdownSortMonthItems,
         underline: Container(color: AppColors.surface),
         icon: const Icon(
           Icons.expand_more,
