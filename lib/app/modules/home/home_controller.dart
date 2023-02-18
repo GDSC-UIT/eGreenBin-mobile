@@ -16,6 +16,13 @@ class HomeController extends GetxController {
     numberOfStudent = Students.listStudents.length.obs;
   }
 
+  @override
+  void onInit() {
+    // load list of garbages
+    Garbages.gernerateGabages();
+    super.onInit();
+  }
+
   // function
   Function fnull = () {
     // this is fake function
