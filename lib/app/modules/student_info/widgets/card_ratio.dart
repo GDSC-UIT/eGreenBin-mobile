@@ -98,7 +98,7 @@ class _CardRatioState extends State<CardRatio> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      //face happy
+//face happy
                       Row(
                         children: [
                           SizedBox(
@@ -121,10 +121,13 @@ class _CardRatioState extends State<CardRatio> {
                                   AppColors.normal,
                                 ),
                               ),
-                              Text(
-                                "${widget._controller.student.value.numOfCorrect}",
-                                style: CustomTextStyle.h3(
-                                  AppColors.normal,
+// text number of right
+                              Obx(
+                                () => Text(
+                                  "${widget._controller.numOfRight.value}",
+                                  style: CustomTextStyle.h3(
+                                    AppColors.normal,
+                                  ),
                                 ),
                               ),
                             ],
@@ -132,7 +135,7 @@ class _CardRatioState extends State<CardRatio> {
                         ],
                       ),
                       const SizedBox(width: 30),
-                      // face sad
+// face sad
                       Row(
                         children: [
                           SizedBox(
@@ -155,12 +158,13 @@ class _CardRatioState extends State<CardRatio> {
                                   AppColors.wrong,
                                 ),
                               ),
-                              Text(
-                                "${widget._controller.student.value.numOfWrong}",
-                                style: CustomTextStyle.h3(
-                                  AppColors.wrong,
-                                ),
-                              ),
+// text number of wrong
+                              Obx(() => Text(
+                                    "${widget._controller.numOfWrong.value}",
+                                    style: CustomTextStyle.h3(
+                                      AppColors.wrong,
+                                    ),
+                                  )),
                             ],
                           )
                         ],

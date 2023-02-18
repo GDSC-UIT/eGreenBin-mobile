@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../data/providers/Garbages.dart';
 import '../../routes/app_routes.dart';
 
 class LoginController extends GetxController {
@@ -26,6 +27,9 @@ class LoginController extends GetxController {
         return const Center(child: CircularProgressIndicator());
       },
     );
+    // load list of garbages
+    Garbages.gernerateGabages();
+
     await Future.delayed(
       const Duration(seconds: 2),
       () {},

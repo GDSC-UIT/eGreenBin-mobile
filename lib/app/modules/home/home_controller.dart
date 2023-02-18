@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:get/get.dart';
@@ -36,6 +37,8 @@ class HomeController extends GetxController {
   bool isLoading = false;
   Future refreshStudents() async {
     isLoading = true;
+    // load list of garbages
+    Garbages.gernerateGabages();
     await Future.delayed(const Duration(seconds: 2), () {
       isLoading = false;
     });

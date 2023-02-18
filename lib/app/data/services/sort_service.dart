@@ -13,16 +13,22 @@ class SortService extends GetxController {
     required this.filterMonth,
   }) {
     selectedClass.value = sortClassItems[0];
+    // sortby
     selectedSortBy.value = sortByItems[0];
     selectedSortByWithoutAll.value = sortByItems[1];
+    // week
     selectedWeekSort.value = sortWeekItems[0];
     selectedWeekSortWithoutAll.value = sortWeekItems[1];
+    // month
     selectedMonthSort.value = sortMonthItems[0];
     selectedMonthSortWithoutAll.value = sortMonthItems[1];
+    // sortBy
     dropdownSortByItemsWithoutAll = [...dropdownSortByItems];
     dropdownSortByItemsWithoutAll.removeAt(0);
+    // week
     dropdownSortWeekItemsWithoutAll = [...dropdownSortWeekItems];
     dropdownSortWeekItemsWithoutAll.removeAt(0);
+    // month
     dropdownSortMonthItemsWithoutAll = [...dropdownSortMonthItems];
     dropdownSortMonthItemsWithoutAll.removeAt(0);
   }

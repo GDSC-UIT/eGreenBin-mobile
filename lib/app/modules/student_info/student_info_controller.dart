@@ -1,6 +1,7 @@
 import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/modules/student_info/screens/rating_screen.dart';
@@ -36,6 +37,7 @@ class StudentInfoController extends GetxController {
     ).obs;
   }
 
+  // this function will do nothing
   Function fnull = () {};
   // data models
   Rx<Student> student = Student(name: "default").obs;
@@ -45,6 +47,11 @@ class StudentInfoController extends GetxController {
   // textController comment
   final TextEditingController textCotroller = TextEditingController();
 
+  // number of Right and Wrong
+  RxInt numOfRight = 0.obs;
+  RxInt numOfWrong = 0.obs;
+  //==========================
+
   // get id from prev screen
   dynamic id = Get.arguments;
 
@@ -53,6 +60,9 @@ class StudentInfoController extends GetxController {
     // get student and comments from id
     student.value = Students.findStudent(id);
     listComments.value = Comments.listCommentsFindById(id);
+    // get Number of right and wrong
+    numOfRight.value = Garbages.getNumOfCorrect(id);
+    numOfWrong.value = Garbages.getNumOfWrong(id);
     super.onInit();
   }
 
@@ -111,14 +121,12 @@ class StudentInfoController extends GetxController {
 
   // update list comment when change comment
   void updateCurrentListComment() {
-    if (sortCardEvaluate!.value.selectedSortBy.value ==
-        SortService.sortByItems[0]) {
+    String typeSort = sortCardEvaluate!.value.selectedSortBy.value;
+    if (typeSort == SortService.sortByItems[0]) {
       filterByAll();
-    } else if (sortCardEvaluate!.value.selectedSortBy.value ==
-        SortService.sortByItems[1]) {
+    } else if (typeSort == SortService.sortByItems[1]) {
       filterByDate();
-    } else if (sortCardEvaluate!.value.selectedSortBy.value ==
-        SortService.sortByItems[2]) {
+    } else if (typeSort == SortService.sortByItems[2]) {
       filterByWeek();
     } else {
       filterByMonth();
@@ -155,11 +163,10 @@ class StudentInfoController extends GetxController {
 
   //get type of sort when add comment from dialog
   DateSort getDateSortFromDialog() {
-    if (sortDialog!.value.selectedSortByWithoutAll.value ==
-        SortService.sortByItems[1]) {
+    String typeSort = sortDialog!.value.selectedSortByWithoutAll.value;
+    if (typeSort == SortService.sortByItems[1]) {
       return DateSort.fromDate(date: sortDialog!.value.selectDate.value);
-    } else if (sortDialog!.value.selectedSortByWithoutAll.value ==
-        SortService.sortByItems[2]) {
+    } else if (typeSort == SortService.sortByItems[2]) {
       return DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
     } else {
       return DateSort.fromMonth(
