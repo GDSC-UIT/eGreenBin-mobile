@@ -59,4 +59,46 @@ class Garbages {
     }
     return num;
   }
+
+  // sort by month
+  static int getNumOfCorrectByMonth(String idStudent, int month) {
+    int num = 0;
+    for (Garbage gar in listGarbage) {
+      if (gar.idStudent == idStudent) {
+        if (gar.isRight && gar.dateCreate!.month == month) num++;
+      }
+    }
+    return num;
+  }
+
+  static int getNumOfWrongByMonth(String idStudent, int month) {
+    int num = 0;
+    for (Garbage gar in listGarbage) {
+      if (gar.idStudent == idStudent) {
+        if (!gar.isRight && gar.dateCreate!.month == month) num++;
+      }
+    }
+    return num;
+  }
+
+  // sort by year
+  static int getNumOfCorrectByYear(String idStudent, int year) {
+    int num = 0;
+    for (Garbage gar in listGarbage) {
+      if (gar.idStudent == idStudent) {
+        if (gar.isRight && gar.dateCreate!.year == year) num++;
+      }
+    }
+    return num;
+  }
+
+  static int getNumOfWrongByYear(String idStudent, int year) {
+    int num = 0;
+    for (Garbage gar in listGarbage) {
+      if (gar.idStudent == idStudent) {
+        if (!gar.isRight && gar.dateCreate!.month == year) num++;
+      }
+    }
+    return num;
+  }
 }
