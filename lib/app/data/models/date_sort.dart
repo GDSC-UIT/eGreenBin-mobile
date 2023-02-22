@@ -5,36 +5,37 @@ import '../enums/sortType.dart';
 class DateSort {
   // there are three type of sort
   DateTime? _date; // sort by date
-  String? _week; // sort by week
   String? _month; // sort by month
+  int? _year; // sort by year
 
   DateSort.fromDate({required date}) {
     _date = date;
-    _week = null;
+    _year = null;
     _month = null;
   }
 
-  DateSort.fromWeek({required week}) {
-    _week = week;
-    _date = null;
-    _month = null;
-  }
   DateSort.fromMonth({required month}) {
     _month = month;
     _date = null;
-    _week = null;
+    _year = null;
+  }
+
+  DateSort.fromYear({required year}) {
+    _year = year;
+    _date = null;
+    _month = null;
   }
 
   dynamic getValue() {
     if (_date != null) return _date;
-    if (_week != null) return _week;
-    return _month;
+    if (_month != null) return _month;
+    return _year;
   }
 
   SortType get type {
     if (_date != null) return SortType.Date;
-    if (_week != null) return SortType.Week;
-    return SortType.Month;
+    if (_month != null) return SortType.Month;
+    return SortType.Year;
   }
 
   @override
@@ -44,7 +45,7 @@ class DateSort {
       dateString =
           DateFormat(FormatValue.numbericDateFormat).format(getValue());
     } else {
-      dateString = getValue();
+      dateString = getValue().toString();
     }
     return dateString;
   }

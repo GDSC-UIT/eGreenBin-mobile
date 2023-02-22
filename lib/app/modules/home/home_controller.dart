@@ -10,8 +10,8 @@ class HomeController extends GetxController {
     sortService = SortService(
       filterAll: fnull,
       filterDate: fnull,
-      filterWeek: fnull,
       filterMonth: fnull,
+      filterYear: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
   }
@@ -53,7 +53,7 @@ class HomeController extends GetxController {
 
   void filterByAll() {}
   void filterByDate() {}
-  void filterByWeek() {}
+  void filterByYear() {}
   void filterByMonth() {}
 
   // data models

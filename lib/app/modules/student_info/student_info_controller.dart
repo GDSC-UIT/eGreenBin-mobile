@@ -14,25 +14,25 @@ class StudentInfoController extends GetxController {
     sortCardStatical = SortService(
       filterAll: fnull,
       filterDate: fnull,
-      filterWeek: fnull,
+      filterYear: fnull,
       filterMonth: fnull,
     ).obs;
     sortCardRatio = SortService(
       filterAll: fnull,
       filterDate: fnull,
-      filterWeek: fnull,
+      filterYear: fnull,
       filterMonth: fnull,
     ).obs;
     sortCardEvaluate = SortService(
       filterAll: filterByAll,
       filterDate: filterByDate,
-      filterWeek: filterByWeek,
+      filterYear: filterByYear,
       filterMonth: filterByMonth,
     ).obs;
     sortDialog = SortService(
       filterAll: fnull,
       filterDate: fnull,
-      filterWeek: fnull,
+      filterYear: fnull,
       filterMonth: fnull,
     ).obs;
   }
@@ -109,9 +109,9 @@ class StudentInfoController extends GetxController {
     listComments.value = Comments.listCommentsSortByDate(id);
   }
 
-  void filterByWeek() {
-    // update list comment by week
-    listComments.value = Comments.listCommentsSortByWeek(id);
+  void filterByYear() {
+    // update list comment by year
+    listComments.value = Comments.listCommentsSortByYear(id);
   }
 
   void filterByMonth() {
@@ -127,7 +127,7 @@ class StudentInfoController extends GetxController {
     } else if (typeSort == SortService.sortByItems[1]) {
       filterByDate();
     } else if (typeSort == SortService.sortByItems[2]) {
-      filterByWeek();
+      filterByYear();
     } else {
       filterByMonth();
     }
@@ -167,10 +167,10 @@ class StudentInfoController extends GetxController {
     if (typeSort == SortService.sortByItems[1]) {
       return DateSort.fromDate(date: sortDialog!.value.selectDate.value);
     } else if (typeSort == SortService.sortByItems[2]) {
-      return DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
-    } else {
       return DateSort.fromMonth(
           month: sortDialog!.value.selectedMonthSort.value);
+    } else {
+      return DateSort.fromYear(year: sortDialog!.value.selectedYearSort.value);
     }
   }
 

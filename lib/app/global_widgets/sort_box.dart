@@ -70,54 +70,19 @@ class SortBox extends StatelessWidget {
         ),
       ],
     );
-// sort Week
-    Widget showListWeek = Obx(
-      () => DropdownButton<String>(
-        menuMaxHeight: 200,
-        style: CustomTextStyle.b3(AppColors.normal),
-        dropdownColor: AppColors.primarySubtle2,
-        value: isInDialog
-            ? sortService.selectedWeekSortWithoutAll.value
-            : sortService.selectedWeekSort.value,
-        // thay doi item
-        onChanged: (String? newValue) {
-          if (isInDialog) {
-            sortService.changeSortWeekItemWithoutAll(newValue!);
-          } else {
-            sortService.changeSortWeekItem(newValue!);
-          }
-        },
-        items: isInDialog
-            ? sortService.dropdownSortWeekItemsWithoutAll
-            : sortService.dropdownSortWeekItems,
-        underline: Container(color: AppColors.surface),
-        icon: const Icon(
-          Icons.expand_more,
-          size: 18,
-          color: AppColors.normal,
-        ),
-      ),
-    );
+
 // sort Month
     Widget showListMonth = Obx(
       () => DropdownButton<String>(
         menuMaxHeight: 200,
         style: CustomTextStyle.b3(AppColors.normal),
         dropdownColor: AppColors.primarySubtle2,
-        value: isInDialog
-            ? sortService.selectedMonthSortWithoutAll.value
-            : sortService.selectedMonthSort.value,
+        value: sortService.selectedMonthSort.value,
         // thay doi item
         onChanged: (String? newValue) {
-          if (isInDialog) {
-            sortService.changeSortMonthItemWithoutAll(newValue!);
-          } else {
-            sortService.changeSortMonthItem(newValue!);
-          }
+          sortService.changeSortMonthItem(newValue!);
         },
-        items: isInDialog
-            ? sortService.dropdownSortMonthItemsWithoutAll
-            : sortService.dropdownSortMonthItems,
+        items: sortService.dropdownSortMonthItems,
         underline: Container(color: AppColors.surface),
         icon: const Icon(
           Icons.expand_more,
@@ -126,7 +91,26 @@ class SortBox extends StatelessWidget {
         ),
       ),
     );
-
+// sort Year
+    Widget showListYear = Obx(
+      () => DropdownButton<int>(
+        menuMaxHeight: 200,
+        style: CustomTextStyle.b3(AppColors.normal),
+        dropdownColor: AppColors.primarySubtle2,
+        value: sortService.selectedYearSort.value,
+        // thay doi item
+        onChanged: (int? newValue) {
+          sortService.changeSortYearItem(newValue!);
+        },
+        items: sortService.dropdownSortYearItems,
+        underline: Container(color: AppColors.surface),
+        icon: const Icon(
+          Icons.expand_more,
+          size: 18,
+          color: AppColors.normal,
+        ),
+      ),
+    );
 // built UI
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +142,7 @@ class SortBox extends StatelessWidget {
                   value: isInDialog
                       ? sortService.selectedSortByWithoutAll.value
                       : sortService.selectedSortBy.value,
-// thay doi item
+// change item
                   onChanged: (String? newValue) {
                     if (isInDialog) {
                       sortService.changeSortByItemWithoutAll(newValue!);
@@ -190,8 +174,8 @@ class SortBox extends StatelessWidget {
                     : const SizedBox(width: 0),
               ),
 // if sort by day => calendar
-// if sort by week => listWeekDrop
 // if sort by month => listMonthDrop
+// if sort by year => listYearDrop
 // none => show all
               isInDialog
                   ? Obx(() => (sortService.selectedSortByWithoutAll.value ==
@@ -199,18 +183,18 @@ class SortBox extends StatelessWidget {
                       ? showCalendar
                       : (sortService.selectedSortByWithoutAll.value ==
                               SortService.sortByItems[2])
-                          ? showListWeek
-                          : showListMonth)
+                          ? showListMonth
+                          : showListYear)
                   : Obx(
                       () => (sortService.selectedSortBy.value ==
                               SortService.sortByItems[1])
                           ? showCalendar
                           : (sortService.selectedSortBy.value ==
                                   SortService.sortByItems[2])
-                              ? showListWeek
+                              ? showListMonth
                               : (sortService.selectedSortBy.value ==
                                       SortService.sortByItems[3])
-                                  ? showListMonth
+                                  ? showListYear
                                   : showAll,
                     ),
             ],
