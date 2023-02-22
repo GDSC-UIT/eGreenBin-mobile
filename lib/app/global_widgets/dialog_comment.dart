@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
@@ -75,7 +76,8 @@ class _DiaLogCommentState extends State<DiaLogComment> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.32,
+            height: 32.0.hp,
+            width: 56.0.wp,
             child: Column(
               children: [
 // text Danh gia
