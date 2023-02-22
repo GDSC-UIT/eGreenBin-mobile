@@ -49,12 +49,18 @@ class SortService extends GetxController {
     'December',
   ];
 
+  static int curentYear = DateTime.now().year;
   static List<int> sortYearItems = <int>[
-    2023,
-    2022,
-    2021,
-    2020,
-    2019,
+    curentYear,
+    curentYear - 1,
+    curentYear - 2,
+    curentYear - 3,
+    curentYear - 4,
+    curentYear - 5,
+    curentYear - 6,
+    curentYear - 7,
+    curentYear - 8,
+    curentYear - 9,
   ];
 
   // dropdown class
