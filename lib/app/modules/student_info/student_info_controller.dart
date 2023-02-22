@@ -12,28 +12,16 @@ import '../../data/models/comment.dart';
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     sortCardStatical = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterYear: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
     sortCardRatio = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterYear: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
     sortCardEvaluate = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterYear: filterByYear,
-      filterMonth: filterByMonth,
+      updateSort: updateCurrentListComment,
     ).obs;
     sortDialog = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterYear: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
   }
 
@@ -127,9 +115,9 @@ class StudentInfoController extends GetxController {
     } else if (typeSort == SortService.sortByItems[1]) {
       filterByDate();
     } else if (typeSort == SortService.sortByItems[2]) {
-      filterByYear();
-    } else {
       filterByMonth();
+    } else {
+      filterByYear();
     }
   }
 

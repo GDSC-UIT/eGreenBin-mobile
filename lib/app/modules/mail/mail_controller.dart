@@ -12,10 +12,7 @@ import '../../data/services/sort_service.dart';
 class MailController extends GetxController {
   MailController() {
     sortService = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterYear: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
     testMail = Mail(student: Students.listStudents[0]);

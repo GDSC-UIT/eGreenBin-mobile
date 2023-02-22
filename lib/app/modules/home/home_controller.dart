@@ -8,10 +8,7 @@ import '../../routes/app_routes.dart';
 class HomeController extends GetxController {
   HomeController() {
     sortService = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterMonth: fnull,
-      filterYear: fnull,
+      updateSort: fnull,
     ).obs;
     numberOfStudent = Students.listStudents.length.obs;
   }

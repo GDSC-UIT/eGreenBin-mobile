@@ -2,15 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SortService extends GetxController {
-  Function filterDate;
-  Function filterMonth;
-  Function filterYear;
-  Function filterAll;
+  Function updateSort;
   SortService({
-    required this.filterAll,
-    required this.filterDate,
-    required this.filterYear,
-    required this.filterMonth,
+    required this.updateSort,
   }) {
     selectedClass.value = sortClassItems[0];
     // sortby
@@ -84,15 +78,7 @@ class SortService extends GetxController {
   // change data when choose type of sort
   void changeSortByItem(String newValue) {
     selectedSortBy.value = newValue;
-    if (selectedSortBy.value == sortByItems[0]) {
-      filterAll();
-    } else if (selectedSortBy.value == sortByItems[1]) {
-      filterDate();
-    } else if (selectedSortBy.value == sortByItems[2]) {
-      filterMonth();
-    } else {
-      filterYear();
-    }
+    updateSort();
   }
 
   final List<DropdownMenuItem<String>> dropdownSortByItems = sortByItems
