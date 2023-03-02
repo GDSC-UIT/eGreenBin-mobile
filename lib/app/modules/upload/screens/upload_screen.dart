@@ -1,8 +1,7 @@
-import 'dart:io';
-import 'package:egreenbin/app/data/services/local_service.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:egreenbin/app/data/models/student.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class UploadScreen extends StatefulWidget {
   const UploadScreen({super.key});
@@ -12,78 +11,69 @@ class UploadScreen extends StatefulWidget {
 }
 
 class _UploadScreenState extends State<UploadScreen> {
-  PlatformFile? pickedFile;
+  final String studentApi = "https://egreenbin.onrender.com/api/students";
 
-  Future selectFile() async {
-    pickedFile = await LocalService.selectFile();
-    setState(() {});
-  }
+  Future<List<Student>> fetchStudent() async {
+    final response = await http.get(Uri.parse(studentApi));
 
-  // upload file to firebase
-  Future uploadFile1() async {
-    // em coi tren youtube
-    final path = 'files/${pickedFile!.name}';
-    final file = File(pickedFile!.path!);
+    if (response.statusCode == 200) {
+      final parsed = (json.decode(response.body)['data'] as List)
+          .cast<Map<String, dynamic>>();
 
-    final ref = FirebaseStorage.instance.ref().child(path);
-
-    UploadTask uploadTask = ref.putFile(file);
-    // lỗi putFile ko đc
-    TaskSnapshot taskSnapshot = await uploadTask;
-    print("Da up xong");
-    print(taskSnapshot.ref.getDownloadURL());
-    return taskSnapshot.ref.getDownloadURL();
-  }
-
-  Future uploadFile() async {
-    // ham nay em thu code của chat gpt
-    try {
-      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      final file = File(pickedFile!.path!);
-      // Get reference to Firebase Storage
-      final Reference storageReference =
-          FirebaseStorage.instance.ref().child(fileName);
-
-      // Upload file
-      final UploadTask uploadTask = storageReference.putFile(file);
-      print("dong nay chua bi loi");
-      // Wait for upload to complete
-      final TaskSnapshot storageTaskSnapshot = await uploadTask;
-      print("dong nay bi loi");
-      // duong dan downloadUrl
-      print(storageTaskSnapshot.ref.getDownloadURL());
-    } on FirebaseException catch (e) {
-      print('Failed with error code: ${e.code}');
-      print(e.message);
+      return parsed.map<Student>((json) => Student.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load student');
     }
+  }
+
+  late Future<List<Student>> futureStudent;
+  @override
+  void initState() {
+    super.initState();
+    futureStudent = fetchStudent();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              if (pickedFile != null)
-                Expanded(
+        child: FutureBuilder<List<Student>>(
+          future: futureStudent,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (_, index) => Container(
                   child: Container(
-                      color: Colors.blue[100],
-                      child: Image.file(
-                        File(pickedFile!.path!),
-                        fit: BoxFit.cover,
-                      )),
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: EdgeInsets.all(20.0),
+                    decoration: BoxDecoration(
+                      color: Color(0xff97FFFF),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${snapshot.data![index].name}",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text("${snapshot.data![index].numOfCorrect}"),
+                        Text("${snapshot.data![index].numOfWrong}"),
+                      ],
+                    ),
+                  ),
                 ),
-              ElevatedButton(
-                onPressed: selectFile,
-                child: const Text('Selecte file'),
-              ),
-              ElevatedButton(
-                onPressed: uploadFile1,
-                child: const Text('Upload file'),
-              ),
-            ],
-          ),
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
         ),
       ),
     );

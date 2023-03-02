@@ -1,6 +1,8 @@
+import 'package:egreenbin/app/core/values/http_values.dart';
 import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
+import 'package:egreenbin/app/data/services/http_service.dart';
 import 'package:get/get.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
@@ -14,9 +16,10 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     // load list of garbages
     Garbages.gernerateGabages();
+    refreshStudents();
     super.onInit();
   }
 
@@ -38,13 +41,13 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoutes.notification, arguments: teacher.value);
   }
 
-  bool isLoading = false;
+  RxBool isLoading = false.obs;
   Future refreshStudents() async {
-    isLoading = true;
+    isLoading.value = true;
     // load list of garbages
     Garbages.gernerateGabages();
-    await Future.delayed(const Duration(seconds: 2), () {
-      isLoading = false;
+    await Students.fetchStudent().then((value) {
+      isLoading.value = false;
     });
   }
 

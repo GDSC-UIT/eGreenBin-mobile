@@ -66,19 +66,19 @@ class CardStudentList extends StatelessWidget {
                 ),
 // list student
                 const SizedBox(height: 10),
-                Expanded(
-                  child: _controller.isLoading
-                      ? const ShimmerList()
-                      : ListView.builder(
-                          padding: const EdgeInsets.all(0),
-                          itemCount: Students.listStudents.length,
-                          itemBuilder: (context, i) => StudentCard(
-                            i + 1,
-                            Students.listStudents[i],
-                            _controller.pushToStudentInfoScreen,
-                          ),
-                        ),
-                ),
+                Obx(() => Expanded(
+                      child: _controller.isLoading.value
+                          ? const ShimmerList()
+                          : ListView.builder(
+                              padding: const EdgeInsets.all(0),
+                              itemCount: Students.listStudents.length,
+                              itemBuilder: (context, i) => StudentCard(
+                                i + 1,
+                                Students.listStudents[i],
+                                _controller.pushToStudentInfoScreen,
+                              ),
+                            ),
+                    )),
                 const SizedBox(height: 10),
               ],
             ),

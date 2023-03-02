@@ -36,10 +36,10 @@ class Student {
       id: json['id'],
       name: json['name'],
       parentEmail: json['parentEmail'],
-      numOfCorrect: json['numOfCorrect'],
-      numOfWrong: json['numOfWrong'],
-      imageAvatarUrl: json['imageAvartaUrl'],
-      note: json['note'],
+      numOfCorrect: json['NumOfCorrect'],
+      numOfWrong: json['NumOfWrong'],
+      imageAvatarUrl: json['ImageAvatarUrl'],
+      note: json['Note'],
     );
   }
 }
