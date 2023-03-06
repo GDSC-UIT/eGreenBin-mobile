@@ -20,6 +20,7 @@ class Assets {
   static const String mail = 'assets/icons/Message.png';
   static const String yellowStar = 'assets/icons/YellowPin.png';
   static const String greyStar = 'assets/icons/GreyPin.png';
+  static const String add = 'assets/icons/add.png';
   // image
   static const String backround = 'assets/images/bg.png';
   static const String logo = 'assets/images/logo.png';

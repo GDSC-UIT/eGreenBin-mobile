@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:egreenbin/app/core/extensions/buildcontext_ex.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
@@ -6,6 +7,7 @@ import 'package:egreenbin/app/global_widgets/switch_language.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../data/models/student.dart';
+import 'image_avatar.dart';
 
 // ignore: must_be_immutable
 class StudentAppBar extends StatelessWidget {
@@ -112,12 +114,10 @@ class StudentAppBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(width: 30),
-                      const CircleAvatar(
-                        radius: 27,
-                        backgroundColor: AppColors.background,
-                        child: Icon(Icons.person),
-                      ),
+// avatar
+                      ImageAvatar(student.imageAvatarUrl!),
                       const SizedBox(width: 20),
+// text
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -130,9 +130,14 @@ class StudentAppBar extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          Text(
-                            "${"CodeStudent".tr}: ${student.id}",
-                            style: CustomTextStyle.b1(AppColors.subtle_1),
+                          SizedBox(
+                            width: context.screenSize.width * 0.5,
+                            child: AutoSizeText(
+                              "${"CodeStudent".tr}: ${student.id}",
+                              style: CustomTextStyle.b1(AppColors.subtle_1),
+                              maxLines: 1,
+                              minFontSize: 5,
+                            ),
                           ),
                         ],
                       ),
