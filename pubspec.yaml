@@ -59,6 +59,7 @@ dependencies:
   badges: ^3.0.2
   flutter_animate: ^3.0.0
   flutter_switch: ^0.3.2
+  image_picker: ^0.8.6+4
 
 flutter_icons:
   android: "launcher_icon"

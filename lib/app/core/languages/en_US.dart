@@ -74,4 +74,9 @@ const Map<String, String> enLanguagePackage = {
 
   // card send parent
   'YOUR CHILD\'S TRAINING RESULT': 'YOUR CHILD\'S TRAINING RESULT',
+
+  // add student dialog
+  "NEW STUDENT": "NEW STUDENT",
+  "Image": "Image",
+  "Add": "Add",
 };

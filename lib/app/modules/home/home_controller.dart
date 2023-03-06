@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:egreenbin/app/core/values/http_values.dart';
 import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
@@ -12,7 +14,6 @@ class HomeController extends GetxController {
     sortService = SortService(
       updateSort: fnull,
     ).obs;
-    numberOfStudent = Students.listStudents.length.obs;
   }
 
   @override
@@ -20,6 +21,7 @@ class HomeController extends GetxController {
     // load list of garbages
     Garbages.gernerateGabages();
     refreshStudents();
+    numberOfStudent = Students.listStudents.length.obs;
     super.onInit();
   }
 
@@ -46,11 +48,13 @@ class HomeController extends GetxController {
     isLoading.value = true;
     // load list of garbages
     Garbages.gernerateGabages();
+    // fetch student
     await Students.fetchStudent().then((value) {
       isLoading.value = false;
     });
   }
 
+  // fuction of sort
   void filterByAll() {}
   void filterByDate() {}
   void filterByYear() {}
@@ -63,7 +67,13 @@ class HomeController extends GetxController {
   ).obs;
 
   // class value
-  RxInt numberOfStudent = 32.obs;
+  RxInt numberOfStudent = 0.obs;
   // sort box
   Rx<SortService>? sortService;
+
+  // this is add student function
+  File? imageStudent; // file image of student
+  String code = "";
+  String name = "";
+  String parentEmail = "";
 }

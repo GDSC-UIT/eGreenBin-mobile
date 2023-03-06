@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class LocalService {
+class DeviceService {
   // get file image from local
   //Image.file(File(pickerFile!.path!))
   static Future selectFile() async {

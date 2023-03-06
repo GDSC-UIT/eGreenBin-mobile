@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../core/theme/app_colors.dart';
 
+// ignore: must_be_immutable
 class ImageAvatar extends StatelessWidget {
   String imageAvatarUrl;
-  ImageAvatar(this.imageAvatarUrl);
+  ImageAvatar(this.imageAvatarUrl, {super.key});
 
   @override
   Widget build(BuildContext context) {

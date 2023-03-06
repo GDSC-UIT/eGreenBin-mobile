@@ -1,5 +1,7 @@
 import 'package:egreenbin/app/core/theme/text_styles.dart';
+import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
+import 'package:egreenbin/app/global_widgets/add_student/dialog_add_student.dart';
 import 'package:egreenbin/app/global_widgets/shimmer_list.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
@@ -12,6 +14,17 @@ class CardStudentList extends StatelessWidget {
   final HomeController _controller;
 
   const CardStudentList(this._controller, {super.key});
+
+  // show add student dialog
+  void showAddStudentForm(BuildContext context) {
+    // show dialog
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      barrierDismissible: false,
+      builder: (ctx) => DiaLogAddStudent(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +60,26 @@ class CardStudentList extends StatelessWidget {
                   style: CustomTextStyle.h2(AppColors.primary1),
                 ),
                 const SizedBox(height: 2),
-                Text(
-                  "${_controller.numberOfStudent.value} ${"students".tr}",
-                  style: CustomTextStyle.b1(AppColors.subtle_1),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${_controller.numberOfStudent.value} ${"students".tr}",
+                      style: CustomTextStyle.b1(AppColors.subtle_1),
+                    ),
+                    const SizedBox(width: 5),
+// add icon
+                    InkWell(
+                      onTap: () {
+                        // add a student
+                        showAddStudentForm(context);
+                      },
+                      child: SizedBox(
+                        height: 12,
+                        child: Image.asset(Assets.add),
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 5),
 // loc theo
