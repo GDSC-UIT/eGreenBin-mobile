@@ -21,10 +21,10 @@ class Comments {
     return list;
   }
 
-  static List<Comment> listCommentsSortByWeek(String id) {
+  static List<Comment> listCommentsSortByYear(String id) {
     List<Comment> list = [];
     for (var com in listAllCommets) {
-      if (com.idStudent == id && com.dateSort!.type == SortType.Week) {
+      if (com.idStudent == id && com.dateSort!.type == SortType.Year) {
         list.add(com);
       }
     }
@@ -75,14 +75,14 @@ class Comments {
       content:
           "Bé Trung vẫn còn nhầm lẫn khá nhiều giữa 2 loại rác nhưng nhìn chung đã có tiến bộ hơn.",
       dateCreate: DateTime(2022, 11, 12),
-      dateSort: DateSort.fromWeek(week: "Week 3"),
+      dateSort: DateSort.fromYear(year: 2021),
     ),
     Comment(
       idStudent: "21522345",
       content:
           "Bé Trung vẫn còn nhầm lẫn khá nhiều giữa 2 loại rác nhưng nhìn chung đã có tiến bộ hơn.",
       dateCreate: DateTime(2022, 11, 12),
-      dateSort: DateSort.fromWeek(week: "Week 6"),
+      dateSort: DateSort.fromYear(year: 2023),
     ),
     Comment(
       idStudent: "21522345",

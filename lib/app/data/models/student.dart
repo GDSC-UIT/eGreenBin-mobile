@@ -2,6 +2,7 @@ import 'package:egreenbin/app/core/values/app_values.dart';
 
 class Student {
   String? id; // id of student
+  String? code; // code of student
   String name; // name of student
   int? numOfCorrect; // number of correct
   int? numOfWrong; // number of wrong
@@ -11,6 +12,7 @@ class Student {
 
   Student({
     this.id,
+    this.code,
     required this.name,
     this.numOfCorrect,
     this.numOfWrong,
@@ -36,10 +38,10 @@ class Student {
       id: json['id'],
       name: json['name'],
       parentEmail: json['parentEmail'],
-      numOfCorrect: json['numOfCorrect'],
-      numOfWrong: json['numOfWrong'],
-      imageAvatarUrl: json['imageAvartaUrl'],
-      note: json['note'],
+      numOfCorrect: json['NumOfCorrect'],
+      numOfWrong: json['NumOfWrong'],
+      imageAvatarUrl: json['ImageAvatarUrl'],
+      note: json['Note'],
     );
   }
 }

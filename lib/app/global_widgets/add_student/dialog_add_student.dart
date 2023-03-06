@@ -1,35 +1,29 @@
 import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/data/services/sort_service.dart';
-import 'package:egreenbin/app/global_widgets/sort_box.dart';
+import 'package:egreenbin/app/global_widgets/add_student/form_add_student.dart';
+import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../core/theme/app_colors.dart';
-import '../core/theme/text_styles.dart';
 
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/text_styles.dart';
+
+// tham khao: https://github.com/minhphan46/Shop_app/blob/main/lib/screens/edit_product_screen.dart
+// https://github.com/minhphan46/chat_app/blob/main/lib/widgets/auth/auth_form.dart
 // ignore: must_be_immutable
-class DiaLogComment extends StatefulWidget {
-  SortService sortDialog;
-  TextEditingController textControler;
-  final Function onSave;
-
-  DiaLogComment({
-    super.key,
-    required this.sortDialog,
-    required this.textControler,
-    required this.onSave,
-  });
+class DiaLogAddStudent extends StatefulWidget {
+  HomeController homeCotroller;
+  DiaLogAddStudent(this.homeCotroller);
 
   @override
-  State<DiaLogComment> createState() => _DiaLogCommentState();
+  State<DiaLogAddStudent> createState() => _DiaLogAddStudentState();
 }
 
-class _DiaLogCommentState extends State<DiaLogComment> {
+class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
   bool isNull = true;
 
   void onCancel() {
     Navigator.of(context).pop();
-    widget.textControler.clear();
   }
 
   @override
@@ -76,59 +70,21 @@ class _DiaLogCommentState extends State<DiaLogComment> {
             ),
           ),
           SizedBox(
-            height: 32.0.hp,
+            height: 60.0.hp,
             width: 56.0.wp,
             child: Column(
               children: [
-// text Danh gia
+// text new student
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    "COMMENT".tr,
+                    "NEW STUDENT".tr,
                     style: CustomTextStyle.h2(AppColors.primary1),
                   ),
                 ),
-                const SizedBox(height: 5),
-// sort box: thoi gian
-                Row(
-                  children: [
-                    SortBox(
-                      textTitle: "Time".tr,
-                      sortService: widget.sortDialog,
-                      isInDialog: true,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 17),
-// textField: noi dung
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Content".tr,
-                      style: CustomTextStyle.b2(AppColors.subtle_1),
-                    ),
-                    const SizedBox(height: 7),
-                    TextField(
-                      controller: widget.textControler,
-                      style: CustomTextStyle.b7(AppColors.subtle_1),
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.primary1, width: 1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        hintText: "Add comment".tr,
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          isNull = (value.trim() == "");
-                        });
-                      },
-                    ),
-                  ],
-                ),
+                SizedBox(height: 1.5.hp),
+// form dang ky
+                FormAddStudent(widget.homeCotroller),
               ],
             ),
           ),
@@ -142,7 +98,6 @@ class _DiaLogCommentState extends State<DiaLogComment> {
             child: ElevatedButton(
               onPressed: () {
                 if (isNull) return;
-                widget.onSave();
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
@@ -150,7 +105,7 @@ class _DiaLogCommentState extends State<DiaLogComment> {
                 backgroundColor: AppColors.normal, // mau chu
               ),
               child: Text(
-                "Post".tr,
+                "Add".tr,
                 style: CustomTextStyle.b6(AppColors.primarySubtle2),
               ),
             ),

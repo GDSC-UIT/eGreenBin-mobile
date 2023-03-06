@@ -12,28 +12,16 @@ import '../../data/models/comment.dart';
 class StudentInfoController extends GetxController {
   StudentInfoController() {
     sortCardStatical = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterWeek: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
     sortCardRatio = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterWeek: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
     sortCardEvaluate = SortService(
-      filterAll: filterByAll,
-      filterDate: filterByDate,
-      filterWeek: filterByWeek,
-      filterMonth: filterByMonth,
+      updateSort: updateCurrentListComment,
     ).obs;
     sortDialog = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterWeek: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
   }
 
@@ -109,9 +97,9 @@ class StudentInfoController extends GetxController {
     listComments.value = Comments.listCommentsSortByDate(id);
   }
 
-  void filterByWeek() {
-    // update list comment by week
-    listComments.value = Comments.listCommentsSortByWeek(id);
+  void filterByYear() {
+    // update list comment by year
+    listComments.value = Comments.listCommentsSortByYear(id);
   }
 
   void filterByMonth() {
@@ -127,9 +115,9 @@ class StudentInfoController extends GetxController {
     } else if (typeSort == SortService.sortByItems[1]) {
       filterByDate();
     } else if (typeSort == SortService.sortByItems[2]) {
-      filterByWeek();
-    } else {
       filterByMonth();
+    } else {
+      filterByYear();
     }
   }
 
@@ -167,10 +155,10 @@ class StudentInfoController extends GetxController {
     if (typeSort == SortService.sortByItems[1]) {
       return DateSort.fromDate(date: sortDialog!.value.selectDate.value);
     } else if (typeSort == SortService.sortByItems[2]) {
-      return DateSort.fromWeek(week: sortDialog!.value.selectedWeekSort.value);
-    } else {
       return DateSort.fromMonth(
           month: sortDialog!.value.selectedMonthSort.value);
+    } else {
+      return DateSort.fromYear(year: sortDialog!.value.selectedYearSort.value);
     }
   }
 

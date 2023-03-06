@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:egreenbin/app/core/values/http_values.dart';
 import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
+import 'package:egreenbin/app/data/services/http_service.dart';
 import 'package:get/get.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
@@ -8,18 +12,16 @@ import '../../routes/app_routes.dart';
 class HomeController extends GetxController {
   HomeController() {
     sortService = SortService(
-      filterAll: fnull,
-      filterDate: fnull,
-      filterWeek: fnull,
-      filterMonth: fnull,
+      updateSort: fnull,
     ).obs;
-    numberOfStudent = Students.listStudents.length.obs;
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     // load list of garbages
     Garbages.gernerateGabages();
+    refreshStudents();
+    numberOfStudent = Students.listStudents.length.obs;
     super.onInit();
   }
 
@@ -41,19 +43,21 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoutes.notification, arguments: teacher.value);
   }
 
-  bool isLoading = false;
+  RxBool isLoading = false.obs;
   Future refreshStudents() async {
-    isLoading = true;
+    isLoading.value = true;
     // load list of garbages
     Garbages.gernerateGabages();
-    await Future.delayed(const Duration(seconds: 2), () {
-      isLoading = false;
+    // fetch student
+    await Students.fetchStudent().then((value) {
+      isLoading.value = false;
     });
   }
 
+  // fuction of sort
   void filterByAll() {}
   void filterByDate() {}
-  void filterByWeek() {}
+  void filterByYear() {}
   void filterByMonth() {}
 
   // data models
@@ -63,7 +67,13 @@ class HomeController extends GetxController {
   ).obs;
 
   // class value
-  RxInt numberOfStudent = 32.obs;
+  RxInt numberOfStudent = 0.obs;
   // sort box
   Rx<SortService>? sortService;
+
+  // this is add student function
+  File? imageStudent; // file image of student
+  String code = "";
+  String name = "";
+  String parentEmail = "";
 }

@@ -4,6 +4,7 @@ import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/global_widgets/image_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -43,16 +44,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
             ),
           ),
 //avatar
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: AppColors.background,
-            child: widget.student.imageAvatarUrl == null
-                ? const Icon(
-                    Icons.person,
-                    color: AppColors.subtle_2,
-                  )
-                : Image.network(widget.student.imageAvatarUrl!),
-          ),
+          ImageAvatar(widget.student.imageAvatarUrl!),
 // column
           const SizedBox(width: 10),
           Column(

@@ -74,4 +74,17 @@ const Map<String, String> enLanguagePackage = {
 
   // card send parent
   'YOUR CHILD\'S TRAINING RESULT': 'YOUR CHILD\'S TRAINING RESULT',
+
+  // add student dialog
+  "NEW STUDENT": "NEW STUDENT",
+  "Image": "Image",
+  "Add": "Add",
+  "Name": "Name",
+  "Full name": "Full name",
+  'Please enter a name.': 'Please enter a name.',
+  'Please enter a code.': 'Please enter a code.',
+  "Code is a number.": "Code is a number.",
+  "Parent's email": "Parent's email",
+  'Please enter a valid email address.': 'Please enter a valid email address.',
+  "Email": "Email",
 };

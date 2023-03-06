@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/global_widgets/card_comment.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class CardEvaluate extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            height: 320,
+            height: 40.0.hp,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: AppColors.primarySubtle2,
