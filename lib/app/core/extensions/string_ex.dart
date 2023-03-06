@@ -1,5 +1,5 @@
 extension StringX on String {
-  // Viết hoa chữ cái đầu
+  /// Viết hoa chữ cái đầu
   String capitalize() {
     if (length > 0) {
       return '${this[0].toUpperCase()}${substring(1)}';
@@ -8,8 +8,16 @@ extension StringX on String {
     return this;
   }
 
-  // Parse string sang double (trả về default value thay vì throw lỗi)
+  /// Parse string sang double (trả về default value thay vì throw lỗi)
   double parseDouble([double defaultValue = 0.0]) {
     return double.tryParse(replaceAll(RegExp(r'[^0-9\.]'), '')) ?? defaultValue;
+  }
+
+  /// check string is number
+  bool isNumeric() {
+    if (this == "") {
+      return false;
+    }
+    return double.tryParse(this) != null;
   }
 }

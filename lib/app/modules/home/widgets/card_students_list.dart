@@ -22,7 +22,7 @@ class CardStudentList extends StatelessWidget {
       context: context,
       useRootNavigator: false,
       barrierDismissible: false,
-      builder: (ctx) => DiaLogAddStudent(),
+      builder: (ctx) => DiaLogAddStudent(_controller),
     );
   }
 

@@ -79,4 +79,12 @@ const Map<String, String> enLanguagePackage = {
   "NEW STUDENT": "NEW STUDENT",
   "Image": "Image",
   "Add": "Add",
+  "Name": "Name",
+  "Full name": "Full name",
+  'Please enter a name.': 'Please enter a name.',
+  'Please enter a code.': 'Please enter a code.',
+  "Code is a number.": "Code is a number.",
+  "Parent's email": "Parent's email",
+  'Please enter a valid email address.': 'Please enter a valid email address.',
+  "Email": "Email",
 };
