@@ -40,7 +40,7 @@ class EmailService {
     );
     // show snackbar
     Get.snackbar(
-      'Thông báo',
+      'Notifications'.tr,
       response.body == "OK" ? "Send email successful" : "Can not send email",
       duration: const Duration(seconds: 2),
       backgroundColor:

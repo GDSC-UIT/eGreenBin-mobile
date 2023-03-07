@@ -1,9 +1,9 @@
 import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/extensions/string_ex.dart';
+import 'package:egreenbin/app/global_widgets/add_student/image_avatar_picker.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_styles.dart';
 
@@ -33,6 +33,8 @@ class _FormAddStudentState extends State<FormAddStudent> {
       key: _formKey,
       child: Column(
         children: [
+          ImageAvatarPicker(),
+          SizedBox(height: 2.0.hp),
 // name of student
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -24,6 +24,7 @@ const Map<String, String> viLanguagePackage = {
   'Delete all': 'Xóa tất cả',
   'NOTIFICATION LIST': 'DANH SÁCH THÔNG BÁO',
   'notifications': 'thông báo',
+  'Notifications': 'Thông báo',
   'THERE ARE NO NOTIFICATION YET': 'CHƯA CÓ THÔNG BÁO NÀO',
 
   // home screen
@@ -75,5 +76,16 @@ const Map<String, String> viLanguagePackage = {
   // card send parent
   'YOUR CHILD\'S TRAINING RESULT': 'KẾT QUẢ HỌC TẬP CỦA BÉ',
 
-  //TO DO: add student
+  // add student dialog
+  "NEW STUDENT": "SINH VIÊN MỚI",
+  "Image": "Ảnh",
+  "Add": "Thêm",
+  "Name": "Tên",
+  "Full name": "Họ tên đầy đủ",
+  'Please enter a name.': 'Vui lòng nhập tên.',
+  'Please enter a code.': 'Vui lòng nhập mã.',
+  "Code is a number.": "Mã là số.",
+  "Parent's email": "Email của phụ huynh",
+  'Please enter a valid email address.': 'Vui lòng nhập địa chỉ email hợp lệ.',
+  "Email": "Email",
 };

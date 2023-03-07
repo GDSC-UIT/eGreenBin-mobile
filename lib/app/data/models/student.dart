@@ -36,6 +36,7 @@ class Student {
   factory Student.fromJson(Map<String, dynamic> json) {
     return Student(
       id: json['id'],
+      code: json['code'],
       name: json['name'],
       parentEmail: json['parentEmail'],
       numOfCorrect: json['NumOfCorrect'],

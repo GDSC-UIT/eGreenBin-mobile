@@ -24,6 +24,7 @@ const Map<String, String> enLanguagePackage = {
   'Delete all': 'Delete all',
   'NOTIFICATION LIST': 'NOTIFICATION LIST',
   'notifications': 'notifications',
+  'Notifications': 'Notifications',
   'THERE ARE NO NOTIFICATION YET': 'THERE ARE NO NOTIFICATION YET',
 
   // home screen

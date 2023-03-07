@@ -13,7 +13,7 @@ import '../../core/theme/text_styles.dart';
 // ignore: must_be_immutable
 class DiaLogAddStudent extends StatefulWidget {
   HomeController homeCotroller;
-  DiaLogAddStudent(this.homeCotroller);
+  DiaLogAddStudent(this.homeCotroller, {super.key});
 
   @override
   State<DiaLogAddStudent> createState() => _DiaLogAddStudentState();
@@ -35,60 +35,62 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      content: Stack(
-        children: [
-// cancel button
-          Positioned(
-            top: 0,
-            right: 0,
-            child: GestureDetector(
-              onTap: onCancel,
-              child: Container(
-                width: 35,
-                height: 35,
-                decoration: const BoxDecoration(
-                  color: AppColors.primarySubtle2,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.shadow,
-                      spreadRadius: 0,
-                      blurRadius: 4,
-                      offset: Offset(0, 3), // changes position of shadow
+      content: SingleChildScrollView(
+        child: Stack(
+          children: [
+            // cancel button
+            Positioned(
+              top: 0,
+              right: 0,
+              child: GestureDetector(
+                onTap: onCancel,
+                child: Container(
+                  width: 35,
+                  height: 35,
+                  decoration: const BoxDecoration(
+                    color: AppColors.primarySubtle2,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
                     ),
-                  ],
-                ),
-                child: Center(
-                  child: SizedBox(
-                    height: 20,
-                    child: Image.asset(Assets.exit),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.shadow,
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: SizedBox(
+                      height: 20,
+                      child: Image.asset(Assets.exit),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 60.0.hp,
-            width: 56.0.wp,
-            child: Column(
-              children: [
-// text new student
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    "NEW STUDENT".tr,
-                    style: CustomTextStyle.h2(AppColors.primary1),
+            SizedBox(
+              height: 58.0.hp,
+              width: 56.0.wp,
+              child: Column(
+                children: [
+                  // text new student
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "NEW STUDENT".tr,
+                      style: CustomTextStyle.h2(AppColors.primary1),
+                    ),
                   ),
-                ),
-                SizedBox(height: 1.5.hp),
-// form dang ky
-                FormAddStudent(widget.homeCotroller),
-              ],
+                  SizedBox(height: 1.5.hp),
+                  // form dang ky
+                  FormAddStudent(widget.homeCotroller),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 // button dang
       actions: [

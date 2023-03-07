@@ -133,7 +133,7 @@ class StudentAppBar extends StatelessWidget {
                           SizedBox(
                             width: context.screenSize.width * 0.5,
                             child: AutoSizeText(
-                              "${"CodeStudent".tr}: ${student.id}",
+                              "${"CodeStudent".tr}: ${student.code}",
                               style: CustomTextStyle.b1(AppColors.subtle_1),
                               maxLines: 1,
                               minFontSize: 5,

@@ -1,10 +1,12 @@
 class Teacher {
-  String id; // id of teacher
+  String? id; // id of teacher
   String name; // name of teacher
+  String? code;
   String? imageAvatarUrl; // link url image avatar of teacher
 
   Teacher({
-    required this.id,
+    this.id,
+    this.code,
     required this.name,
     this.imageAvatarUrl,
   });
@@ -13,6 +15,7 @@ class Teacher {
   factory Teacher.fromJson(Map<String, dynamic> json) {
     return Teacher(
       id: json['id'],
+      code: json['code'],
       name: json['name'],
       imageAvatarUrl: json['imageAvatarUrl'],
     );
