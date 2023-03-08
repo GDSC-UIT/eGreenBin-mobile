@@ -16,7 +16,6 @@ class FormAddStudent extends StatefulWidget {
 }
 
 class _FormAddStudentState extends State<FormAddStudent> {
-  final _formKey = GlobalKey<FormState>();
   final _codeFocusNode = FocusNode();
   final _emailFocusNode = FocusNode();
 
@@ -30,10 +29,10 @@ class _FormAddStudentState extends State<FormAddStudent> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: widget.controller.formKey,
       child: Column(
         children: [
-          ImageAvatarPicker(),
+          ImageAvatarPicker(widget.controller),
           SizedBox(height: 2.0.hp),
 // name of student
           Column(
@@ -53,7 +52,7 @@ class _FormAddStudentState extends State<FormAddStudent> {
                   return null;
                 },
                 onSaved: (newValue) {
-                  //_userEmail = newValue!;
+                  widget.controller.name = newValue!;
                 },
                 onFieldSubmitted: (_) {
                   // chuyen qua textfill tiep theo
@@ -74,7 +73,7 @@ class _FormAddStudentState extends State<FormAddStudent> {
             ],
           ),
           SizedBox(height: 1.5.hp),
-// name of code
+// code of student
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -94,7 +93,7 @@ class _FormAddStudentState extends State<FormAddStudent> {
                   return null;
                 },
                 onSaved: (newValue) {
-                  //_userEmail = newValue!;
+                  widget.controller.code = newValue!;
                 },
                 onFieldSubmitted: (_) {
                   // chuyen qua textfill tiep theo
@@ -134,7 +133,7 @@ class _FormAddStudentState extends State<FormAddStudent> {
                   return null;
                 },
                 onSaved: (newValue) {
-                  //_userEmail = newValue!;
+                  widget.controller.parentEmail = newValue!;
                 },
                 focusNode: _emailFocusNode,
                 keyboardType: TextInputType.emailAddress,

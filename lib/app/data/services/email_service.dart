@@ -1,4 +1,5 @@
 import 'package:egreenbin/app/core/theme/app_colors.dart';
+import 'package:egreenbin/app/core/utils/snackbar.dart';
 import 'package:egreenbin/app/core/values/app_values.dart';
 import 'package:egreenbin/app/data/providers/notifications.dart';
 import 'package:egreenbin/app/data/models/notification.dart' as noti;
@@ -39,20 +40,12 @@ class EmailService {
       }),
     );
     // show snackbar
-    Get.snackbar(
-      'Notifications'.tr,
+    // and add notification
+    showSnackBarAndNotification(
+      'Email'.tr,
       response.body == "OK" ? "Send email successful" : "Can not send email",
-      duration: const Duration(seconds: 2),
-      backgroundColor:
-          response.body == "OK" ? AppColors.primarySubtle1 : Colors.red,
+      response.body == "OK" ? AppColors.primarySubtle1 : Colors.red,
     );
-    // add notification
-    Notifications.addNotification(noti.Notification(
-      title: "Email service",
-      subtile: response.body == "OK"
-          ? "Send email successful"
-          : "Can not send email",
-    ));
   }
 
   // ham send email bang launch url

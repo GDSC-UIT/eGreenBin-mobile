@@ -1,11 +1,13 @@
 import 'dart:io';
-
-import 'package:egreenbin/app/core/values/http_values.dart';
+import 'package:egreenbin/app/core/theme/app_colors.dart';
+import 'package:egreenbin/app/core/utils/snackbar.dart';
+import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
-import 'package:egreenbin/app/data/services/http_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
 
@@ -72,8 +74,64 @@ class HomeController extends GetxController {
   Rx<SortService>? sortService;
 
   // this is add student function
+  final formKey = GlobalKey<FormState>(); // key of form add student
+
   File? imageStudent; // file image of student
   String code = "";
   String name = "";
   String parentEmail = "";
+
+  /// try submit a new student
+  Future trySubmitAddStudent() async {
+    final isValid = formKey.currentState!.validate();
+
+    if (imageStudent == null) {
+      // show snackbar
+      showSnackBarAndNotification(
+        "Error",
+        "Please pick an image",
+        AppColors.wrong,
+      );
+      return;
+    }
+
+    if (isValid) {
+      formKey.currentState!.save();
+      // submit
+      await submitAddStudent();
+      // delete file
+      imageStudent = null;
+    }
+  }
+
+  Future<void> submitAddStudent() async {
+    try {
+      // loading
+      // upload file to firebase
+      String urlImage = await FireBaseService.uploadFile(imageStudent!);
+      // get link image
+      print(urlImage);
+      // create new student
+      Student newStudent = Student(
+        code: code.trim(),
+        name: name.trim(),
+        parentEmail: parentEmail.trim(),
+        imageAvatarUrl: urlImage,
+        numOfCorrect: 0,
+        numOfWrong: 0,
+        note: "",
+      );
+      // post student
+      await Students.addStudent(newStudent);
+      update();
+      // catch error
+    } catch (error) {
+      print("Error when submit student: $error");
+      showSnackBarAndNotification(
+        "Error",
+        "Error when submit student: $error",
+        AppColors.wrong,
+      );
+    }
+  }
 }

@@ -3,6 +3,7 @@ import 'package:egreenbin/app/core/values/assets_image.dart';
 import 'package:egreenbin/app/global_widgets/add_student/form_add_student.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import '../../core/theme/app_colors.dart';
@@ -20,10 +21,19 @@ class DiaLogAddStudent extends StatefulWidget {
 }
 
 class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
-  bool isNull = true;
-
   void onCancel() {
     Navigator.of(context).pop();
+    widget.homeCotroller.imageStudent = null;
+  }
+
+  bool isloading = false;
+  Future<void> submitAdd() async {
+    EasyLoading.show(status: 'loading...');
+
+    await widget.homeCotroller.trySubmitAddStudent();
+
+    EasyLoading.dismiss();
+    onCancel();
   }
 
   @override
@@ -38,6 +48,27 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
       content: SingleChildScrollView(
         child: Stack(
           children: [
+            SizedBox(
+              height: 58.0.hp,
+              width: 56.0.wp,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // text new student
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        "NEW STUDENT".tr,
+                        style: CustomTextStyle.h2(AppColors.primary1),
+                      ),
+                    ),
+                    SizedBox(height: 1.5.hp),
+                    // form dang ky
+                    FormAddStudent(widget.homeCotroller),
+                  ],
+                ),
+              ),
+            ),
             // cancel button
             Positioned(
               top: 0,
@@ -70,25 +101,6 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 58.0.hp,
-              width: 56.0.wp,
-              child: Column(
-                children: [
-                  // text new student
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      "NEW STUDENT".tr,
-                      style: CustomTextStyle.h2(AppColors.primary1),
-                    ),
-                  ),
-                  SizedBox(height: 1.5.hp),
-                  // form dang ky
-                  FormAddStudent(widget.homeCotroller),
-                ],
-              ),
-            ),
           ],
         ),
       ),
@@ -98,10 +110,7 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
           child: SizedBox(
             width: 110,
             child: ElevatedButton(
-              onPressed: () {
-                if (isNull) return;
-                Navigator.of(context).pop();
-              },
+              onPressed: submitAdd,
               style: ElevatedButton.styleFrom(
                 foregroundColor: AppColors.primarySubtle2,
                 backgroundColor: AppColors.normal, // mau chu

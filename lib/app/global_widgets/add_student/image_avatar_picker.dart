@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
@@ -6,14 +5,16 @@ import 'package:egreenbin/app/data/services/device_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../modules/home/home_controller.dart';
+
 class ImageAvatarPicker extends StatefulWidget {
+  HomeController controller;
+  ImageAvatarPicker(this.controller);
   @override
   State<ImageAvatarPicker> createState() => _ImageAvatarPickerState();
 }
 
 class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
-  File? imageFile;
-
   Future<void> showImageSoure(BuildContext context) async {
     return showModalBottomSheet(
       context: context,
@@ -28,7 +29,7 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
                 final image = await DeviceService.pickImage(ImageSource.camera);
                 if (image == null) return;
                 setState(() {
-                  imageFile = image;
+                  widget.controller.imageStudent = image;
                 });
                 Navigator.of(context).pop();
               },
@@ -41,7 +42,7 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
                     await DeviceService.pickImage(ImageSource.gallery);
                 if (image == null) return;
                 setState(() {
-                  imageFile = image;
+                  widget.controller.imageStudent = image;
                 });
                 Navigator.of(context).pop();
               },
@@ -80,9 +81,9 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
               // click on the image
               await showImageSoure(context);
             },
-            child: imageFile != null
+            child: widget.controller.imageStudent != null
                 ? Image.file(
-                    imageFile!,
+                    widget.controller.imageStudent!,
                     fit: BoxFit.cover,
                     width: 30.0.wp,
                     height: 30.0.wp,
