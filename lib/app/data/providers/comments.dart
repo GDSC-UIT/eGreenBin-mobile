@@ -1,6 +1,10 @@
+import 'dart:convert';
 import 'package:egreenbin/app/data/models/date_sort.dart';
+import 'package:egreenbin/app/data/models/student.dart';
+import '../../core/values/api_values.dart';
 import '../enums/sortType.dart';
 import '../models/comment.dart';
+import '../services/http_service.dart';
 
 class Comments {
   static List<Comment> listCommentsFindById(String id) {
@@ -41,12 +45,67 @@ class Comments {
     return list;
   }
 
-  static void addComment(Comment comment) {
-    listAllCommets.add(comment);
-  }
-
   static void deleteComment(Comment comment) {
     listAllCommets.remove(comment);
+  }
+
+  // http fetch comment from api
+  static Future<void> fetchComments() async {
+    var response = await HttpService.getRequest(commentsUrl);
+    if (response.statusCode == 200) {
+      final parsed = (json.decode(response.body)['data'] as List)
+          .cast<Map<String, dynamic>>();
+      print(response.body);
+      List<Comment> listGetComments =
+          parsed.map<Comment>((json) => Comment.fromJson(json)).toList();
+      listAllCommets = listGetComments;
+    } else {
+      throw Exception(
+          'Failed to load student: ${jsonDecode(response.body)['error']}');
+    }
+  }
+
+  static Future<void> addComment(Comment comment, Student student) async {
+    // get sort type
+    final String type = comment.dateSort!.valueSort;
+    // get string date sort
+    final String dateUpdated = comment.dateSort.toString();
+    // post new comment
+    final response = await HttpService.postRequest(
+      url: commentsUrl,
+      body: jsonEncode({
+        'Student': {
+          'id': student.id,
+          'code': student.code,
+          'name': student.name,
+          'NumOfCorrect': student.numOfCorrect,
+          'NumOfWrong': student.numOfWrong,
+          'ImageAvatarUrl': student.imageAvatarUrl,
+          'ParentEmail': student.parentEmail,
+          'Note': student.note,
+        },
+        'Content': comment.content,
+        'type': type,
+        'DateCreated': comment.dateCreate!.toString(),
+        'DateUpdated': dateUpdated,
+      }),
+    );
+    // check status
+    if (response.statusCode == 201) {
+      // create new student
+      final newComment = Comment(
+        id: json.decode(response.body)['data']['id'],
+        idStudent: comment.idStudent,
+        content: comment.content,
+        dateCreate: comment.dateCreate,
+        dateSort: comment.dateSort,
+      );
+      // add to list
+      listAllCommets.add(newComment);
+    } else {
+      throw Exception(
+          'Failed to add student: ${jsonDecode(response.body)['error']}');
+    }
   }
 
   static List<Comment> listAllCommets = [

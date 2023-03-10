@@ -25,4 +25,15 @@ class HttpService {
       },
     );
   }
+
+  Future<http.Response> deleteRequest({url, id}) async {
+    final uri = Uri.parse('$url/$id');
+
+    return await http.delete(
+      uri,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+  }
 }

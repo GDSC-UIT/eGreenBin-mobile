@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/utils/snackbar.dart';
 import 'package:egreenbin/app/data/models/student.dart';
+import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:egreenbin/app/data/providers/garbages.dart';
 import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
@@ -20,10 +21,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
-    // load list of garbages
-    Garbages.gernerateGabages();
-    refreshStudents();
-    numberOfStudent = Students.listStudents.length.obs;
+    // get data
+    refreshData();
     super.onInit();
   }
 
@@ -46,14 +45,28 @@ class HomeController extends GetxController {
   }
 
   RxBool isLoading = false.obs;
-  Future refreshStudents() async {
-    isLoading.value = true;
-    // load list of garbages
-    Garbages.gernerateGabages();
-    // fetch student
-    await Students.fetchStudent().then((value) {
+  Future refreshData() async {
+    try {
+      // loading
+      isLoading.value = true;
+      // load list of garbages
+      await Garbages.gernerateGabages();
+      // fetch student
+      await Students.fetchStudent();
+      // get list of comment
+      await Comments.fetchComments();
+      // get length of student
+      numberOfStudent = Students.listStudents.length.obs;
+      // loading off
       isLoading.value = false;
-    });
+    } catch (error) {
+      print("Error when fetch data: $error");
+      showSnackBarAndNotification(
+        "Error",
+        "Error when fetch data: $error",
+        AppColors.wrong,
+      );
+    }
   }
 
   // fuction of sort

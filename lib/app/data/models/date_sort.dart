@@ -4,9 +4,9 @@ import '../enums/sortType.dart';
 
 class DateSort {
   // there are three type of sort
-  DateTime? _date; // sort by date
+  String? _date; // sort by date
   String? _month; // sort by month
-  int? _year; // sort by year
+  String? _year; // sort by year
 
   DateSort.fromDate({required date}) {
     _date = date;
@@ -32,6 +32,8 @@ class DateSort {
     return _year;
   }
 
+  /// get type of sort
+  /// return SortType
   SortType get type {
     if (_date != null) return SortType.Date;
     if (_month != null) return SortType.Month;
@@ -48,5 +50,16 @@ class DateSort {
       dateString = getValue().toString();
     }
     return dateString;
+  }
+
+  /// get String of sortType
+  String get valueSort {
+    if (type == SortType.Date) {
+      return "Date";
+    } else if (type == SortType.Month) {
+      return "Month";
+    } else {
+      return "Year";
+    }
   }
 }

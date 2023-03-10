@@ -122,7 +122,7 @@ class StudentInfoController extends GetxController {
   }
 
 // comment ================================================================
-  void saveComment() {
+  void saveComment() async {
     // luu comment
     String content = textCotroller.text;
     // luu sort date
@@ -136,7 +136,7 @@ class StudentInfoController extends GetxController {
       dateSort: sortTemp,
     );
     // add this comment to list comment
-    Comments.addComment(newComment);
+    await Comments.addComment(newComment, student.value);
     // bug
     updateCurrentListComment();
     // clear textcontroller

@@ -6,14 +6,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Students extends GetxController {
-  static RxList<Student> listStudents = <Student>[
-    /* Student(
-      id: "21522345",
-      name: "Nguyễn Thành Trung",
-      numOfCorrect: 92,
-      numOfWrong: 50,
-    ),*/
-  ].obs;
+  static RxList<Student> listStudents = <Student>[].obs;
 
   static Student findStudent(String id) {
     Student studentFind = Student(
@@ -29,7 +22,7 @@ class Students extends GetxController {
   }
 
   static Future<void> fetchStudent() async {
-    var response = await HttpService.getRequest(getStudentsUrl);
+    var response = await HttpService.getRequest(studentsUrl);
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
@@ -38,14 +31,15 @@ class Students extends GetxController {
           parsed.map<Student>((json) => Student.fromJson(json)).toList();
       listStudents.value = listGetStudents;
     } else {
-      throw Exception('Failed to load student');
+      throw Exception(
+          'Failed to load student: ${jsonDecode(response.body)['error']}');
     }
   }
 
   static Future<void> addStudent(Student student) async {
     // post student
     var response = await HttpService.postRequest(
-      url: postStudentUrl,
+      url: studentsUrl,
       body: jsonEncode(
         {
           'code': student.code,
@@ -73,7 +67,8 @@ class Students extends GetxController {
       // add to list
       listStudents.add(newStudent);
     } else {
-      throw Exception('Failed to add student');
+      throw Exception(
+          'Failed to add student: ${jsonDecode(response.body)['error']}');
     }
   }
 }

@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future loadStudents() async {
     setState(() {});
-    await _controller.refreshStudents();
+    await _controller.refreshData();
     setState(() {});
   }
 
