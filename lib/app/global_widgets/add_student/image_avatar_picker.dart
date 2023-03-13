@@ -7,9 +7,10 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../modules/home/home_controller.dart';
 
+// ignore: must_be_immutable
 class ImageAvatarPicker extends StatefulWidget {
   HomeController controller;
-  ImageAvatarPicker(this.controller);
+  ImageAvatarPicker(this.controller, {super.key});
   @override
   State<ImageAvatarPicker> createState() => _ImageAvatarPickerState();
 }

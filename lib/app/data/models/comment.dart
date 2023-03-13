@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:egreenbin/app/data/models/date_sort.dart';
 
 class Comment {

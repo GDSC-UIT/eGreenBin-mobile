@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:egreenbin/app/core/values/api_values.dart';
 import 'package:egreenbin/app/data/services/http_service.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class Students extends GetxController {
   static RxList<Student> listStudents = <Student>[].obs;

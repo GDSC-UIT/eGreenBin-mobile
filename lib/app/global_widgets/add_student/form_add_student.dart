@@ -7,9 +7,10 @@ import 'package:get/get.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_styles.dart';
 
+// ignore: must_be_immutable
 class FormAddStudent extends StatefulWidget {
   HomeController controller;
-  FormAddStudent(this.controller);
+  FormAddStudent(this.controller, {super.key});
 
   @override
   State<FormAddStudent> createState() => _FormAddStudentState();

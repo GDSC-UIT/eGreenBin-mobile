@@ -4,7 +4,7 @@ import '../core/theme/app_colors.dart';
 
 // ignore: must_be_immutable
 class ImageAvatar extends StatelessWidget {
-  String imageAvatarUrl;
+  String? imageAvatarUrl;
   ImageAvatar(this.imageAvatarUrl, {super.key});
 
   @override
@@ -20,7 +20,7 @@ class ImageAvatar extends StatelessWidget {
           : ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: Image.network(
-                imageAvatarUrl,
+                imageAvatarUrl!,
                 fit: BoxFit.cover,
                 height: 50,
                 width: 50,

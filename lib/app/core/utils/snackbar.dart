@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/providers/notifications.dart';
-import '../theme/app_colors.dart';
 import 'package:egreenbin/app/data/models/notification.dart' as noti;
 
 void showSnackBarAndNotification(String title, String content, Color color) {

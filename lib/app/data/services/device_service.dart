@@ -32,14 +32,15 @@ class DeviceService {
   /// get image file from device
   /// source is: ImageSource.camera or ImageSource.gallery
   static Future<File?> pickImage(ImageSource source) async {
+    File? imageTemporary;
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return null;
 
-      final imageTemporary = File(image.path);
-      return imageTemporary;
+      imageTemporary = File(image.path);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
+    return imageTemporary;
   }
 }
