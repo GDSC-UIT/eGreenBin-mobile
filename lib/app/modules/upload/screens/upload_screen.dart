@@ -56,13 +56,13 @@ class _UploadScreenState extends State<UploadScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${snapshot.data![index].name}",
-                        style: TextStyle(
+                        snapshot.data![index].name,
+                        style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text("${snapshot.data![index].numOfCorrect}"),
                       Text("${snapshot.data![index].numOfWrong}"),
                     ],
@@ -70,7 +70,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               );
             } else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),
