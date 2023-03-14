@@ -153,7 +153,7 @@ class StudentInfoController extends GetxController {
   DateSort getDateSortFromDialog() {
     String typeSort = sortDialog!.value.selectedSortByWithoutAll.value;
     if (typeSort == SortService.sortByItems[1]) {
-      return DateSort.fromDate(date: sortDialog!.value.selectDate.value);
+      return DateSort.fromDate(date: sortDialog!.value.selectDate.value!);
     } else if (typeSort == SortService.sortByItems[2]) {
       return DateSort.fromMonth(
           month: sortDialog!.value.selectedMonthSort.value);

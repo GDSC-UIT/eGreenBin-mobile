@@ -1,12 +1,13 @@
 import 'package:intl/intl.dart';
 import '../../core/values/app_values.dart';
 import '../enums/sortType.dart';
+import 'package:egreenbin/app/core/extensions/date_ex.dart';
 
 class DateSort {
   // there are three type of sort
-  String? _date; // sort by date
+  DateTime? _date; // sort by date
   String? _month; // sort by month
-  String? _year; // sort by year
+  int? _year; // sort by year
 
   DateSort.fromDate({required date}) {
     _date = date;
@@ -50,6 +51,14 @@ class DateSort {
       dateString = getValue().toString();
     }
     return dateString;
+  }
+
+  // get string to store json
+  String toJsonString() {
+    if (type == SortType.Date) {
+      return _date!.fommatDateTZ;
+    }
+    return getValue().toString();
   }
 
   /// get String of sortType

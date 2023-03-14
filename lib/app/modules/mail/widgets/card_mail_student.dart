@@ -44,7 +44,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
             ),
           ),
 //avatar
-          ImageAvatar(widget.student.imageAvatarUrl!),
+          ImageAvatar(imageAvatarUrl: widget.student.imageAvatarUrl),
 // column
           const SizedBox(width: 10),
           Column(

@@ -21,7 +21,7 @@ class Students extends GetxController {
   }
 
   static Future<void> fetchStudent() async {
-    var response = await HttpService.getRequest(studentsUrl);
+    var response = await HttpService.getRequest(STUDENTS_URL);
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
@@ -38,7 +38,7 @@ class Students extends GetxController {
   static Future<void> addStudent(Student student) async {
     // post student
     var response = await HttpService.postRequest(
-      url: studentsUrl,
+      url: STUDENTS_URL,
       body: jsonEncode(
         {
           'code': student.code,

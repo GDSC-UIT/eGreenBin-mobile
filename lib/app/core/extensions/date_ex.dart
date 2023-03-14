@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 extension DateTimeX on DateTime {
   /// get num of date between dateFrom to DateTo
@@ -6,6 +7,11 @@ extension DateTimeX on DateTime {
     from = DateTime(from.year, from.month, from.day);
     to = DateTime(to.year, to.month, to.day);
     return (to.difference(from).inHours / 24).round();
+  }
+
+  String get fommatDateTZ {
+    String formattedDate = DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(this);
+    return formattedDate;
   }
 
   /// get string day before

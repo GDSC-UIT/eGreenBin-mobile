@@ -115,7 +115,7 @@ class StudentAppBar extends StatelessWidget {
                     children: [
                       const SizedBox(width: 30),
 // avatar
-                      ImageAvatar(student.imageAvatarUrl!),
+                      ImageAvatar(imageAvatarUrl: student.imageAvatarUrl),
                       const SizedBox(width: 20),
 // text
                       Column(

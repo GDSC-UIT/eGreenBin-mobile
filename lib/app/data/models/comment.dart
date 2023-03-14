@@ -19,17 +19,30 @@ class Comment {
     dateSort ??= DateSort.fromDate(date: dateCreate);
   }
 
+  @override
+  String toString() {
+    String res = "";
+    res += "id: $id\n";
+    res += "idStudent: $idStudent\n";
+    res += "content: $content\n";
+    res += "dateSort: ${dateSort.toString()}\n";
+    res += "dateCreate: ${dateCreate.toString()}\n";
+    return res;
+  }
+
   factory Comment.fromJson(Map<String, dynamic> json) {
     DateSort newSort;
     String type = json['type'];
-
+    print(type);
     if (type == "Date") {
-      newSort = DateSort.fromDate(date: json['DateUpdated']);
-    } else if (type == "Month") {
-      newSort = DateSort.fromMonth(month: json['DateUpdated']);
+      DateTime date = DateTime.parse(json['DateUpdated']);
+      newSort = DateSort.fromDate(date: date);
+    } else if (type == "Year") {
+      int year = int.parse(json['DateUpdated']);
+      newSort = DateSort.fromYear(year: year);
     } else {
-      // type == year
-      newSort = DateSort.fromYear(year: json['DateUpdated']);
+      // type == month
+      newSort = DateSort.fromMonth(month: json['DateUpdated']);
     }
 
     return Comment(

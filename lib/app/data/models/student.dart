@@ -39,10 +39,10 @@ class Student {
       code: json['code'],
       name: json['name'],
       parentEmail: json['parentEmail'],
-      numOfCorrect: json['NumOfCorrect'],
-      numOfWrong: json['NumOfWrong'],
-      imageAvatarUrl: json['ImageAvatarUrl'],
-      note: json['Note'],
+      numOfCorrect: json['numOfCorrect'],
+      numOfWrong: json['numOfWrong'],
+      imageAvatarUrl: json['imageAvatarUrl'],
+      note: json['note'],
     );
   }
 }

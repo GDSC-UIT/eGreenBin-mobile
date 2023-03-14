@@ -43,7 +43,7 @@ class StudentCard extends StatelessWidget {
               ),
             ),
             //avatar
-            ImageAvatar(student.imageAvatarUrl!),
+            ImageAvatar(imageAvatarUrl: student.imageAvatarUrl),
             // column
             const SizedBox(width: 10),
             Column(

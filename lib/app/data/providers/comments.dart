@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:egreenbin/app/core/extensions/date_ex.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import '../../core/values/api_values.dart';
@@ -49,9 +50,15 @@ class Comments {
     listAllCommets.remove(comment);
   }
 
+  static Future printListComment() async {
+    for (Comment com in listAllCommets) {
+      print(com.toString());
+    }
+  }
+
   // http fetch comment from api
   static Future<void> fetchComments() async {
-    var response = await HttpService.getRequest(commentsUrl);
+    var response = await HttpService.getRequest(COMMENTS_URL);
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
@@ -59,40 +66,48 @@ class Comments {
       List<Comment> listGetComments =
           parsed.map<Comment>((json) => Comment.fromJson(json)).toList();
       listAllCommets = listGetComments;
+      await printListComment();
     } else {
       throw Exception(
           'Failed to load student: ${jsonDecode(response.body)['error']}');
     }
   }
 
+  ///In this example, we first parse the input date string into a DateTime object using its current format. Then we format the DateTime object into the desired output format, which includes the missing "T" separator and the timezone offset. Finally, we print out the resulting formatted date string.
+
   static Future<void> addComment(Comment comment, Student student) async {
     // get sort type
     final String type = comment.dateSort!.valueSort;
+    print(type);
     // get string date sort
-    final String dateUpdated = comment.dateSort.toString();
+    final String dateUpdated = comment.dateSort!.toJsonString();
+    print(dateUpdated);
+    print("idstudent: ${student.id}");
     // post new comment
     final response = await HttpService.postRequest(
-      url: commentsUrl,
+      url: COMMENTS_URL,
       body: jsonEncode({
         'Student': {
           'id': student.id,
           'code': student.code,
           'name': student.name,
-          'NumOfCorrect': student.numOfCorrect,
-          'NumOfWrong': student.numOfWrong,
-          'ImageAvatarUrl': student.imageAvatarUrl,
-          'ParentEmail': student.parentEmail,
-          'Note': student.note,
+          'numOfCorrect': student.numOfCorrect,
+          'numOfWrong': student.numOfWrong,
+          'imageAvatarUrl': student.imageAvatarUrl,
+          'parentEmail': student.parentEmail,
+          'note': student.note,
         },
         'Content': comment.content,
         'type': type,
-        'DateCreated': comment.dateCreate!.toString(),
+        'DateCreated': comment.dateCreate!.fommatDateTZ,
         'DateUpdated': dateUpdated,
       }),
     );
+    print("Done");
     // check status
     if (response.statusCode == 201) {
       // create new student
+      print(response.body);
       final newComment = Comment(
         id: json.decode(response.body)['data']['id'],
         idStudent: comment.idStudent,
@@ -104,7 +119,7 @@ class Comments {
       listAllCommets.add(newComment);
     } else {
       throw Exception(
-          'Failed to add student: ${jsonDecode(response.body)['error']}');
+          'Failed to add comment: ${jsonDecode(response.body)['error']}');
     }
   }
 

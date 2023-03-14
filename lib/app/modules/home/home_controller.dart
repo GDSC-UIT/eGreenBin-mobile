@@ -22,7 +22,7 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     // get data
-    refreshData();
+    await refreshData();
     super.onInit();
   }
 
@@ -49,12 +49,12 @@ class HomeController extends GetxController {
     try {
       // loading
       isLoading.value = true;
-      // load list of garbages
-      await Garbages.gernerateGabages();
       // fetch student
       await Students.fetchStudent();
       // get list of comment
       await Comments.fetchComments();
+      // load list of garbages
+      await Garbages.gernerateGabages();
       // get length of student
       numberOfStudent = Students.listStudents.length.obs;
       // loading off
