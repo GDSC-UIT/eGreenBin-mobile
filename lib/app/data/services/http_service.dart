@@ -26,7 +26,7 @@ class HttpService {
     );
   }
 
-  Future<http.Response> deleteRequest({url, id}) async {
+  static Future<http.Response> deleteRequest({url, id}) async {
     final uri = Uri.parse('$url/$id');
 
     return await http.delete(

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:egreenbin/app/core/extensions/date_ex.dart';
-import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import '../../core/values/api_values.dart';
 import '../enums/sortType.dart';
@@ -46,10 +45,6 @@ class Comments {
     return list;
   }
 
-  static void deleteComment(Comment comment) {
-    listAllCommets.remove(comment);
-  }
-
   static Future printListComment() async {
     for (Comment com in listAllCommets) {
       print(com.toString());
@@ -62,7 +57,6 @@ class Comments {
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
-      print(response.body);
       List<Comment> listGetComments =
           parsed.map<Comment>((json) => Comment.fromJson(json)).toList();
       listAllCommets = listGetComments;
@@ -78,11 +72,8 @@ class Comments {
   static Future<void> addComment(Comment comment, Student student) async {
     // get sort type
     final String type = comment.dateSort!.valueSort;
-    print(type);
     // get string date sort
     final String dateUpdated = comment.dateSort!.toJsonString();
-    print(dateUpdated);
-    print("idstudent: ${student.id}");
     // post new comment
     final response = await HttpService.postRequest(
       url: COMMENTS_URL,
@@ -103,11 +94,9 @@ class Comments {
         'DateUpdated': dateUpdated,
       }),
     );
-    print("Done");
     // check status
     if (response.statusCode == 201) {
       // create new student
-      print(response.body);
       final newComment = Comment(
         id: json.decode(response.body)['data']['id'],
         idStudent: comment.idStudent,
@@ -123,8 +112,24 @@ class Comments {
     }
   }
 
+  static Future<void> deleteComment(Comment comment) async {
+    // delete a comment by id
+    var response = await HttpService.deleteRequest(
+      url: COMMENTS_URL,
+      id: comment.id,
+    );
+    // check status
+    if (response.statusCode == 204) {
+      listAllCommets.remove(comment);
+      await printListComment();
+    } else {
+      throw Exception(
+          'Failed to delete student: ${jsonDecode(response.body)['error']}');
+    }
+  }
+
   static List<Comment> listAllCommets = [
-    Comment(
+    /* Comment(
       idStudent: "21522345",
       content:
           "Bé Trung đã dần hình thành được thói quen phân loại rác. Đáng được tuyên dương và nhận phiếu bé ngoan!",
@@ -224,6 +229,6 @@ class Comments {
       content:
           "Bé Quynh đã dần hình thành được thói quen phân loại rác. Đáng được tuyên dương và nhận phiếu bé ngoan!",
       dateCreate: DateTime(2022, 11, 12),
-    ),
+    ), */
   ];
 }
