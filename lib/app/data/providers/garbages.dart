@@ -96,7 +96,7 @@ class Garbages {
     int num = 0;
     for (Garbage gar in listGarbage) {
       if (gar.idStudent == idStudent) {
-        if (!gar.isRight && gar.dateCreate!.month == year) num++;
+        if (!gar.isRight && gar.dateCreate!.year == year) num++;
       }
     }
     return num;

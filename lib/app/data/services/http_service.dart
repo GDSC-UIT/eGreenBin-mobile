@@ -28,7 +28,6 @@ class HttpService {
 
   static Future<http.Response> deleteRequest({url, id}) async {
     final uri = Uri.parse('$url/$id');
-
     return await http.delete(
       uri,
       headers: <String, String>{
