@@ -1,3 +1,5 @@
+import 'package:egreenbin/app/data/providers/data_center.dart';
+import 'package:egreenbin/app/data/repositories/student_repository.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../../../core/values/app_strings.dart';
@@ -12,7 +14,6 @@ import '../../../../core/theme/text_styles.dart';
 import '../../../../core/values/assets_image.dart';
 import '../../../../data/models/student.dart';
 import '../../../../data/providers/comments.dart';
-import '../../../../data/providers/students.dart';
 
 // ignore: must_be_immutable
 class ChildResultCard extends StatelessWidget {
@@ -23,8 +24,10 @@ class ChildResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Student student = Students.findStudent(id);
+    final repoStudent = StudentRepository();
+    Student student = repoStudent.findStudentById(id);
     List<Comment> listComment = Comments.listCommentsFindById(id);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

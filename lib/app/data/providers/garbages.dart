@@ -1,5 +1,5 @@
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/data/providers/students.dart';
+import 'package:egreenbin/app/data/providers/data_center.dart';
 import '../models/garbage.dart';
 
 class Garbages {
@@ -11,7 +11,7 @@ class Garbages {
 
   // generate gabages of all student
   static Future gernerateGabages() async {
-    for (Student student in Students.listStudents) {
+    for (Student student in DataCenter.instance.students) {
       await gernerateGabagesOfEachStudent(student);
     }
   }

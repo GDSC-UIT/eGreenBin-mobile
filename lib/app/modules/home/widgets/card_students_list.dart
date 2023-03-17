@@ -1,6 +1,6 @@
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/data/providers/students.dart';
+import 'package:egreenbin/app/data/providers/data_center.dart';
 import 'package:egreenbin/app/global_widgets/add_student/dialog_add_student.dart';
 import 'package:egreenbin/app/global_widgets/shimmer_list.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
@@ -101,10 +101,10 @@ class CardStudentList extends StatelessWidget {
                           ? const ShimmerList()
                           : ListView.builder(
                               padding: const EdgeInsets.all(0),
-                              itemCount: Students.listStudents.length,
+                              itemCount: _controller.numberOfStudent.value,
                               itemBuilder: (context, i) => StudentCard(
                                 i + 1,
-                                Students.listStudents[i],
+                                DataCenter.instance.students[i],
                                 _controller.pushToStudentInfoScreen,
                               ),
                             ),

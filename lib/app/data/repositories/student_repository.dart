@@ -18,13 +18,24 @@ class StudentRepository implements IStudentRepository {
   }
 
   @override
-  Future<Student> addStudent(Student student) async {
+  Future<void> addStudent(Student student) async {
     // return student to add in local
-    return await studentApi.addStudent(student);
+    Student newStudent = await studentApi.addStudent(student);
+    DataCenter.instance.students.add(newStudent);
   }
 
   // get student from local
   Student findStudentById(String id) {
     return DataCenter.instance.students.firstWhere((stu) => stu.id == id);
+  }
+
+  // get length of list local student
+  int getLengthOfListStudents() {
+    return DataCenter.instance.students.length;
+  }
+
+  // get student from index
+  Student getStudentFromIndex(int index) {
+    return DataCenter.instance.students[index];
   }
 }

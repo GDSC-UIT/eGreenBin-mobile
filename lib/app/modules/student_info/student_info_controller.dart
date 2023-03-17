@@ -2,14 +2,39 @@ import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/garbages.dart';
-import 'package:egreenbin/app/data/providers/students.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/modules/student_info/screens/rating_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
+import '../../data/repositories/student_repository.dart';
 
 class StudentInfoController extends GetxController {
+  final repoStudent = StudentRepository();
+
+  // this function will do nothing
+  Function fnull = () {};
+  // data models
+  Rx<Student> student = Student(name: "default").obs;
+  // comment
+  RxList<Comment> listComments = <Comment>[].obs;
+
+  // textController comment
+  final TextEditingController textCotroller = TextEditingController();
+
+  // number of Right and Wrong
+  RxInt numOfRight = 0.obs;
+  RxInt numOfWrong = 0.obs;
+  // card statical
+  Rx<SortService>? sortCardStatical;
+  // card ratio
+  Rx<SortService>? sortCardRatio;
+  // card evaluate
+  Rx<SortService>? sortCardEvaluate;
+  // dialog
+  Rx<SortService>? sortDialog;
+  //==========================
+
   StudentInfoController() {
     sortCardStatical = SortService(
       updateSort: fnull,
@@ -25,28 +50,13 @@ class StudentInfoController extends GetxController {
     ).obs;
   }
 
-  // this function will do nothing
-  Function fnull = () {};
-  // data models
-  Rx<Student> student = Student(name: "default").obs;
-  // comment
-  RxList<Comment> listComments = <Comment>[].obs;
-
-  // textController comment
-  final TextEditingController textCotroller = TextEditingController();
-
-  // number of Right and Wrong
-  RxInt numOfRight = 0.obs;
-  RxInt numOfWrong = 0.obs;
-  //==========================
-
   // get id from prev screen
   dynamic id = Get.arguments;
 
   @override
   void onInit() {
     // get student and comments from id
-    student.value = Students.findStudent(id);
+    student.value = repoStudent.findStudentById(id);
     listComments.value = Comments.listCommentsFindById(id);
     // get Number of right and wrong
     numOfRight.value = Garbages.getNumOfCorrect(id);
@@ -72,18 +82,13 @@ class StudentInfoController extends GetxController {
 
     // ignore: unrelated_type_equality_checks
     if (isPop == 'success') {
-      refreshComment();
+      // do something
     }
   }
 
   // this function if pop from rating screen
   void backToStudentInfo() {
     Get.back(result: 'success');
-  }
-
-  // refresh comment
-  void refreshComment() {
-    print("pop sreen yearrrrrrrrrrrrrrrrrrrrrrr");
   }
 
 // filter comment==========================================
@@ -161,17 +166,4 @@ class StudentInfoController extends GetxController {
       return DateSort.fromYear(year: sortDialog!.value.selectedYearSort.value);
     }
   }
-
-// card statical
-//========================================================================
-  Rx<SortService>? sortCardStatical;
-// card ratio
-//========================================================================
-  Rx<SortService>? sortCardRatio;
-// card evaluate
-//========================================================================
-  Rx<SortService>? sortCardEvaluate;
-// dialog
-//========================================================================
-  Rx<SortService>? sortDialog;
 }

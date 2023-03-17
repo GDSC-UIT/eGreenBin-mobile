@@ -19,13 +19,15 @@ class CommentRepository implements ICommentRepository {
   }
 
   @override
-  Future<Comment> addComment(Comment comment, Student student) async {
-    return await commentApi.addComment(comment, student);
+  Future<void> addComment(Comment comment, Student student) async {
+    final newComment = await commentApi.addComment(comment, student);
+    DataCenter.instance.comments.add(newComment);
   }
 
   @override
-  Future<Comment> deleteComment(Comment comment) async {
-    return await commentApi.deleteComment(comment);
+  Future<void> deleteComment(Comment comment) async {
+    final delCommnet = await commentApi.deleteComment(comment);
+    DataCenter.instance.comments.remove(delCommnet);
   }
 
   // local ==========================================================
