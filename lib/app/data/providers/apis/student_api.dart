@@ -2,40 +2,38 @@ import 'package:egreenbin/app/data/models/student.dart';
 import 'dart:convert';
 import 'package:egreenbin/app/core/values/api_values.dart';
 import 'package:egreenbin/app/data/services/http_service.dart';
-import 'package:get/get.dart';
 
-class Students extends GetxController {
-  static RxList<Student> listStudents = <Student>[].obs;
-
-  static Student findStudent(String id) {
-    Student studentFind = Student(
-      id: "null",
-      name: "Default",
-      numOfCorrect: 0,
-      numOfWrong: 0,
-    );
-    for (var student in listStudents) {
-      if (student.id == id) studentFind = student;
-    }
-    return studentFind;
-  }
-
-  static Future<void> fetchStudent() async {
+class StudentAPI {
+  Future<List<Student>> fetchStudents() async {
     var response = await HttpService.getRequest(STUDENTS_URL);
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
-      print(response.body);
       List<Student> listGetStudents =
           parsed.map<Student>((json) => Student.fromJson(json)).toList();
-      listStudents.value = listGetStudents;
+      return listGetStudents;
     } else {
       throw Exception(
           'Failed to load student: ${jsonDecode(response.body)['error']}');
     }
   }
 
-  static Future<void> addStudent(Student student) async {
+  Future<Student> getStudentByID(String id) async {
+    var response = await HttpService.getRequestWithId(
+      url: STUDENTS_URL,
+      id: id,
+    );
+    if (response.statusCode == 200) {
+      Student newStudent = Student.fromJson(json.decode(response.body)['data']);
+
+      return newStudent;
+    } else {
+      throw Exception(
+          'Failed to load student: ${jsonDecode(response.body)['error']}');
+    }
+  }
+
+  Future<Student> addStudent(Student student) async {
     // post student
     var response = await HttpService.postRequest(
       url: STUDENTS_URL,
@@ -45,7 +43,8 @@ class Students extends GetxController {
     );
     if (response.statusCode == 201) {
       // create new student
-      final newStudent = Student(
+      student.setID = json.decode(response.body)['data']['id'];
+      /* Student(
         id: json.decode(response.body)['data']['id'],
         code: student.code,
         name: student.name,
@@ -54,9 +53,9 @@ class Students extends GetxController {
         numOfWrong: student.numOfWrong,
         imageAvatarUrl: student.imageAvatarUrl,
         note: student.note,
-      );
-      // add to list
-      listStudents.add(newStudent);
+      ); */
+      // return newStudent to add in domain
+      return student;
     } else {
       throw Exception(
           'Failed to add student: ${jsonDecode(response.body)['error']}');

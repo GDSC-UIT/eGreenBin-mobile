@@ -27,6 +27,8 @@ class Student {
     note ??= "";
   }
 
+  set setID(String id) => this.id = id;
+
   // check this student has note?
   bool get isNote {
     return note != "";
@@ -44,5 +46,19 @@ class Student {
       imageAvatarUrl: json['imageAvatarUrl'],
       note: json['note'],
     );
+  }
+
+  // conver to map to jsonEncode
+  Map<String, dynamic> toJson() {
+    var map = {
+      'code': code,
+      'name': name,
+      'parentEmail': parentEmail,
+      'numOfCorrect': numOfCorrect,
+      'numOfWrong': numOfWrong,
+      'imageAvatarUrl': imageAvatarUrl,
+      'note': note,
+    };
+    return map;
   }
 }

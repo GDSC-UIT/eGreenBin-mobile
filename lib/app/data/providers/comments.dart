@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:egreenbin/app/core/extensions/date_ex.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import '../../core/values/api_values.dart';
 import '../enums/sortType.dart';
@@ -70,29 +69,10 @@ class Comments {
   ///In this example, we first parse the input date string into a DateTime object using its current format. Then we format the DateTime object into the desired output format, which includes the missing "T" separator and the timezone offset. Finally, we print out the resulting formatted date string.
 
   static Future<void> addComment(Comment comment, Student student) async {
-    // get sort type
-    final String type = comment.dateSort!.valueSort;
-    // get string date sort
-    final String dateUpdated = comment.dateSort!.toJsonString();
     // post new comment
     final response = await HttpService.postRequest(
       url: COMMENTS_URL,
-      body: jsonEncode({
-        'Student': {
-          'id': student.id,
-          'code': student.code,
-          'name': student.name,
-          'numOfCorrect': student.numOfCorrect,
-          'numOfWrong': student.numOfWrong,
-          'imageAvatarUrl': student.imageAvatarUrl,
-          'parentEmail': student.parentEmail,
-          'note': student.note,
-        },
-        'Content': comment.content,
-        'type': type,
-        'DateCreated': comment.dateCreate!.fommatDateTZ,
-        'DateUpdated': dateUpdated,
-      }),
+      body: jsonEncode(comment.toJson(student)),
     );
     // check status
     if (response.statusCode == 201) {
