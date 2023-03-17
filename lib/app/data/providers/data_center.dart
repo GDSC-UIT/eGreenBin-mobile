@@ -6,10 +6,10 @@ import '../models/notification.dart' as noti;
 import '../models/student.dart';
 
 class DataCenter extends GetxController {
-  static final DataCenter _instance = DataCenter._internal();
+  static final DataCenter instance = DataCenter._internal();
 
   factory DataCenter() {
-    return _instance;
+    return instance;
   }
 
   DataCenter._internal();
