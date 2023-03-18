@@ -1,13 +1,13 @@
 import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/global_widgets/add_student/form_add_student.dart';
+import 'package:egreenbin/app/modules/home/widgets/add_student/form_add_student.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/text_styles.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/text_styles.dart';
 
 // tham khao: https://github.com/minhphan46/Shop_app/blob/main/lib/screens/edit_product_screen.dart
 // https://github.com/minhphan46/chat_app/blob/main/lib/widgets/auth/auth_form.dart

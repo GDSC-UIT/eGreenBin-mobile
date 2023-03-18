@@ -1,5 +1,5 @@
 import 'package:egreenbin/app/core/theme/text_styles.dart';
-import 'package:egreenbin/app/global_widgets/card_comment.dart';
+import 'package:egreenbin/app/modules/student_info/widgets/card_comment.dart';
 import 'package:egreenbin/app/modules/student_info/student_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

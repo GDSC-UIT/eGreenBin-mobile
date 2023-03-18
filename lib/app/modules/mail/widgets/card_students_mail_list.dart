@@ -73,7 +73,7 @@ class CardStudentMailList extends StatelessWidget {
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.all(0),
-                    itemCount: _controller.numberOfStudent.value,
+                    itemCount: DataCenter.instance.students.length,
                     itemBuilder: (context, i) => CardMailStudent(
                       i + 1,
                       DataCenter.instance.students[i],
