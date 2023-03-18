@@ -33,9 +33,9 @@ class _ChildResultCardState extends State<ChildResultCard> {
   List<Comment>? listComment;
 
   @override
-  void initState() async {
+  void initState() {
     student = repoStudent.findStudentById(widget.id);
-    listComment = await repoComment.getCommentsByIDStudent(widget.id);
+    listComment = repoComment.getListCommentsFindByIdStudentLocal(widget.id);
     super.initState();
   }
 

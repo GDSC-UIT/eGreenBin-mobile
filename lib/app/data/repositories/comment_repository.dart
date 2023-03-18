@@ -13,10 +13,10 @@ class CommentRepository implements ICommentRepository {
     return DataCenter.instance.comments;
   }
 
-  @override
+  /* @override
   Future<List<Comment>> getCommentsByIDStudent(String idStudent) async {
     return await commentApi.getCommentsByIDStudent(idStudent);
-  }
+  } */
 
   @override
   Future<void> addComment(Comment comment) async {

@@ -21,7 +21,7 @@ class CommentAPI {
   }
 
   // http get comment by idstudent from api
-  Future<List<Comment>> getCommentsByIDStudent(String idStudent) async {
+  /* Future<List<Comment>> getCommentsByIDStudent(String idStudent) async {
     var response = await HttpService.getRequestWithId(
       url: COMMENTS_URL,
       id: idStudent,
@@ -34,9 +34,9 @@ class CommentAPI {
       return listGetComments;
     } else {
       throw Exception(
-          'Failed to load student: ${jsonDecode(response.body)['error']}');
+          'Failed to load comments: ${jsonDecode(response.body)['error']}');
     }
-  }
+  } */
 
   ///In this example, we first parse the input date string into a DateTime object using its current format. Then we format the DateTime object into the desired output format, which includes the missing "T" separator and the timezone offset. Finally, we print out the resulting formatted date string.
   Future<Comment> addComment(Comment comment) async {

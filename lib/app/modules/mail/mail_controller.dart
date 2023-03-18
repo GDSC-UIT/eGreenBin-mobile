@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../data/models/teacher.dart';
+import '../../data/providers/data_center.dart';
 import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';
 
@@ -36,7 +37,7 @@ class MailController extends GetxController {
     sortService = SortService(
       updateSort: fnull,
     ).obs;
-    numberOfStudent.value = repoStudent.getLengthOfListStudents();
+    numberOfStudent.value = DataCenter.instance.students.length;
     testMail = Mail(student: repoStudent.getStudentFromIndex(0));
   }
 
