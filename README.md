@@ -8,7 +8,7 @@
 
 ## App demo
 
-**Link download apk**: [eGreenBin](https://drive.google.com/file/d/11RqzosCMp6_zb0JDkPfahGj7xXZ-lBJJ/view?usp=share_link)
+**Link download apk**: [eGreenBin](https://drive.google.com/file/d/1c_MUvZime_6u4nJ8t8gaA-RlJVTpNQQD/view?usp=sharing)
 
 ## Project stucture
 
