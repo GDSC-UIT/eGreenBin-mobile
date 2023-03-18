@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:egreenbin/app/data/models/student.dart';
 import '../../../core/values/api_values.dart';
 import '../../models/comment.dart';
 import '../../services/http_service.dart';
@@ -8,6 +7,7 @@ class CommentAPI {
   // http fetch comment from api
   Future<List<Comment>> fetchComments() async {
     var response = await HttpService.getRequest(COMMENTS_URL);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
@@ -16,7 +16,7 @@ class CommentAPI {
       return listGetComments;
     } else {
       throw Exception(
-          'Failed to load student: ${jsonDecode(response.body)['error']}');
+          'Failed to load comments: ${jsonDecode(response.body)['error']}');
     }
   }
 
@@ -39,25 +39,17 @@ class CommentAPI {
   }
 
   ///In this example, we first parse the input date string into a DateTime object using its current format. Then we format the DateTime object into the desired output format, which includes the missing "T" separator and the timezone offset. Finally, we print out the resulting formatted date string.
-  Future<Comment> addComment(Comment comment, Student student) async {
+  Future<Comment> addComment(Comment comment) async {
     // post new comment
     final response = await HttpService.postRequest(
       url: COMMENTS_URL,
-      body: jsonEncode(comment.toJson(student)),
+      body: jsonEncode(comment.toJson()),
     );
     // check status
     if (response.statusCode == 201) {
       // create new student
       comment.setID = json.decode(response.body)['data']['id'];
-      /* final newComment = Comment(
-        id: json.decode(response.body)['data']['id'],
-        idStudent: comment.idStudent,
-        content: comment.content,
-        dateCreate: comment.dateCreate,
-        dateSort: comment.dateSort,
-      ); */
       // add to list
-      //listAllCommets.add(newComment);
       return comment;
     } else {
       throw Exception(

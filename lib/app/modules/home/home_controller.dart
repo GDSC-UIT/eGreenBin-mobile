@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
+import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 
 class HomeController extends GetxController {
   // data models
@@ -19,6 +20,7 @@ class HomeController extends GetxController {
   ).obs;
   // repository student
   final repoStudent = StudentRepository();
+  final repoComment = CommentRepository();
   // class value
   RxInt numberOfStudent = 0.obs;
   // sort box
@@ -63,7 +65,7 @@ class HomeController extends GetxController {
       // fetch student
       DataCenter.instance.students.value = await repoStudent.fetchStudents();
       // get length of student
-      numberOfStudent.value = repoStudent.getLengthOfListStudents();
+      numberOfStudent.value = DataCenter.instance.students.length;
       // loading off
       isLoading.value = false;
     } catch (error) {

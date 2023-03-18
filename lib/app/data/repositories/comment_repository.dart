@@ -1,5 +1,4 @@
 import 'package:egreenbin/app/data/models/comment.dart';
-import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/data_center.dart';
 import '../../domain/repositories/comment_interface.dart';
 import '../enums/sortType.dart';
@@ -10,7 +9,8 @@ class CommentRepository implements ICommentRepository {
 
   @override
   Future<List<Comment>> fetchComments() async {
-    return await commentApi.fetchComments();
+    DataCenter.instance.comments.value = await commentApi.fetchComments();
+    return DataCenter.instance.comments;
   }
 
   @override
@@ -19,8 +19,8 @@ class CommentRepository implements ICommentRepository {
   }
 
   @override
-  Future<void> addComment(Comment comment, Student student) async {
-    final newComment = await commentApi.addComment(comment, student);
+  Future<void> addComment(Comment comment) async {
+    final newComment = await commentApi.addComment(comment);
     DataCenter.instance.comments.add(newComment);
   }
 
@@ -32,13 +32,13 @@ class CommentRepository implements ICommentRepository {
 
   // local ==========================================================
 
-  /* List<Comment> listCommentsFindById(String id) {
+  List<Comment> getListCommentsFindByIdStudentLocal(String id) {
     List<Comment> list = [];
-    for (var com in listAllCommets) {
+    for (var com in DataCenter.instance.comments) {
       if (com.idStudent == id) list.add(com);
     }
     return list;
-  } */
+  }
 
   List<Comment> getListCommentsSortByDate(String id) {
     List<Comment> list = [];

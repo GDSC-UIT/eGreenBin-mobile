@@ -1,10 +1,10 @@
 import 'package:badges/badges.dart' as badges;
+import 'package:egreenbin/app/data/providers/data_center.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/values/assets_image.dart';
 import '../../../core/theme/text_styles.dart';
-import '../../../data/providers/notifications.dart';
 
 class IconNotification extends StatelessWidget {
   const IconNotification({super.key});
@@ -12,12 +12,12 @@ class IconNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Notifications.listNotifications.isEmpty
+      () => DataCenter.instance.notifications.isEmpty
           ? Image.asset(Assets.notification)
           : badges.Badge(
               position: badges.BadgePosition.topStart(top: -15, start: -15),
               badgeContent: Text(
-                Notifications.listNotifications.length.toString(),
+                DataCenter.instance.notifications.length.toString(),
                 style: CustomTextStyle.b1(Colors.white),
               ),
               badgeStyle: const badges.BadgeStyle(

@@ -31,7 +31,7 @@ class GarbageAPI {
       return listGarbages;
     } else {
       throw Exception(
-          'Failed to load garbages: ${jsonDecode(response.body)['error']}');
+          'Failed to load garbages by id student: ${jsonDecode(response.body)['error']}');
     }
   }
 }

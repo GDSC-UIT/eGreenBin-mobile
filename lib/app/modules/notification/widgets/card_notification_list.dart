@@ -1,10 +1,10 @@
-import 'package:egreenbin/app/data/providers/notifications.dart';
 import 'package:egreenbin/app/modules/notification/notification_controller.dart';
 import 'package:egreenbin/app/modules/notification/widgets/card_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/text_styles.dart';
+import '../../../data/providers/data_center.dart';
 
 class CardNotificationList extends StatelessWidget {
   final NotificationController controller;
@@ -46,7 +46,7 @@ class CardNotificationList extends StatelessWidget {
                 const SizedBox(height: 2),
                 Obx(
                   () => Text(
-                    "${Notifications.listNotifications.length} ${"notifications".tr}",
+                    "${DataCenter.instance.notifications.length} ${"notifications".tr}",
                     style: CustomTextStyle.b1(AppColors.subtle_1),
                   ),
                 ),
@@ -54,7 +54,7 @@ class CardNotificationList extends StatelessWidget {
 // list notification
                 Obx(
                   () => Expanded(
-                    child: Notifications.listNotifications.isEmpty
+                    child: DataCenter.instance.notifications.isEmpty
                         ? Center(
                             child: Text(
                               "THERE ARE NO NOTIFICATION YET".tr,
@@ -64,9 +64,11 @@ class CardNotificationList extends StatelessWidget {
                           )
                         : ListView.builder(
                             padding: const EdgeInsets.all(0),
-                            itemCount: Notifications.listNotifications.length,
+                            itemCount: DataCenter.instance.notifications.length,
                             itemBuilder: (context, i) => CardNotification(
-                                Notifications.listNotifications[i]),
+                              DataCenter.instance.notifications[i],
+                              controller.repoNoti,
+                            ),
                           ),
                   ),
                 ),

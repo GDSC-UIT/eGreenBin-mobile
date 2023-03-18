@@ -10,6 +10,7 @@ import '../../data/models/comment.dart';
 import '../../data/repositories/student_repository.dart';
 
 class StudentInfoController extends GetxController {
+  // repository
   final repoStudent = StudentRepository();
   final repoComment = CommentRepository();
   final repoGarbage = GarbageRepository();
@@ -58,7 +59,7 @@ class StudentInfoController extends GetxController {
   void onInit() async {
     // get student and comments from id
     student.value = repoStudent.findStudentById(id);
-    listComments.value = await repoComment.getCommentsByIDStudent(id);
+    listComments.value = await repoComment.fetchComments();
     // get Number of right and wrong
     numOfRight.value = repoGarbage.getNumOfCorrect(id);
     numOfWrong.value = repoGarbage.getNumOfWrong(id);
@@ -95,7 +96,7 @@ class StudentInfoController extends GetxController {
 // filter comment==========================================
   Future<void> filterByAll() async {
     // update list comment by all
-    listComments.value = await repoComment.getCommentsByIDStudent(id);
+    listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
   }
 
   Future<void> filterByDate() async {
@@ -142,7 +143,7 @@ class StudentInfoController extends GetxController {
       dateSort: sortTemp,
     );
     // add this comment to list comment
-    await repoComment.addComment(newComment, student.value);
+    await repoComment.addComment(newComment);
     // bug
     updateCurrentListComment();
     // clear textcontroller

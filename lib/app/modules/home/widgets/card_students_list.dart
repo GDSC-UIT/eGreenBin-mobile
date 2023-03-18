@@ -63,10 +63,10 @@ class CardStudentList extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "${_controller.numberOfStudent.value} ${"students".tr}",
-                      style: CustomTextStyle.b1(AppColors.subtle_1),
-                    ),
+                    Obx(() => Text(
+                          "${_controller.numberOfStudent.value} ${"students".tr}",
+                          style: CustomTextStyle.b1(AppColors.subtle_1),
+                        )),
                     const SizedBox(width: 5),
 // add icon
                     InkWell(

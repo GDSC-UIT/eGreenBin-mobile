@@ -7,8 +7,6 @@ import '../providers/data_center.dart';
 class GarbageRepository implements IGarbageRepository {
   final garbageApi = GarbageAPI();
 
-  static get listGarbage => null;
-
   @override
   Future<List<Garbage>> fetchGarbages() async {
     return garbageApi.fetchGarbages();
@@ -30,7 +28,7 @@ class GarbageRepository implements IGarbageRepository {
   Future gernerateGabagesOfEachStudent(Student student) async {
     // correct
     for (int i = 0; i < student.numOfCorrect!; i++) {
-      listGarbage.add(
+      DataCenter.instance.garbages.add(
         Garbage(
           idStudent: student.id!,
           isRight: true,
@@ -39,7 +37,7 @@ class GarbageRepository implements IGarbageRepository {
     }
     // wrong
     for (int i = 0; i < student.numOfWrong!; i++) {
-      listGarbage.add(
+      DataCenter.instance.garbages.add(
         Garbage(
           idStudent: student.id!,
           isRight: false,
@@ -52,7 +50,7 @@ class GarbageRepository implements IGarbageRepository {
   // sort by all
   int getNumOfCorrect(String idStudent) {
     int num = 0;
-    for (Garbage gar in listGarbage) {
+    for (Garbage gar in DataCenter.instance.garbages) {
       if (gar.idStudent == idStudent) {
         if (gar.isRight) num++;
       }
@@ -62,7 +60,7 @@ class GarbageRepository implements IGarbageRepository {
 
   int getNumOfWrong(String idStudent) {
     int num = 0;
-    for (Garbage gar in listGarbage) {
+    for (Garbage gar in DataCenter.instance.garbages) {
       if (gar.idStudent == idStudent) {
         if (!gar.isRight) num++;
       }
@@ -73,7 +71,7 @@ class GarbageRepository implements IGarbageRepository {
   // sort by month
   int getNumOfCorrectByMonth(String idStudent, int month) {
     int num = 0;
-    for (Garbage gar in listGarbage) {
+    for (Garbage gar in DataCenter.instance.garbages) {
       if (gar.idStudent == idStudent) {
         if (gar.isRight && gar.dateCreate!.month == month) num++;
       }
@@ -83,7 +81,7 @@ class GarbageRepository implements IGarbageRepository {
 
   int getNumOfWrongByMonth(String idStudent, int month) {
     int num = 0;
-    for (Garbage gar in listGarbage) {
+    for (Garbage gar in DataCenter.instance.garbages) {
       if (gar.idStudent == idStudent) {
         if (!gar.isRight && gar.dateCreate!.month == month) num++;
       }
@@ -94,7 +92,7 @@ class GarbageRepository implements IGarbageRepository {
   // sort by year
   int getNumOfCorrectByYear(String idStudent, int year) {
     int num = 0;
-    for (Garbage gar in listGarbage) {
+    for (Garbage gar in DataCenter.instance.garbages) {
       if (gar.idStudent == idStudent) {
         if (gar.isRight && gar.dateCreate!.year == year) num++;
       }
@@ -104,7 +102,7 @@ class GarbageRepository implements IGarbageRepository {
 
   int getNumOfWrongByYear(String idStudent, int year) {
     int num = 0;
-    for (Garbage gar in listGarbage) {
+    for (Garbage gar in DataCenter.instance.garbages) {
       if (gar.idStudent == idStudent) {
         if (!gar.isRight && gar.dateCreate!.year == year) num++;
       }

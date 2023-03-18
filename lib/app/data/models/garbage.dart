@@ -18,7 +18,7 @@ class Garbage {
   factory Garbage.fromJson(Map<String, dynamic> json) {
     return Garbage(
       id: json['id'],
-      idStudent: json['idStudent'],
+      idStudent: json['studentID'],
       isRight: json['isRight'],
       dateCreate: json['dateThrow'],
     );
