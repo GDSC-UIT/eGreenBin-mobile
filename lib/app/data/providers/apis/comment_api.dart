@@ -7,11 +7,11 @@ class CommentAPI {
   // http fetch comment from api
   Future<List<Comment>> fetchComments() async {
     var response = await HttpService.getRequest(COMMENTS_URL);
-    print(response.statusCode);
+    List<Comment> listGetComments = [];
     if (response.statusCode == 200) {
-      final parsed = (json.decode(response.body)['data'] as List)
+      final parsed = ((json.decode(response.body)['data'] ?? []) as List)
           .cast<Map<String, dynamic>>();
-      List<Comment> listGetComments =
+      listGetComments =
           parsed.map<Comment>((json) => Comment.fromJson(json)).toList();
       return listGetComments;
     } else {

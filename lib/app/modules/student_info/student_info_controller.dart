@@ -59,10 +59,12 @@ class StudentInfoController extends GetxController {
   void onInit() async {
     // get student and comments from id
     student.value = repoStudent.findStudentById(id);
-    listComments.value = await repoComment.fetchComments();
+    listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
     // get Number of right and wrong
-    numOfRight.value = repoGarbage.getNumOfCorrect(id);
-    numOfWrong.value = repoGarbage.getNumOfWrong(id);
+    //numOfRight.value = repoGarbage.getNumOfCorrect(id);
+    //numOfWrong.value = repoGarbage.getNumOfWrong(id);
+    numOfRight.value = student.value.numOfCorrect!;
+    numOfWrong.value = student.value.numOfWrong!;
     super.onInit();
   }
 

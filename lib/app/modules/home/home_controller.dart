@@ -64,6 +64,8 @@ class HomeController extends GetxController {
       isLoading.value = true;
       // fetch student
       DataCenter.instance.students.value = await repoStudent.fetchStudents();
+      // fetch comments
+      await repoComment.fetchComments();
       // get length of student
       numberOfStudent.value = DataCenter.instance.students.length;
       // loading off

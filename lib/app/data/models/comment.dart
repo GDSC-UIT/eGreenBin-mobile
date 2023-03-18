@@ -1,6 +1,5 @@
 import 'package:egreenbin/app/core/extensions/date_ex.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
-import 'package:egreenbin/app/data/models/student.dart';
 
 class Comment {
   String? id; // id of comment
