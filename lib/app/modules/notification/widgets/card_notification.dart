@@ -1,16 +1,16 @@
 import 'package:egreenbin/app/core/extensions/date_ex.dart';
 import 'package:egreenbin/app/data/models/notification.dart' as noti;
+import 'package:egreenbin/app/data/repositories/notification_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/text_styles.dart';
-import '../../../data/providers/notifications.dart';
 
 // ignore: must_be_immutable
 class CardNotification extends StatelessWidget {
   noti.Notification notification;
-
-  CardNotification(this.notification, {super.key});
+  NotificationRepository notiRepo;
+  CardNotification(this.notification, this.notiRepo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CardNotification extends StatelessWidget {
           SlidableAction(
             onPressed: (context) {
               // delete task
-              Notifications.deleteNotification(notification);
+              notiRepo.deleteNotification(notification);
             },
             icon: Icons.delete,
             backgroundColor: AppColors.wrong,

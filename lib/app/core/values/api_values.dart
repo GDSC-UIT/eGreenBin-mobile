@@ -1,4 +1,7 @@
+// ignore_for_file: constant_identifier_names
+
 const String url = "https://egreenbin.onrender.com/api";
 const String STUDENTS_URL = "$url/students";
 const String COMMENTS_URL = '$url/comments';
-const String TEACHER_URL = '$url/teachers';
+const String TEACHERS_URL = '$url/teachers';
+const String GARBAGES_URL = '$url/garbage';

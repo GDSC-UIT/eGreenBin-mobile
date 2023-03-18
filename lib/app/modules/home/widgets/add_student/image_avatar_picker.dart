@@ -5,7 +5,7 @@ import 'package:egreenbin/app/data/services/device_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../modules/home/home_controller.dart';
+import '../../home_controller.dart';
 
 // ignore: must_be_immutable
 class ImageAvatarPicker extends StatefulWidget {

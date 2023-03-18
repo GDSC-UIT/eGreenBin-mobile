@@ -6,7 +6,7 @@ import 'package:egreenbin/app/global_widgets/dialog_mail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/providers/students.dart';
+import '../../../data/providers/data_center.dart';
 
 class CardStudentMailList extends StatelessWidget {
   final MailController _controller;
@@ -73,10 +73,10 @@ class CardStudentMailList extends StatelessWidget {
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.all(0),
-                    itemCount: Students.listStudents.length,
+                    itemCount: DataCenter.instance.students.length,
                     itemBuilder: (context, i) => CardMailStudent(
                       i + 1,
-                      Students.listStudents[i],
+                      DataCenter.instance.students[i],
                       showCommentForm,
                     ),
                   ),

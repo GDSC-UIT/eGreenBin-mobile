@@ -26,6 +26,15 @@ class HttpService {
     );
   }
 
+  static Future<http.Response> getRequestWithId({url, id}) async {
+    return await http.get(
+      Uri.parse('$url/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+  }
+
   static Future<http.Response> deleteRequest({url, id}) async {
     final uri = Uri.parse('$url/$id');
     return await http.delete(

@@ -2,17 +2,30 @@ import 'dart:io';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/utils/snackbar.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/data/providers/comments.dart';
-import 'package:egreenbin/app/data/providers/garbages.dart';
-import 'package:egreenbin/app/data/providers/students.dart';
+import 'package:egreenbin/app/data/providers/data_center.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
+import 'package:egreenbin/app/data/repositories/student_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
+import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 
 class HomeController extends GetxController {
+  // data models
+  Rx<Teacher> teacher = Teacher(
+    id: '20521000',
+    name: "Hoàng Thì Linh",
+  ).obs;
+  // repository student
+  final repoStudent = StudentRepository();
+  final repoComment = CommentRepository();
+  // class value
+  RxInt numberOfStudent = 0.obs;
+  // sort box
+  Rx<SortService>? sortService;
+
   HomeController() {
     sortService = SortService(
       updateSort: fnull,
@@ -50,13 +63,11 @@ class HomeController extends GetxController {
       // loading
       isLoading.value = true;
       // fetch student
-      await Students.fetchStudent();
-      // get list of comment
-      await Comments.fetchComments();
-      // load list of garbages
-      await Garbages.gernerateGabages();
+      DataCenter.instance.students.value = await repoStudent.fetchStudents();
+      // fetch comments
+      await repoComment.fetchComments();
       // get length of student
-      numberOfStudent = Students.listStudents.length.obs;
+      numberOfStudent.value = DataCenter.instance.students.length;
       // loading off
       isLoading.value = false;
     } catch (error) {
@@ -74,17 +85,6 @@ class HomeController extends GetxController {
   void filterByDate() {}
   void filterByYear() {}
   void filterByMonth() {}
-
-  // data models
-  Rx<Teacher> teacher = Teacher(
-    id: '20521000',
-    name: "Hoàng Thì Linh",
-  ).obs;
-
-  // class value
-  RxInt numberOfStudent = 0.obs;
-  // sort box
-  Rx<SortService>? sortService;
 
   // this is add student function
   final formKey = GlobalKey<FormState>(); // key of form add student
@@ -135,8 +135,7 @@ class HomeController extends GetxController {
         note: "",
       );
       // post student
-      await Students.addStudent(newStudent);
-      update();
+      await repoStudent.addStudent(newStudent);
       // catch error
     } catch (error) {
       print("Error when submit student: $error");

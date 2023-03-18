@@ -1,7 +1,7 @@
 import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/data/providers/students.dart';
-import 'package:egreenbin/app/global_widgets/add_student/dialog_add_student.dart';
+import 'package:egreenbin/app/data/providers/data_center.dart';
+import 'package:egreenbin/app/modules/home/widgets/add_student/dialog_add_student.dart';
 import 'package:egreenbin/app/global_widgets/shimmer_list.dart';
 import 'package:egreenbin/app/global_widgets/sort_box.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
@@ -63,10 +63,10 @@ class CardStudentList extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "${_controller.numberOfStudent.value} ${"students".tr}",
-                      style: CustomTextStyle.b1(AppColors.subtle_1),
-                    ),
+                    Obx(() => Text(
+                          "${_controller.numberOfStudent.value} ${"students".tr}",
+                          style: CustomTextStyle.b1(AppColors.subtle_1),
+                        )),
                     const SizedBox(width: 5),
 // add icon
                     InkWell(
@@ -101,10 +101,10 @@ class CardStudentList extends StatelessWidget {
                           ? const ShimmerList()
                           : ListView.builder(
                               padding: const EdgeInsets.all(0),
-                              itemCount: Students.listStudents.length,
+                              itemCount: DataCenter.instance.students.length,
                               itemBuilder: (context, i) => StudentCard(
                                 i + 1,
-                                Students.listStudents[i],
+                                DataCenter.instance.students[i],
                                 _controller.pushToStudentInfoScreen,
                               ),
                             ),

@@ -1,15 +1,42 @@
-import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/data/providers/garbages.dart';
-import 'package:egreenbin/app/data/providers/students.dart';
+import 'package:egreenbin/app/data/repositories/comment_repository.dart';
+import 'package:egreenbin/app/data/repositories/garbage_repository.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/modules/student_info/screens/rating_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
+import '../../data/repositories/student_repository.dart';
 
 class StudentInfoController extends GetxController {
+  // repository
+  final repoStudent = StudentRepository();
+  final repoComment = CommentRepository();
+  final repoGarbage = GarbageRepository();
+  // this function will do nothing
+  Function fnull = () {};
+  // data models
+  Rx<Student> student = Student(name: "default").obs;
+  // comment
+  RxList<Comment> listComments = <Comment>[].obs;
+
+  // textController comment
+  final TextEditingController textCotroller = TextEditingController();
+
+  // number of Right and Wrong
+  RxInt numOfRight = 0.obs;
+  RxInt numOfWrong = 0.obs;
+  // card statical
+  Rx<SortService>? sortCardStatical;
+  // card ratio
+  Rx<SortService>? sortCardRatio;
+  // card evaluate
+  Rx<SortService>? sortCardEvaluate;
+  // dialog
+  Rx<SortService>? sortDialog;
+  //==========================
+
   StudentInfoController() {
     sortCardStatical = SortService(
       updateSort: fnull,
@@ -25,32 +52,19 @@ class StudentInfoController extends GetxController {
     ).obs;
   }
 
-  // this function will do nothing
-  Function fnull = () {};
-  // data models
-  Rx<Student> student = Student(name: "default").obs;
-  // comment
-  RxList<Comment> listComments = <Comment>[].obs;
-
-  // textController comment
-  final TextEditingController textCotroller = TextEditingController();
-
-  // number of Right and Wrong
-  RxInt numOfRight = 0.obs;
-  RxInt numOfWrong = 0.obs;
-  //==========================
-
   // get id from prev screen
   dynamic id = Get.arguments;
 
   @override
-  void onInit() {
+  void onInit() async {
     // get student and comments from id
-    student.value = Students.findStudent(id);
-    listComments.value = Comments.listCommentsFindById(id);
+    student.value = repoStudent.findStudentById(id);
+    listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
     // get Number of right and wrong
-    numOfRight.value = Garbages.getNumOfCorrect(id);
-    numOfWrong.value = Garbages.getNumOfWrong(id);
+    //numOfRight.value = repoGarbage.getNumOfCorrect(id);
+    //numOfWrong.value = repoGarbage.getNumOfWrong(id);
+    numOfRight.value = student.value.numOfCorrect!;
+    numOfWrong.value = student.value.numOfWrong!;
     super.onInit();
   }
 
@@ -72,7 +86,7 @@ class StudentInfoController extends GetxController {
 
     // ignore: unrelated_type_equality_checks
     if (isPop == 'success') {
-      refreshComment();
+      // do something
     }
   }
 
@@ -81,30 +95,25 @@ class StudentInfoController extends GetxController {
     Get.back(result: 'success');
   }
 
-  // refresh comment
-  void refreshComment() {
-    print("pop sreen yearrrrrrrrrrrrrrrrrrrrrrr");
-  }
-
 // filter comment==========================================
-  void filterByAll() {
+  Future<void> filterByAll() async {
     // update list comment by all
-    listComments.value = Comments.listCommentsFindById(id);
+    listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
   }
 
-  void filterByDate() {
+  Future<void> filterByDate() async {
     // update list comment by date
-    listComments.value = Comments.listCommentsSortByDate(id);
+    listComments.value = repoComment.getListCommentsSortByDate(id);
   }
 
-  void filterByYear() {
+  Future<void> filterByYear() async {
     // update list comment by year
-    listComments.value = Comments.listCommentsSortByYear(id);
+    listComments.value = repoComment.getListCommentsSortByMonth(id);
   }
 
-  void filterByMonth() {
+  Future<void> filterByMonth() async {
     // update list comment by month
-    listComments.value = Comments.listCommentsSortByMonth(id);
+    listComments.value = repoComment.getListCommentsSortByYear(id);
   }
 
   // update list comment when change comment
@@ -136,7 +145,7 @@ class StudentInfoController extends GetxController {
       dateSort: sortTemp,
     );
     // add this comment to list comment
-    await Comments.addComment(newComment, student.value);
+    await repoComment.addComment(newComment);
     // bug
     updateCurrentListComment();
     // clear textcontroller
@@ -145,7 +154,7 @@ class StudentInfoController extends GetxController {
 
   // delete a comment
   void deleteComment(Comment comment) {
-    Comments.deleteComment(comment);
+    repoComment.deleteComment(comment);
     listComments.remove(comment);
   }
 
@@ -161,17 +170,4 @@ class StudentInfoController extends GetxController {
       return DateSort.fromYear(year: sortDialog!.value.selectedYearSort.value);
     }
   }
-
-// card statical
-//========================================================================
-  Rx<SortService>? sortCardStatical;
-// card ratio
-//========================================================================
-  Rx<SortService>? sortCardRatio;
-// card evaluate
-//========================================================================
-  Rx<SortService>? sortCardEvaluate;
-// dialog
-//========================================================================
-  Rx<SortService>? sortDialog;
 }

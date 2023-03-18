@@ -1,8 +1,10 @@
-import 'package:egreenbin/app/data/providers/notifications.dart';
+import 'package:egreenbin/app/data/repositories/notification_repository.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher.dart';
 
 class NotificationController extends GetxController {
+  // noti repository
+  final repoNoti = NotificationRepository();
   // fuction
   void popToPrevScreen() {
     Get.back();
@@ -10,7 +12,7 @@ class NotificationController extends GetxController {
 
   void deleteAllNotification() {
     // delete all noti in list notification
-    Notifications.deleteAllNotification();
+    repoNoti.deleteAllNotification();
   }
 
   @override
