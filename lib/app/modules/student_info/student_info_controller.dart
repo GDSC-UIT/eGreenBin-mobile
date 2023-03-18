@@ -1,7 +1,7 @@
-import 'package:egreenbin/app/data/providers/comments.dart';
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/student.dart';
-import 'package:egreenbin/app/data/providers/garbages.dart';
+import 'package:egreenbin/app/data/repositories/comment_repository.dart';
+import 'package:egreenbin/app/data/repositories/garbage_repository.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/modules/student_info/screens/rating_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,8 @@ import '../../data/repositories/student_repository.dart';
 
 class StudentInfoController extends GetxController {
   final repoStudent = StudentRepository();
-
+  final repoComment = CommentRepository();
+  final repoGarbage = GarbageRepository();
   // this function will do nothing
   Function fnull = () {};
   // data models
@@ -54,13 +55,13 @@ class StudentInfoController extends GetxController {
   dynamic id = Get.arguments;
 
   @override
-  void onInit() {
+  void onInit() async {
     // get student and comments from id
     student.value = repoStudent.findStudentById(id);
-    listComments.value = Comments.listCommentsFindById(id);
+    listComments.value = await repoComment.getCommentsByIDStudent(id);
     // get Number of right and wrong
-    numOfRight.value = Garbages.getNumOfCorrect(id);
-    numOfWrong.value = Garbages.getNumOfWrong(id);
+    numOfRight.value = repoGarbage.getNumOfCorrect(id);
+    numOfWrong.value = repoGarbage.getNumOfWrong(id);
     super.onInit();
   }
 
@@ -92,24 +93,24 @@ class StudentInfoController extends GetxController {
   }
 
 // filter comment==========================================
-  void filterByAll() {
+  Future<void> filterByAll() async {
     // update list comment by all
-    listComments.value = Comments.listCommentsFindById(id);
+    listComments.value = await repoComment.getCommentsByIDStudent(id);
   }
 
-  void filterByDate() {
+  Future<void> filterByDate() async {
     // update list comment by date
-    listComments.value = Comments.listCommentsSortByDate(id);
+    listComments.value = repoComment.getListCommentsSortByDate(id);
   }
 
-  void filterByYear() {
+  Future<void> filterByYear() async {
     // update list comment by year
-    listComments.value = Comments.listCommentsSortByYear(id);
+    listComments.value = repoComment.getListCommentsSortByMonth(id);
   }
 
-  void filterByMonth() {
+  Future<void> filterByMonth() async {
     // update list comment by month
-    listComments.value = Comments.listCommentsSortByMonth(id);
+    listComments.value = repoComment.getListCommentsSortByYear(id);
   }
 
   // update list comment when change comment
@@ -141,7 +142,7 @@ class StudentInfoController extends GetxController {
       dateSort: sortTemp,
     );
     // add this comment to list comment
-    await Comments.addComment(newComment, student.value);
+    await repoComment.addComment(newComment, student.value);
     // bug
     updateCurrentListComment();
     // clear textcontroller
@@ -150,7 +151,7 @@ class StudentInfoController extends GetxController {
 
   // delete a comment
   void deleteComment(Comment comment) {
-    Comments.deleteComment(comment);
+    repoComment.deleteComment(comment);
     listComments.remove(comment);
   }
 

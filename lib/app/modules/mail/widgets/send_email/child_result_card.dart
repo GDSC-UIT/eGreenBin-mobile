@@ -1,7 +1,6 @@
-import 'package:egreenbin/app/data/providers/data_center.dart';
+import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 import 'package:egreenbin/app/data/repositories/student_repository.dart';
 import 'package:screenshot/screenshot.dart';
-
 import '../../../../core/values/app_strings.dart';
 import '../../../../data/models/comment.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
@@ -13,27 +12,41 @@ import 'package:get/get.dart';
 import '../../../../core/theme/text_styles.dart';
 import '../../../../core/values/assets_image.dart';
 import '../../../../data/models/student.dart';
-import '../../../../data/providers/comments.dart';
 
 // ignore: must_be_immutable
-class ChildResultCard extends StatelessWidget {
+class ChildResultCard extends StatefulWidget {
   // id of student
   String id;
   ScreenshotController screenController;
   ChildResultCard(this.id, this.screenController, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final repoStudent = StudentRepository();
-    Student student = repoStudent.findStudentById(id);
-    List<Comment> listComment = Comments.listCommentsFindById(id);
+  State<ChildResultCard> createState() => _ChildResultCardState();
+}
 
+class _ChildResultCardState extends State<ChildResultCard> {
+  final repoStudent = StudentRepository();
+  final repoComment = CommentRepository();
+
+  Student? student;
+
+  List<Comment>? listComment;
+
+  @override
+  void initState() async {
+    student = repoStudent.findStudentById(widget.id);
+    listComment = await repoComment.getCommentsByIDStudent(widget.id);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView(
           child: Screenshot(
-            controller: screenController,
+            controller: widget.screenController,
             child: Container(
               color: AppColors.primarySubtle2,
               child: Stack(
@@ -77,13 +90,13 @@ class ChildResultCard extends StatelessWidget {
                               ),
                               const SizedBox(height: 20),
                               // I. STATISTICS
-                              Statistical(student),
+                              Statistical(student!),
                               const SizedBox(height: 10),
                               //II. SPECIFIC DATA
-                              Ratio(student),
+                              Ratio(student!),
                               const SizedBox(height: 20),
                               //III. COMMENT
-                              Evaluate(listComment),
+                              Evaluate(listComment!),
                               // logo
                               // Image logo and app name
                               Stack(
