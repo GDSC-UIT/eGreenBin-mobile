@@ -45,6 +45,7 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
+      alignment: Alignment.center,
       content: SingleChildScrollView(
         child: Stack(
           children: [
@@ -53,6 +54,8 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
               width: 56.0.wp,
               child: SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // text new student
                     Padding(

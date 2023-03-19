@@ -14,7 +14,7 @@ class CardStudentMailList extends StatelessWidget {
   const CardStudentMailList(this._controller, {super.key});
 
   // show comment dialog
-  void showCommentForm(BuildContext context, Student student) {
+  void showCommentForm(BuildContext context, Student student, Function update) {
     // set text of contrller = text note of student
     _controller.textCotroller.text = student.note!;
     // show dialog
@@ -25,7 +25,7 @@ class CardStudentMailList extends StatelessWidget {
       builder: (ctx) => DiaLogMail(
         mailController: _controller,
         textController: _controller.textCotroller,
-        onSave: () => _controller.saveNote(student),
+        onSave: () => _controller.saveNote(student, update),
       ),
     );
   }

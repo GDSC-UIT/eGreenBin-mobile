@@ -75,11 +75,12 @@ class MailController extends GetxController {
     await testMail!.sendEmail();
   }
 
-  Future saveNote(Student student) async {
+  Future saveNote(Student student, Function update) async {
     // luu content vao student
     student.note = textCotroller.text;
     // lay link roi bo vao mail
     testMail = Mail(student: student);
+    update();
   }
 
   void filterByAll() {}

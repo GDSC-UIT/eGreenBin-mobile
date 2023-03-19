@@ -6,6 +6,7 @@ import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/global_widgets/image_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 // ignore: must_be_immutable
@@ -23,6 +24,10 @@ class _CardMailStudentState extends State<CardMailStudent> {
   String get indexFormat {
     if (widget.index < 10) return '0${widget.index}';
     return '${widget.index}';
+  }
+
+  void update() {
+    setState(() {});
   }
 
   @override
@@ -72,7 +77,7 @@ class _CardMailStudentState extends State<CardMailStudent> {
 // star
           ZoomTapAnimation(
             onTap: () {
-              widget.showDialog(context, widget.student);
+              widget.showDialog(context, widget.student, update);
             },
             child: SizedBox(
               height: 30,
