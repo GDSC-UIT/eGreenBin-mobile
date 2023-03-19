@@ -77,8 +77,10 @@ class _DiaLogCommentState extends State<DiaLogComment> {
           ),
           SizedBox(
             height: 32.0.hp,
-            width: 56.0.wp,
+            width: 60.0.wp,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 // text Danh gia
                 Padding(

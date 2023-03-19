@@ -75,6 +75,8 @@ class _DiaLogMailState extends State<DiaLogMail> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.32,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 // text noi dung thu
                 Padding(

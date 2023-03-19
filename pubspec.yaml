@@ -61,6 +61,7 @@ dependencies:
   flutter_switch: ^0.3.2
   image_picker: ^0.8.6+4
   flutter_easyloading: ^3.0.5
+  http_parser: ^4.0.2
 
 flutter_icons:
   android: "launcher_icon"

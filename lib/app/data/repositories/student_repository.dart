@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/apis/student_api.dart';
 import 'package:egreenbin/app/data/providers/data_center.dart';
@@ -18,10 +20,14 @@ class StudentRepository implements IStudentRepository {
   }
 
   @override
-  Future<void> addStudent(Student student) async {
+  Future<Student> addStudent(Student student) async {
     // return student to add in local
-    Student newStudent = await studentApi.addStudent(student);
-    DataCenter.instance.students.add(newStudent);
+    Student? newStudent = await studentApi.addStudent(student);
+    if (newStudent == null) {
+      log("new student is null");
+    }
+    DataCenter.instance.students.add(newStudent!);
+    return newStudent;
   }
 
   // get student from local

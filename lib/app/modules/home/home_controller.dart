@@ -5,6 +5,7 @@ import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/data_center.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:egreenbin/app/data/repositories/student_repository.dart';
+import 'package:egreenbin/app/data/services/upload_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/services/firebase_service.dart';
@@ -111,13 +112,13 @@ class HomeController extends GetxController {
     if (isValid) {
       formKey.currentState!.save();
       // submit
-      await submitAddStudent();
+      await submitAddStudent(imageStudent!);
       // delete file
       imageStudent = null;
     }
   }
 
-  Future<void> submitAddStudent() async {
+  Future<void> submitAddStudent(File imageFile) async {
     try {
       // loading
       // upload file to firebase
@@ -135,7 +136,9 @@ class HomeController extends GetxController {
         note: "",
       );
       // post student
-      await repoStudent.addStudent(newStudent);
+      Student addedStudent = await repoStudent.addStudent(newStudent);
+      // upload to AI server
+      await uploadImageToAiServer(addedStudent, imageFile);
       // catch error
     } catch (error) {
       print("Error when submit student: $error");
@@ -145,5 +148,20 @@ class HomeController extends GetxController {
         AppColors.wrong,
       );
     }
+  }
+
+  Future<void> uploadImageToAiServer(Student student, File imageFile) async {
+    // rename file image
+    String fileName = "${student.id}-${student.name}";
+    File newFileImage = await changeFileNameOnly(imageFile, fileName);
+    // upload to server
+    await UploadService.uploadImage(newFileImage);
+  }
+
+  Future<File> changeFileNameOnly(File file, String newFileName) async {
+    var path = file.path;
+    var lastSeparator = path.lastIndexOf(Platform.pathSeparator);
+    var newPath = path.substring(0, lastSeparator + 1) + newFileName;
+    return file.rename(newPath);
   }
 }

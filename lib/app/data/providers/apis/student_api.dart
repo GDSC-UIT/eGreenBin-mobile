@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:egreenbin/app/data/models/student.dart';
 import 'dart:convert';
 import 'package:egreenbin/app/core/values/api_values.dart';
@@ -33,7 +35,7 @@ class StudentAPI {
     }
   }
 
-  Future<Student> addStudent(Student student) async {
+  Future<Student?> addStudent(Student student) async {
     // post student
     var response = await HttpService.postRequest(
       url: STUDENTS_URL,
@@ -44,21 +46,11 @@ class StudentAPI {
     if (response.statusCode == 201) {
       // create new student
       student.setID = json.decode(response.body)['data']['id'];
-      /* Student(
-        id: json.decode(response.body)['data']['id'],
-        code: student.code,
-        name: student.name,
-        parentEmail: student.parentEmail,
-        numOfCorrect: student.numOfCorrect,
-        numOfWrong: student.numOfWrong,
-        imageAvatarUrl: student.imageAvatarUrl,
-        note: student.note,
-      ); */
       // return newStudent to add in domain
       return student;
     } else {
-      throw Exception(
-          'Failed to add student: ${jsonDecode(response.body)['error']}');
+      log('Failed to add student: ${jsonDecode(response.body)['error']}');
+      return null;
     }
   }
 }
