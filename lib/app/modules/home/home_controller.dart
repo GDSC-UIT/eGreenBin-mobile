@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/utils/snackbar.dart';
@@ -8,6 +9,7 @@ import 'package:egreenbin/app/data/repositories/student_repository.dart';
 import 'package:egreenbin/app/data/services/upload_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../data/repositories/garbage_repository.dart';
 import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
@@ -22,6 +24,7 @@ class HomeController extends GetxController {
   // repository student
   final repoStudent = StudentRepository();
   final repoComment = CommentRepository();
+  final repoGarbage = GarbageRepository();
   // class value
   RxInt numberOfStudent = 0.obs;
   // sort box
@@ -63,22 +66,30 @@ class HomeController extends GetxController {
     try {
       // loading
       isLoading.value = true;
-      // fetch student
-      DataCenter.instance.students.value = await repoStudent.fetchStudents();
-      // fetch comments
-      await repoComment.fetchComments();
+      await fetchData();
       // get length of student
       numberOfStudent.value = DataCenter.instance.students.length;
       // loading off
       isLoading.value = false;
     } catch (error) {
-      print("Error when fetch data: $error");
+      log("Error when fetch data: $error");
       showSnackBarAndNotification(
         "Error",
         "Error when fetch data: $error",
         AppColors.wrong,
       );
     }
+  }
+
+  Future<void> fetchData() async {
+    await Future.wait([
+      // fetch student
+      repoStudent.fetchStudents(),
+      // fetch comments
+      repoComment.fetchComments(),
+      // fetch garbages
+      repoGarbage.fetchGarbages(),
+    ]);
   }
 
   // fuction of sort

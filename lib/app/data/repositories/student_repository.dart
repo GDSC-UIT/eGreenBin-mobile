@@ -11,7 +11,8 @@ class StudentRepository implements IStudentRepository {
   @override
   // from api
   Future<List<Student>> fetchStudents() async {
-    return await studentApi.fetchStudents();
+    DataCenter.instance.students.value = await studentApi.fetchStudents();
+    return DataCenter.instance.students;
   }
 
   @override

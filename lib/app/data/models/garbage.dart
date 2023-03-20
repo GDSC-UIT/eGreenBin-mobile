@@ -20,7 +20,7 @@ class Garbage {
       id: json['id'],
       idStudent: json['studentID'],
       isRight: json['isRight'],
-      dateCreate: json['dateThrow'],
+      dateCreate: DateTime.parse(json['dateThrow']),
     );
   }
 }

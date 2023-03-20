@@ -9,7 +9,8 @@ class GarbageRepository implements IGarbageRepository {
 
   @override
   Future<List<Garbage>> fetchGarbages() async {
-    return garbageApi.fetchGarbages();
+    DataCenter.instance.garbages.value = await garbageApi.fetchGarbages();
+    return DataCenter.instance.garbages;
   }
 
   @override
