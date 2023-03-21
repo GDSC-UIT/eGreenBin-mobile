@@ -21,7 +21,7 @@ class HomeController extends GetxController {
     id: '20521000',
     name: "Hoàng Thì Linh",
   ).obs;
-  // repository student
+  // repository
   final repoStudent = StudentRepository();
   final repoComment = CommentRepository();
   final repoGarbage = GarbageRepository();
@@ -81,6 +81,7 @@ class HomeController extends GetxController {
     }
   }
 
+  /// get all data when begin
   Future<void> fetchData() async {
     await Future.wait([
       // fetch student

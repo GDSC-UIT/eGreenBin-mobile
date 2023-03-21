@@ -1,4 +1,5 @@
 import 'package:egreenbin/app/data/models/date_sort.dart';
+import 'package:egreenbin/app/data/models/garbage.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 import 'package:egreenbin/app/data/repositories/garbage_repository.dart';
@@ -20,7 +21,10 @@ class StudentInfoController extends GetxController {
   Rx<Student> student = Student(name: "default").obs;
   // comment
   RxList<Comment> listComments = <Comment>[].obs;
-
+  // garbages
+  RxList<Garbage> listGarbages = <Garbage>[].obs;
+  // get id from prev screen
+  dynamic id = Get.arguments;
   // textController comment
   final TextEditingController textCotroller = TextEditingController();
 
@@ -52,17 +56,14 @@ class StudentInfoController extends GetxController {
     ).obs;
   }
 
-  // get id from prev screen
-  dynamic id = Get.arguments;
-
   @override
   void onInit() async {
     // get student and comments from id
     student.value = repoStudent.findStudentById(id);
     listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
+    // get list garbage of student
+    listGarbages.value = repoGarbage.getGabagesOfStudentLocal(id);
     // get Number of right and wrong
-    //numOfRight.value = repoGarbage.getNumOfCorrect(id);
-    //numOfWrong.value = repoGarbage.getNumOfWrong(id);
     numOfRight.value = student.value.numOfCorrect!;
     numOfWrong.value = student.value.numOfWrong!;
     super.onInit();
@@ -93,41 +94,6 @@ class StudentInfoController extends GetxController {
   // this function if pop from rating screen
   void backToStudentInfo() {
     Get.back(result: 'success');
-  }
-
-// filter comment==========================================
-  Future<void> filterByAll() async {
-    // update list comment by all
-    listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
-  }
-
-  Future<void> filterByDate() async {
-    // update list comment by date
-    listComments.value = repoComment.getListCommentsSortByDate(id);
-  }
-
-  Future<void> filterByYear() async {
-    // update list comment by year
-    listComments.value = repoComment.getListCommentsSortByMonth(id);
-  }
-
-  Future<void> filterByMonth() async {
-    // update list comment by month
-    listComments.value = repoComment.getListCommentsSortByYear(id);
-  }
-
-  // update list comment when change comment
-  void updateCurrentListComment() {
-    String typeSort = sortCardEvaluate!.value.selectedSortBy.value;
-    if (typeSort == SortService.sortByItems[0]) {
-      filterByAll();
-    } else if (typeSort == SortService.sortByItems[1]) {
-      filterByDate();
-    } else if (typeSort == SortService.sortByItems[2]) {
-      filterByMonth();
-    } else {
-      filterByYear();
-    }
   }
 
 // comment ================================================================
@@ -170,4 +136,58 @@ class StudentInfoController extends GetxController {
       return DateSort.fromYear(year: sortDialog!.value.selectedYearSort.value);
     }
   }
+
+// filter comment==========================================
+  Future<void> filterByAll() async {
+    // update list comment by all
+    listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
+  }
+
+  Future<void> filterByDate() async {
+    // update list comment by date
+    listComments.value = repoComment.getListCommentsSortByDate(id);
+  }
+
+  Future<void> filterByYear() async {
+    // update list comment by year
+    listComments.value = repoComment.getListCommentsSortByMonth(id);
+  }
+
+  Future<void> filterByMonth() async {
+    // update list comment by month
+    listComments.value = repoComment.getListCommentsSortByYear(id);
+  }
+
+  // update list comment when change comment
+  void updateCurrentListComment() {
+    String typeSort = sortCardEvaluate!.value.selectedSortBy.value;
+    if (typeSort == SortService.sortByItems[0]) {
+      filterByAll();
+    } else if (typeSort == SortService.sortByItems[1]) {
+      filterByDate();
+    } else if (typeSort == SortService.sortByItems[2]) {
+      filterByMonth();
+    } else {
+      filterByYear();
+    }
+  }
+
+// Garbages ===================================================================
+  List<Garbage> garbagesMonth = [];
+
+  // get list garbage month
+  void listGarbagesMonth(int month) {
+    garbagesMonth = repoGarbage.getGabagesEachMonth(listGarbages, month);
+  }
+
+  // get num of garbages by week
+  int numOfCorrectByWeek(int week) {
+    return repoGarbage.getNumOfCorrectByWeek(garbagesMonth, week);
+  }
+
+  int numOfWrongByWeek(int week) {
+    return repoGarbage.getNumOfWrongByWeek(garbagesMonth, week);
+  }
+
+// filter garbages ============================================================
 }

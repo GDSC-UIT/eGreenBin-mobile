@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:egreenbin/app/data/models/garbage.dart';
 import 'dart:convert';
 import 'package:egreenbin/app/core/values/api_values.dart';
@@ -7,6 +9,7 @@ class GarbageAPI {
   Future<List<Garbage>> fetchGarbages() async {
     var response = await HttpService.getRequest(GARBAGES_URL);
     if (response.statusCode == 200) {
+      print(response.body);
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
       List<Garbage> listGarbages =

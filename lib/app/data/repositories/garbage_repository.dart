@@ -112,8 +112,7 @@ class GarbageRepository implements IGarbageRepository {
     return num;
   }
 
-  // TO DO: write two function
-  // 1: get list garbages of sudent of each month
+  // get list garbages of sudent of each month
   List<Garbage> getGabagesEachMonth(List<Garbage> gabages, int month) {
     List<Garbage> listGarbages = [];
     for (Garbage gar in gabages) {
@@ -124,18 +123,18 @@ class GarbageRepository implements IGarbageRepository {
     return listGarbages;
   }
 
-  // 2: get num of correct and wrong of each week in a month
-  int getNumOfCorrectByWeek(List<Garbage> gabages, int week) {
+  // get num of correct and wrong of each week in a month
+  int getNumOfCorrectByWeek(List<Garbage> gabagesMonth, int week) {
     int num = 0;
-    for (Garbage gar in gabages) {
+    for (Garbage gar in gabagesMonth) {
       if (gar.isRight && gar.dateCreate!.getWeekOfDateInMonth == week) num++;
     }
     return num;
   }
 
-  int getNumOfWrongByWeek(List<Garbage> gabages, int week) {
+  int getNumOfWrongByWeek(List<Garbage> gabagesMonth, int week) {
     int num = 0;
-    for (Garbage gar in gabages) {
+    for (Garbage gar in gabagesMonth) {
       if (!gar.isRight && gar.dateCreate!.getWeekOfDateInMonth == week) num++;
     }
     return num;
