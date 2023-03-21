@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:date_util/date_util.dart';
 
 extension DateTimeX on DateTime {
   /// get num of date between dateFrom to DateTo
@@ -37,11 +36,5 @@ extension DateTimeX on DateTime {
   /// get the first, second, third, fourth and fifth week of the month
   int get getWeekOfDateInMonth {
     return day % 7 + 1;
-  }
-
-  /// get number of days of month
-  int get numDaysOfMonth {
-    var dateUtility = DateUtil();
-    return dateUtility.daysInMonth(month, year);
   }
 }
