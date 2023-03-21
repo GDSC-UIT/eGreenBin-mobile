@@ -161,6 +161,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  date_util:
+    dependency: "direct main"
+    description:
+      name: date_util
+      sha256: d39bd95a24d3c3f9b1492a94b96cb6bacd4071a26b3263f04ca8ad340230c3dc
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   equatable:
     dependency: transitive
     description:
@@ -838,5 +846,5 @@ packages:
     source: hosted
     version: "1.1.0"
 sdks:
-  dart: ">=2.18.6 <4.0.0"
+  dart: ">=2.18.6 <3.0.0"
   flutter: ">=3.3.0"

@@ -10,7 +10,7 @@ class CommentRepository implements ICommentRepository {
   @override
   Future<List<Comment>> fetchComments() async {
     DataCenter.instance.comments.value = await commentApi.fetchComments();
-    return DataCenter.instance.comments;
+    return [...DataCenter.instance.comments];
   }
 
   /* @override
