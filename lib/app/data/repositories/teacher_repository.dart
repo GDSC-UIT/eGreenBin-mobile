@@ -19,8 +19,8 @@ class TeacherRepository implements ITeacherRepository {
 
   Teacher getTeacherByIndex(int index) {
     Teacher teacher = Teacher(
-      code: '20521000',
-      name: "Hoàng Thì Linh",
+      name: "Default",
+      code: '00000000',
     );
     if (DataCenter.instance.teachers != []) {
       teacher = DataCenter.instance.teachers[index];

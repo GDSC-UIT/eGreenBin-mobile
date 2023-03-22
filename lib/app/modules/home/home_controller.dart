@@ -19,8 +19,8 @@ import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 class HomeController extends GetxController {
   // data models
   Rx<Teacher> teacher = Teacher(
-    name: "Hoàng Thì Linh",
-    code: '20521000',
+    name: "Default",
+    code: '00000000',
   ).obs;
   // repository
   final repoStudent = StudentRepository();

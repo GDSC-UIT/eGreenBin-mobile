@@ -117,9 +117,18 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(width: 30),
-                      ImageAvatar(
-                        imageAvatarUrl: widget.teacher.imageAvatarUrl,
-                      ),
+                      widget.teacher.imageAvatarUrl == null
+                          ? const CircleAvatar(
+                              radius: 25,
+                              backgroundColor: AppColors.background,
+                              child: Icon(
+                                Icons.person,
+                                color: AppColors.subtle_2,
+                              ),
+                            )
+                          : ImageAvatar(
+                              imageAvatarUrl: widget.teacher.imageAvatarUrl!,
+                            ),
                       const SizedBox(width: 20),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
