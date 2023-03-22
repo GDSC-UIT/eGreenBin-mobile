@@ -9,6 +9,7 @@ class TeacherAPI {
     if (response.statusCode == 200) {
       final parsed = (json.decode(response.body)['data'] as List)
           .cast<Map<String, dynamic>>();
+      print(response.body);
       List<Teacher> listGetTeachers =
           parsed.map<Teacher>((json) => Teacher.fromJson(json)).toList();
       return listGetTeachers;

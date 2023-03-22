@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
+import 'image_avatar.dart';
+
 // ignore: must_be_immutable
 class AppbarTeacher extends StatefulWidget {
   Teacher teacher;
@@ -115,10 +117,8 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(width: 30),
-                      const CircleAvatar(
-                        radius: 27,
-                        backgroundColor: AppColors.background,
-                        child: Icon(Icons.person),
+                      ImageAvatar(
+                        imageAvatarUrl: widget.teacher.imageAvatarUrl,
                       ),
                       const SizedBox(width: 20),
                       Column(
@@ -134,7 +134,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "${"CodeTeacher".tr}: ${widget.teacher.id}",
+                            "${"CodeTeacher".tr}: ${widget.teacher.code}",
                             style: CustomTextStyle.b1(AppColors.subtle_1),
                           ),
                         ],

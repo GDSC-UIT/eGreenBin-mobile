@@ -41,11 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
 // appbar
-                  AppbarTeacher(
-                    "HOME".tr,
-                    _controller.teacher.value,
-                    _controller.pushToNotificationScreen,
-                    const IconNotification(),
+                  Obx(
+                    () => AppbarTeacher(
+                      "HOME".tr,
+                      _controller.teacher.value,
+                      _controller.pushToNotificationScreen,
+                      const IconNotification(),
+                    ),
                   ),
                   const SizedBox(height: 15),
                   // card has list student

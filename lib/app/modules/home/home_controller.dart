@@ -6,6 +6,7 @@ import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/data_center.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
 import 'package:egreenbin/app/data/repositories/student_repository.dart';
+import 'package:egreenbin/app/data/repositories/teacher_repository.dart';
 import 'package:egreenbin/app/data/services/upload_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,13 +19,14 @@ import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 class HomeController extends GetxController {
   // data models
   Rx<Teacher> teacher = Teacher(
-    id: '20521000',
     name: "Hoàng Thì Linh",
+    code: '20521000',
   ).obs;
   // repository
   final repoStudent = StudentRepository();
   final repoComment = CommentRepository();
   final repoGarbage = GarbageRepository();
+  final repoTeacher = TeacherRepository();
   // class value
   RxInt numberOfStudent = 0.obs;
   // sort box
@@ -69,6 +71,8 @@ class HomeController extends GetxController {
       await fetchData();
       // get length of student
       numberOfStudent.value = DataCenter.instance.students.length;
+      // get teacher
+      teacher.value = repoTeacher.getTeacherByIndex(0);
       // loading off
       isLoading.value = false;
     } catch (error) {
@@ -90,6 +94,8 @@ class HomeController extends GetxController {
       repoComment.fetchComments(),
       // fetch garbages
       repoGarbage.fetchGarbages(),
+      // fetch teacher
+      repoTeacher.fetchTeachers(),
     ]);
   }
 

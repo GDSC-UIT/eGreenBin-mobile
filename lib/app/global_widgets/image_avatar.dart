@@ -18,11 +18,12 @@ class _ImageAvatarState extends State<ImageAvatar> {
   @override
   void initState() {
     super.initState();
-    checkImageValidity(widget.imageAvatarUrl!);
+    checkImageValidity(widget.imageAvatarUrl);
   }
 
   // check image url is valid
-  checkImageValidity(String image) async {
+  checkImageValidity(String? image) async {
+    if (image == null) return;
     var url = Uri.parse(image);
     try {
       http.Response response = await http.get(url);
