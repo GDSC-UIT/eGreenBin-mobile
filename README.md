@@ -8,7 +8,11 @@
 
 ## App demo
 
-**Link download apk**: [eGreenBin](https://drive.google.com/file/d/1VTPtGCNmN7gW3FWnvPVunL8GQx1P8L8j/view?usp=share_link)
+**Link download apk for android**: [eGreenBin](https://drive.google.com/file/d/1VTPtGCNmN7gW3FWnvPVunL8GQx1P8L8j/view?usp=share_link)
+
+## Flow app
+
+![flow](https://user-images.githubusercontent.com/92455101/226181280-a00d09c3-481e-429a-ba62-d6dba93bebcf.jpg)
 
 ## Project stucture
 
@@ -56,6 +60,14 @@
     - app_routes.dart: chứa tên các route
 
 - main.dart
+
+## How to get this code
+
+```
+git clone https://github.com/GDSC-UIT/eGreenBin-mobile-GDSC-Hackathon.git
+cd eGreenBin-mobile-GDSC-Hackathon
+flutter pub get
+```
 
 ## Resources
 
