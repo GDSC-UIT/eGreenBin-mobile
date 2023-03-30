@@ -8,9 +8,17 @@
 
 ## App demo
 
-**Link download apk**: [eGreenBin](https://drive.google.com/file/d/1VTPtGCNmN7gW3FWnvPVunL8GQx1P8L8j/view?usp=share_link)
+**Link download apk for android**: [eGreenBin](https://drive.google.com/file/d/1VTPtGCNmN7gW3FWnvPVunL8GQx1P8L8j/view?usp=share_link)
 
-## Project stucture
+## App UI
+
+<img align="center" width="300" alt="UIApp" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDIxYTBjYjYxMGMyNDlkN2E0YTM5MTBiNWMwMWI4NGI5ZTE2YTRhMCZjdD1n/IgTrLX9Ou58tmIaUBh/giphy.gif">
+
+## Flow app
+
+![flow](https://user-images.githubusercontent.com/92455101/226181280-a00d09c3-481e-429a-ba62-d6dba93bebcf.jpg)
+
+# Project stucture
 
 - assets
   - animation: chứa các file lotifile, animate
@@ -56,6 +64,14 @@
     - app_routes.dart: chứa tên các route
 
 - main.dart
+
+## How to get this code
+
+```
+git clone https://github.com/GDSC-UIT/eGreenBin-mobile-GDSC-Hackathon.git
+cd eGreenBin-mobile-GDSC-Hackathon
+flutter pub get
+```
 
 ## Resources
 
