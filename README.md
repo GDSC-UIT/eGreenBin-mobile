@@ -26,6 +26,7 @@ To run any Android application built with Flutter you need to configure the envi
 
 - Flutter
 - Firebase storage
+- EmailJS API
 - API with Go backend and Database
 - Firebase Google Auth (Comming soon)
 
