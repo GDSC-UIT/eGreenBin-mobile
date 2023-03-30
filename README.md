@@ -12,10 +12,6 @@ This mobile application is designed for teachers to manage students' waste dispo
 
 <img align="center" width="200" alt="UIApp" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDIxYTBjYjYxMGMyNDlkN2E0YTM5MTBiNWMwMWI4NGI5ZTE2YTRhMCZjdD1n/IgTrLX9Ou58tmIaUBh/giphy.gif">
 
-## Flow app
-
-![flow](https://user-images.githubusercontent.com/92455101/226181280-a00d09c3-481e-429a-ba62-d6dba93bebcf.jpg)
-
 ## Getting Started
 
 To run any Android application built with Flutter you need to configure the enviroments in your machine, you can do this following the the tutorial provided by Google in [Flutter website](https://flutter.dev/docs/get-started/install)
