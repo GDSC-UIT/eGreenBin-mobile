@@ -170,10 +170,10 @@ class HomeController extends GetxController {
 
   Future<void> uploadImageToAiServer(Student student, File imageFile) async {
     // rename file image
-    String fileName = "${student.id}-${student.name}";
+    String fileName = "${student.code}_${student.name}";
     File newFileImage = await changeFileNameOnly(imageFile, fileName);
     // upload to server
-    await UploadService.uploadImage(newFileImage);
+    await UploadService.uploadImageToAiServer(newFileImage, fileName);
   }
 
   Future<File> changeFileNameOnly(File file, String newFileName) async {

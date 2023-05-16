@@ -24,14 +24,13 @@ class _ImageAvatarState extends State<ImageAvatar> {
   // check image url is valid
   checkImageValidity(String? image) async {
     if (image == null) return;
-    print("asddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     var url = Uri.parse(image);
     try {
       http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         setState(() {
           imageReady = true; // It's valid
-          print(imageReady);
+          print("Check image valid: $imageReady");
         });
       }
     } catch (e) {

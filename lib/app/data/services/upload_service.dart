@@ -31,4 +31,33 @@ class UploadService {
       log(error.toString());
     }
   }
+
+  static Future<void> uploadImageToAiServer(
+      File imageFile, String fileName) async {
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            'http://34.147.108.136/register?to_gray=true&img_save_name=$fileName'));
+
+    // Thêm file ảnh vào yêu cầu đa phần
+    var imageStream = http.ByteStream(imageFile.openRead());
+    var length = await imageFile.length();
+    var multipartFile = http.MultipartFile('img_file', imageStream, length,
+        filename: imageFile.path);
+
+    request.files.add(multipartFile);
+
+    // Gửi yêu cầu và xử lý phản hồi
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responseString = await response.stream.bytesToString();
+      var jsonResponse = json.decode(responseString);
+      // Truy cập và lấy giá trị từ JSON
+      var modelPredict = jsonResponse['model_predict'][0];
+      print('Upload thành công! Phản hồi: $modelPredict');
+    } else {
+      print('Upload thất bại. Mã lỗi: ${response.statusCode}');
+    }
+  }
 }
