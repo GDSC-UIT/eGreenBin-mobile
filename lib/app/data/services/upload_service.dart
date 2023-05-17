@@ -33,12 +33,11 @@ class UploadService {
   }
 
   static Future<void> uploadImageToAiServer(
-      File imageFile, String fileName) async {
+      File imageFile, String imageName) async {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            'http://34.147.108.136/register?to_gray=true&img_save_name=$fileName'));
-
+            "http://34.147.108.136/register?to_gray=true&img_save_name=$imageName"));
     // Thêm file ảnh vào yêu cầu đa phần
     var imageStream = http.ByteStream(imageFile.openRead());
     var length = await imageFile.length();
@@ -54,10 +53,10 @@ class UploadService {
       var responseString = await response.stream.bytesToString();
       var jsonResponse = json.decode(responseString);
       // Truy cập và lấy giá trị từ JSON
-      var modelPredict = jsonResponse['model_predict'][0];
-      print('Upload thành công! Phản hồi: $modelPredict');
+      //var contentResponse = jsonResponse;
+      print('Upload thành công! Phản hồi: $jsonResponse');
     } else {
-      print('Upload thất bại. Mã lỗi: ${response.statusCode}');
+      print('Upload thất bại. Mã lỗi: ${response.reasonPhrase}');
     }
   }
 }
