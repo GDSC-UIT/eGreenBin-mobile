@@ -15,6 +15,8 @@ class ImageAvatarPicker extends StatefulWidget {
 }
 
 class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
+  double sizeImage = 20.0;
+
   Future<void> showImageSoure(BuildContext context) async {
     return showModalBottomSheet(
       context: context,
@@ -63,7 +65,7 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
   Widget buildImage(BuildContext context) {
     return buildCircle(
       color: AppColors.primary1,
-      all: 1.5,
+      all: 1,
       child: buildCircle(
         color: Colors.white,
         all: 1,
@@ -92,17 +94,17 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
       return Image.file(
         widget.controller.imageStudentLeft!,
         fit: BoxFit.cover,
-        width: 30.0.wp,
-        height: 30.0.wp,
+        width: sizeImage.wp,
+        height: sizeImage.wp,
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.all(15.0),
+      return Container(
+        padding: const EdgeInsets.all(15),
+        width: sizeImage.wp,
+        height: sizeImage.wp,
         child: Image.asset(
           Assets.head_left,
           fit: BoxFit.cover,
-          width: 20.0.wp,
-          height: 20.0.wp,
         ),
       );
     }
@@ -113,17 +115,17 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
       return Image.file(
         widget.controller.imageStudentCenter!,
         fit: BoxFit.cover,
-        width: 30.0.wp,
-        height: 30.0.wp,
+        width: sizeImage.wp,
+        height: sizeImage.wp,
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.all(15.0),
+      return Container(
+        padding: const EdgeInsets.all(15),
+        width: sizeImage.wp,
+        height: sizeImage.wp,
         child: Image.asset(
           Assets.head_center,
           fit: BoxFit.cover,
-          width: 20.0.wp,
-          height: 20.0.wp,
         ),
       );
     }
@@ -134,17 +136,17 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
       return Image.file(
         widget.controller.imageStudentRight!,
         fit: BoxFit.cover,
-        width: 30.0.wp,
-        height: 30.0.wp,
+        width: sizeImage.wp,
+        height: sizeImage.wp,
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.all(15.0),
+      return Container(
+        padding: const EdgeInsets.all(15),
+        width: sizeImage.wp,
+        height: sizeImage.wp,
         child: Image.asset(
           Assets.head_right,
           fit: BoxFit.cover,
-          width: 20.0.wp,
-          height: 20.0.wp,
         ),
       );
     }
@@ -153,10 +155,10 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
   Widget buildEditIcon(Color color) {
     return buildCircle(
       color: Colors.white,
-      all: 3,
+      all: 2,
       child: buildCircle(
         color: color,
-        all: 8,
+        all: 5,
         child: const Icon(
           Icons.add_a_photo,
           color: Colors.white,

@@ -51,7 +51,6 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
           children: [
             SizedBox(
               height: 58.0.hp,
-              width: 56.0.wp,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

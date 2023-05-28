@@ -34,7 +34,17 @@ class _FormAddStudentState extends State<FormAddStudent> {
       key: widget.controller.formKey,
       child: Column(
         children: [
-          ImageAvatarPicker(widget.controller, FaceType.Left),
+// images picker
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ImageAvatarPicker(widget.controller, FaceType.Left),
+              SizedBox(width: 3.0.wp),
+              ImageAvatarPicker(widget.controller, FaceType.Center),
+              SizedBox(width: 3.0.wp),
+              ImageAvatarPicker(widget.controller, FaceType.Right),
+            ],
+          ),
           SizedBox(height: 2.0.hp),
 // name of student
           Column(
