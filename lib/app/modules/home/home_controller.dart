@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/utils/snackbar.dart';
+import 'package:egreenbin/app/data/enums/sortType.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/providers/data_center.dart';
 import 'package:egreenbin/app/data/models/teacher.dart';
@@ -10,7 +11,9 @@ import 'package:egreenbin/app/data/repositories/teacher_repository.dart';
 import 'package:egreenbin/app/data/services/upload_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../data/repositories/garbage_repository.dart';
+import '../../data/services/device_service.dart';
 import '../../data/services/firebase_service.dart';
 import '../../data/services/sort_service.dart';
 import '../../routes/app_routes.dart';
@@ -108,16 +111,54 @@ class HomeController extends GetxController {
   // this is add student function
   final formKey = GlobalKey<FormState>(); // key of form add student
 
-  File? imageStudent; // file image of student
+  File? imageStudentLeft; // file image of student
+  File? imageStudentCenter; // file image of student
+  File? imageStudentRight; // file image of student
   String code = "";
   String name = "";
   String parentEmail = "";
+
+  void cancelImages() {
+    imageStudentLeft = null;
+    imageStudentCenter = null;
+    imageStudentRight = null;
+  }
+
+  /// get image from camera
+  Future<void> getImageFromCamera(FaceType type) async {
+    final image = await DeviceService.pickImage(ImageSource.camera);
+    if (image == null) return;
+    if (type == FaceType.Left) {
+      imageStudentLeft = image;
+    } else if (type == FaceType.Center) {
+      imageStudentCenter = image;
+    } else {
+      imageStudentRight = image;
+    }
+    Get.back();
+  }
+
+  /// get image from gallery
+  Future<void> getImageFromGallery(FaceType type) async {
+    final image = await DeviceService.pickImage(ImageSource.gallery);
+    if (image == null) return;
+    if (type == FaceType.Left) {
+      imageStudentLeft = image;
+    } else if (type == FaceType.Center) {
+      imageStudentCenter = image;
+    } else {
+      imageStudentRight = image;
+    }
+    Get.back();
+  }
 
   /// try submit a new student
   Future trySubmitAddStudent() async {
     final isValid = formKey.currentState!.validate();
 
-    if (imageStudent == null) {
+    if (imageStudentLeft == null ||
+        imageStudentCenter == null ||
+        imageStudentRight == null) {
       // show snackbar
       showSnackBarAndNotification(
         "Error",
@@ -130,25 +171,36 @@ class HomeController extends GetxController {
     if (isValid) {
       formKey.currentState!.save();
       // submit
-      await submitAddStudent(imageStudent!);
+      List<File> imagesStudent = [
+        imageStudentLeft!,
+        imageStudentCenter!,
+        imageStudentRight!,
+      ];
+      await submitAddStudent(imagesStudent);
       // delete file
-      imageStudent = null;
+      cancelImages();
     }
   }
 
-  Future<void> submitAddStudent(File imageFile) async {
+  Future<void> submitAddStudent(List<File> imageFiles) async {
     try {
-      // loading
+      //loading
+      // list image url
+      List<String> imageUrls = [];
       // upload file to firebase
-      String urlImage = await FireBaseService.uploadFile(imageStudent!);
-      // get link image
-      print(urlImage);
+      for (File image in imageFiles) {
+        String urlImage = await FireBaseService.uploadFile(image);
+        // get link image
+        print(urlImage);
+        imageUrls.add(urlImage);
+      }
+
       // create new student
       Student newStudent = Student(
         code: code.trim(),
         name: name.trim(),
         parentEmail: parentEmail.trim(),
-        imageAvatarUrl: urlImage,
+        imageAvatarUrl: imageUrls[1],
         numOfCorrect: 0,
         numOfWrong: 0,
         note: "",
@@ -156,7 +208,7 @@ class HomeController extends GetxController {
       // post student
       Student addedStudent = await repoStudent.addStudent(newStudent);
       // upload to AI server
-      await uploadImageToAiServer(addedStudent, imageFile);
+      await uploadImageToAiServer(addedStudent, imageFiles);
       // catch error
     } catch (error) {
       print("Error when submit student: $error");
@@ -168,12 +220,17 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> uploadImageToAiServer(Student student, File imageFile) async {
+  Future<void> uploadImageToAiServer(
+      Student student, List<File> imageFiles) async {
     // rename file image
-    String fileName = "${student.code}_${student.name}";
+    List<String> fileNames = [];
+    for (int i = 0; i < imageFiles.length; i++) {
+      String fileName = "${student.code}_${student.name}_${i + 1}";
+      fileNames.add(fileName);
+    }
     //File newFileImage = await changeFileNameOnly(imageFile, fileName);
     // upload to server
-    await UploadService.uploadImageToAiServer(imageFile, fileName);
+    await UploadService.uploadImagesToAiServer(imageFiles, fileNames);
   }
 
   Future<File> changeFileNameOnly(File file, String newFileName) async {

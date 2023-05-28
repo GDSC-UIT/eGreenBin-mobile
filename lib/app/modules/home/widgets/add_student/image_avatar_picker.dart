@@ -1,16 +1,15 @@
 import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/theme/app_colors.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/data/services/device_service.dart';
+import 'package:egreenbin/app/data/enums/sortType.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../home_controller.dart';
 
 // ignore: must_be_immutable
 class ImageAvatarPicker extends StatefulWidget {
   HomeController controller;
-  ImageAvatarPicker(this.controller, {super.key});
+  FaceType type; // left, center, right
+  ImageAvatarPicker(this.controller, this.type, {super.key});
   @override
   State<ImageAvatarPicker> createState() => _ImageAvatarPickerState();
 }
@@ -27,25 +26,16 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
               leading: const Icon(Icons.camera_alt),
               title: const Text('Camera'),
               onTap: () async {
-                final image = await DeviceService.pickImage(ImageSource.camera);
-                if (image == null) return;
-                setState(() {
-                  widget.controller.imageStudent = image;
-                });
-                Navigator.of(context).pop();
+                await widget.controller.getImageFromCamera(widget.type);
+                setState(() {});
               },
             ),
             ListTile(
               leading: const Icon(Icons.image),
               title: const Text('Gallery'),
               onTap: () async {
-                final image =
-                    await DeviceService.pickImage(ImageSource.gallery);
-                if (image == null) return;
-                setState(() {
-                  widget.controller.imageStudent = image;
-                });
-                Navigator.of(context).pop();
+                await widget.controller.getImageFromGallery(widget.type);
+                setState(() {});
               },
             )
           ],
@@ -73,32 +63,91 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
   Widget buildImage(BuildContext context) {
     return buildCircle(
       color: AppColors.primary1,
-      all: 1,
-      child: ClipOval(
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () async {
-              // click on the image
-              await showImageSoure(context);
-            },
-            child: widget.controller.imageStudent != null
-                ? Image.file(
-                    widget.controller.imageStudent!,
-                    fit: BoxFit.cover,
-                    width: 30.0.wp,
-                    height: 30.0.wp,
-                  )
-                : Image.asset(
-                    Assets.avatarDefault,
-                    fit: BoxFit.cover,
-                    width: 30.0.wp,
-                    height: 30.0.wp,
-                  ),
+      all: 1.5,
+      child: buildCircle(
+        color: Colors.white,
+        all: 1,
+        child: ClipOval(
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () async {
+                // click on the image
+                await showImageSoure(context);
+              },
+              child: widget.type == FaceType.Left
+                  ? showLeftFace()
+                  : widget.type == FaceType.Center
+                      ? showCenterFace()
+                      : showCenterRight(),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget showLeftFace() {
+    if (widget.controller.imageStudentLeft != null) {
+      return Image.file(
+        widget.controller.imageStudentLeft!,
+        fit: BoxFit.cover,
+        width: 30.0.wp,
+        height: 30.0.wp,
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Image.asset(
+          Assets.head_left,
+          fit: BoxFit.cover,
+          width: 20.0.wp,
+          height: 20.0.wp,
+        ),
+      );
+    }
+  }
+
+  Widget showCenterFace() {
+    if (widget.controller.imageStudentCenter != null) {
+      return Image.file(
+        widget.controller.imageStudentCenter!,
+        fit: BoxFit.cover,
+        width: 30.0.wp,
+        height: 30.0.wp,
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Image.asset(
+          Assets.head_center,
+          fit: BoxFit.cover,
+          width: 20.0.wp,
+          height: 20.0.wp,
+        ),
+      );
+    }
+  }
+
+  Widget showCenterRight() {
+    if (widget.controller.imageStudentRight != null) {
+      return Image.file(
+        widget.controller.imageStudentRight!,
+        fit: BoxFit.cover,
+        width: 30.0.wp,
+        height: 30.0.wp,
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Image.asset(
+          Assets.head_right,
+          fit: BoxFit.cover,
+          width: 20.0.wp,
+          height: 20.0.wp,
+        ),
+      );
+    }
   }
 
   Widget buildEditIcon(Color color) {

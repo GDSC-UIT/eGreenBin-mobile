@@ -21,6 +21,9 @@ class Assets {
   static const String yellowStar = 'assets/icons/YellowPin.png';
   static const String greyStar = 'assets/icons/GreyPin.png';
   static const String add = 'assets/icons/add.png';
+  static const String head_center = 'assets/icons/head_center.png';
+  static const String head_left = 'assets/icons/head_left.png';
+  static const String head_right = 'assets/icons/head_right.png';
   // image
   static const String backround = 'assets/images/bg.png';
   static const String logo = 'assets/images/logo.png';

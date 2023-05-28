@@ -23,7 +23,7 @@ class DiaLogAddStudent extends StatefulWidget {
 class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
   void onCancel() {
     Navigator.of(context).pop();
-    widget.homeCotroller.imageStudent = null;
+    widget.homeCotroller.cancelImages();
   }
 
   bool isloading = false;
@@ -52,24 +52,22 @@ class _DiaLogAddStudentState extends State<DiaLogAddStudent> {
             SizedBox(
               height: 58.0.hp,
               width: 56.0.wp,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // text new student
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        "NEW STUDENT".tr,
-                        style: CustomTextStyle.h2(AppColors.primary1),
-                      ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // text new student
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "NEW STUDENT".tr,
+                      style: CustomTextStyle.h2(AppColors.primary1),
                     ),
-                    SizedBox(height: 1.5.hp),
-                    // form dang ky
-                    FormAddStudent(widget.homeCotroller),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 1.5.hp),
+                  // form dang ky
+                  FormAddStudent(widget.homeCotroller),
+                ],
               ),
             ),
             // cancel button

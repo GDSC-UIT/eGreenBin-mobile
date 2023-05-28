@@ -4,3 +4,9 @@ enum SortType {
   Month,
   Year,
 }
+
+enum FaceType {
+  Left,
+  Center,
+  Right,
+}

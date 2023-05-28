@@ -16,5 +16,6 @@ class AppColors {
 
   static const Color shadow = Colors.black26;
   static const Color wrong = Color(0xFFEC7676);
+  static const Color transparent = Colors.transparent;
 }
 //https://stackoverflow.com/questions/57878112/a-class-method-named-function-in-dart

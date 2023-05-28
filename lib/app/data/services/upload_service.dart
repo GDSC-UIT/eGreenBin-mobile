@@ -37,7 +37,7 @@ class UploadService {
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-            "http://34.147.108.136/register?to_gray=true&img_save_name=$imageName"));
+            "http://34.147.108.136/recognition/?to_gray=true&return_image_name=true"));
     // Thêm file ảnh vào yêu cầu đa phần
     var imageStream = http.ByteStream(imageFile.openRead());
     var length = await imageFile.length();
@@ -54,6 +54,36 @@ class UploadService {
       var jsonResponse = json.decode(responseString);
       // Truy cập và lấy giá trị từ JSON
       //var contentResponse = jsonResponse;
+      print('Upload thành công! Phản hồi: $jsonResponse');
+    } else {
+      print('Upload thất bại. Mã lỗi: ${response.reasonPhrase}');
+    }
+  }
+
+  static Future<void> uploadImagesToAiServer(
+      List<File> imageFiles, List<String> imageNames) async {
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            "http://34.147.108.136/recognition/?to_gray=true&return_image_name=true"));
+
+    for (int i = 0; i < imageFiles.length; i++) {
+      var imageFile = imageFiles[i];
+      var imageName = imageNames[i];
+
+      var imageStream = http.ByteStream(imageFile.openRead());
+      var length = await imageFile.length();
+      var multipartFile = http.MultipartFile('img_file', imageStream, length,
+          filename: imageName);
+
+      request.files.add(multipartFile);
+    }
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responseString = await response.stream.bytesToString();
+      var jsonResponse = json.decode(responseString);
       print('Upload thành công! Phản hồi: $jsonResponse');
     } else {
       print('Upload thất bại. Mã lỗi: ${response.reasonPhrase}');

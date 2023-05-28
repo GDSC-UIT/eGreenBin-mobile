@@ -1,5 +1,6 @@
 import 'package:egreenbin/app/core/extensions/double_ex.dart';
 import 'package:egreenbin/app/core/extensions/string_ex.dart';
+import 'package:egreenbin/app/data/enums/sortType.dart';
 import 'package:egreenbin/app/modules/home/widgets/add_student/image_avatar_picker.dart';
 import 'package:egreenbin/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _FormAddStudentState extends State<FormAddStudent> {
       key: widget.controller.formKey,
       child: Column(
         children: [
-          ImageAvatarPicker(widget.controller),
+          ImageAvatarPicker(widget.controller, FaceType.Left),
           SizedBox(height: 2.0.hp),
 // name of student
           Column(
