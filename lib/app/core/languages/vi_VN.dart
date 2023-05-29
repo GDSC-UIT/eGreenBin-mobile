@@ -88,4 +88,8 @@ const Map<String, String> viLanguagePackage = {
   "Parent's email": "Email của phụ huynh",
   'Please enter a valid email address.': 'Vui lòng nhập địa chỉ email hợp lệ.',
   "Email": "Email",
+
+  "RESULT DETAILS": "KẾT QUẢ CHI TIẾT",
+  "Details": "Chi tiết",
+  'THERE ARE NO DATA YET': 'CHƯA CÓ DŨ LIỆU',
 };

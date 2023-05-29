@@ -7,6 +7,7 @@ abstract class AppRoutes {
   static const studentInfo = '/studentInfo';
   // rating
   static const rating = '/studentInfo/rating';
+  static const result = '/studentInfo/result';
   // mail
   static const mail = '/mail';
   // notification

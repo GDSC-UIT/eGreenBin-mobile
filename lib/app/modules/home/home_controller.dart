@@ -96,7 +96,7 @@ class HomeController extends GetxController {
       // fetch comments
       repoComment.fetchComments(),
       // fetch garbages
-      repoGarbage.fetchGarbages(),
+      //repoGarbage.fetchGarbages(),
       // fetch teacher
       repoTeacher.fetchTeachers(),
     ]);
@@ -227,6 +227,7 @@ class HomeController extends GetxController {
     for (int i = 0; i < imageFiles.length; i++) {
       String fileName = "${student.code}_${student.name}_${i + 1}";
       fileNames.add(fileName);
+      print(fileName);
     }
     //File newFileImage = await changeFileNameOnly(imageFile, fileName);
     // upload to server

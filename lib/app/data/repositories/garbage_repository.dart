@@ -44,6 +44,7 @@ class GarbageRepository implements IGarbageRepository {
       DataCenter.instance.garbages.add(
         Garbage(
           idStudent: student.id!,
+          name: "Paper",
           isRight: true,
         ),
       );
@@ -53,6 +54,7 @@ class GarbageRepository implements IGarbageRepository {
       DataCenter.instance.garbages.add(
         Garbage(
           idStudent: student.id!,
+          name: "Pager",
           isRight: false,
         ),
       );

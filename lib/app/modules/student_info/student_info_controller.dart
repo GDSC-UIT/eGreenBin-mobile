@@ -1,10 +1,13 @@
 import 'package:egreenbin/app/data/models/date_sort.dart';
 import 'package:egreenbin/app/data/models/garbage.dart';
+import 'package:egreenbin/app/data/models/result_cell.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/data/repositories/comment_repository.dart';
 import 'package:egreenbin/app/data/repositories/garbage_repository.dart';
+import 'package:egreenbin/app/data/repositories/result_cell_repository.dart';
 import 'package:egreenbin/app/data/services/sort_service.dart';
 import 'package:egreenbin/app/modules/student_info/screens/rating_screen.dart';
+import 'package:egreenbin/app/modules/student_info/screens/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/comment.dart';
@@ -15,6 +18,7 @@ class StudentInfoController extends GetxController {
   final repoStudent = StudentRepository();
   final repoComment = CommentRepository();
   final repoGarbage = GarbageRepository();
+  final repoResultCell = ResultCellRepository();
   // this function will do nothing
   Function fnull = () {};
   // data models
@@ -23,6 +27,8 @@ class StudentInfoController extends GetxController {
   RxList<Comment> listComments = <Comment>[].obs;
   // garbages
   RxList<Garbage> listGarbages = <Garbage>[].obs;
+  // results cell
+  RxList<ResultCell> listResultCell = <ResultCell>[].obs;
   // get id from prev screen
   dynamic id = Get.arguments;
   // textController comment
@@ -39,6 +45,8 @@ class StudentInfoController extends GetxController {
   Rx<SortService>? sortCardEvaluate;
   // dialog
   Rx<SortService>? sortDialog;
+  // card sort result
+  Rx<SortService>? sortResult;
   //==========================
 
   StudentInfoController() {
@@ -54,6 +62,9 @@ class StudentInfoController extends GetxController {
     sortDialog = SortService(
       updateSort: fnull,
     ).obs;
+    sortResult = SortService(
+      updateSort: fnull,
+    ).obs;
   }
 
   @override
@@ -63,6 +74,8 @@ class StudentInfoController extends GetxController {
     listComments.value = repoComment.getListCommentsFindByIdStudentLocal(id);
     // get list garbage of student
     listGarbages.value = repoGarbage.getGabagesOfStudentLocal(id);
+    repoResultCell.getAllResultCell();
+    listResultCell.value = repoResultCell.getResultCellsById(id);
     // get Number of right and wrong
     numOfRight.value = student.value.numOfCorrect!;
     numOfWrong.value = student.value.numOfWrong!;
@@ -78,6 +91,10 @@ class StudentInfoController extends GetxController {
   // function
   void backToPrevScreen() {
     Get.back();
+  }
+
+  void navigateToResultScreen() {
+    Get.to(() => ResultScreen());
   }
 
   // this fuction is push to rating module

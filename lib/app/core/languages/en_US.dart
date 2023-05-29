@@ -88,4 +88,8 @@ const Map<String, String> enLanguagePackage = {
   "Parent's email": "Parent's email",
   'Please enter a valid email address.': 'Please enter a valid email address.',
   "Email": "Email",
+
+  "RESULT DETAILS": "RESULT DETAILS",
+  "Details": "Details",
+  'THERE ARE NO DATA YET': 'THERE ARE NO DATA YET',
 };

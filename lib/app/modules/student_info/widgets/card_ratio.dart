@@ -210,7 +210,8 @@ class _CardRatioState extends State<CardRatio> {
             right: 0,
             child: GestureDetector(
               onTap: () {
-                showCommentForm(context);
+                //showCommentForm(context);
+                widget._controller.navigateToResultScreen();
               },
               child: Container(
                 height: 35,
@@ -228,10 +229,10 @@ class _CardRatioState extends State<CardRatio> {
                   children: [
                     SizedBox(
                       height: 15,
-                      child: Image.asset(Assets.chat),
+                      child: Image.asset(Assets.detail),
                     ),
                     Text(
-                      "Comment".tr,
+                      "Details".tr,
                       style: CustomTextStyle.b7(AppColors.surface),
                     )
                   ],

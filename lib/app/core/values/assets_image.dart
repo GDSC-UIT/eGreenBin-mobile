@@ -14,7 +14,8 @@ class Assets {
   static const String chat = 'assets/icons/Chat.png';
   static const String faceHappy = 'assets/icons/face_happy.png';
   static const String faceSad = 'assets/icons/face_sad.png';
-  static const String btnFace = 'assets/icons/btn.png';
+  static const String btnFaceHappy = 'assets/icons/btn_happy.png';
+  static const String btnFaceSad = 'assets/icons/btn_sad.png';
   static const String exit = 'assets/icons/Close Square green.png';
   static const String refresh = 'assets/icons/Repeat.png';
   static const String mail = 'assets/icons/Message.png';
@@ -24,6 +25,7 @@ class Assets {
   static const String head_center = 'assets/icons/head_center.png';
   static const String head_left = 'assets/icons/head_left.png';
   static const String head_right = 'assets/icons/head_right.png';
+  static const String detail = 'assets/icons/gg_details-more.png';
   // image
   static const String backround = 'assets/images/bg.png';
   static const String logo = 'assets/images/logo.png';

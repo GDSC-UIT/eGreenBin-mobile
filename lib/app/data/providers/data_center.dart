@@ -1,3 +1,4 @@
+import 'package:egreenbin/app/data/models/result_cell.dart';
 import 'package:get/get.dart';
 import '../models/garbage.dart';
 import '../models/teacher.dart';
@@ -23,6 +24,8 @@ class DataCenter extends GetxController {
   RxList<Garbage> garbages = <Garbage>[].obs;
 
   RxList<noti.Notification> notifications = <noti.Notification>[].obs;
+
+  RxList<ResultCell> resultCells = <ResultCell>[].obs;
 
   Future<void> fetchAllDataFromApi() async {
     // get all data when begin app or refresh
