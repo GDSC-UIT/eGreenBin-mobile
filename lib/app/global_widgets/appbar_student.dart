@@ -113,7 +113,7 @@ class StudentAppBar extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(width: 30),
+                      const SizedBox(width: 20),
 // avatar
                       ImageAvatar(imageAvatarUrl: student.imageAvatarUrl),
                       const SizedBox(width: 20),

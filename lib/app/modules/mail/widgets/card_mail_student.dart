@@ -6,7 +6,6 @@ import 'package:egreenbin/app/core/theme/text_styles.dart';
 import 'package:egreenbin/app/data/models/student.dart';
 import 'package:egreenbin/app/global_widgets/image_avatar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 // ignore: must_be_immutable

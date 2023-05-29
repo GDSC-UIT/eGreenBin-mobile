@@ -1,6 +1,3 @@
-import 'package:data_table_2/data_table_2.dart';
-import 'package:egreenbin/app/core/values/assets_image.dart';
-import 'package:egreenbin/app/data/models/result_cell.dart';
 import 'package:egreenbin/app/modules/student_info/widgets/table_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

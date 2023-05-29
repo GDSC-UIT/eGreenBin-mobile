@@ -103,7 +103,7 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
         width: sizeImage.wp,
         height: sizeImage.wp,
         child: Image.asset(
-          Assets.head_left,
+          Assets.headLeft,
           fit: BoxFit.cover,
         ),
       );
@@ -124,7 +124,7 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
         width: sizeImage.wp,
         height: sizeImage.wp,
         child: Image.asset(
-          Assets.head_center,
+          Assets.headCenter,
           fit: BoxFit.cover,
         ),
       );
@@ -145,7 +145,7 @@ class _ImageAvatarPickerState extends State<ImageAvatarPicker> {
         width: sizeImage.wp,
         height: sizeImage.wp,
         child: Image.asset(
-          Assets.head_right,
+          Assets.headRight,
           fit: BoxFit.cover,
         ),
       );

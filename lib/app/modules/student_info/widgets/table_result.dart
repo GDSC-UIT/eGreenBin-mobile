@@ -6,6 +6,7 @@ import '../../../core/theme/text_styles.dart';
 import '../../../core/values/assets_image.dart';
 import '../../../data/models/result_cell.dart';
 
+// ignore: must_be_immutable
 class TableResult extends StatelessWidget {
   List<ResultCell> listResultCell;
   TableResult(this.listResultCell, {super.key});

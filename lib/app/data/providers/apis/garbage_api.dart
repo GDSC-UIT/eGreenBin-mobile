@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:egreenbin/app/data/models/garbage.dart';
 import 'dart:convert';
 import 'package:egreenbin/app/core/values/api_values.dart';

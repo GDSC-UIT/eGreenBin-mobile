@@ -116,7 +116,7 @@ class _AppbarTeacherState extends State<AppbarTeacher> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(width: 30),
+                      const SizedBox(width: 20),
                       widget.teacher.imageAvatarUrl == null
                           ? const CircleAvatar(
                               radius: 25,

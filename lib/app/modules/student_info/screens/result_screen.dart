@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../global_widgets/appbar_student.dart';
 import '../student_info_controller.dart';
-import '../widgets/card_all_comments.dart';
 import 'package:egreenbin/app/core/values/assets_image.dart';
 
 class ResultScreen extends StatelessWidget {
