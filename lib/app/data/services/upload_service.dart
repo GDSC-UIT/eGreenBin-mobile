@@ -62,10 +62,8 @@ class UploadService {
 
   static Future<void> uploadImagesToAiServer(
       List<File> imageFiles, List<String> imageNames) async {
-    var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            "http://34.147.108.136/recognition/?to_gray=true&return_image_name=true"));
+    var request = http.MultipartRequest('POST',
+        Uri.parse("http://34.142.151.62/register?to_gray=false&username=minh"));
 
     for (int i = 0; i < imageFiles.length; i++) {
       var imageFile = imageFiles[i];
@@ -73,7 +71,7 @@ class UploadService {
 
       var imageStream = http.ByteStream(imageFile.openRead());
       var length = await imageFile.length();
-      var multipartFile = http.MultipartFile('img_file', imageStream, length,
+      var multipartFile = http.MultipartFile('img_files', imageStream, length,
           filename: imageName);
 
       request.files.add(multipartFile);

@@ -35,7 +35,10 @@ class DeviceService {
     File? imageTemporary;
     try {
       final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return null;
+      if (image == null) {
+        print("file null..");
+        return null;
+      }
 
       imageTemporary = File(image.path);
     } on PlatformException catch (e) {

@@ -186,21 +186,18 @@ class HomeController extends GetxController {
     try {
       //loading
       // list image url
-      List<String> imageUrls = [];
+      String imageUrl;
       // upload file to firebase
-      for (File image in imageFiles) {
-        String urlImage = await FireBaseService.uploadFile(image);
-        // get link image
-        print(urlImage);
-        imageUrls.add(urlImage);
-      }
-
+      String urlImage = await FireBaseService.uploadFile(imageFiles[1]);
+      // get link image
+      print(urlImage);
+      imageUrl = urlImage;
       // create new student
       Student newStudent = Student(
         code: code.trim(),
         name: name.trim(),
         parentEmail: parentEmail.trim(),
-        imageAvatarUrl: imageUrls[1],
+        imageAvatarUrl: imageUrl,
         numOfCorrect: 0,
         numOfWrong: 0,
         note: "",
