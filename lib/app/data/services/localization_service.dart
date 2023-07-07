@@ -1,32 +1,37 @@
 import 'dart:collection';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import '/app/core/values/languages/en_US.dart';
-import '/app/core/values/languages/vi_VN.dart';
+import '../../core/languages/en_US.dart';
+import '../../core/languages/vi_VN.dart';
 
 class LocalizationService extends Translations {
-  static final locale = _getLocaleFromLanguage();
-
+  // locale sẽ được get mỗi khi mới mở app (phụ thuộc vào locale hệ thống hoặc bạn có thể cache lại locale mà người dùng đã setting và set nó ở đây)
+  //static var locale = _getLocaleFromLanguage();
+  static var locale = const Locale('en', 'US');
+  // fallbackLocale là locale default nếu locale được set không nằm trong những Locale support
   static const fallbackLocale = Locale('en', 'US');
 
+  // language code của những locale được support
   static final languageCodes = [
     'en',
     'vi',
   ];
 
-// các Locale được support
+  // các Locale được support
   static final locales = [
     const Locale('en', 'US'),
     const Locale('vi', 'VN'),
   ];
 
+  // cái này là Map các language được support đi kèm với mã code của lang đó: cái này dùng để đổ data vào Dropdownbutton và set language mà không cần quan tâm tới language của hệ thống
   static final langs = LinkedHashMap.from({
     'en': 'English',
     'vi': 'Tiếng Việt',
   });
 
-  static void changeLocale(String _languageCode) {
-    final locale = _getLocaleFromLanguage(languageCode: _languageCode);
+  // function change language nếu bạn không muốn phụ thuộc vào ngôn ngữ hệ thống
+  static void changeLocale(String languageCode) {
+    locale = _getLocaleFromLanguage(languageCode: languageCode);
     Get.updateLocale(locale);
   }
 
@@ -44,6 +49,7 @@ class LocalizationService extends Translations {
     return Get.locale!;
   }
 
+  // ignore: body_might_complete_normally_nullable
   Future<String?> getLanguague() async {
     // var storage = AppSettingStorage();
     // String value = await storage.readAppConfig();

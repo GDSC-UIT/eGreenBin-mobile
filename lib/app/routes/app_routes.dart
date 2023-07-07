@@ -3,8 +3,13 @@ abstract class AppRoutes {
   static const home = '/home';
   // login
   static const login = '/login';
-  // rating
-  static const rating = '/rating';
   // student info
   static const studentInfo = '/studentInfo';
+  // rating
+  static const rating = '/studentInfo/rating';
+  static const result = '/studentInfo/result';
+  // mail
+  static const mail = '/mail';
+  // notification
+  static const notification = '/notification';
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "937930201663",
+    "project_id": "egreenbin-347dc",
+    "storage_bucket": "egreenbin-347dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937930201663:android:5a5a1d000595c35bce368a",
+        "android_client_info": {
+          "package_name": "com.example.egreenbin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937930201663-0k5l8mhuk42jlnfnal6gmak350uh6kmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBLcEBAuXydmvXGuqEyPHnQUvOJtJ5tH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937930201663-0k5l8mhuk42jlnfnal6gmak350uh6kmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
