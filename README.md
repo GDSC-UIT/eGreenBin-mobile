@@ -91,14 +91,8 @@ See the [open issues](https://github.com/GDSC-UIT/eGreenBin-mobile/issues) for 
 - main.dart
 ```
 
-## Contributor
-
-- Phan Van Minh
-- Github: https://github.com/minhphan46
-
 ## Resources
 
-- Design Figma: https://www.figma.com/file/RkQeskWhdVR0k9WSatQ9PY/eGreenBin-App?node-id=0%3A1&t=7N586K5yNSBOIYit-1
-- Git: https://github.com/GDSC-UIT/eGreenBin-mobile.git
-- Firebase: https://console.firebase.google.com/u/0/project/egreenbin-4eb81/overview
-- Reference codebase: https://github.com/kauemurakami/getx_pattern
+- [Design Figma](https://www.figma.com/file/RkQeskWhdVR0k9WSatQ9PY/eGreenBin-App?node-id=0%3A1&t=7N586K5yNSBOIYit-1)
+- [Git](https://github.com/GDSC-UIT/eGreenBin-mobile.git)
+- [Reference codebase](https://github.com/kauemurakami/getx_pattern)
