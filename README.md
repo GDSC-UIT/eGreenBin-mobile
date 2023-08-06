@@ -3,7 +3,9 @@
 # EGreenBin
 
 This mobile application is designed for teachers to manage students' waste disposal in schools. With this app, teachers can monitor, track and assess their students' waste collection and disposal habits. The app will provide an easy-to-use interface that allows teachers to log in, add students, assign duties and track waste disposal activities.
+## Video Project
 
+**Video**: [Youtube](https://www.youtube.com/watch?v=HTp6p7A_IFA)
 ## App demo
 
 **Link download apk for android**: [eGreenBin](https://drive.google.com/file/d/1VTPtGCNmN7gW3FWnvPVunL8GQx1P8L8j/view?usp=share_link)
